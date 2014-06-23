@@ -1,1 +1,1 @@
-{"name":"pinbored","main":"index.html","version":"1.0.0","window":{"title":"node-webkit demo","toolbar":false,"frame":true,"width":600,"height":560,"position":"mouse","resizable":false}}
+{"name":"pinbored","main":"index.html","version":"1.0.0","dependencies":{"restler":"^3.2.2"},"window":{"title":"Pinbored","toolbar":false,"frame":true,"width":1024,"height":768,"position":"mouse","resizable":true}}
