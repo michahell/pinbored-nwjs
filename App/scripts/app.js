@@ -20,7 +20,7 @@ angular
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/login.html',
+        templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
       .when('/login', {
