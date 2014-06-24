@@ -4,13 +4,17 @@ pinbored-webkit
 Pinbored native OSX client built with Node-webkit and AngularJS
 
 
-look at:
---------
-
+needed for extreme silk smooth polish
+-------------------------------------
 http://themeforest.net/item/flatlab-bootstrap-3-responsive-admin-template/5902687
 
 
-tools used:
------------
+tools used
+----------
 http://blog.nerdyweekly.com/posts/setting-up-your-development-environment-for-a-node-webkit-project/
 https://github.com/rogerwang/node-webkit
+
+
+gists, snippets etc. used
+-------------------------
+https://gist.github.com/Yukilas/3979293

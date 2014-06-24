@@ -8,17 +8,16 @@
  * Service in the pinboredWebkitApp.
  */
 angular.module('pinboredWebkitApp')
-  .service('Usersessionservice', function Usersessionservice() {
+  .service('Usersessionservice', function Usersessionservice($rootScope) {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
     this.isAuthenticated = false;
+    this.apikey = '';
 
-    this.setAuthenticated = function(setAuth) {
-      if (setAuth == true) {
-        this.isAuthenticated = true;
-      } else if (setAuth == false) {
-        this.isAuthenticated = false;
-      }
+    this.authenticated = function() {
+      this.isAuthenticated = true;
+      // notify listeners and provide the data that changed [optional]
+      $rootScope.$broadcast('user:authenticated', this.isAuthenticated);
     }
 
   });

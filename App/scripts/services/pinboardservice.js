@@ -8,13 +8,13 @@
  * Service in the pinboredWebkitApp.
  */
 angular.module('pinboredWebkitApp')
-  .service('Pinboardservice', function Pinboardservice($q, $http) {
+  .service('Pinboardservice', function Pinboardservice($q, $http, Usersessionservice) {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
-    this.initendpoint = 'https://user:password@api.pinboard.in/v1/';
+    this.authstring = 'https://user:password@api.pinboard.in/v1/';
     this.endpoint = 'https://api.pinboard.in/v1/';
     this.format = '?format=json';
-    this.apikey = '';
+    this.authstringReplaced = '';
 
     try {
       var rest = require('restler');
@@ -28,17 +28,20 @@ angular.module('pinboredWebkitApp')
 
       // modify url to include username + password,  user:password. 
       // See https://pinboard.in/api/ under authentication
-      this.initendpoint = this.initendpoint.replace('user', username).replace('password', password);
+      this.authstringReplaced = this.authstring.replace('user', username).replace('password', password);
 
       // request API token for session duration
-      this.request = this.initendpoint + 'user/api_token' + this.format;
+      this.request = this.authstringReplaced + 'user/api_token' + this.format;
 
-      console.log('init endpoint: ' + this.initendpoint);
-      console.log('this.request: ' + this.request);
+      // console.log('init endpoint_replaced: ' + this.authstringReplaced);
+      // console.log('this.request: ' + this.request);
       
       // node restler stuff
       rest.get(this.request).on('complete', function(result) {
         deferred.resolve(result);
+
+        // clear this.authstringReplaced from username + password...
+        this.authstringReplaced = this.authstring;
 
         // if (result instanceof Error) {
         //   console.log('Error:', result.message);

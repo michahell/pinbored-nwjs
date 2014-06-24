@@ -8,36 +8,53 @@
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('LoginCtrl', function ($scope, Usersessionservice, Pinboardservice) {
+  .controller('LoginCtrl', function ($scope, Usersessionservice, Pinboardservice, $location) {
     
-    var ps = Pinboardservice;
+    $scope.busy = false;
+    $scope.pstatus = null;
 
     $scope.login = function(username, password) {
 
-      console.log('login called with: ' + username + ' and: ' + password);
+      $scope.busy = true;
+      // console.log('login called with: ' + username + ' and: ' + password);
 
-      ps.getUserToken(username, password)
+      Pinboardservice.getUserToken(username, password)
       .then(function(result) {
-        // console.info('Success: ' + result);
         
         // try to parse result
-        var parsedjson;
+        var parsedresult;
+
         try {
-          parsedjson = JSON.parse(result);
+          parsedresult = JSON.parse(result);
         } catch (exception) {
-          parsedjson = null;
+          parsedresult = result.toLowerCase();
         }
 
-        if (parsedjson) {
-          console.info('test: ' + parsedjson);
+        if (parsedresult) {
+          if(parsedresult == '401 forbidden') {
+            console.info('not logged in: ' + parsedresult);
+            $scope.pstatus = false;
+          } else {
+            console.info('logged in.');
+            // set some stuff in Usersessionservice
+            Usersessionservice.apikey = parsedresult.result;
+            Usersessionservice.authenticated();
+            // show loginbox outro anim
+            $scope.pstatus = true;
+            // reroute to main
+            $location.path('/main');
+          }
         }
+        
+        // reset status vars
+        $scope.busy = false;
+        setTimeout(function(){
+          $scope.pstatus = null;
+        }, 500);
 
           // show stuff
         }, function(reason) {
           console.info('Failed: ' + reason);
-
-        }, function(update) {
-          console.info('Got notification: ' + update);
         });
 
     }

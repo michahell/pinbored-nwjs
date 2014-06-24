@@ -10,9 +10,8 @@
 angular.module('pinboredWebkitApp')
   .controller('MainNavCtrl', function ($scope, Usersessionservice) {
 
-    var us = Usersessionservice;
-
-    $scope.isAuthenticated = us.isAuthenticated;
-    $scope.currentUser = null;
+    $scope.$on('user:authenticated', function(event, data) {
+      $scope.showNav = Usersessionservice.isAuthenticated;
+    });
 
   });
