@@ -38,14 +38,16 @@ angular.module('pinboredWebkitApp')
       
       // node restler stuff
       rest.get(this.request).on('complete', function(result) {
-        if (result instanceof Error) {
-          console.log('Error:', result.message);
-          deferred.reject('Pinboard token request failed: ', result.message);
-        // this.retry(5000); // try again after 5 sec
-        } else {
-          console.log(result);
-          deferred.resolve(data);
-        }
+        deferred.resolve(result);
+
+        // if (result instanceof Error) {
+        //   console.log('Error:', result.message);
+        //   deferred.reject('Pinboard token request failed: ', result.message);
+        // // this.retry(5000); // try again after 5 sec
+        // } else {
+        //   console.log(result);
+        //   deferred.resolve(data);
+        // }
       });
       
       return deferred.promise;

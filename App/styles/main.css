@@ -1,3 +1,30 @@
+
 body, html {
-  /*background-color: #34495e;*/
+  height: 100%;
+}
+
+/* Bootstrap overrides */
+.container {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#login {
+  background: url(../images/pinbored/backgrounds/manatee2.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #444;
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow-y: hidden ! important;
+  overflow-x: hidden ! important;
+}
+
+.vertical-offset-100{
+    padding-top:170px;
 }
