@@ -8,34 +8,15 @@
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('MainCtrl', function ($scope, Pinboardservice) {
+  .controller('MainCtrl', function ($scope, Pinboardservice, Usersessionservice, $location) {
     
-    // $scope.awesomeThings = [
-    //   'HTML5 Boilerplate',
-    //   'AngularJS',
-    //   'Karma'
-    // ];
+    // check if user is logged in on Pinboard
+    var us = Usersessionservice;
+    
+    if (us.isAuthenticated == false) {
+      $location.path("/login");
+    }
 
     var ps = Pinboardservice;
     
-    // maybe node.js modules need some loading time or wtf?
-
-    window.setTimeout(function() {
-
-      ps.getUserToken('test', 'test2')
-        .then(function(data) {
-          console.info('Success: ' + data);
-          
-          var test = JSON.parse(data);
-          console.info('test: ' + test);
-
-          // show stuff
-        }, function(reason) {
-          console.info('Failed: ' + reason);
-        }, function(update) {
-          console.info('Got notification: ' + update);
-        });
-
-    }, 1000);
-
   });

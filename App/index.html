@@ -12,6 +12,7 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="bower_components/animate.css/animate.min.css">
     <!-- <link rel="stylesheet" href="styles/flat-ui.css"> -->
     <!-- <link rel="stylesheet" href="styles/lumen.css"> -->
     <!-- <link rel="stylesheet" href="styles/darkly.css"> -->
@@ -31,49 +32,12 @@
   </head>
   <body ng-app="pinboredWebkitApp">
     
-    <div class="navbar navbar-default navbar-static-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#/about">About</a></li>
-            <li><a href="#/">Contact</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">thing</a></li>
-            <li class="active"><a href="#">something</a></li>
-            <li><a href="#">also</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-      </div>
+    <!-- main navigation -->
+    <div ng-include src="'views/mainnav.html'"></div>
 
     <!-- Add your site or application content here -->
     <div class="container">
-
       <div ng-view=""></div>
-
     </div>
 
     <!-- build:js scripts/vendor.js -->
@@ -92,9 +56,12 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/mainnav.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/services/pinboardservice.js"></script>
+        <script src="scripts/services/usersessionservice.js"></script>
         <!-- endbuild -->
 </body>
 </html>
