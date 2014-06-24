@@ -4,10 +4,42 @@ body, html {
 }
 
 /* Bootstrap overrides */
+
 .container {
   padding-left: 0px;
   padding-right: 0px;
 }
+
+.navbar {
+  min-height: 0px;
+  margin-bottom: 0px;
+}
+
+.navbar > .container {
+  width: auto;
+  display: block;
+}
+
+.navbar-brand {
+  padding: 0px;
+  height: auto;
+}
+
+.navbar-nav.navbar-right:last-child {
+  margin-right: 0px;
+}
+
+/* following is specifically for flat-ui */
+
+.navbar >.container .navbar-collapse .navbar-nav.navbar-right:last-child {
+  margin-right: 0px;
+}
+
+.navbar-nav > li > .dropdown-menu {
+  margin-right: 15px;
+}
+
+/* custom element styling */
 
 #login {
   background: url(../images/pinbored/backgrounds/manatee2.jpg);

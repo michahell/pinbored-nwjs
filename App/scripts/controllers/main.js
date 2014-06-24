@@ -12,7 +12,7 @@ angular.module('pinboredWebkitApp')
     
     // check if user is logged in on Pinboard
     if (Usersessionservice.isAuthenticated == false) {
-      $location.path("/login");
+      // $location.path("/login");
     }
 
     

@@ -1,1 +1,1 @@
-{"name":"pinbored","main":"index.html","version":"1.0.0","dependencies":{"restler":"^3.2.2"},"window":{"title":"Pinbored","toolbar":true,"frame":true,"width":1024,"height":768,"position":"mouse","resizable":true}}
+{"name":"pinbored","main":"index.html","version":"1.0.0","dependencies":{"restler":"^3.2.2"},"window":{"title":"Pinbored","toolbar":true,"frame":true,"min_width":1024,"min_height":768,"width":1024,"height":768,"position":"mouse","resizable":true}}
