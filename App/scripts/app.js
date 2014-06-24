@@ -17,15 +17,19 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
+        templateUrl: 'views/login.html',
         controller: 'MainCtrl'
       })
       .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
+      })
+      .when('/main', {
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
       })
       .when('/list', {
         templateUrl: 'views/list.html',
@@ -34,4 +38,8 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+
+    // angular js node-webkit fix to get routing working properly...
+    //$locationProvider.html5Mode(true);
+
   });
