@@ -1,6 +1,7 @@
 
 body, html {
   height: 100%;
+  overflow:hidden;
 }
 
 /* scrollbar */
@@ -16,9 +17,12 @@ body, html {
 }
 ::-webkit-scrollbar-track-piece  {
     background-color: rgba(0, 0, 0, 0.6);
+    /*background-color: #2980B9;*/
 }
 ::-webkit-scrollbar-thumb {    
-    background-color: rgba(255, 255, 255, 0.4);
+    /*background-color: rgba(255, 255, 255, 0.4);*/
+    background-color: rgba(0, 0, 0, 0.6);
+    /*background-color: #3498DB;*/
     width: 6px;
 }
 
@@ -58,6 +62,10 @@ body, html {
   margin-left: 0px;
 }
 
+.tagsinput {
+  margin-bottom: 0px;
+}
+
 /* pagination */
 
 .pagination {
@@ -68,13 +76,18 @@ body, html {
   margin: 0px;
 }
 
+small, .small {
+  line-height: 1.3;
+}
+
 /* custom element styling */
 
 #login {
   /*background: url(../images/pinbored/backgrounds/manatee2.jpg);
   background-size: cover;
   background-repeat: no-repeat;*/
-  background-color: #444;
+  /*background-color: #444;*/
+  background-color: #2C3E50;
   width: 100%;
   height: 100%;
   margin: 0px;
@@ -95,8 +108,11 @@ body, html {
 
 .footer {
   background-color: #ecf0f1;
+  /*background-color: #7F8C8D;*/
   max-height: 53px;
   padding: 8px;
+  /*border-top: 2px solid #444;*/
+  border-top: 2px solid #000;
 }
 
 /* screens */
@@ -120,6 +136,8 @@ body, html {
   padding: 8px;
   font-weight: bold;
   color: white;
+  background-color: #7F8C8D;
+  border-top: 2px solid #444;
 }
 
 .vertical-offset-100{
@@ -133,28 +151,44 @@ body, html {
   /*background: url(../images/pinbored/backgrounds/leaf.jpg);
   background-size: cover;
   background-repeat: no-repeat;*/
-  background-color: #2C3E50;
+}
+
+#tagsearch {
+  background-color: #95A5A6;
+  /*padding: 0px;*/
+}
+
+.angularjs-bootstrap-tagsinput {
+  width: 100%;
+}
+.angularjs-bootstrap-tagsinput [data-role=tags] {
+  height: auto;
 }
 
 #pages {
   padding: 0px;
   text-align: center;
+  background-color: #16A085;
 }
 
 /* list specific */
 
 #list {
   padding: 0px;
+  border-top: 2px solid #000;
 }
 
 #list > ul {
-  background-color: rgba(236, 240, 241, 0.4);;
+  /*background-color: rgba(236, 240, 241, 0.4);;*/
+  background-color: #16A085;
+  /*background-color: #FFF;*/
   line-height: 1;
   margin: 0px;
   overflow-x: hidden;
   overflow-y: scroll;
   position: absolute;
-  height: calc(100% - 275px);
+  width: 100%;
+  height: calc(100% - 251px);
   border: none;
   border-radius: 0px;
 
@@ -169,15 +203,35 @@ body, html {
   line-height: 1;
   z-index: 2;
   /*background-color: rgba(236, 240, 241, 0.4);*/
-  background-color: rgba(0, 0, 0, 0.3);
+  /*background-color: rgba(0, 0, 0, 0.3);*/
+  background-color: #2980B9;
   border: none;
   border-radius: 0px;
 }
 
-li .list-group-item-heading {
+#list > ul li .link-item-toolbar .btn-toolbar {
+  float: right;
+}
+
+#list > ul li:nth-child(odd) {
+  background-color : #34495E;
+}
+
+#list > ul li:nth-child(even) {
+  background-color : #2C3E50;
+}
+
+#list > ul li .list-group-item-heading {
   color: white;
 }
 
-li .list-group-item-text {
+#list > ul li .list-group-item-text {
   color: white;
+}
+
+/* Tags screen */
+
+#tags {
+  height: calc(100%);
+  background-color: #2C3E50;
 }

@@ -37,6 +37,7 @@ angular.module('pinboredWebkitApp')
           } else {
             console.info('logged in.');
             // set some stuff in Usersessionservice
+            Usersessionservice.user = username;
             Usersessionservice.apikey = parsedresult.result;
             Usersessionservice.authenticated();
             // show loginbox outro anim

@@ -12,6 +12,7 @@ angular.module('pinboredWebkitApp')
     // AngularJS will instantiate a singleton by calling "new" on this function
 
     this.isAuthenticated = false;
+    this.user = '';
     this.apikey = '';
 
     this.authenticated = function() {
