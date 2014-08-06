@@ -1,6 +1,9 @@
 resources
 node_modules
 dist
+Build
+inspiration
+
 .tmp
 .sass-cache
 bower_components

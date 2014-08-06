@@ -15,7 +15,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'decipher.tags', 'ui.bootstrap.typeahead'
   ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -31,15 +32,12 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/list', {
-        templateUrl: 'views/list.html',
-        controller: 'ListCtrl'
+      .when('/tags', {
+        templateUrl: 'views/tags.html',
+        controller: 'TagsCtrl'
       })
       .otherwise({
         redirectTo: '/'
       });
-
-    // angular js node-webkit fix to get routing working properly...
-    //$locationProvider.html5Mode(true);
 
   });
