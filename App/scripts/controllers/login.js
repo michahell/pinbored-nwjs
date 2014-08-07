@@ -37,9 +37,7 @@ angular.module('pinboredWebkitApp')
           } else {
             console.info('logged in.');
             // set some stuff in Usersessionservice
-            Usersessionservice.user = username;
-            Usersessionservice.apikey = parsedresult.result;
-            Usersessionservice.authenticated();
+            Usersessionservice.setAuthenticated(username, parsedresult.result);
             // show loginbox outro anim
             $scope.pstatus = true;
             // reroute to main

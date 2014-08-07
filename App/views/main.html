@@ -52,7 +52,7 @@
     
       <!-- screen list group -->
       <ul class="list-group grow"> <!-- flip -->
-        <li ng-repeat="item in data.items" class="list-group-item" ng-controller="BookmarkItemCtrl" ng-click="toggleExpand()">
+        <li ng-repeat="item in data.items" class="list-group-item" ng-controller="BookmarkItemCtrl">
           <div ng-include src="'templates/BookmarkItem.html'"></div>
         </li>
       </ul>
