@@ -80,7 +80,8 @@ angular.module('pinboredWebkitApp')
             parsedresult = JSON.parse(result);
             deferred.resolve(parsedresult);
           } catch (exception) {
-            console.error("Pinboardservice: failed to parse request result json.");
+            console.error("Pinboardservice: failed to parse request result json: " + exception);
+            console.error(exception);
             parsedresult = result.toLowerCase();
             deferred.reject(parsedresult);
           }

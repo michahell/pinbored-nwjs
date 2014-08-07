@@ -1,24 +1,26 @@
+
 <div class="container" id="login">
     <div class="row vertical-offset-100">
       <div class="col-md-4 col-md-offset-4">
-        <div class="panel panel-default" ng-class="{false: 'animated shake', true: 'animated bounceOut'}[pstatus]">
-          <div class="panel-heading">
-            <h3 class="panel-title">Please sign in to Pinboard</h3>
+
+        <div class="login-form" ng-class="{false: 'animated shake', true: 'animated bounceOut'}[pstatus]">
+          <p class="text-center">Please sign in to Pinboard</p>
+          <form accept-charset="UTF-8" role="form">
+            <fieldset>
+              <div class="form-group">
+                <input ng-model="username" class="form-control" placeholder="username" type="text" id="login-name">
+                <label class="login-field-icon fui-user" for="login-name"></label>
+              </div>
+              <div class="form-group">
+                <input ng-model="password" class="form-control" placeholder="password" type="password" id="login-pass">
+                <label class="login-field-icon fui-lock" for="login-pass"></label>
+              </div>
+              <button ng-click="login(username, password)" btn-loading="busy" data-loading-text="logging in to pinboard..." type="button" class="btn btn-lg btn-success btn-block">login to pinbored</button>
+              <a class="login-link" href="#">Why use pinboard credentials?</a>
+            </fieldset>
+          </form>
         </div>
-          <div class="panel-body">
-            <form accept-charset="UTF-8" role="form">
-              <fieldset>
-                <div class="form-group">
-                  <input ng-model="username" class="form-control" placeholder="username" type="text">
-                </div>
-                <div class="form-group">
-                  <input ng-model="password" class="form-control" placeholder="password" type="password">
-                </div>
-                <button ng-click="login(username, password)" btn-loading="busy" data-loading-text="logging in to pinboard..." type="button" class="btn btn-lg btn-success btn-block">login to pinbored</button>
-              </fieldset>
-            </form>
-          </div>
-      </div>
+
     </div>
   </div>
 </div>

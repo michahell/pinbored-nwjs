@@ -12,9 +12,18 @@ angular.module('pinboredWebkitApp')
 
     $scope.isExpanded = false;
 
+    var gui = require('nw.gui');
+
+    // current item!
+    // $scope.item
+
     $scope.toggleExpand = function() {
       console.log('toggleExpand clicked');
       $scope.isExpanded = !$scope.isExpanded;
+    }
+
+    $scope.openBookmark = function(href) {
+      gui.Shell.openExternal(href);
     }
 
   });

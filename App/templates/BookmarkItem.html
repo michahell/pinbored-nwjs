@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-xs-9">
-    <small class="list-group-item-heading">
+    <small class="list-group-item-heading" ng-click="toggleExpand()">
       {{item.description}}<br/>
-      <a class="" href="{{item.href}}">{{item.href}}</a>
+      <a class="" href="javascript: void(0)" ng-click="openBookmark('{{item.href}}')">{{item.href | limitTo : 90}}</a>
     </small>
   </div>
   <div class="col-xs-3 link-item-toolbar">
@@ -17,6 +17,23 @@
     </div>          
   </div>
 </div>
-<div class="hiddenContent" ng-class="{zoomIn: isExpanded}">
+
+<div class="hiddenContent animated" ng-show="isExpanded">
+  <!-- ng-class="{false: 'animated zoomOut', true: 'animated zoomIn'}[isExpanded]" -->
+  <hr/>
   <small class="list-group-item-text">{{item.extended}}</small>
+  
+  <form role="form">
+    <div class="form-group">
+      <input ng-model="item.description" class="form-control hiddeninputs input-sm col-xs-4" type="text">
+    </div>
+    <div class="form-group">
+      <input ng-model="item.href" class="form-control hiddeninputs input-sm col-xs-4" type="text">
+    </div>
+    <div class="form-group">
+      <textarea ng-model="item.extended" placeholder="no extended description." class="form-control hiddeninputs input-sm col-xs-4" rows="2">
+      </textarea>
+    </div>
+  </form>
+
 </div>

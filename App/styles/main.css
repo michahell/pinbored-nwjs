@@ -66,6 +66,10 @@ body, html {
   margin-bottom: 0px;
 }
 
+.login-form:before {
+  content: none;
+}
+
 /* pagination */
 
 .pagination {
@@ -83,10 +87,6 @@ small, .small {
 /* custom element styling */
 
 #login {
-  /*background: url(../images/pinbored/backgrounds/manatee2.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;*/
-  /*background-color: #444;*/
   background-color: #2C3E50;
   width: 100%;
   height: 100%;
@@ -108,10 +108,8 @@ small, .small {
 
 .footer {
   background-color: #ecf0f1;
-  /*background-color: #7F8C8D;*/
   max-height: 53px;
   padding: 8px;
-  /*border-top: 2px solid #444;*/
   border-top: 2px solid #000;
 }
 
@@ -234,4 +232,11 @@ small, .small {
 #tags {
   height: calc(100%);
   background-color: #2C3E50;
+}
+
+
+/* bookmark item */
+
+.hiddenContent {
+  height: 200px;
 }
