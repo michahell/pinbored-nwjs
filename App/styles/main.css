@@ -48,6 +48,14 @@ body, html {
   margin-right: 0px;
 }
 
+textarea { 
+  resize:none; 
+}
+
+.row {
+  margin: 0px;
+}
+
 /* following is specifically for flat-ui */
 
 .navbar >.container .navbar-collapse .navbar-nav.navbar-right:last-child {
@@ -69,6 +77,53 @@ body, html {
 .login-form:before {
   content: none;
 }
+
+.list-group-item {
+  padding: 0px;
+  padding-bottom: 1px;
+}
+
+.pagination {
+  /*width: 100%;*/
+  border-radius: 0px;
+}
+
+.pagination > li > span,
+.pagination > li > a,
+ .pagination > .disabled > span {
+  padding: 2px 6px;
+  border: none;
+  background: transparent;
+  color: #34495E;
+}
+
+.pagination > .active > span {
+  background-color: #1ABC9C;
+}
+
+.pagination > li > span:hover,
+.pagination > li > a:focus {
+  background-color: #1ABC9C;
+  color: #2C3E50;
+}
+
+.pagination > li:first-child > a, 
+.pagination > li:first-child > span {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.pagination > li:last-child > a, 
+.pagination > li:last-child > span {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+
+
+
+
+
 
 /* pagination */
 
@@ -116,7 +171,7 @@ small, .small {
 /* screens */
 
 .viewcontainer {
-  height: calc(100% - 53px - 53px);
+  height: calc(100% - 53px);
 }
 
 .section {
@@ -126,15 +181,20 @@ small, .small {
 .bar {
   padding: 7px;
   /*background-color: rgba(236, 240, 241, 0.3);*/
-  background-color: #34495E;
+  /*background-color: #34495E;*/
+  background-color: #16A085;
+  border-top: 1px solid #34495E;
+
 }
 
 .screentitle {
   margin: 0px;
   padding: 8px;
   font-weight: bold;
-  color: white;
-  background-color: #7F8C8D;
+  /*color: white;*/
+  /*background-color: #7F8C8D;*/
+  color: #34495E;
+  background-color: #F39C12;
   border-top: 2px solid #444;
 }
 
@@ -146,13 +206,13 @@ small, .small {
 
 #overview {
   height: calc(100%);
+  background: #2C3E50;
   /*background: url(../images/pinbored/backgrounds/leaf.jpg);
   background-size: cover;
-  background-repeat: no-repeat;*/
+  background-repeat: no-repeat;
 }
 
 #tagsearch {
-  background-color: #95A5A6;
   /*padding: 0px;*/
 }
 
@@ -164,9 +224,11 @@ small, .small {
 }
 
 #pages {
+  line-height: 0;
   padding: 0px;
   text-align: center;
-  background-color: #16A085;
+  /*background-color: #16A085;*/
+  height: auto;
 }
 
 /* list specific */
@@ -178,7 +240,6 @@ small, .small {
 
 #list > ul {
   /*background-color: rgba(236, 240, 241, 0.4);;*/
-  background-color: #16A085;
   /*background-color: #FFF;*/
   line-height: 1;
   margin: 0px;
@@ -186,7 +247,7 @@ small, .small {
   overflow-y: scroll;
   position: absolute;
   width: 100%;
-  height: calc(100% - 251px);
+  height: calc(100% - 128px);
   border: none;
   border-radius: 0px;
 
@@ -202,7 +263,9 @@ small, .small {
   z-index: 2;
   /*background-color: rgba(236, 240, 241, 0.4);*/
   /*background-color: rgba(0, 0, 0, 0.3);*/
-  background-color: #2980B9;
+  /*background-color: #2980B9;*/
+  /*background-color: #34495e;*/
+  background-color: #2C3E50;
   border: none;
   border-radius: 0px;
 }
@@ -212,11 +275,11 @@ small, .small {
 }
 
 #list > ul li:nth-child(odd) {
-  background-color : #34495E;
+  /*background-color : #34495E;*/
 }
 
 #list > ul li:nth-child(even) {
-  background-color : #2C3E50;
+  /*background-color : #2C3E50;*/
 }
 
 #list > ul li .list-group-item-heading {
@@ -234,9 +297,54 @@ small, .small {
   background-color: #2C3E50;
 }
 
-
 /* bookmark item */
+
+.bookmark-item-left {
+    /*height: 50px;
+    margin-right: 200px;
+    margin-left:auto !important;*/
+}
+
+.bookmark-item-inner {
+  padding-left: 5px;
+  padding-top: 2px;
+  padding-bottom: 3px;
+}
+
+.bookmark-item-right {
+    /*margin: 0 200px;*/
+    position: relative;
+    left: auto;
+    width: 190px;
+    float: right;
+}
 
 .hiddenContent {
   height: 200px;
+}
+
+.hiddeninputs {
+  /*border-radius: 0px;*/
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #ddd;
+  border: 0px;
+  margin-bottom: 5px;
+}
+
+.wet-asphalt {
+  background-color: #34495E;
+}
+
+.midnight-blue {
+  background-color: #2C3E50;
+}
+
+.bookmark-item-right .btn-group {
+  height: 100%;
+}
+
+.bookmark-item-right .btn-group .btn {
+  border-radius: 0px;
+  padding: 10px 15px;
+  height: 100%;
 }

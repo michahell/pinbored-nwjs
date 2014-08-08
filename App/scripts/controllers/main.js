@@ -70,6 +70,6 @@ angular.module('pinboredWebkitApp')
     });
 
     // list effects activate
-    stroll.bind('#list ul', { live: true } );
+    // stroll.bind('#list ul', { live: true } );
 
   });
