@@ -41,3 +41,8 @@ angular
       });
 
   });
+
+// TEMP fix to understand when and why something is breaking!
+process.on("uncaughtException", function(e) { 
+  console.log(e); 
+});

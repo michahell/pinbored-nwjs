@@ -27,10 +27,11 @@
       <div class="collapse navbar-collapse textselectable">
         <form role="search" class="navbar-form navbar-left">
           <div class="form-group">
-            <input type="text" placeholder="full-text search" class="form-control">
+            <input type="text" ng-model="filter.text" placeholder="full-text search" class="form-control input-sm">
           </div>
-          <button class="btn btn-default" type="submit">Submit</button>
+          <button class="btn btn-default btn-sm" type="submit" ng-click="applyFilters()">search</button>
         </form>
+        <label class="share-label" for="showTags"><span class="highlight">{{filteredList.length}}</span> bookmarks found</label>
       </div>
     </nav>
 
@@ -59,7 +60,9 @@
     
       <!-- screen list group -->
       <ul class="list-group grow"> <!-- flip -->
-        <li ng-repeat="item in data.items" class="list-group-item" ng-controller="BookmarkItemCtrl">
+        <li ng-animate="'animate'"
+        ng-repeat="item in filteredList = (data.items | filter:searchFilter | filter:tagsFilter | limitTo: config.maxItems) track by item.hash" 
+        class="list-group-item" ng-controller="BookmarkItemCtrl">
           <div ng-include src="'templates/BookmarkItem.html'"></div>
         </li>
       </ul>
