@@ -10,56 +10,66 @@
 angular.module('pinboredWebkitApp')
   .controller('MainCtrl', function ($scope, Pinboardservice, Usersessionservice, Utilservice, $location) {
     
+    // check if user is authenticated
+    console.log("testing if authenticated..");
+    if (Usersessionservice.isAuthenticated() === false) {
+      console.log("testing if authenticated..");
+      $location.path("/login");
+      return;
+    }
+
     // page model
     $scope.data = {
       pagerange : [],
-      activepage : 5,
+      activepage : 2,
       items: []
+    }
+
+    $scope.filter = {
+      text : '',
+      tags : [],
+      date : null
+    }
+
+    $scope.config = {
+      maxItems : 25
     }
 
     // visibility switches (literally)
     $scope.showPager = false;
     $scope.showTags = false;
 
+    $scope.searchFilter = function(item) {
+      var filter = false;
+      if($scope.filter.text.length > 0) {
+        var searchFields = [item.extended, item.description, item.href, item.tags];
+        // search all searchFields
+        for(var i=0; i<searchFields.length; i++) {
+          if (searchFields[i].toLowerCase().indexOf($scope.filter.text.toLowerCase()) > -1) {
+            filter = true;
+            break;
+          }
+        }
+      } else {
+        filter = true;
+      }
+      return filter;
+    };
+
+    $scope.tagsFilter = function(bookmarkItem) {
+        return true;
+    };
+
     // functionality
     function createBookmarks (pinboardData) {
       var bookmarks = [];
       for(var i=0; i<pinboardData.posts.length; i++) {
-        // var bm = new BookmarkItem(pinboardData.posts[i]);
         var bm = pinboardData.posts[i];
         bookmarks.push(bm);
       }
-      console.info(bookmarks);
+      // console.info(bookmarks);
       return bookmarks;
     }
-
-    // check if user is logged in on Pinboard
-    console.log("testing if authenticated..");
-    if (Usersessionservice.isAuthenticated() === false) {
-      console.log("testing if authenticated..");
-      $location.path("/login");
-    }
-
-    // Init with some cities
-    // $scope.cities = [
-    //   { "value": 1 , "text": "Amsterdam"   , "continent": "Europe"    },
-    //   { "value": 4 , "text": "Washington"  , "continent": "America"   },
-    //   { "value": 7 , "text": "Sydney"      , "continent": "Australia" },
-    //   { "value": 10, "text": "Beijing"     , "continent": "Asia"      },
-    //   { "value": 13, "text": "Cairo"       , "continent": "Africa"    }
-    // ];
-
-    // $scope.getTagClass = function(city) {
-    //   switch (city.continent) {
-    //     case 'Europe'   : return 'badge badge-info';
-    //     case 'America'  : return 'label label-important';
-    //     case 'Australia': return 'badge badge-success';
-    //     case 'Africa'   : return 'label label-inverse';
-    //     case 'Asia'     : return 'badge badge-warning';
-    //   }
-    // };
-
-    // $scope.tags = ['foo', 'bar'];
 
     // add test pages
     for(var i = 0; i < 20; i++) {
@@ -68,7 +78,7 @@ angular.module('pinboredWebkitApp')
 
     // request some bookmarks
     console.log("testing getRecentBookmarks...");
-    Pinboardservice.getRecentBookmarks(25)
+    Pinboardservice.getRecentBookmarks(50)
     .then(function(result) {
         $scope.data.items = createBookmarks(result);
     }, function(reason) {

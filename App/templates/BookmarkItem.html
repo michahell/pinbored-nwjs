@@ -21,11 +21,9 @@
     </div>
   </div>
 
-  <div class="col-xs-12">
-    <div class="hiddenContent animated" ng-show="isExpanded">
-      
+  <div class="col-xs-12" ng-if="isExpanded">
+    <div class="hiddenContent animated">
       <small class="list-group-item-text">{{item.extended}}</small>
-      
       <form role="form">
         <div class="form-group">
           <input ng-model="item.description" class="form-control hiddeninputs input-sm col-xs-4" type="text">

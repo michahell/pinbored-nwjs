@@ -252,11 +252,11 @@ small, .small {
   height: calc(100%);
 }
 
-.minitoolbar .switch {
+#overview .switch {
   float: right;
 }
 
-.minitoolbar .share-label {
+#overview .share-label {
   float: right;
   /*color: #7F8C8D;*/
   color: #95A5A6;
@@ -266,7 +266,7 @@ small, .small {
   padding-top: 3px;
 }
 
-.minitoolbar label {
+#overview label {
   margin-bottom: 0px;
 }
 
@@ -292,6 +292,10 @@ small, .small {
   background-color: transparent;
 }
 
+#overview .navbar-inverse p {
+  color: #95A5A6;
+}
+
 #overview .navbar {
   min-height: 0px;
   margin-bottom: 0px;
@@ -311,6 +315,10 @@ small, .small {
   box-shadow: none;
 }
 
+#overview #fulltextsearch .share-label {
+  padding-top: 5px;
+}
+
 /* list specific */
 
 #list {
@@ -318,8 +326,7 @@ small, .small {
 }
 
 #list > ul {
-  /*background-color: rgba(236, 240, 241, 0.4);;*/
-  /*background-color: #FFF;*/
+  background-color: #2C3E50;
   line-height: 1;
   margin: 0px;
   overflow-x: hidden;
@@ -381,6 +388,7 @@ small, .small {
     /*height: 50px;
     margin-right: 200px;
     margin-left:auto !important;*/
+    background-color: #34495E;
 }
 
 .bookmark-item-inner {
@@ -419,10 +427,7 @@ small, .small {
   height: 100%;
 }
 
-/*.wet-asphalt {
-  background-color: #34495E;
+.highlight {
+  color: #1ABC9C;
+  font-weight: bold;
 }
-
-.midnight-blue {
-  background-color: #2C3E50;
-}*/
