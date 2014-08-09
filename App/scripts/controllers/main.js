@@ -8,7 +8,7 @@
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('MainCtrl', function ($scope, Pinboardservice, Usersessionservice, $location) {
+  .controller('MainCtrl', function ($scope, Pinboardservice, Usersessionservice, Utilservice, $location) {
     
     // page model
     $scope.data = {
@@ -16,6 +16,10 @@ angular.module('pinboredWebkitApp')
       activepage : 5,
       items: []
     }
+
+    // visibility switches (literally)
+    $scope.showPager = false;
+    $scope.showTags = false;
 
     // functionality
     function createBookmarks (pinboardData) {
@@ -30,7 +34,9 @@ angular.module('pinboredWebkitApp')
     }
 
     // check if user is logged in on Pinboard
-    if (Usersessionservice.isAuthenticated() == false) {
+    console.log("testing if authenticated..");
+    if (Usersessionservice.isAuthenticated() === false) {
+      console.log("testing if authenticated..");
       $location.path("/login");
     }
 

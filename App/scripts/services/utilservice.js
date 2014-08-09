@@ -13,7 +13,9 @@ angular.module('pinboredWebkitApp')
 
     this.isEmpty = function(input) {
       var result = true;
-      if (input !== null && input !== "" && input !== " ") result = false;
+      if (input !== null && input !== undefined && input !== "" && input !== " ") {
+        result = false;
+      }
       return result;
     }
 

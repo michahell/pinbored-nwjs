@@ -23,6 +23,7 @@ angular.module('pinboredWebkitApp')
     }
 
     this.getUserToken = function(username, password) {
+      
       var deferred = $q.defer();
       // modify url to include username + password,  user:password. See https://pinboard.in/api/ under authentication
       var authstringReplaced = this.authstring.replace('user', username).replace('password', password);
@@ -48,10 +49,7 @@ angular.module('pinboredWebkitApp')
     this.getRecentBookmarks = function(amount, tags) {
 
       // check if authenticated
-      if(!Usersessionservice.isAuthenticated) {
-        console.error("not authenticated!");
-        return;
-      }
+      if(!Usersessionservice.isAuthenticated()) return;
 
       console.info("requesting " + amount + " bookmarks...");
 

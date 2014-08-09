@@ -10,10 +10,10 @@
 angular.module('pinboredWebkitApp')
   .controller('FooterCtrl', function ($scope, Usersessionservice) {
 
-    $scope.showFooter = true;
+    $scope.showFooter = false;
 
     $scope.$on('user:authenticated', function(event, data) {
-      $scope.showFooter = Usersessionservice.isAuthenticated;
+      $scope.showFooter = true;
     });
 
   });
