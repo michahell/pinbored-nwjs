@@ -293,6 +293,44 @@ small, .small {
   margin-bottom: 0px;
 }
 
+#overview .clickabletag {
+  margin-right: 5px;
+  background-color: #27AE60;
+  color: #2C3E50;
+  cursor: pointer;
+}
+
+#overview .clickabletag:hover {
+  background-color: #2ECC71;
+  color: #34495E;
+}
+
+#overview .tagsinput {
+  background: transparent;
+  border: none;
+  padding: 0px;
+}
+
+#overview .tagsinput .tag {
+  margin-bottom: 0px;
+  vertical-align: middle;
+}
+
+#overview .tagsinput input {
+  vertical-align: middle;
+  margin: 0px;
+}
+
+#overview .tagsinput-add {
+  background-color: transparent;
+  margin-bottom: 0px;
+  vertical-align: middle;
+}
+
+#overview .tagContainer {
+  height: 20px;
+}
+
 #tagsearch {
   
 }
@@ -488,4 +526,10 @@ small, .small {
 .highlight {
   color: #1ABC9C;
   font-weight: bold;
+}
+
+.highlight-search {
+  color: #2C3E50;
+  font-weight: bold;
+  background-color: #F1C40F;
 }

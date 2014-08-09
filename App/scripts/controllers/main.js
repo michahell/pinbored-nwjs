@@ -32,24 +32,32 @@ angular.module('pinboredWebkitApp')
     }
 
     $scope.config = {
-      maxItems : 25
+      maxItems : 20,
+      showSearch : false,
+      showTags : false,
+      showPager : false
     }
 
     $scope.searchFilter = function(item) {
-      var filter = false;
-      if($scope.filter.text.length > 0) {
-        var searchFields = [item.extended, item.description, item.href, item.tags];
+      var filtered = false;
+      var word = $scope.filter.text;
+
+      if(word.length > 0) {
+        // var searchFields = [item.extended, item.description, item.href, item.tags];
+        var searchFields = [item.description];
         // search all searchFields
         for(var i=0; i<searchFields.length; i++) {
-          if (searchFields[i].toLowerCase().indexOf($scope.filter.text.toLowerCase()) > -1) {
-            filter = true;
+          var index = searchFields[i].toLowerCase().indexOf(word.toLowerCase());
+          if (index > -1) {
+            // set filtered to true and break
+            filtered = true;
             break;
           }
         }
       } else {
-        filter = true;
+        filtered = true;
       }
-      return filter;
+      return filtered;
     };
 
     $scope.tagsFilter = function(bookmarkItem) {

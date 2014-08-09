@@ -18,6 +18,17 @@ angular.module('pinboredWebkitApp')
     // current item!
     // $scope.item
 
+    // break apart tags into an array
+    $scope.item.tagsList = $scope.item.tags.split(' ');
+
+    $scope.clickTag = function(tag) {
+      console.log('tag clicked: ' + tag);
+      // open the tag filter toolbar
+      $scope.config.showTags = true;
+      // add this clicked tag to parent filter.tags model (if it's not in there)
+      if($scope.filter.tags.indexOf(tag) > -1) $scope.filter.tags.push(tag);
+    }
+
     $scope.toggleExtended = function() {
       console.log('toggleExtended clicked');
       $scope.showExtended = !$scope.showExtended;
