@@ -4,15 +4,18 @@
     <div class="form-group">
       <div class="btn-toolbar">
         <div class="btn-group">
-          <a class="btn btn-inverse btn-sm" href="#fakelink"><span class="fui-eye"></span></a>
-          <a class="btn btn-inverse btn-sm" href="#fakelink"><span class="fui-new"></span></a>
-          <a class="btn btn-inverse btn-sm" href="#fakelink"><span class="fui-cross"></span></a>
+          <a class="btn btn-inverse btn-sm" ng-click="staleCheck()" 
+          href="javascript: void(0)"><span class="fui-eye"></span></a>
+          <a class="btn btn-inverse btn-sm" ng-click="toggleEdit()"
+          href="javascript: void(0)"><span class="fui-new"></span></a>
+          <a class="btn btn-inverse btn-sm" ng-click="delete()"
+          href="javascript: void(0)"><span class="fui-cross"></span></a>
         </div>
       </div>
     </div>          
   </div>
 
-  <div class="bookmark-item-left wet-asphalt" ng-click="toggleExpand()">
+  <div class="bookmark-item-left" ng-click="toggleExtended()">
     <div class="bookmark-item-inner">
       <small class="list-group-item-heading">
         {{item.description}}<br/>
@@ -21,22 +24,61 @@
     </div>
   </div>
 
-  <div class="col-xs-12" ng-if="isExpanded">
-    <div class="hiddenContent animated">
+  <div class="col-xs-12" ng-if="showExtended">
+    <div class="hiddenContent animated clearfix">
       <small class="list-group-item-text">{{item.extended}}</small>
-      <form role="form">
+    </div>
+  </div>
+
+  <div class="hiddenContent animated clearfix" ng-show="showEdit">
+    
+    <div class="row">
+      <div class="col-xs-12">
         <div class="form-group">
           <input ng-model="item.description" class="form-control hiddeninputs input-sm col-xs-4" type="text">
         </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
         <div class="form-group">
           <input ng-model="item.href" class="form-control hiddeninputs input-sm col-xs-4" type="text">
         </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
         <div class="form-group">
           <textarea ng-model="item.extended" placeholder="no extended description." class="form-control hiddeninputs input-sm col-xs-4" rows="2">
           </textarea>
         </div>
-      </form>
+      </div>
     </div>
+
+    <div class="row">
+
+      <div class="col-xs-6">
+        <div class="btn-toolbar">
+          <div class="btn-group btn-group-sm">
+            <a class="btn btn-primary" ng-class="{disabled: itemChanged}" ng-click="update()" 
+            href="javascript: void(0)">update</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-6">
+        <div class="btn-toolbar">
+          <div class="btn-group btn-group-sm">
+            <a class="btn btn-danger" ng-click="delete()"
+            href="javascript: void(0)">delete</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
   </div>
   
 </div>

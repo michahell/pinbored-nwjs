@@ -35,10 +35,6 @@ angular.module('pinboredWebkitApp')
       maxItems : 25
     }
 
-    // visibility switches (literally)
-    $scope.showPager = false;
-    $scope.showTags = false;
-
     $scope.searchFilter = function(item) {
       var filter = false;
       if($scope.filter.text.length > 0) {
@@ -76,14 +72,17 @@ angular.module('pinboredWebkitApp')
       $scope.data.pagerange.push('page' + i);
     }
 
-    // request some bookmarks
-    console.log("testing getRecentBookmarks...");
-    Pinboardservice.getRecentBookmarks(50)
-    .then(function(result) {
-        $scope.data.items = createBookmarks(result);
-    }, function(reason) {
-      console.info('Failed: ' + reason);
-    });
+    // request recent bookmarks if there are none loaded yet.
+    if($scope.data.items.length === 0) {
+      // check if they are in
+      console.log("getting getRecentBookmarks...");
+      Pinboardservice.getRecentBookmarks(50)
+      .then(function(result) {
+          $scope.data.items = createBookmarks(result);
+      }, function(reason) {
+        console.info('Failed: ' + reason);
+      });
+    }
 
     // list effects activate
     // stroll.bind('#list ul', { live: true } );
