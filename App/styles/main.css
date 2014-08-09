@@ -29,6 +29,21 @@ textarea {
   margin: 0px;
 }
 
+.col-xs-1, 
+.col-xs-2,
+.col-xs-3, 
+.col-xs-4,
+.col-xs-5, 
+.col-xs-6,
+.col-xs-7, 
+.col-xs-8,
+.col-xs-9, 
+.col-xs-10,
+.col-xs-11, 
+.col-xs-12 {
+  padding: 0px;
+}
+
 /* following is specifically for flat-ui */
 
 .navbar >.container .navbar-collapse .navbar-nav.navbar-right:last-child {
@@ -115,8 +130,10 @@ textarea {
 
 
 
+
 body, html {
   height: 100%;
+  width: 100%;
   overflow:hidden;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -204,6 +221,9 @@ small, .small {
 /* screens */
 
 .screen {
+  display: table;
+  height: 100%;
+  width: 100%;
   background: #34495E;
 }
 
@@ -220,6 +240,10 @@ small, .small {
   /*background-color: #16A085;*/
   background-color: #2C3E50;
   border-top: 1px solid #34495E;
+}
+
+#bar-wrapper {
+  display: table-row;
 }
 
 .screentitle {
@@ -249,7 +273,6 @@ small, .small {
 /* screen and component specific */
 
 #overview {
-  height: calc(100%);
 }
 
 #overview .switch {
@@ -323,17 +346,22 @@ small, .small {
 
 #list {
   padding: 0px;
+  display: table-row;  /* height is dynamic, and will expand... */
+  height: 100%;        /* ...as content is added (won't scroll) */
 }
 
-#list > ul {
+#list .list-wrapper {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+#list .list-wrapper > ul {
   background-color: #2C3E50;
   line-height: 1;
   margin: 0px;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  position: absolute;
   width: 100%;
-  height: calc(100% - 128px);
+  height: 100%;
   border: none;
   border-radius: 0px;
 
@@ -344,7 +372,7 @@ small, .small {
           perspective: 400px;
 }
 
-#list > ul li {
+#list .list-wrapper > ul li {
   line-height: 1;
   z-index: 2;
   /*background-color: rgba(236, 240, 241, 0.4);*/
@@ -356,23 +384,23 @@ small, .small {
   border-radius: 0px;
 }
 
-#list > ul li .link-item-toolbar .btn-toolbar {
+#list .list-wrapper > ul li .link-item-toolbar .btn-toolbar {
   float: right;
 }
 
-#list > ul li:nth-child(odd) {
+#list .list-wrapper > ul li:nth-child(odd) {
   /*background-color : #34495E;*/
 }
 
-#list > ul li:nth-child(even) {
+#list .list-wrapper > ul li:nth-child(even) {
   /*background-color : #2C3E50;*/
 }
 
-#list > ul li .list-group-item-heading {
+#list .list-wrapper > ul li .list-group-item-heading {
   color: white;
 }
 
-#list > ul li .list-group-item-text {
+#list .list-wrapper > ul li .list-group-item-text {
   color: white;
 }
 
@@ -406,15 +434,45 @@ small, .small {
 }
 
 .hiddenContent {
-  height: 200px;
+  height: auto;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.hiddenContent .btn-toolbar {
+  margin: 2px;
+  padding-right: 5px;
+}
+
+.hiddenContent .btn-toolbar .btn-group a {
+  border-radius: 0px;
+}
+
+.btn-group-sm > .btn {
+  padding: 8px 15px;
+}
+
+.hiddenContent .form-control {
+  width: calc(100% - 8px);
 }
 
 .hiddeninputs {
-  /*border-radius: 0px;*/
+  border-radius: 0px;
   background-color: rgba(0, 0, 0, 0.1);
   color: #ddd;
   border: 0px;
-  margin-bottom: 5px;
+  margin: 2px;
+  margin-left: 3px;
+  padding-left: 8px;
+}
+
+.hiddencontent .input-sm {
+  height: 30px;
+}
+
+.hiddeninputs:hover {
+  /*border-radius: 0px;*/
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .bookmark-item-right .btn-group {

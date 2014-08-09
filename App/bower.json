@@ -1,25 +1,25 @@
 {
   "name": "pinbored-webkit",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {
-    "angular": "1.2.16",
+    "angular": ">=1.2.16",
     "json3": "~3.3.1",
-    "bootstrap": "~3.1.1",
-    "angular-resource": "1.2.16",
-    "angular-cookies": "1.2.16",
-    "angular-sanitize": "1.2.16",
-    "angular-animate": "1.2.16",
-    "angular-touch": "1.2.16",
-    "angular-route": "1.2.16",
-    "flat-ui-official": "~2.1.3",
-    "animate.css": "~3.1.1",
+    "bootstrap": ">=3.1.1",
+    "angular-resource": ">=1.2.16",
+    "angular-cookies": ">=1.2.16",
+    "angular-sanitize": ">=1.2.16",
+    "angular-animate": ">=1.2.16",
+    "angular-touch": ">=1.2.16",
+    "angular-route": ">=1.2.16",
+    "flat-ui-official": ">=2.1.3",
+    "animate.css": ">=3.1.1",
     "stroll": "*",
-    "angularjs-bootstrap-tagsinput": "~0.1.0",
+    "angularjs-bootstrap-tagsinput": ">=0.1.0",
     "angular-tags": ">=0.2.10",
-    "angular-bootstrap": "~0.11.0"
+    "angular-bootstrap": ">=0.11.0"
   },
   "devDependencies": {},
   "resolutions": {
-    "angular": "1.2.16"
+    "angular": "1.2.21"
   }
 }

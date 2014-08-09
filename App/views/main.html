@@ -6,69 +6,67 @@
     <div class="minitoolbar col-xs-9 pull-right text-right">
       
       <div class="col pull-right text-right">
-        <flatui-switch model="showPager" square=""></flatui-switch>
+        <flatui-switch model="config.showPager" square=""></flatui-switch>
         <label class="share-label" for="showPager">paging</label>
       </div>
       <div class="col pull-right text-right">
-        <flatui-switch model="showTags" square=""></flatui-switch>
+        <flatui-switch model="config.showTags" square=""></flatui-switch>
         <label class="share-label" for="showTags">tag filter</label>
       </div>
       <div class="col pull-right text-right">
-        <flatui-switch model="showSearch" square=""></flatui-switch>
+        <flatui-switch model="config.showSearch" square=""></flatui-switch>
         <label class="share-label" for="showSearch">fulltext filter</label>
       </div>
     </div>
   </div>
 
-  <!-- full text search -->
-  <div class="bar" id="fulltextsearch" ng-show="showSearch">
+  <div class="bar-wrapper clearfix">
 
-    <nav role="navigation" class="navbar navbar-inverse navbar-embossed">
-      <div class="collapse navbar-collapse textselectable">
-        <form role="search" class="navbar-form navbar-left">
-          <div class="form-group">
-            <input type="text" ng-model="filter.text" placeholder="full-text search" class="form-control input-sm">
-          </div>
-          <button class="btn btn-default btn-sm" type="submit" ng-click="applyFilters()">search</button>
-        </form>
-        <label class="share-label" for="showTags"><span class="highlight">{{filteredList.length}}</span> bookmarks found</label>
-      </div>
-    </nav>
+    <!-- full text search -->
+    <div class="bar" id="fulltextsearch" ng-show="config.showSearch">
+      <nav role="navigation" class="navbar navbar-inverse navbar-embossed">
+        <div class="collapse navbar-collapse textselectable">
+          <form role="search" class="navbar-form navbar-left">
+            <div class="form-group">
+              <input type="text" ng-model="filter.text" placeholder="full-text search" class="form-control input-sm">
+            </div>
+            <button class="btn btn-default btn-sm" type="submit" ng-click="applyFilters()">search</button>
+          </form>
+          <label class="share-label" for="showTags"><span class="highlight">{{filteredList.length}}</span> bookmarks found</label>
+        </div>
+      </nav>
+    </div>
+
+    <!-- tags -->
+    <div class="bar" id="tagsearch" ng-show="config.showTags">
+
+    </div>
+
+    <!-- screen pagination -->
+    <div class="bar" id="pages" ng-show="config.showPager">
+      <ul class="pagination">
+        <li class="disabled"><span>&laquo;</span></li>
+        <li ng-repeat="page in data.pagerange" ng-class="{active: data.activepage == $index+1}">
+          <span> {{$index+1}} <span class="sr-only">(current)</span></span>
+        </li>
+        <li><a href="#">&raquo;</a></li>
+      </ul>
+    </div>
 
   </div>
 
-  <!-- tags -->
-  <div class="bar" id="tagsearch" ng-show="showTags">
-
-  </div>
-
-  <!-- screen pagination -->
-  <div class="bar" id="pages" ng-show="showPager">
-
-    <ul class="pagination">
-      <li class="disabled"><span>&laquo;</span></li>
-      <li ng-repeat="page in data.pagerange" ng-class="{active: data.activepage == $index+1}">
-        <span> {{$index+1}} <span class="sr-only">(current)</span></span>
-      </li>
-      <li><a href="#">&raquo;</a></li>
-    </ul>
-
-  </div>
-  
   <!-- bookmark items list -->
   <div class="section" id="list">
-    
-      <!-- screen list group -->
-      <ul class="list-group grow"> <!-- flip -->
-        <li ng-animate="'animate'"
-        ng-repeat="item in filteredList = (data.items | filter:searchFilter | filter:tagsFilter | limitTo: config.maxItems) track by item.hash" 
-        class="list-group-item" ng-controller="BookmarkItemCtrl">
-          <div ng-include src="'templates/BookmarkItem.html'"></div>
-        </li>
-      </ul>
-
+      <div class="list-wrapper">
+        <!-- screen list group -->
+        <ul class="list-group grow"> <!-- flip -->
+          <li ng-animate="'animate'"
+          ng-repeat="item in filteredList = (data.items | filter:searchFilter | filter:tagsFilter | limitTo: config.maxItems) track by item.hash" 
+          class="list-group-item" ng-controller="BookmarkItemCtrl">
+            <div ng-include src="'templates/BookmarkItem.html'"></div>
+          </li>
+        </ul>
+      </div>
   </div>
-
-  <br/>
 
 </div>
