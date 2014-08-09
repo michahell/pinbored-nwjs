@@ -1,27 +1,48 @@
 <div class="screen" id="overview">
 
   <!-- screen title -->
-  <h6 class="screentitle">Overview</h6>
+  <div class="screentitle clearfix">
+    <h6>Overview</h6>
+    <div class="minitoolbar col-xs-9 pull-right text-right">
+      
+      <div class="col pull-right text-right">
+        <flatui-switch model="showPager" square=""></flatui-switch>
+        <label class="share-label" for="showPager">paging</label>
+      </div>
+      <div class="col pull-right text-right">
+        <flatui-switch model="showTags" square=""></flatui-switch>
+        <label class="share-label" for="showTags">tag filter</label>
+      </div>
+      <div class="col pull-right text-right">
+        <flatui-switch model="showSearch" square=""></flatui-switch>
+        <label class="share-label" for="showSearch">fulltext filter</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- full text search -->
+  <div class="bar" id="fulltextsearch" ng-show="showSearch">
+
+    <nav role="navigation" class="navbar navbar-inverse navbar-embossed">
+      <div class="collapse navbar-collapse textselectable">
+        <form role="search" class="navbar-form navbar-left">
+          <div class="form-group">
+            <input type="text" placeholder="full-text search" class="form-control">
+          </div>
+          <button class="btn btn-default" type="submit">Submit</button>
+        </form>
+      </div>
+    </nav>
+
+  </div>
 
   <!-- tags -->
-  <!-- <div class="bar" id="tagsearch">
-    
-    <tags model="tags"></tags>
+  <div class="bar" id="tagsearch" ng-show="showTags">
 
-  </div> -->
-
-  <!-- tags 2 -->
-
-  <!-- <bootstrap-tagsinput
-    ng-model="cities"
-    tagclass="getTagClass"
-    itemvalue="value"
-    itemtext="text">
-  </bootstrap-tagsinput> -->
-  <!-- typeahead-source="queryCities" -->
+  </div>
 
   <!-- screen pagination -->
-  <div class="bar" id="pages">
+  <div class="bar" id="pages" ng-show="showPager">
 
     <ul class="pagination">
       <li class="disabled"><span>&laquo;</span></li>
@@ -33,6 +54,7 @@
 
   </div>
   
+  <!-- bookmark items list -->
   <div class="section" id="list">
     
       <!-- screen list group -->

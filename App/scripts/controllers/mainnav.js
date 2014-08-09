@@ -18,6 +18,4 @@ angular.module('pinboredWebkitApp')
       $scope.username = Usersessionservice.user;
     });
 
-    Usersessionservice.isAuthenticated();
-
   });

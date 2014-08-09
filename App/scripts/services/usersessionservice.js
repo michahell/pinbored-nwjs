@@ -36,8 +36,16 @@ angular.module('pinboredWebkitApp')
     }
 
     this.isAuthenticated = function() {
-      // check if user and apikey are still in session storage
-      if(Utilservice.isEmpty(sessionStorage.user) || Utilservice.isEmpty(sessionStorage.apikey)) return;
+
+      // check if user and apikey are still in session storage. if not, return.
+      if(Utilservice.isEmpty(sessionStorage.user) || Utilservice.isEmpty(sessionStorage.apikey)) {
+        this.authenticated = false;
+        return this.authenticated;
+        console.info("user was not authenticated.");
+      } 
+
+      // console.info("user has authenticated before.");
+      // console.info(sessionStorage.user, sessionStorage.apikey);
 
       // if they are store them again in the service
       this.user = sessionStorage.user;
@@ -47,6 +55,8 @@ angular.module('pinboredWebkitApp')
       this.authenticated = true;
       // notify listeners and provide the data that changed
       $rootScope.$broadcast('user:authenticated', this.authenticated);
+
+      return this.authenticated;
     }
 
   });
