@@ -39,8 +39,30 @@
 
     <!-- tags -->
     <div class="bar" id="tagsearch" ng-show="config.showTags">
-
+      <div id="tagsinput_tagsinput" class="tagsinput " style="height: 100%;">
+        <span class="tag">
+          <span>Clean&nbsp;&nbsp;</span>
+          <a class="tagsinput-remove-link"></a>
+        </span>
+        <span class="tag">
+          <span>Fresh&nbsp;&nbsp;</span>
+          <a class="tagsinput-remove-link"></a>
+        </span>
+        <span class="tag">
+          <span>Modern&nbsp;&nbsp;</span>
+          <a class="tagsinput-remove-link"></a>
+        </span>
+        <span class="tag">
+          <span>Unique&nbsp;&nbsp;</span>
+          <a class="tagsinput-remove-link"></a>
+        </span>
+        <div class="tagsinput-add-container" id="tagsinput_addTag">
+          <div class="tagsinput-add">
+          </div>
+        <input id="tagsinput_tag" value="" data-default="" style="color: rgb(102, 102, 102); width: 7px;">
+      </div>
     </div>
+  </div>
 
     <!-- screen pagination -->
     <div class="bar" id="pages" ng-show="config.showPager">

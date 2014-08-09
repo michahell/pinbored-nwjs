@@ -15,18 +15,21 @@
     </div>          
   </div>
 
-  <div class="bookmark-item-left" ng-click="toggleExtended()">
+  <div class="bookmark-item-left">
     <div class="bookmark-item-inner">
-      <small class="list-group-item-heading">
-        {{item.description}}<br/>
-        <a class="" href="javascript: void(0)" ng-click="openBookmark('{{item.href}}')">{{item.href | limitTo : 90}}</a>
+      <small ng-bind-html="item.description | highlight:filter.text" class="list-group-item-heading"></small>
+      <br/>
+      <small>
+        <a class="" href="javascript: void(0)" 
+        ng-click="openBookmark('{{item.href}}')">{{item.href | limitTo : 90}}</a>
       </small>
-    </div>
-  </div>
-
-  <div class="col-xs-12" ng-if="showExtended">
-    <div class="hiddenContent animated clearfix">
-      <small class="list-group-item-text">{{item.extended}}</small>
+      <br/>
+      <div class="tagContainer">
+        <small>
+          <span ng-repeat="tag in item.tagsList" ng-click="clickTag(tag)" 
+          class="label label-success clickabletag">{{tag}}</span>
+        </small>
+      </div>
     </div>
   </div>
 
