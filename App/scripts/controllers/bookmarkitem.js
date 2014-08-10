@@ -26,7 +26,21 @@ angular.module('pinboredWebkitApp')
       // open the tag filter toolbar
       $scope.config.showTags = true;
       // add this clicked tag to parent filter.tags model (if it's not in there)
-      if($scope.filter.tags.indexOf(tag) > -1) $scope.filter.tags.push(tag);
+      if($scope.filter.tags.length > 0) {
+        var exists = false;
+        for (var i=0; i<$scope.filter.tags.length; i++) {
+          // console.log($scope.filter.tags[i].text);
+          if($scope.filter.tags[i].text === tag) {
+            exists = true;
+            break;            
+          }
+        }
+        if (exists === false) $scope.filter.tags.push( {text : tag} );
+      } else {
+        $scope.filter.tags.push( {text : tag} );
+      }
+
+      console.log($scope.filter.tags);
     }
 
     $scope.toggleExtended = function() {

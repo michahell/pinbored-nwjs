@@ -39,7 +39,8 @@
 
     <!-- tags -->
     <div class="bar" id="tagsearch" ng-show="config.showTags">
-      <div id="tagsinput_tagsinput" class="tagsinput " style="height: 100%;">
+      <tags-input ng-model="filter.tags" ng-change=""></tags-input>
+      <!-- <div id="tagsinput_tagsinput" class="tagsinput " style="height: 100%;">
         <span class="tag">
           <span>Clean&nbsp;&nbsp;</span>
           <a class="tagsinput-remove-link"></a>
@@ -59,9 +60,9 @@
         <div class="tagsinput-add-container" id="tagsinput_addTag">
           <div class="tagsinput-add">
           </div>
-        <input id="tagsinput_tag" value="" data-default="" style="color: rgb(102, 102, 102); width: 7px;">
-      </div>
-    </div>
+          <input id="tagsinput_tag" value="" data-default="" style="color: rgb(102, 102, 102); width: 7px;">
+        </div>
+      </div> -->
   </div>
 
     <!-- screen pagination -->
@@ -82,11 +83,17 @@
       <div class="list-wrapper">
         <!-- screen list group -->
         <ul class="list-group grow"> <!-- flip -->
+          
+          <li ng-animate="'animate'" class="listItemNoResults" ng-if="filteredList.length == 0">
+            <h5>NO BOOKMARKS FOUND.</h5>
+          </li>
+
           <li ng-animate="'animate'"
           ng-repeat="item in filteredList = (data.items | filter:searchFilter | filter:tagsFilter | limitTo: config.maxItems) track by item.hash" 
           class="list-group-item" ng-controller="BookmarkItemCtrl">
             <div ng-include src="'templates/BookmarkItem.html'"></div>
           </li>
+
         </ul>
       </div>
   </div>
