@@ -32,15 +32,18 @@ tools used
 ----------
 
 **related to code**
+
 https://github.com/rogerwang/node-webkit
 http://lab.hakim.se/scroll-effects/
 http://mbenford.github.io/ngTagsInput/
 
 **related to design**
+
 http://daneden.github.io/animate.css/
 https://github.com/designmodo/Flat-UI
 
 **gists, snippets, tutorials, hints, comments etc. used**
+
 http://blog.nerdyweekly.com/posts/setting-up-your-development-environment-for-a-node-webkit-project/
 https://gist.github.com/Yukilas/3979293
 http://stackoverflow.com/questions/9159551/can-we-drop-css-property-webkit-scrollbar-from-a-single-node
