@@ -415,6 +415,24 @@ small, .small {
   color: #95A5A6;
 }
 
+#overview .navbar-inverse form {
+  width: 100%;
+}
+
+#overview .navbar-inverse form .form-group {
+  width: calc(100% - 100px);
+}
+
+#overview .navbar-inverse form .form-group input {
+  width: 100%;
+}
+
+.navbar-inverse .navbar-form .form-control {
+  border-color: #33495E;
+}
+
+
+
 #overview .navbar {
   min-height: 0px;
   margin-bottom: 0px;
@@ -483,7 +501,7 @@ small, .small {
   border-bottom: 2px solid #2C3E50;
 }
 
-#list .list-wrapper > ul li.listItemNoResults {
+#list .list-wrapper > ul li.listItemMessage {
   line-height: 2;
   z-index: 2;
   color: #2C3E50;

@@ -22,7 +22,8 @@ angular.module('pinboredWebkitApp')
     $scope.data = {
       pagerange : [],
       activepage : 2,
-      items: []
+      items: [],
+      isLoading : true
     }
 
     $scope.filter = {
@@ -106,8 +107,10 @@ angular.module('pinboredWebkitApp')
     if($scope.data.items.length === 0) {
       // check if they are in
       console.log("getting getRecentBookmarks...");
+      $scope.data.isLoading = true;
       Pinboardservice.getRecentBookmarks(50)
       .then(function(result) {
+          $scope.data.isLoading = false;
           $scope.data.items = createBookmarks(result);
       }, function(reason) {
         console.info('Failed: ' + reason);
