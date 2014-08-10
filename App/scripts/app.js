@@ -16,7 +16,7 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'decipher.tags', 'ui.bootstrap.typeahead'
+    'ngTagsInput'
   ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider

@@ -123,6 +123,59 @@ textarea {
   left: 1px;
 }
 
+/* style of ng-tags-input component */
+
+tags-input .host {
+  margin: 0px;
+}
+
+tags-input .tags {
+  background-color: transparent;
+  -webkit-appearance: none;
+  border: 0px;
+  box-shadow : none;
+  border-radius: 4px;
+}
+
+tags-input .tags .input {
+  height: auto;
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1;
+  background-color: #34495E;
+  border-radius: 4px;
+  color: #95A5A6;
+  padding: 5px;
+}
+
+tags-input .tags.focused {
+  box-shadow : none;
+}
+
+tags-input .tags .tag-item {
+  background: #27AE60;
+  color: #2C3E50;
+  padding: 0px 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 4px;
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1;
+  border: 0px;
+}
+
+tags-input .tags .tag-item.selected {
+  background: #E74C3C;
+  color: #2C3E50;
+}
+
+tags-input .tags .tag-item .remove-button {
+  font-size: 24px;
+  color: #2C3E50;
+  padding-right: 2px;
+}
 
 
 
@@ -130,6 +183,11 @@ textarea {
 
 
 
+
+
+
+
+/* start of kustom CSS */
 
 body, html {
   height: 100%;
@@ -395,7 +453,8 @@ small, .small {
 }
 
 #list .list-wrapper > ul {
-  background-color: #2C3E50;
+  /*background-color: #2C3E50;*/
+  background-color: #34495E;
   line-height: 1;
   margin: 0px;
   width: 100%;
@@ -417,9 +476,24 @@ small, .small {
   /*background-color: rgba(0, 0, 0, 0.3);*/
   /*background-color: #2980B9;*/
   /*background-color: #34495e;*/
-  background-color: #2C3E50;
+  /*background-color: #2C3E50;*/
+  background-color: #34495E;
   border: none;
   border-radius: 0px;
+  border-bottom: 2px solid #2C3E50;
+}
+
+#list .list-wrapper > ul li.listItemNoResults {
+  line-height: 2;
+  z-index: 2;
+  color: #2C3E50;
+  height: auto;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  border: none;
+  border-radius: 0px;
+  text-align:  center;
+  vertical-align: middle;
 }
 
 #list .list-wrapper > ul li .link-item-toolbar .btn-toolbar {
@@ -451,15 +525,19 @@ small, .small {
 /* bookmark item */
 
 .bookmark-item-left {
-    /*height: 50px;
-    margin-right: 200px;
-    margin-left:auto !important;*/
-    background-color: #34495E;
+  /*height: 50px;
+  margin-right: 200px;
+  margin-left:auto !important;*/
+  background-color: #34495E;
+}
+
+.bookmark-item-left small {
+  margin: 5px;
 }
 
 .bookmark-item-inner {
   padding-left: 5px;
-  padding-top: 2px;
+  padding-top: 5px;
   padding-bottom: 3px;
 }
 
@@ -519,7 +597,7 @@ small, .small {
 
 .bookmark-item-right .btn-group .btn {
   border-radius: 0px;
-  padding: 10px 15px;
+  padding: 26px 15px;
   height: 100%;
 }
 

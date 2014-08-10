@@ -14,7 +14,8 @@
     "flat-ui-official": ">=2.1.3",
     "animate.css": ">=3.1.1",
     "stroll": "*",
-    "angular-bootstrap": ">=0.11.0"
+    "angular-bootstrap": ">=0.11.0",
+    "ng-tags-input": "2.0.1"
   },
   "devDependencies": {}
 }

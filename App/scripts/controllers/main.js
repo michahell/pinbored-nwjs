@@ -60,8 +60,30 @@ angular.module('pinboredWebkitApp')
       return filtered;
     };
 
-    $scope.tagsFilter = function(bookmarkItem) {
-        return true;
+    $scope.tagsFilter = function(item) {
+      var filtered = false;
+      var searchTags = $scope.filter.tags;
+
+      if(searchTags.length > 0) {
+        for(var i=0; i<searchTags.length; i++) {
+          var searchTag = searchTags[i];
+          var bookmarkTags = item.tags.split(' ');
+          // console.log(bookmarkTags);
+          // console.log(searchTag.text);
+          for(var j=0; j<bookmarkTags.length; j++) {
+            // console.log(bookmarkTags[j]);
+            if(bookmarkTags[j] === searchTag.text) {
+              // console.log('tag found in bookmark!');
+              filtered = true;
+              break;
+            }
+          }
+        }
+      } else {
+        filtered = true;
+      }
+
+      return filtered;
     };
 
     // functionality
