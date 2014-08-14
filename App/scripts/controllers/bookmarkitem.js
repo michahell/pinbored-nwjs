@@ -10,8 +10,10 @@
 angular.module('pinboredWebkitApp')
   .controller('BookmarkItemCtrl', function ($scope, Usersessionservice) {
 
-    $scope.showExtended = false;
-    $scope.showEdit = false;
+    $scope.status = {
+      showEdit : false,
+      hasChanged : false
+    }
 
     var gui = require('nw.gui');
 
@@ -43,14 +45,9 @@ angular.module('pinboredWebkitApp')
       console.log($scope.filter.tags);
     }
 
-    $scope.toggleExtended = function() {
-      console.log('toggleExtended clicked');
-      $scope.showExtended = !$scope.showExtended;
-    }
-
     $scope.toggleEdit = function() {
       console.log('toggle edit clicked');
-      $scope.showEdit = !$scope.showEdit;
+      $scope.status.showEdit = !$scope.status.showEdit;
     }
 
     $scope.update = function() {

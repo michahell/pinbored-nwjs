@@ -46,6 +46,23 @@ textarea {
 
 /* following is specifically for flat-ui */
 
+.select {
+  margin-bottom: 0px;
+  /*margin-top: 3px;*/
+}
+
+.select .btn.btn-xs .filter-option {
+  top: 6px;
+}
+
+.select.select-block .dropdown-menu {
+  border: 2px solid #16A085;
+}
+
+.screentitle .btn-xs {
+  margin-top: 3px;
+}
+
 .navbar >.container .navbar-collapse .navbar-nav.navbar-right:last-child {
   margin-right: 0px;
 }
@@ -137,15 +154,41 @@ tags-input .tags {
   border-radius: 4px;
 }
 
+tags-input.ng-invalid .tags {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+tags-input.ng-invalid .tags:focus {
+  border: 2px solid #E74C3C;
+  color: #E74C3C;
+}
+
+tags-input .tags .input.invalid-tag {
+  color: #E74C3C;
+}
+
 tags-input .tags .input {
   height: auto;
   font-family: "Lato", Helvetica, Arial, sans-serif;
   font-size: 15px;
   line-height: 1;
-  background-color: #34495E;
+  background-color: #293A4A;
+  border: 2px solid #34495E;
   border-radius: 4px;
-  color: #95A5A6;
+  color: #536A81;
   padding: 5px;
+  margin: 0px;
+  transition: border .25s linear, color .25s linear, background-color .25s linear;
+}
+
+tags-input .tags .input:focus {
+  border: 2px solid #1ABC9C;
+  color: #1ABC9C;
+}
+
+tags-input .tags .input::-webkit-input-placeholder { 
+  color: #536A81;
 }
 
 tags-input .tags.focused {
@@ -164,6 +207,7 @@ tags-input .tags .tag-item {
   font-weight: bold;
   line-height: 1;
   border: 0px;
+  margin-right: 5px;
 }
 
 tags-input .tags .tag-item.selected {
@@ -337,9 +381,13 @@ small, .small {
   float: right;
 }
 
+.checkbox {
+  color: #95A5A6;
+  margin-top: 6px;
+}
+
 #overview .share-label {
   float: right;
-  /*color: #7F8C8D;*/
   color: #95A5A6;
   width: auto;
   margin-right: 10px;
@@ -588,6 +636,11 @@ small, .small {
 
 .hiddenContent .form-control {
   width: calc(100% - 8px);
+}
+
+.hiddenContent .editbuttonbar {
+  margin: 2px;
+  padding-left: 2px;
 }
 
 .hiddeninputs {

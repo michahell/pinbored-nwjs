@@ -33,6 +33,9 @@ angular.module('pinboredWebkitApp')
     }
 
     $scope.config = {
+      loadtype : 'recent',
+      searchAllWords : false,
+      searchAllWordsText : 'search all words',
       maxItems : 20,
       showSearch : false,
       showTags : false,
@@ -87,6 +90,37 @@ angular.module('pinboredWebkitApp')
       return filtered;
     };
 
+    $scope.reload = function() {
+      
+      // set some stuff
+      $scope.data.isLoading = true;
+      $scope.data.items = [];
+      $scope.filteredList = [];
+
+      // get recent bookmarks
+      if ($scope.config.loadtype === 'recent') {
+        console.log("getting recent bookmarks...");
+        Pinboardservice.getRecentBookmarks(50)
+        .then(function(result) {
+            $scope.data.isLoading = false;
+            $scope.data.items = createBookmarks(result);
+        }, function(reason) {
+          console.error('Failed: ' + reason);
+        });
+
+      // get all bookmarks
+      } else if ($scope.config.loadtype === 'all') {
+        console.log("getting ALL bookmarks...");
+        Pinboardservice.getAllBookmarks()
+        .then(function(result) {
+            $scope.data.isLoading = false;
+            $scope.data.items = createBookmarks(result);
+        }, function(reason) {
+          console.error('Failed: ' + reason);
+        });
+      }
+    }
+
     // functionality
     function createBookmarks (pinboardData) {
       var bookmarks = [];
@@ -104,17 +138,11 @@ angular.module('pinboredWebkitApp')
     }
 
     // request recent bookmarks if there are none loaded yet.
+    
+
     if($scope.data.items.length === 0) {
       // check if they are in
-      console.log("getting getRecentBookmarks...");
-      $scope.data.isLoading = true;
-      Pinboardservice.getRecentBookmarks(50)
-      .then(function(result) {
-          $scope.data.isLoading = false;
-          $scope.data.items = createBookmarks(result);
-      }, function(reason) {
-        console.info('Failed: ' + reason);
-      });
+      $scope.reload();
     }
 
     // list effects activate

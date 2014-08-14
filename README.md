@@ -28,8 +28,13 @@ Roadmap V2
 for bookmark creation consider using Shiori: http://aki-null.net/shiori/ or another bookmarking app.
 i could add this functionality, but it's mainly aimed at **managing** one's bookmarks.
 
-tools used
+stuff used
 ----------
+
+**tooling used**
+
+* http://codeb.it/nuwk/
+* http://www.sublimetext.com/2
 
 **related to code**
 
@@ -37,13 +42,20 @@ tools used
 * http://lab.hakim.se/scroll-effects/
 * http://mbenford.github.io/ngTagsInput/
 
+**gists, snippets**
+
+* https://gist.github.com/cirqueit/b668f464a80ad5c8ca0b
+* https://gist.github.com/Yukilas/3979293
+
 **related to design**
 
 * http://daneden.github.io/animate.css/
 * https://github.com/designmodo/Flat-UI
 
-**gists, snippets, tutorials, hints, comments etc. used**
+**tutorials, hints, comments etc. used**
 
 * http://blog.nerdyweekly.com/posts/setting-up-your-development-environment-for-a-node-webkit-project/
-* https://gist.github.com/Yukilas/3979293
 * http://stackoverflow.com/questions/9159551/can-we-drop-css-property-webkit-scrollbar-from-a-single-node
+* http://www.bennadel.com/blog/2487-filter-vs-nghide-with-ngrepeat-in-angularjs.htm
+* http://www.williambrownstreet.net/blog/2013/07/angularjs-my-solution-to-the-ng-repeat-performance-problem/
+
