@@ -33,7 +33,7 @@
     </div>
   </div>
 
-  <div class="hiddenContent animated clearfix" ng-show="showEdit">
+  <div class="hiddenContent animated clearfix" ng-show="status.showEdit">
     
     <div class="row">
       <div class="col-xs-12">
@@ -62,22 +62,11 @@
 
     <div class="row">
 
-      <div class="col-xs-6">
-        <div class="btn-toolbar">
-          <div class="btn-group btn-group-sm">
-            <a class="btn btn-primary" ng-class="{disabled: itemChanged}" ng-click="update()" 
-            href="javascript: void(0)">update</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-xs-6">
-        <div class="btn-toolbar">
-          <div class="btn-group btn-group-sm">
-            <a class="btn btn-danger" ng-click="delete()"
-            href="javascript: void(0)">delete</a>
-          </div>
-        </div>
+      <div class="col-xs-12 editbuttonbar">
+        <a class="btn btn-primary btn-wide btn-xs" ng-class="{disabled: status.hasChanged}" ng-click="update()" 
+        href="javascript: void(0)">update</a>
+        <a class="btn btn-danger btn-wide btn-xs" ng-click="delete()"
+        href="javascript: void(0)">delete</a>
       </div>
 
     </div>
