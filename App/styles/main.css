@@ -63,6 +63,10 @@ textarea {
   margin-top: 3px;
 }
 
+.screentitle .btn-sm {
+  padding: 5.5px 13px;
+}
+
 .navbar >.container .navbar-collapse .navbar-nav.navbar-right:last-child {
   margin-right: 0px;
 }
@@ -141,6 +145,11 @@ textarea {
   left: 1px;
 }
 
+.navbar-form .btn {
+  height: auto;
+  padding: 7.5px 13px;
+}
+
 .navbar-form .form-group + .btn {
   font-size: 13px;
 }
@@ -157,6 +166,7 @@ tags-input .tags {
   border: 0px;
   box-shadow : none;
   border-radius: 4px;
+  padding: 0px;
 }
 
 tags-input.ng-invalid .tags {
@@ -184,6 +194,8 @@ tags-input .tags .input {
   color: #536A81;
   padding: 5px;
   margin: 0px;
+  /*margin-top: 3px;*/
+  margin-left: 1px;
   transition: border .25s linear, color .25s linear, background-color .25s linear;
 }
 
@@ -206,13 +218,15 @@ tags-input .tags .tag-item {
   padding: 0px 10px;
   padding-left: 5px;
   padding-right: 5px;
-  border-radius: 4px;
   font-family: "Lato", Helvetica, Arial, sans-serif;
   font-size: 15px;
   font-weight: bold;
   line-height: 1;
   border: 0px;
+  border-radius: 4px;
+  margin: 2px;
   margin-right: 5px;
+  /*margin-bottom: 6px;*/
 }
 
 tags-input .tags .tag-item.selected {
@@ -377,6 +391,29 @@ small, .small {
     padding-top:170px;
 }
 
+.app-status-indicator {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  padding: 10px;
+  /*background: #2C3E50;*/
+  background: #ECF0F1;
+  text-align: left;
+  padding-left: 20px;
+  bottom: 0px;
+  z-index: 20;
+  border-top: 2px #;
+}
+
+.app-status-indicator h7 {
+  /*color: #7F8C8D;*/
+  color: #34495E;
+}
+
+.app-status-indicator h7 span.highlight {
+  color: #16A085;
+}
+
 
 /* screen and component specific */
 
@@ -388,9 +425,14 @@ small, .small {
 
 #overview select,
 #tags select {
-  margin: 7px;
+  margin: 4px;
   margin-right: 10px;
   height: 30px;
+}
+
+#overview select.tall,
+#tags select.tall {
+  margin: 7px;
 }
 
 .checkbox {
@@ -547,10 +589,29 @@ small, .small {
   height: 100%;        /* ...as content is added (won't scroll) */
 }
 
+#list div.listBackgroundMessage {
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  line-height: 2;
+  z-index: 3;
+  color: #2C3E50;
+  border: none;
+  border-radius: 0px;
+  text-align:  center;
+  vertical-align: middle;
+  margin-top: 20%;
+}
+
 #list .list-wrapper {
-  height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
+  z-index: 5;
+  position: relative;
+}
+
+#list .fullheight {
+  height: 100%;
 }
 
 #list .list-wrapper > ul {
@@ -562,6 +623,7 @@ small, .small {
   height: 100%;
   border: none;
   border-radius: 0px;
+  z-index: 9;
 
   -webkit-perspective: 400px;
      -moz-perspective: 400px;
@@ -572,7 +634,7 @@ small, .small {
 
 #list .list-wrapper > ul li {
   line-height: 1;
-  z-index: 2;
+  z-index: 15;
   /*background-color: rgba(236, 240, 241, 0.4);*/
   /*background-color: rgba(0, 0, 0, 0.3);*/
   /*background-color: #2980B9;*/
@@ -589,7 +651,7 @@ small, .small {
   background-color: #212F3C;
 }
 
-#list .list-wrapper > ul li.listItemMessage {
+/*#list .list-wrapper > ul li.listItemMessage {
   line-height: 2;
   z-index: 2;
   color: #2C3E50;
@@ -600,7 +662,7 @@ small, .small {
   border-radius: 0px;
   text-align:  center;
   vertical-align: middle;
-}
+}*/
 
 #list .list-wrapper > ul li .link-item-toolbar .btn-toolbar {
   float: right;
@@ -749,3 +811,42 @@ small, .small {
   font-weight: bold;
   background-color: #F1C40F;
 }
+
+
+/* ============================ ANIMATIONS ============================ */
+
+/* app status indicator */
+
+.app-status-indicator-enter, 
+.app-status-indicator-leave { 
+    -webkit-transition: 4000ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition: 4000ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition: 4000ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition: 4000ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: 4000ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    position: relative;
+    display: block;
+} 
+ 
+.app-status-indicator-leave.app-status-indicator-leave-active,
+.app-status-indicator-enter {
+    -webkit-transform: scaleY(0);
+    -moz-transform: scaleY(0);
+    -ms-transform: scaleY(0);
+    -o-transform: scaleY(0);
+    transform: scaleY(0);
+    height: 0px;
+    opacity: 0;
+}
+ 
+.app-status-indicator-enter.app-status-indicator-enter-active,
+.app-status-indicator-leave {
+    -webkit-transform: scaleY(1);
+    -moz-transform: scaleY(1);
+    -ms-transform: scaleY(1);
+    -o-transform: scaleY(1);
+    transform: scaleY(1);
+    height: 50px;
+    opacity: 1;
+}
+

@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="bower_components/stroll/css/stroll.min.css" />
     <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.min.css">
     <link rel="stylesheet" href="bower_components/flat-ui-official/css/flat-ui.css">
-    <!-- <link rel="stylesheet" href="styles/flat-ui.css" /> -->
     <!-- <link rel="stylesheet" href="styles/lumen.css" /> -->
     <!-- <link rel="stylesheet" href="styles/darkly.css" /> -->
     <link rel="stylesheet" href="styles/noresponsive.css" />
@@ -18,12 +17,20 @@
 
   </head>
   <body ng-app="pinboredWebkitApp">
-    
+      
     <!-- main navigation -->
-    <div ng-include src="'views/mainnav.html'" ng-controller="MainNavCtrl" ng-show="showNav" class="navbar navbar-default navbar-static-top" role="navigation"></div>
+    <div ng-include src="'views/mainnav.html'" ng-controller="MainNavCtrl" ng-show="showNav" 
+    class="navbar navbar-default navbar-static-top" role="navigation"></div>
 
     <!-- Add your site or application content here -->
     <div ng-view="" class="viewcontainer"></div>
+
+    <!-- main app status window -->
+    <div ng-controller="AppStatusCtrl" ng-show="visible" class="app-status-indicator" 
+    ng-animate="app-status-indicator">
+      <h7>current operation : <span class="highlight">{{status.text}}</span> - 
+        {{status.progress}} / {{status.total}}</h7>
+    </div>
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
@@ -48,23 +55,30 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <!-- node-webkit related configuration settings -->
+        <script src="scripts/node-webkit-config.js"></script>
+        <!-- main angular entry point -->
         <script src="scripts/app.js"></script>
-        <!-- // <script src="scripts/classes/BookmarkItem.js"></script> -->
+        <!-- controllers -->
         <script src="scripts/controllers/mainnav.js"></script>
+        <script src="scripts/controllers/appstatus.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/tags.js"></script>
         <script src="scripts/controllers/settings.js"></script>
         <script src="scripts/controllers/login.js"></script>
-        <script src="scripts/controllers/footer.js"></script>
         <script src="scripts/controllers/bookmarkitem.js"></script>
+        <!-- services -->
         <script src="scripts/services/utilservice.js"></script>
+        <script src="scripts/services/appstatusservice.js"></script>
         <script src="scripts/services/pinboardservice.js"></script>
         <script src="scripts/services/usersessionservice.js"></script>
+        <!-- directives -->
         <script src="scripts/directives/btnloading.js"></script>
         <script src="scripts/directives/flatuicomponents.js"></script>
         <script src="scripts/directives/stopevent.js"></script>
+        <!-- filters -->
         <script src="scripts/filters/highlightfilter.js"></script>
+        <script src="scripts/filters/searchcollectionfilter.js"></script>
         <!-- endbuild -->
 
 </body>

@@ -15,8 +15,10 @@ angular.module('pinboredWebkitApp')
     // current item!
     // $scope.item
 
-    // break apart tags into an array
-    $scope.item.tagsList = $scope.item.data.tags.split(' ');
+    $scope.tagsToArray = function() {
+      // break apart tags into an array
+      return $scope.item.data.tags.split(' ');
+    }
 
     $scope.clickTag = function(tag) {
 
@@ -36,8 +38,6 @@ angular.module('pinboredWebkitApp')
       } else {
         $scope.filter.tags.push( {text : tag} );
       }
-
-      // console.log($scope.filter.tags);
       $scope.cancelCurrentOperations();
     }
 
@@ -58,8 +58,6 @@ angular.module('pinboredWebkitApp')
       } else {
         $scope.config.showSelection = false;
       }
-      
-      // console.info($scope.data.selectedItems);
     }
 
     $scope.toggleEdit = function() {

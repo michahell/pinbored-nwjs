@@ -24,6 +24,8 @@ angular.module('pinboredWebkitApp')
       console.error('error loading restler: ' + error);
     }
 
+    /* ====================== INTERNALS ======================= */
+
     this.handleRestler = function(result, responsecode, deferred) {
       if (result instanceof Error) {
         console.error('Restler: Error: ', result.message);
@@ -58,6 +60,8 @@ angular.module('pinboredWebkitApp')
       }
     }
 
+    /* ==================== AUTHENTICATION ==================== */
+
     this.getUserToken = function(username, password) {
       
       console.log('pinboardservice: getting user token...')
@@ -75,6 +79,8 @@ angular.module('pinboredWebkitApp')
       
       return deferred.promise;
     }
+
+    /* ====================== BOOKMARKS ======================= */
 
     this.getRecentBookmarks = function(amount, tags) {
 
@@ -133,6 +139,62 @@ angular.module('pinboredWebkitApp')
       return deferred.promise;
     }
 
+    this.getBookmark = function(tags, url, date) {
+
+      // check if authenticated
+      if(!Usersessionservice.isAuthenticated()) return;
+
+      console.log('pinboardservice: getting bookmark...')
+
+      var deferred = $q.defer();
+      var self = this;
+
+      'posts/get'
+
+      // mock retrieve bookmark
+
+      return deferred.promise;
+    }
+
+    this.deleteBookmark = function(bookmark) {
+
+      // check if authenticated
+      if(!Usersessionservice.isAuthenticated()) return;
+
+      console.log('pinboardservice: deleting bookmark...')
+
+      var deferred = $q.defer();
+      var self = this;
+
+      'posts/delete'
+
+      // mock delete bookmark
+      deferred.resolve(bookmark.data.hash);
+
+      return deferred.promise;
+
+    }
+
+    this.updateBookmark = function(bookmark) {
+
+      // check if authenticated
+      if(!Usersessionservice.isAuthenticated()) return;
+
+      console.log('pinboardservice: updating bookmark...')
+      
+      var deferred = $q.defer();
+      var self = this;
+
+      'posts/add'
+
+      // mock delete bookmark
+      deferred.resolve(bookmark.data.hash);
+
+      return deferred.promise;
+    }
+
+    /* ================ TAGS RELATED REQUESTS ================= */
+
     this.getAllTags = function() {
 
       // check if authenticated
@@ -156,6 +218,12 @@ angular.module('pinboredWebkitApp')
       
       return deferred.promise;
     }
+
+    this.deleteTag = function(tag) {
+      'tags/delete'
+    }
+
+    /* =================== CUSTOM REQUESTS ==================== */
 
     this.checkUrl = function(url) {
 
