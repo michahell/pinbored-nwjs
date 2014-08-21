@@ -3,6 +3,7 @@ Roadmap V1
 ----------
 
 - OVERVIEW
+  - put loaded bookmarks in local- or session storage
   - load all bookmarks
   - paging
   - no reload when recent items or all items already were loaded
