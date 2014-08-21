@@ -15,7 +15,9 @@
     "animate.css": ">=3.1.1",
     "stroll": "*",
     "angular-bootstrap": ">=0.11.0",
-    "ng-tags-input": "2.0.1"
+    "ng-tags-input": "2.0.1",
+    "bootstrap-select": "~1.6.2",
+    "angular-bootstrap-select": "~0.0.3"
   },
   "devDependencies": {}
 }

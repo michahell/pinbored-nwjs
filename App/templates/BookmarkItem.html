@@ -4,11 +4,11 @@
     <div class="form-group">
       <div class="btn-toolbar">
         <div class="btn-group">
-          <a class="btn btn-inverse btn-sm" ng-click="staleCheck()" 
+          <a class="btn btn-inverse btn-sm" ng-click="staleCheck()" stop-event 
           href="javascript: void(0)"><span class="fui-eye"></span></a>
-          <a class="btn btn-inverse btn-sm" ng-click="toggleEdit()"
+          <a class="btn btn-inverse btn-sm" ng-click="toggleEdit()" stop-event
           href="javascript: void(0)"><span class="fui-new"></span></a>
-          <a class="btn btn-inverse btn-sm" ng-click="delete()"
+          <a class="btn btn-inverse btn-sm" ng-click="delete()" stop-event
           href="javascript: void(0)"><span class="fui-cross"></span></a>
         </div>
       </div>
@@ -17,28 +17,28 @@
 
   <div class="bookmark-item-left">
     <div class="bookmark-item-inner">
-      <small ng-bind-html="item.description | highlight:filter.text" class="list-group-item-heading"></small>
+      <small ng-bind-html="item.data.description | highlight:filter.text" class="list-group-item-heading"></small>
       <br/>
       <small>
         <a class="" href="javascript: void(0)" 
-        ng-click="openBookmark('{{item.href}}')">{{item.href | limitTo : 90}}</a>
+        ng-click="openBookmark('{{item.data.href}}')" stop-event>{{item.data.href | limitTo : 90}}</a>
       </small>
       <br/>
       <div class="tagContainer">
         <small>
-          <span ng-repeat="tag in item.tagsList" ng-click="clickTag(tag)" 
+          <span ng-repeat="tag in item.tagsList" ng-click="clickTag(tag)" stop-event
           class="label label-success clickabletag">{{tag}}</span>
         </small>
       </div>
     </div>
   </div>
 
-  <div class="hiddenContent animated clearfix" ng-show="status.showEdit">
+  <div class="hiddenContent animated clearfix" ng-show="item.status.showEdit" stop-event>
     
     <div class="row">
       <div class="col-xs-12">
         <div class="form-group">
-          <input ng-model="item.description" class="form-control hiddeninputs input-sm col-xs-4" type="text">
+          <input ng-model="item.data.description" class="form-control hiddeninputs input-sm col-xs-4" type="text" stop-event>
         </div>
       </div>
     </div>
@@ -46,7 +46,7 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="form-group">
-          <input ng-model="item.href" class="form-control hiddeninputs input-sm col-xs-4" type="text">
+          <input ng-model="item.data.href" class="form-control hiddeninputs input-sm col-xs-4" type="text" stop-event>
         </div>
       </div>
     </div>
@@ -54,7 +54,8 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="form-group">
-          <textarea ng-model="item.extended" placeholder="no extended description." class="form-control hiddeninputs input-sm col-xs-4" rows="2">
+          <textarea ng-model="item.data.extended" placeholder="no extended description." 
+          class="form-control hiddeninputs input-sm col-xs-4" rows="2" stop-event>
           </textarea>
         </div>
       </div>
@@ -63,10 +64,10 @@
     <div class="row">
 
       <div class="col-xs-12 editbuttonbar">
-        <a class="btn btn-primary btn-wide btn-xs" ng-class="{disabled: status.hasChanged}" ng-click="update()" 
-        href="javascript: void(0)">update</a>
-        <a class="btn btn-danger btn-wide btn-xs" ng-click="delete()"
-        href="javascript: void(0)">delete</a>
+        <a class="btn btn-primary btn-wide btn-xs" ng-class="{disabled: item.status.hasChanged}" ng-click="update()" 
+        href="javascript: void(0)" stop-event>update</a>
+        <a class="btn btn-warning btn-wide btn-xs" ng-show="item.status.hasChanged" ng-click="reset()"
+        href="javascript: void(0)" stop-event>reset</a>
       </div>
 
     </div>

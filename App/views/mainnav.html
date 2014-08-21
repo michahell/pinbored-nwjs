@@ -14,8 +14,10 @@
 
   <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#/main">overview</a></li>
-      <li><a href="#/tags">tags</a></li>
+      <li ng-class="{active: activePage == 'overview'}"><a href="#/main">overview</a></li>
+      <li ng-class="{active: activePage == 'tags'}"><a href="#/tags">tags</a></li>
+      <!-- <li ng-class="{active: activePage == 'stalecheck'}"><a href="#/stalecheck">stalecheck</a></li>
+      <li ng-class="{active: activePage == 'statistics'}"><a href="#/statistics">statistics</a></li> -->
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">

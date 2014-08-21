@@ -85,7 +85,8 @@ textarea {
 
 .list-group-item {
   padding: 0px;
-  padding-bottom: 1px;
+  /*padding-bottom: 1px;*/
+  margin-bottom: 0px;
 }
 
 .pagination {
@@ -138,6 +139,10 @@ textarea {
 
 .has-switch > div.switch-on {
   left: 1px;
+}
+
+.navbar-form .form-group + .btn {
+  font-size: 13px;
 }
 
 /* style of ng-tags-input component */
@@ -372,13 +377,20 @@ small, .small {
     padding-top:170px;
 }
 
+
 /* screen and component specific */
 
-#overview {
+
+#overview .switch,
+#tags .switch {
+  float: right;
 }
 
-#overview .switch {
-  float: right;
+#overview select,
+#tags select {
+  margin: 7px;
+  margin-right: 10px;
+  height: 30px;
 }
 
 .checkbox {
@@ -386,16 +398,18 @@ small, .small {
   margin-top: 6px;
 }
 
-#overview .share-label {
+#overview .share-label,
+#tags .share-label {
   float: right;
   color: #95A5A6;
   width: auto;
   margin-right: 10px;
   margin-left: 10px;
-  padding-top: 3px;
+  /*padding-top: 3px;*/
 }
 
-#overview label {
+#overview label,
+#tags label {
   margin-bottom: 0px;
 }
 
@@ -455,23 +469,38 @@ small, .small {
   height: auto;
 }
 
-#overview .navbar-inverse {
+#overview .navbar-inverse,
+#tags .navbar-inverse {
   background-color: transparent;
 }
 
-#overview .navbar-inverse p {
+#overview .navbar-inverse p,
+#tags .navbar-inverse p {
   color: #95A5A6;
 }
 
-#overview .navbar-inverse form {
+#overview .navbar-inverse form,
+#tags .navbar-inverse form {
   width: 100%;
 }
 
-#overview .navbar-inverse form .form-group {
+#overview .navbar-inverse .navbar-form .btn-danger,
+#tags .navbar-inverse .navbar-form .btn-danger {
+  background-color: #e74c3c;
+}
+
+#overview .navbar-inverse .navbar-form .btn-danger:hover,
+#tags .navbar-inverse .navbar-form .btn-danger:hover {
+  background-color: #ec7063;
+}
+
+#overview #fulltextsearch .navbar-inverse form .form-group,
+#tags .navbar-inverse form .form-group {
   width: calc(100% - 100px);
 }
 
-#overview .navbar-inverse form .form-group input {
+#overview .navbar-inverse form .form-group input,
+#tags .navbar-inverse form .form-group input {
   width: 100%;
 }
 
@@ -481,26 +510,32 @@ small, .small {
 
 
 
-#overview .navbar {
+#overview .navbar,
+#tags .navbar {
   min-height: 0px;
   margin-bottom: 0px;
+  min-height: 35px;
 }
 
-#overview .navbar-collapse {
+#overview .navbar-collapse,
+#tags .navbar-collapse {
   padding: 0px;
 }
 
-#overview .navbar-collapse .navbar-form {
+#overview .navbar-collapse .navbar-form,
+#tags .navbar-collapse .navbar-form {
   padding: 0px;
 }
 
-#overview .navbar-embossed > .navbar-collapse {
+#overview .navbar-embossed > .navbar-collapse,
+#tags .navbar-embossed > .navbar-collapse {
   border-radius: none;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
 
-#overview #fulltextsearch .share-label {
+#overview #fulltextsearch .share-label,
+#tags #fulltextsearch .share-label {
   padding-top: 5px;
 }
 
@@ -546,7 +581,12 @@ small, .small {
   background-color: #34495E;
   border: none;
   border-radius: 0px;
-  border-bottom: 2px solid #2C3E50;
+  border-bottom: 1px solid #2C3E50;
+}
+
+#list .list-wrapper > ul li.selected {
+  /*background-color: #2C3E50;*/
+  background-color: #212F3C;
 }
 
 #list .list-wrapper > ul li.listItemMessage {
@@ -594,7 +634,9 @@ small, .small {
   /*height: 50px;
   margin-right: 200px;
   margin-left:auto !important;*/
-  background-color: #34495E;
+  /*background-color: #34495E;*/
+  height: 72px;
+  cursor: pointer;
 }
 
 .bookmark-item-left small {
@@ -613,12 +655,23 @@ small, .small {
     left: auto;
     width: 190px;
     float: right;
+    cursor: pointer;
+}
+
+.bookmark-item-right .btn-inverse {
+    background: none;
+}
+
+.bookmark-item-right .btn-inverse:hover {
+    background: rgba(0, 0, 0, 0.2);
 }
 
 .hiddenContent {
   height: auto;
-  padding-top: 2px;
+  padding-top: 5px;
   padding-bottom: 2px;
+  /*background: #34495E;*/
+  background: #314355;
 }
 
 .hiddenContent .btn-toolbar {
@@ -641,6 +694,24 @@ small, .small {
 .hiddenContent .editbuttonbar {
   margin: 2px;
   padding-left: 2px;
+  padding: 5px;
+}
+
+.hiddenContent .editbuttonbar a.btn {
+  margin-right: 10px;
+}
+
+.hiddenContent .col-xs-12 {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.hiddenContent input.input-sm {
+  height: 30px;
+}
+
+.hiddenContent textarea.hiddeninputs {
+  padding: 10px;
 }
 
 .hiddeninputs {
@@ -651,10 +722,6 @@ small, .small {
   margin: 2px;
   margin-left: 3px;
   padding-left: 8px;
-}
-
-.hiddencontent .input-sm {
-  height: 30px;
 }
 
 .hiddeninputs:hover {

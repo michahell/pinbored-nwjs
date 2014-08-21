@@ -16,26 +16,44 @@ angular.module('pinboredWebkitApp')
     this.format = '?format=json';
     this.token = '&auth_token=user:apikey';
 
+    var self = this;
+
     try {
       var rest = require('restler');
     } catch (error) {
       console.error('error loading restler: ' + error);
     }
 
-    this.handleRestler = function(result, deferred) {
+    this.handleRestler = function(result, responsecode, deferred) {
       if (result instanceof Error) {
         console.error('Restler: Error: ', result.message);
         deferred.reject(result.message);
       } else {
+        
         var parsedresult;
+        
         try {
           parsedresult = JSON.parse(result);
           deferred.resolve(parsedresult);
+
         } catch (exception) {
-          console.error("Pinboardservice: failed to parse request result json: " + exception);
-          console.error(exception);
-          parsedresult = result.toLowerCase();
-          deferred.reject(parsedresult);
+          // console.error("Pinboardservice: failed to parse request result json: " + exception);
+          // console.error(exception);
+          // console.info('failed to JSON parse result.');
+          if(result.length > 0) {
+            parsedresult = result.toLowerCase();
+            // console.info('result exists.');
+            if (responsecode !== null && responsecode) {
+              // console.info('response object exists.');
+              // console.info(responsecode);
+              deferred.resolve(responsecode.statusCode);
+            } else {
+              deferred.resolve(parsedresult);
+            }
+          } else if (responsecode !== null && responsecode) {
+            // console.info('response object exists.');
+            deferred.resolve(responsecode.statusCode);
+          }
         }
       }
     }
@@ -51,8 +69,8 @@ angular.module('pinboredWebkitApp')
       var request = authstringReplaced + 'user/api_token' + this.format;
 
       // node restler stuff
-      rest.get(request).on('complete', function(result) {
-        this.handleRestler(result, deferred);
+      rest.get(request).on('complete', function(result, response) {
+        self.handleRestler(result, response, deferred);
       });
       
       return deferred.promise;
@@ -60,12 +78,18 @@ angular.module('pinboredWebkitApp')
 
     this.getRecentBookmarks = function(amount, tags) {
 
+      var deferred = $q.defer();
+
       // check if authenticated
-      if(!Usersessionservice.isAuthenticated()) return;
+      if(!Usersessionservice.isAuthenticated()) {
+        // setTimeout(function(){
+        //   deferred.reject();
+        // }, 200);
+        return deferred.promise;
+      }
 
       console.log('pinboardservice: getting  ' + amount + ' recent bookmarks...')
 
-      var deferred = $q.defer();
       var argAmount, argTags;
       var self = this;
 
@@ -80,8 +104,8 @@ angular.module('pinboredWebkitApp')
       this.token.replace('user', Usersessionservice.user).replace('apikey', Usersessionservice.apikey);
 
       // node restler stuff
-      rest.get(request).on('complete', function(result) {
-        self.handleRestler(result, deferred);
+      rest.get(request).on('complete', function(result, response) {
+        self.handleRestler(result, response, deferred);
       });
       
       return deferred.promise;
@@ -102,8 +126,8 @@ angular.module('pinboredWebkitApp')
       this.token.replace('user', Usersessionservice.user).replace('apikey', Usersessionservice.apikey);
 
       // node restler stuff
-      rest.get(request).on('complete', function(result) {
-        self.handleRestler(result, deferred);
+      rest.get(request).on('complete', function(result, response) {
+        self.handleRestler(result, response, deferred);
       });
       
       return deferred.promise;
@@ -126,8 +150,26 @@ angular.module('pinboredWebkitApp')
       console.info(request);
       
       // node restler stuff
-      rest.get(request).on('complete', function(result) {
-        self.handleRestler(result, deferred);
+      rest.get(request).on('complete', function(result, response) {
+        self.handleRestler(result, response, deferred);
+      });
+      
+      return deferred.promise;
+    }
+
+    this.checkUrl = function(url) {
+
+      // check if authenticated
+      if(!Usersessionservice.isAuthenticated()) return;
+
+      console.log('pinboardservice: performing stale request...')
+
+      var deferred = $q.defer();
+      var self = this;
+
+      // node restler simplest request ever
+      rest.get(url).on('success', function(result, response) {
+        self.handleRestler(result, response, deferred);
       });
       
       return deferred.promise;

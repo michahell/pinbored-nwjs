@@ -17,6 +17,13 @@ angular.module('pinboredWebkitApp')
     this.authenticated = false;
     this.user = '';
     this.apikey = '';
+    this.currentPage = '';
+
+    this.setCurrentPage = function(newCurrentPage) {
+      this.currentPage = newCurrentPage;
+      // notify listeners and provide the data that changed
+      $rootScope.$broadcast('user:pagechange', this.currentPage);
+    }
 
     this.setAuthenticated = function(username, apikey) {
       // return if no correct input is given
@@ -43,14 +50,10 @@ angular.module('pinboredWebkitApp')
         return this.authenticated;
         console.info("user was not authenticated.");
       } 
-
-      // console.info("user has authenticated before.");
-      // console.info(sessionStorage.user, sessionStorage.apikey);
-
+      
       // if they are store them again in the service
       this.user = sessionStorage.user;
       this.apikey = sessionStorage.apikey;
-      // console.info(this.user, this.apikey);
 
       this.authenticated = true;
       // notify listeners and provide the data that changed
