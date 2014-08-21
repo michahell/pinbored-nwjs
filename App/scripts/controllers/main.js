@@ -200,9 +200,12 @@ angular.module('pinboredWebkitApp')
       $scope.data.pageRange.push('page' + i);
     }
 
-    // request recent bookmarks if there are none loaded yet.
+    // repopulate bookmark items.
     if($scope.data.items.length === 0) {
-      // check if they are in
+      // check if they are in local storage or something.
+      
+      
+      // request recent bookmarks if there are none loaded yet.
       $scope.reload();
     }
 
