@@ -10,31 +10,45 @@
 angular.module('pinboredWebkitApp')
   .controller('TagsCtrl', function ($scope, Pinboardservice, Usersessionservice, $location) {
     
-    $scope.data = {
-      isLoading : true,
-      tags : []
-    }
+    // check if user is authenticated
+    // console.log("testing if authenticated..");
 
     // check if user is logged in on Pinboard
     if (Usersessionservice.isAuthenticated() === false) {
       $location.path("/login");
+      return;
     }
+
+    // page model
+    $scope.data = {
+      isLoading : true,
+      tags : [],
+      numTags : 0
+    }
+
+    // update current page
+    Usersessionservice.setCurrentPage('tags');
 
     function createTags(tagdata) {
       for (var tag in tagdata) {
         // console.log(tag, tagdata[tag]);
-        $scope.data.tags.push({tag, tagdata[tag]})
+        $scope.data.tags.push({
+          tagname : tag,
+          occurrences : tagdata[tag]
+        });
       }
+      // console.log($scope.data.tags);
+      $scope.data.numTags = $scope.data.tags.length;
     }
 
     // get all tags
-    console.log("getting ALL tags...");
-    Pinboardservice.getAllTags()
-    .then(function(result) {
-      $scope.data.isLoading = false;
-      $scope.data.tags = createTags(result);
-    }, function(failreason) {
-      console.error('Failed: ' + failreason);
-    });
+    // console.log("getting ALL tags...");
+    // Pinboardservice.getAllTags()
+    // .then(function(result) {
+    //   $scope.data.isLoading = false;
+    //   $scope.data.tags = createTags(result);
+    // }, function(failreason) {
+    //   console.error('Failed: ' + failreason);
+    // });
 
   });

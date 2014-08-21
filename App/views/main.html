@@ -4,8 +4,16 @@
   <div class="screentitle clearfix">
     <h6>Overview</h6>
 
-    <div class="col-xs-2">
-      <select name="herolist" value="X-Men" class="select-block" style="display: none;">
+    <div class="col-xs-3">
+
+      <select name="loadOptions" value="" class="select-block" 
+        ng-model="data.loadType" ng-change="changeLoadType()">
+          <option value="">select retrieval type</option>
+          <option value="recent">retrieve {{$scope.config.maxItems}} recent bookmarks</option>
+          <option value="all">retrieve all bookmarks</option>
+        </select>
+
+      <!-- <select name="herolist" value="X-Men" class="select-block" style="display: none;">
         <option value="0">Choose hero</option>
         <option value="1">Spider Man</option>
         <option value="2">Wolverine</option>
@@ -22,14 +30,15 @@
           <li rel="2"><a tabindex="-1" href="javascript: void(0)" class=""><span class="pull-left">all bookmarks</span></a></li>
           <li rel="4" class="selected"><a tabindex="-1" href="javascript: void(0)" class=""><span class="pull-left">most recent</span></a></li>
         </ul>
-      </div>
+      </div> -->
+
     </div>
 
     <div class="col-xs-1">
-      <button class="btn btn-primary btn-xs pull-right" type="submit" ng-click="reload()">reload</button>
+      <button class="btn btn-primary btn-xs pull-left" type="submit" ng-click="reload()">reload</button>
     </div>
 
-    <div class="minitoolbar col-xs-7 pull-right text-right">
+    <div class="minitoolbar col-xs-6 pull-right text-right">
       
       <div class="col pull-right text-right">
         <flatui-switch model="config.showPager" square=""></flatui-switch>
@@ -97,10 +106,64 @@
       </ul>
     </div>
 
+    <!-- multi tag select bar -->
+    <div class="bar clearfix" id="selection" ng-show="config.showSelection">
+
+      <nav role="navigation" class="navbar navbar-inverse navbar-embossed">
+        
+        <div class="col-xs-3">
+          <label class="share-label pull-left">bookmark selection action: </label>
+        </div>
+
+        <div class="col-xs-2">
+          <select name="herolist" value="a" class="select-block" 
+          ng-model="multiAction.selectedAction" ng-change="changeMultiAction()">
+            <option value="">select action</option>
+            <option value="addTag">add tag</option>
+            <option value="staleCheck">perform stale check</option>
+            <option value="deleteAllTags">delete all tags</option>
+            <option value="deleteAllItems">delete</option>
+          </select>
+        </div>
+
+        <div class="col-xs-5">
+          <div class="hider" ng-show="multiAction.show">
+          
+            <!-- <input type="text" ng-model="multiAction.newTagName" placeholder="new tag name" 
+            class="input-sm" ng-show="multiAction.selectedAction == 'addTag'">
+            <button class="btn btn-primary btn-xs pull-left" type="submit" 
+            ng-class="{'btn-danger': multiAction.dangerousAction}"
+            ng-click="executeMultiAction()">execute action {{multiAction.dangerousActionText}}</button> -->
+
+            <div class="collapse navbar-collapse textselectable">
+              <form role="search" class="navbar-form navbar-left">
+                <div class="form-group" ng-show="multiAction.selectedAction == 'addTag'">
+                  <input type="text" ng-model="multiAction.newTagName" placeholder="new tag name" 
+                  class="form-control input-sm">
+                </div>
+                <button class="btn btn-default btn-sm" type="submit" ng-class="{'btn-danger': multiAction.dangerousAction}"
+                ng-click="executeMultiAction()">execute action</button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-xs-2">
+          <label class="share-label" for="showSelection">
+            <span class="highlight">{{data.selectedItems.length}}</span> selected bookmarks
+          </label>
+        </div>
+
+      </nav>
+
+    </div>
+
   </div>
 
   <!-- bookmark items list -->
   <div class="section" id="list">
+
       <div class="list-wrapper">
         <!-- screen list group -->
         <ul class="list-group grow"> <!-- flip -->
@@ -109,9 +172,9 @@
             <h5>LOADING BOOKMARKS.</h5>
           </li>
 
-          <li ng-animate="'animate'"
-          ng-repeat="item in filteredList = (data.items | filter:searchFilter | filter:tagsFilter | limitTo: config.maxItems) track by item.hash" 
-          class="list-group-item" ng-controller="BookmarkItemCtrl">
+          <li ng-repeat="item in filteredList = (data.items | filter:searchFilter | filter:tagsFilter | limitTo: config.maxItems) track by item.data.hash" 
+          class="list-group-item" ng-class="{selected: item.status.selected}" 
+          ng-controller="BookmarkItemCtrl" ng-click="selectItem()">
             <div ng-include src="'templates/BookmarkItem.html'"></div>
           </li>
 

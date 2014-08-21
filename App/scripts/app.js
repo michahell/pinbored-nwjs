@@ -16,7 +16,9 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ngTagsInput'
+    'ngTagsInput',
+    'angular-bootstrap-select', 
+    'angular-bootstrap-select.extra'
   ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -36,16 +38,22 @@ angular
         templateUrl: 'views/tags.html',
         controller: 'TagsCtrl'
       })
+      .when('/settings', {
+        templateUrl: 'views/settings.html',
+        controller: 'SettingsCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
 
   });
 
+
+
 // TEMP fix to understand when and why something is breaking!
-process.on("uncaughtException", function(e) { 
-  console.log(e); 
-});
+// process.on("uncaughtException", function(e) { 
+//   console.log(e); 
+// });
 
 
 $(function() {

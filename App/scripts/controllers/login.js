@@ -20,24 +20,15 @@ angular.module('pinboredWebkitApp')
 
       Pinboardservice.getUserToken(username, password)
       .then(function(result) {
-        
-        // try to parse result
-        var parsedresult;
 
-        try {
-          parsedresult = JSON.parse(result);
-        } catch (exception) {
-          parsedresult = result.toLowerCase();
-        }
-
-        if (parsedresult) {
-          if(parsedresult == '401 forbidden') {
-            console.info('not logged in: ' + parsedresult);
+        if (result) {
+          if(result == '401 forbidden') {
+            console.info('not logged in: ' + result);
             $scope.pstatus = false;
           } else {
             console.info('logged in.');
             // set some stuff in Usersessionservice
-            Usersessionservice.setAuthenticated(username, parsedresult.result);
+            Usersessionservice.setAuthenticated(username, result.result);
             // show loginbox outro anim
             $scope.pstatus = true;
             // reroute to main

@@ -11,35 +11,65 @@ angular.module('pinboredWebkitApp')
   .controller('MainCtrl', function ($scope, Pinboardservice, Usersessionservice, Utilservice, $location) {
     
     // check if user is authenticated
-    console.log("testing if authenticated..");
+    // console.log("testing if authenticated..");
+    
     if (Usersessionservice.isAuthenticated() === false) {
-      console.log("testing if authenticated..");
       $location.path("/login");
       return;
     }
 
     // page model
     $scope.data = {
-      pagerange : [],
-      activepage : 2,
+      loadType : 'recent',
+      pageRange : [],
       items: [],
+      selectedItems : [],
+      activePage : 0,
       isLoading : true
     }
 
     $scope.filter = {
       text : '',
-      tags : [],
-      date : null
+      tags : []
+    }
+
+    $scope.multiAction = {
+      show : false,
+      selectedAction : '',
+      dangerousAction : false,
+      newTagName : ''
     }
 
     $scope.config = {
-      loadtype : 'recent',
       searchAllWords : false,
       searchAllWordsText : 'search all words',
-      maxItems : 20,
+      maxItems : 50,
       showSearch : false,
       showTags : false,
-      showPager : false
+      showPager : false,
+      showSelection : false
+    }
+
+    // update current page
+    Usersessionservice.setCurrentPage('overview');
+
+    // functionality
+    function createBookmarks (pinboardData) {
+      var bookmarks = [];
+      for(var i=0; i<pinboardData.posts.length; i++) {
+        var bmdata = pinboardData.posts[i];
+        var bm = {
+          status: {
+            selected : false,
+            showEdit : false,
+            hasChanged : false
+          },
+          data: bmdata
+        }
+        bookmarks.push(bm);
+      }
+      // console.info(bookmarks);
+      return bookmarks;
     }
 
     $scope.searchFilter = function(item) {
@@ -48,7 +78,7 @@ angular.module('pinboredWebkitApp')
 
       if(word.length > 0) {
         // var searchFields = [item.extended, item.description, item.href, item.tags];
-        var searchFields = [item.description];
+        var searchFields = [item.data.description];
         // search all searchFields
         for(var i=0; i<searchFields.length; i++) {
           var index = searchFields[i].toLowerCase().indexOf(word.toLowerCase());
@@ -71,7 +101,7 @@ angular.module('pinboredWebkitApp')
       if(searchTags.length > 0) {
         for(var i=0; i<searchTags.length; i++) {
           var searchTag = searchTags[i];
-          var bookmarkTags = item.tags.split(' ');
+          var bookmarkTags = item.data.tags.split(' ');
           // console.log(bookmarkTags);
           // console.log(searchTag.text);
           for(var j=0; j<bookmarkTags.length; j++) {
@@ -90,6 +120,29 @@ angular.module('pinboredWebkitApp')
       return filtered;
     };
 
+    $scope.cancelCurrentOperations = function(exception) {
+
+      $scope.multiAction.selectedAction = '';
+
+      // first, de-highlight and fold all items
+      if($scope.data.items.length > 0) {
+        for(var i=0; i<$scope.data.items.length; i++) {
+          if($scope.data.items[i] !== exception) {
+            $scope.data.items[i].status.selected = false;
+            $scope.data.items[i].status.showEdit = false;
+            // $scope.data.items[i].status.hasChanged = false;
+          }
+        }
+      }
+
+      // then, clear currently selected items
+      $scope.data.selectedItems = [];
+
+      // hide multi action bar
+      $scope.multiAction.selectedAction = '';
+      $scope.changeMultiAction();
+    }
+
     $scope.reload = function() {
       
       // set some stuff
@@ -97,10 +150,12 @@ angular.module('pinboredWebkitApp')
       $scope.data.items = [];
       $scope.filteredList = [];
 
+      $scope.cancelCurrentOperations();
+
       // get recent bookmarks
-      if ($scope.config.loadtype === 'recent') {
+      if ($scope.data.loadType === 'recent') {
         console.log("getting recent bookmarks...");
-        Pinboardservice.getRecentBookmarks(50)
+        Pinboardservice.getRecentBookmarks($scope.config.maxItems)
         .then(function(result) {
             $scope.data.isLoading = false;
             $scope.data.items = createBookmarks(result);
@@ -109,37 +164,43 @@ angular.module('pinboredWebkitApp')
         });
 
       // get all bookmarks
-      } else if ($scope.config.loadtype === 'all') {
-        console.log("getting ALL bookmarks...");
-        Pinboardservice.getAllBookmarks()
-        .then(function(result) {
-            $scope.data.isLoading = false;
-            $scope.data.items = createBookmarks(result);
-        }, function(reason) {
-          console.error('Failed: ' + reason);
-        });
+      } else if ($scope.data.loadType === 'all') {
+        console.log("TODO: getting ALL bookmarks...");
       }
     }
 
-    // functionality
-    function createBookmarks (pinboardData) {
-      var bookmarks = [];
-      for(var i=0; i<pinboardData.posts.length; i++) {
-        var bm = pinboardData.posts[i];
-        bookmarks.push(bm);
+    $scope.changeMultiAction = function() {
+      if($scope.multiAction.selectedAction === '') {
+        $scope.multiAction.show = false;
+      } else {
+        $scope.multiAction.show = true;
+        switch($scope.multiAction.selectedAction) {
+          case "deleteAllItems":
+            $scope.multiAction.dangerousAction = true;
+            break;
+          case "deleteAllTags":
+            $scope.multiAction.dangerousAction = true;
+            break;
+          default:
+            $scope.multiAction.dangerousAction = false;
+        }
       }
-      // console.info(bookmarks);
-      return bookmarks;
+    }
+
+    $scope.executeMultiAction = function() {
+      console.log('executing action: ' + $scope.multiAction.selectedAction);
+    }
+
+    $scope.changeLoadType = function() {
+      console.log('load type selected: ' + $scope.data.loadType);
     }
 
     // add test pages
     for(var i = 0; i < 20; i++) {
-      $scope.data.pagerange.push('page' + i);
+      $scope.data.pageRange.push('page' + i);
     }
 
     // request recent bookmarks if there are none loaded yet.
-    
-
     if($scope.data.items.length === 0) {
       // check if they are in
       $scope.reload();

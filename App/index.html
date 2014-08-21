@@ -5,10 +5,12 @@
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap-select/dist/css/bootstrap-select.css" />
     <link rel="stylesheet" href="bower_components/animate.css/animate.min.css" />
     <link rel="stylesheet" href="bower_components/stroll/css/stroll.min.css" />
     <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.min.css">
-    <link rel="stylesheet" href="styles/flat-ui.css" />
+    <link rel="stylesheet" href="bower_components/flat-ui-official/css/flat-ui.css">
+    <!-- <link rel="stylesheet" href="styles/flat-ui.css" /> -->
     <!-- <link rel="stylesheet" href="styles/lumen.css" /> -->
     <!-- <link rel="stylesheet" href="styles/darkly.css" /> -->
     <link rel="stylesheet" href="styles/noresponsive.css" />
@@ -23,14 +25,13 @@
     <!-- Add your site or application content here -->
     <div ng-view="" class="viewcontainer"></div>
 
-    <!-- <div ng-include src="'views/footer.html'" ng-controller="FooterCtrl" ng-show="showFooter" class="footer" role="footer"></div> -->
-
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/ng-tags-input/ng-tags-input.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    
     <script src="bower_components/stroll/js/stroll.min.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -39,15 +40,21 @@
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+
+    <script src="bower_components/flat-ui-official/js/bootstrap-select.js"></script>
+
+    <script src="bower_components/bootstrap-select/dist/js/bootstrap-select.js"></script>
+    <script src="bower_components/angular-bootstrap-select/build/angular-bootstrap-select.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/classes/BookmarkItem.js"></script>
+        <!-- // <script src="scripts/classes/BookmarkItem.js"></script> -->
         <script src="scripts/controllers/mainnav.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/tags.js"></script>
+        <script src="scripts/controllers/settings.js"></script>
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/footer.js"></script>
         <script src="scripts/controllers/bookmarkitem.js"></script>
@@ -56,6 +63,7 @@
         <script src="scripts/services/usersessionservice.js"></script>
         <script src="scripts/directives/btnloading.js"></script>
         <script src="scripts/directives/flatuicomponents.js"></script>
+        <script src="scripts/directives/stopevent.js"></script>
         <script src="scripts/filters/highlightfilter.js"></script>
         <!-- endbuild -->
 
