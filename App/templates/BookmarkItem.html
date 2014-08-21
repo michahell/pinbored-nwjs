@@ -26,7 +26,7 @@
       <br/>
       <div class="tagContainer">
         <small>
-          <span ng-repeat="tag in item.tagsList" ng-click="clickTag(tag)" stop-event
+          <span ng-repeat="tag in tagsToArray()" ng-click="clickTag(tag)" stop-event
           class="label label-success clickabletag">{{tag}}</span>
         </small>
       </div>
