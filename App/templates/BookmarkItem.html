@@ -17,7 +17,7 @@
 
   <div class="bookmark-item-left">
     <div class="bookmark-item-inner">
-      <small ng-bind-html="item.data.description | highlight:filter.text" class="list-group-item-heading"></small>
+      <small ng-bind-html="item.data.description | limitTo : 110 | highlight:filter.text" class="list-group-item-heading"></small>
       <br/>
       <small>
         <a class="" href="javascript: void(0)" 

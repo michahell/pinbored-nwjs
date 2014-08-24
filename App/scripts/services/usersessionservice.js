@@ -19,6 +19,12 @@ angular.module('pinboredWebkitApp')
     this.apikey = '';
     this.currentPage = '';
 
+    // in memory bookmarks
+    this.storedBookmarks = {};
+
+    // temp ref
+    var self = this;
+
     this.setCurrentPage = function(newCurrentPage) {
       this.currentPage = newCurrentPage;
       // notify listeners and provide the data that changed
@@ -60,6 +66,12 @@ angular.module('pinboredWebkitApp')
       $rootScope.$broadcast('user:authenticated', this.authenticated);
 
       return this.authenticated;
+    }
+
+    this.storeBookmarks = function(bookmarksList) {
+      console.log('storing bookmarks.');
+      self.storedBookmarks = bookmarksList;
+      console.info(this.storedBookmarks);
     }
 
   });
