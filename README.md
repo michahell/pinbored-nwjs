@@ -4,12 +4,13 @@ pinbored-webkit
 Pinbored native OSX client built with Node-webkit and AngularJS. Future plans include windows / linux
 builds as well, but for now focus is on OSX (using NUWK! instead of CLI node-webkit magic for development simplification). See https://github.com/michahell/pinbored for more info of history of this project.
 
-Roadmap V1
-----------
+Roadmap V 0.1
+-------------
 
 * paging
-* delete bookmarks
-* update bookmarks
+* delete bookmark
+* update bookmark
+* ~~stale check individual bookmark~~
 * ~~load bookmarks~~
 * ~~fulltext search~~
 * ~~tag search~~
@@ -18,14 +19,24 @@ Roadmap V1
   * load all bookmarks
 * ~~login screen~~
 
-Roadmap V2
-----------
+Roadmap V 0.2
+-------------
 
 * tag management screen
-* stale check all bookmarks
-* stale check individual bookmark
+* batch bookmark operations:
+  * stale check
+  * add tag
+  * remove all tags
+  * delete
 
-for bookmark creation consider using Shiori: http://aki-null.net/shiori/ or another bookmarking app.
+Roadmap V 0.3
+-------------
+
+* stale check screen
+* statistics screen
+
+
+For bookmark creation consider using Shiori: http://aki-null.net/shiori/ or another bookmarking app.
 i could add this functionality, but it's mainly aimed at **managing** one's bookmarks.
 
 stuff used
