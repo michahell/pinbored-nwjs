@@ -66,9 +66,9 @@
             <form role="search" class="navbar-form navbar-left">
               <div class="form-group">
                 <input type="text" ng-model="filter.text" placeholder="full-text search" 
-                class="form-control input-sm">
+                class="form-control input-sm" ng-change="updateFiltersPaging()">
               </div>
-              <button class="btn btn-default btn-sm" type="submit" ng-click="applyFilters()">search</button>
+              <!-- <button class="btn btn-default btn-sm" type="submit" ng-click="updateFiltersPaging()">search</button> -->
             </form>
           </div>
         </div>
@@ -83,7 +83,7 @@
 
         <div class="col-xs-2">
           <label class="share-label" for="showTags">
-            <span class="highlight">{{filteredList.length}}</span> bookmarks found
+            <span class="highlight">{{data.filteredList.length}}</span> bookmarks found
           </label>
         </div>
 
@@ -97,7 +97,7 @@
 
     <!-- screen pagination -->
     <div class="bar" id="pages" ng-show="config.showPager">
-
+      
       <pagination total-items="paging.total" items-per-page="config.itemsPerPage" 
       ng-model="paging.current" ng-change="pageChanged()" max-size="paging.numPageButtons" 
       class="pagination-sm" boundary-links="true"></pagination>
@@ -156,10 +156,12 @@
   <!-- bookmark items list -->
   <div class="section" id="list">
 
-    <div class="list-wrapper" ng-class="{fullheight: filteredList.length > 0}">
+    <div class="list-wrapper" ng-class="{fullheight: data.filteredList.length > 0}">
       <!-- screen list group -->
       <ul class="list-group grow"> <!-- flip -->
-        <li ng-repeat="item in filteredList = (data.items | filter:searchFilter | filter:tagsFilter | offset: (paging.current - 1) * config.itemsPerPage | limitTo: config.itemsPerPage) track by item.data.hash" 
+        <!-- item in filteredList2 = (data.items | filter:searchFilter | filter:tagsFilter | offset: (paging.current - 1) * config.itemsPerPage | limitTo: config.itemsPerPage) track by item.data.hash -->
+        <!-- <li ng-repeat="item in filteredList2 = (data.items | filter:searchFilter | filter:tagsFilter | offset: (paging.current - 1) * config.itemsPerPage | limitTo: config.itemsPerPage) track by item.data.hash" -->
+        <li ng-repeat="item in data.filteredList | offset: paging.current * config.itemsPerPage | limitTo: config.itemsPerPage"
         class="list-group-item" ng-class="{selected: item.status.selected}" 
         ng-controller="BookmarkItemCtrl" ng-click="selectItem()">
           <div ng-include src="'templates/BookmarkItem.html'"></div>
@@ -168,7 +170,6 @@
     </div>
 
     <div class="listBackgroundMessage">
-      <!-- ng-show="data.isLoading == true || filteredList.length === 0" -->
       <h5>NO BOOKMARKS FOUND.</h5>
     </div>
 

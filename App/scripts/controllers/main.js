@@ -8,7 +8,9 @@
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('MainCtrl', function ($scope, Pinboardservice, Usersessionservice, Appstatusservice, Utilservice, $location, $timeout, $filter) {
+  .controller('MainCtrl', function ($scope, $location, $timeout, $filter, 
+    Pinboardservice, Usersessionservice, Appstatusservice, Utilservice,
+    fulltextFilter, tagsFilter) {
     
     // check if user is authenticated
     // console.log("testing if authenticated..");
@@ -24,6 +26,7 @@ angular.module('pinboredWebkitApp')
       isLoading : true,
       activePage : 3,
       items: [],
+      filteredList : [],
       selectedItems : []
     }
 
@@ -59,7 +62,7 @@ angular.module('pinboredWebkitApp')
     // functionality
     $scope.createBookmarks = function(pinboardData) {
       
-      console.info(pinboardData);
+      // console.info(pinboardData);
 
       var bookmarks = [];
       for(var i=0; i<pinboardData.length; i++) {
@@ -174,53 +177,62 @@ angular.module('pinboredWebkitApp')
       console.log('Page changed to: ' + $scope.paging.current);
     };
 
-    $scope.searchFilter = function(item) {
-      var filtered = false;
+    $scope.applyFilters = function() {
+      console.log('applying filters to list...');
       var word = $scope.filter.text;
+      $scope.data.filteredList = fulltextFilter($scope.data.items, word);
+      var tags = $scope.filter.tags;
+      var logicType = 'OR';
+      $scope.data.filteredList = tagsFilter($scope.data.filteredList, tags, logicType);
+    }
 
-      if(word.length > 0) {
-        // var searchFields = [item.extended, item.description, item.href, item.tags];
-        var searchFields = [item.data.description];
-        // search all searchFields
-        for(var i=0; i<searchFields.length; i++) {
-          var index = searchFields[i].toLowerCase().indexOf(word.toLowerCase());
-          if (index > -1) {
-            // set filtered to true and break
-            filtered = true;
-            break;
-          }
-        }
-      } else {
-        filtered = true;
-      }
-      return filtered;
-    };
+    // $scope.searchFilter = function(bookmark) {
+    //   var filtered = false;
+    //   var word = $scope.filter.text;
 
-    $scope.tagsFilter = function(item) {
-      var filtered = false;
-      var searchTags = $scope.filter.tags;
+    //   if(word.length > 0) {
+    //     // var searchFields = [bookmark.extended, bookmark.description, bookmark.href, bookmark.tags];
+    //     var searchFields = [bookmark.data.description];
+    //     // search all searchFields
+    //     for(var i=0; i<searchFields.length; i++) {
+    //       var index = searchFields[i].toLowerCase().indexOf(word.toLowerCase());
+    //       if (index > -1) {
+    //         // set filtered to true and break
+    //         filtered = true;
+    //         break;
+    //       }
+    //     }
+    //   } else {
+    //     filtered = true;
+    //   }
+    //   return filtered;
+    // };
 
-      if(searchTags.length > 0) {
-        for(var i=0; i<searchTags.length; i++) {
-          var searchTag = searchTags[i];
-          var bookmarkTags = item.data.tags.split(' ');
-          // console.log(bookmarkTags);
-          // console.log(searchTag.text);
-          for(var j=0; j<bookmarkTags.length; j++) {
-            // console.log(bookmarkTags[j]);
-            if(bookmarkTags[j] === searchTag.text) {
-              // console.log('tag found in bookmark!');
-              filtered = true;
-              break;
-            }
-          }
-        }
-      } else {
-        filtered = true;
-      }
+    // $scope.tagsFilter = function(item) {
+    //   var filtered = false;
+    //   var searchTags = $scope.filter.tags;
 
-      return filtered;
-    };
+    //   if(searchTags.length > 0) {
+    //     for(var i=0; i<searchTags.length; i++) {
+    //       var searchTag = searchTags[i];
+    //       var bookmarkTags = item.data.tags.split(' ');
+    //       // console.log(bookmarkTags);
+    //       // console.log(searchTag.text);
+    //       for(var j=0; j<bookmarkTags.length; j++) {
+    //         // console.log(bookmarkTags[j]);
+    //         if(bookmarkTags[j] === searchTag.text) {
+    //           // console.log('tag found in bookmark!');
+    //           filtered = true;
+    //           break;
+    //         }
+    //       }
+    //     }
+    //   } else {
+    //     filtered = true;
+    //   }
+
+    //   return filtered;
+    // };
 
     $scope.cancelCurrentOperations = function(exception) {
 
@@ -245,6 +257,11 @@ angular.module('pinboredWebkitApp')
       $scope.multiAction.show = false;
     }
 
+    $scope.updateFiltersPaging = function() {
+      $scope.updatePaging();
+      $scope.applyFilters();
+    }
+
     $scope.reload = function() {
       
       // set some stuff
@@ -261,9 +278,11 @@ angular.module('pinboredWebkitApp')
         console.log("getting recent bookmarks...");
         Pinboardservice.getRecentBookmarks($scope.config.maxItems)
         .then(function(result) {
+            // for some reason, return of recent bookmarks is different
+            // from the result of getting all bookmarks back.
             $scope.data.isLoading = false;
             $scope.createBookmarks(result.posts);
-            $scope.updatePaging();
+            $scope.updateFiltersPaging();
         }, function(reason) {
           console.error('Failed: ' + reason);
         });
@@ -273,9 +292,11 @@ angular.module('pinboredWebkitApp')
         console.log("TODO: getting ALL bookmarks...");
         Pinboardservice.getAllBookmarks()
         .then(function(result) {
+            // for some reason, return of recent bookmarks is different
+            // from the result of getting all bookmarks back.
             $scope.data.isLoading = false;
             $scope.createBookmarks(result);
-            $scope.updatePaging();
+            $scope.updateFiltersPaging();
         }, function(reason) {
           console.error('Failed: ' + reason);
         });

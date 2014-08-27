@@ -71,7 +71,7 @@ angular.module('pinboredWebkitApp')
     this.storeBookmarks = function(bookmarksList) {
       console.log('storing bookmarks.');
       self.storedBookmarks = bookmarksList;
-      console.info(this.storedBookmarks);
+      // console.info(this.storedBookmarks);
     }
 
   });
