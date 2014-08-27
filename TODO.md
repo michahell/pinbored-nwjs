@@ -1,7 +1,5 @@
 
 - OVERVIEW
-  - Style paging component
-
   - Show search filters found bookmarks correct amount
 
   - Bookmark selection:
@@ -15,6 +13,8 @@
     - Red    / STALE
     - Yellow / MANUAL CHECK NEEDED
     - Green  / HEALTHY
+
+  - Style paging component
     
   - && tag filter (search for items that have all tags) or || tag filter (any of the tags)
 
