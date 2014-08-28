@@ -65,11 +65,11 @@ angular.module('pinboredWebkitApp')
     }
 
     // manual watch functions
-    $scope.$watch('filter.tags', function() {
-      console.log('filter.tags has changed!');
-      console.log($scope.filter.tags);
-      $scope.applyFilters();
-    });
+    // $scope.$watch('filter.tags', function() {
+    //   console.log('filter.tags has changed!');
+    //   console.log($scope.filter.tags);
+    //   $scope.applyFilters();
+    // });
 
     // functionality
     $scope.createBookmarks = function(pinboardData) {
