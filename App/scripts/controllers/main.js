@@ -38,7 +38,12 @@ angular.module('pinboredWebkitApp')
 
     $scope.filter = {
       text : '',
-      tags : []
+      tags : [
+        { text: 'just' },
+        { text: 'some' },
+        { text: 'cool' },
+        { text: 'tags' }
+      ]
     }
 
     $scope.multiAction = {
@@ -58,6 +63,13 @@ angular.module('pinboredWebkitApp')
       showPager : false,
       showSelection : false
     }
+
+    // manual watch functions
+    $scope.$watch('filter.tags', function() {
+      console.log('filter.tags has changed!');
+      console.log($scope.filter.tags);
+      $scope.applyFilters();
+    });
 
     // functionality
     $scope.createBookmarks = function(pinboardData) {
