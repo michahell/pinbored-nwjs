@@ -39,10 +39,10 @@ angular.module('pinboredWebkitApp')
     $scope.filter = {
       text : '',
       tags : [
-        { text: 'just' },
-        { text: 'some' },
-        { text: 'cool' },
-        { text: 'tags' }
+        // { text: 'just' },
+        // { text: 'some' },
+        // { text: 'cool' },
+        // { text: 'tags' }
       ]
     }
 
@@ -189,9 +189,9 @@ angular.module('pinboredWebkitApp')
     $scope.applyFilters = function() {
       console.log('applying filters to list...');
       var word = $scope.filter.text;
-      $scope.data.filteredList = fulltextFilter($scope.data.items, word);
       var tags = $scope.filter.tags;
       var logicType = 'OR';
+      $scope.data.filteredList = fulltextFilter($scope.data.items, word);
       $scope.data.filteredList = tagsFilter($scope.data.filteredList, tags, logicType);
     }
 
@@ -219,8 +219,8 @@ angular.module('pinboredWebkitApp')
     }
 
     $scope.updateFiltersPaging = function() {
-      $scope.updatePaging();
       $scope.applyFilters();
+      $scope.updatePaging();
     }
 
     $scope.reload = function() {
