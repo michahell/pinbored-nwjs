@@ -92,15 +92,15 @@
 
     <!-- tags -->
     <div class="bar clearfix" id="tagsearch" ng-show="config.showTags">
-      <tags-input ng-model="filter.tags" placeholder="search for tag"></tags-input>
-      <!-- <div class="col-xs-9">
-        <tags-input ng-model="filter.tags" placeholder="search for tag"></tags-input>
+      <div class="col-xs-9">
+        <tags-input ng-model="filter.tags" ng-keyup="updateFiltersPaging()" ng-click="updateFiltersPaging()"
+        placeholder="search for tag"></tags-input>
       </div>
       <div class="col-xs-3">
         <label class="share-label">
           <span class="highlight">{{data.filteredList.length}}</span> bookmarks found
         </label>
-      </div> -->
+      </div>
     </div>
 
     <!-- screen pagination -->
@@ -167,8 +167,6 @@
     <div class="list-wrapper" ng-class="{fullheight: data.filteredList.length > 0}">
       <!-- screen list group -->
       <ul class="list-group grow"> <!-- flip -->
-        <!-- item in filteredList2 = (data.items | filter:searchFilter | filter:tagsFilter | offset: (paging.current - 1) * config.itemsPerPage | limitTo: config.itemsPerPage) track by item.data.hash -->
-        <!-- <li ng-repeat="item in filteredList2 = (data.items | filter:searchFilter | filter:tagsFilter | offset: (paging.current - 1) * config.itemsPerPage | limitTo: config.itemsPerPage) track by item.data.hash" -->
         <li ng-repeat="item in data.filteredList | offset: (paging.current - 1) * config.itemsPerPage | limitTo: config.itemsPerPage"
         class="list-group-item" ng-class="{selected: item.status.selected}" 
         ng-controller="BookmarkItemCtrl" ng-click="selectItem()">
