@@ -65,8 +65,8 @@
           <div class="collapse navbar-collapse textselectable">
             <form role="search" class="navbar-form navbar-left">
               <div class="form-group">
-                <input type="text" ng-model="filter.text" placeholder="full-text search" 
-                class="form-control input-sm" ng-change="updateFiltersPaging()">
+                <input type="text" ng-model="filter.text" placeholder="full-text search" class="form-control input-sm" 
+                ng-keydown="updateFiltersPaging()" ng-keyup="updateFiltersPaging()">
               </div>
               <!-- <button class="btn btn-default btn-sm" type="submit" ng-click="updateFiltersPaging()">search</button> -->
             </form>
@@ -97,7 +97,7 @@
 
     <!-- screen pagination -->
     <div class="bar" id="pages" ng-show="config.showPager">
-      
+
       <pagination total-items="paging.total" items-per-page="config.itemsPerPage" 
       ng-model="paging.current" ng-change="pageChanged()" max-size="paging.numPageButtons" 
       class="pagination-sm" boundary-links="true"></pagination>
@@ -161,7 +161,7 @@
       <ul class="list-group grow"> <!-- flip -->
         <!-- item in filteredList2 = (data.items | filter:searchFilter | filter:tagsFilter | offset: (paging.current - 1) * config.itemsPerPage | limitTo: config.itemsPerPage) track by item.data.hash -->
         <!-- <li ng-repeat="item in filteredList2 = (data.items | filter:searchFilter | filter:tagsFilter | offset: (paging.current - 1) * config.itemsPerPage | limitTo: config.itemsPerPage) track by item.data.hash" -->
-        <li ng-repeat="item in data.filteredList | offset: paging.current * config.itemsPerPage | limitTo: config.itemsPerPage"
+        <li ng-repeat="item in data.filteredList | offset: (paging.current - 1) * config.itemsPerPage | limitTo: config.itemsPerPage"
         class="list-group-item" ng-class="{selected: item.status.selected}" 
         ng-controller="BookmarkItemCtrl" ng-click="selectItem()">
           <div ng-include src="'templates/BookmarkItem.html'"></div>
