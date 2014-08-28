@@ -42,15 +42,15 @@
       
       <div class="col pull-right text-right">
         <flatui-switch model="config.showPager" square=""></flatui-switch>
-        <label class="share-label" for="showPager">paging</label>
+        <label class="share-label">paging</label>
       </div>
       <div class="col pull-right text-right">
         <flatui-switch model="config.showTags" square=""></flatui-switch>
-        <label class="share-label" for="showTags">tag filter</label>
+        <label class="share-label">tag filter</label>
       </div>
       <div class="col pull-right text-right">
         <flatui-switch model="config.showSearch" square=""></flatui-switch>
-        <label class="share-label" for="showSearch">fulltext filter</label>
+        <label class="share-label">fulltext filter</label>
       </div>
     </div>
   </div>
@@ -82,7 +82,7 @@
         </div>
 
         <div class="col-xs-2">
-          <label class="share-label" for="showTags">
+          <label class="share-label">
             <span class="highlight">{{data.filteredList.length}}</span> bookmarks found
           </label>
         </div>
@@ -91,8 +91,16 @@
     </div>
 
     <!-- tags -->
-    <div class="bar" id="tagsearch" ng-show="config.showTags">
+    <div class="bar clearfix" id="tagsearch" ng-show="config.showTags">
       <tags-input ng-model="filter.tags" placeholder="search for tag"></tags-input>
+      <!-- <div class="col-xs-9">
+        <tags-input ng-model="filter.tags" placeholder="search for tag"></tags-input>
+      </div>
+      <div class="col-xs-3">
+        <label class="share-label">
+          <span class="highlight">{{data.filteredList.length}}</span> bookmarks found
+        </label>
+      </div> -->
     </div>
 
     <!-- screen pagination -->
@@ -142,7 +150,7 @@
         </div>
 
         <div class="col-xs-3">
-          <label class="share-label" for="showSelection">
+          <label class="share-label">
             <span class="highlight">{{data.selectedItems.length}}</span> selected bookmarks
           </label>
         </div>
