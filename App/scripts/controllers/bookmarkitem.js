@@ -44,14 +44,12 @@ angular.module('pinboredWebkitApp')
     $scope.selectItem = function() {
       $scope.item.status.selected = !$scope.item.status.selected;
       // console.log("[ " + $scope.item.data.description + "] selected: " + $scope.item.status.selected);
-      
       // add remove the item to parent scope selectedItems array
       if($scope.item.status.selected) {
         $scope.data.selectedItems.push($scope.item);
       } else if(!$scope.item.status.selected) {
         $scope.data.selectedItems.splice($scope.data.selectedItems.indexOf($scope.item), 1);
       }
-
       // show multi action bar when selectedItems.length > 2
       if($scope.data.selectedItems.length > 1) {
         $scope.config.showSelection = true;
@@ -80,15 +78,19 @@ angular.module('pinboredWebkitApp')
 
     $scope.staleCheck = function() {
       $scope.cancelCurrentOperations();
+      $scope.item.status.staleness = 'checking';
       Pinboardservice.checkUrl($scope.item.data.href)
       .then(function(result) {
         if(result == 200) {
           console.info('bookmarkitem healthy! ' + result);
+          $scope.item.status.staleness = 'healthy';
         } else {
           console.info('bookmarkitem STALE! ' + result);
+          $scope.item.status.staleness = 'dead';
         }
       }, function(reason) {
         console.info('bookmarkitem STALE! ' + reason);
+        $scope.item.status.staleness = 'dead';
       });
       console.log('item stale check clicked: ' + $scope.item.data.href);
     }

@@ -12,7 +12,13 @@
           href="javascript: void(0)"><span class="fui-cross"></span></a>
         </div>
       </div>
-    </div>          
+    </div>
+    <div id="stale-indicator" class="clearfix" ng-class="item.status.staleness">
+      <div class="stale-indicator-container">
+        <span ng-show="item.status.staleness === 'checking'"
+        class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+      </div>
+    </div>        
   </div>
 
   <div class="bookmark-item-left">
