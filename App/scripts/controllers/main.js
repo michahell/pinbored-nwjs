@@ -83,7 +83,8 @@ angular.module('pinboredWebkitApp')
           status: {
             selected : false,
             showEdit : false,
-            hasChanged : false
+            hasChanged : false,
+            staleness : 'unknown'
           },
           data: bmdata
         }
