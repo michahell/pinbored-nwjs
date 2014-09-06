@@ -175,7 +175,7 @@ angular.module('pinboredWebkitApp')
       return deferred.promise;
     }
 
-    this.deleteBookmark = function(bookmark) {
+    this.deleteBookmark = function(bookmarkUrl) {
 
       // check if authenticated
       if(!Usersessionservice.isAuthenticated()) {
@@ -189,10 +189,20 @@ angular.module('pinboredWebkitApp')
 
       var deferred = $q.defer();
 
-      'posts/delete'
+      // create request
+      var url = '&url=' + encodeURIComponent(bookmarkUrl);
+      var request = this.endpoint + 'posts/delete' + this.format + url + 
+      this.token.replace('user', Usersessionservice.user).replace('apikey', Usersessionservice.apikey);
 
-      // mock delete bookmark
-      deferred.resolve(bookmark.data.hash);
+      console.log('request');
+      console.log(request);
+
+      // node restler handler
+      rest.get(request, {timeout: self.timeout}).on('timeout', function(ms){
+        deferred.reject('pinboardservice: request timed out.');
+      }).on('complete', function(result, response){
+        self.handleRestlerComplete(result, response, deferred);
+      });
 
       return deferred.promise;
 

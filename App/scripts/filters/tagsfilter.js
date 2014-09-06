@@ -12,7 +12,7 @@ angular.module('pinboredWebkitApp')
   .filter('tags', function() {
     return function(bookmarkCollection, searchTags, logicType) {
 
-      console.log('tags filter invoked.');
+      // console.log('tags filter invoked.');
 
       if(searchTags.length > 0) {
         var filteredList = [];

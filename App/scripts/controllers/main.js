@@ -12,9 +12,6 @@ angular.module('pinboredWebkitApp')
     Pinboardservice, Usersessionservice, Appstatusservice, Utilservice,
     fulltextFilter, tagsFilter) {
     
-    // check if user is authenticated
-    // console.log("testing if authenticated..");
-    
     if (Usersessionservice.isAuthenticated() === false) {
       $location.path("/login");
       return;
@@ -38,12 +35,7 @@ angular.module('pinboredWebkitApp')
 
     $scope.filter = {
       text : '',
-      tags : [
-        // { text: 'just' },
-        // { text: 'some' },
-        // { text: 'cool' },
-        // { text: 'tags' }
-      ]
+      tags : []
     }
 
     $scope.multiAction = {
@@ -64,18 +56,9 @@ angular.module('pinboredWebkitApp')
       showSelection : false
     }
 
-    // manual watch functions
-    // $scope.$watch('filter.tags', function() {
-    //   console.log('filter.tags has changed!');
-    //   console.log($scope.filter.tags);
-    //   $scope.applyFilters();
-    // });
-
     // functionality
     $scope.createBookmarks = function(pinboardData) {
-      
-      // console.info(pinboardData);
-
+      console.info(pinboardData);
       var bookmarks = [];
       for(var i=0; i<pinboardData.length; i++) {
         var bmdata = pinboardData[i];
@@ -98,7 +81,7 @@ angular.module('pinboredWebkitApp')
       $scope.data.items = bookmarks;
     }
 
-    $scope.removeBookmarkFrom = function (byProperty, value, collection) {
+    $scope.removeItemFromCollection = function (byProperty, value, collection) {
       var deletedBookmark = $filter('searchcollection')(byProperty, value, collection);
       collection.splice(collection.indexOf(deletedBookmark), 1);
     }
@@ -112,6 +95,36 @@ angular.module('pinboredWebkitApp')
       $scope.data.selectedItems = [];
     }
 
+    $scope.updateStatus = function (message, progress, total) {
+      console.info('$scope.updateStatus: ' + message);
+      if(progress === undefined || progress === null || total === undefined || total === null) {
+        progress = 0;
+        total = 0;
+      }
+      Appstatusservice.updateCurrentProcess(message, progress, total);
+    }
+
+    $scope.deleteBookmark = function (bookmarkItem) {
+      var responseFailed = function(message) {
+        console.info('bookmarkitem deleting failed:');
+        console.info(message);
+        alert('Failed to delete bookmark.');
+      };
+
+      Pinboardservice.deleteBookmark(bookmarkItem.data.href)
+        .then(function(result) {
+          if(result.result_code === 'done') {
+            console.log('delete request completed.');
+            $scope.removeItemFromCollection('hash', bookmarkItem.data.hash, $scope.data.items);
+            $scope.updateStatus('deleted bookmark, hash: ' + bookmarkItem.data.hash);
+          } else {
+            responseFailed(result);
+          }
+        }, function(reason) {
+          responseFailed(reason);
+        });
+    }
+
     $scope.deleteSelectedBookmarks = function() {
       var deleteConfirmed = confirm("Delete all selected bookmarks ?");
       if(deleteConfirmed) {
@@ -120,35 +133,33 @@ angular.module('pinboredWebkitApp')
         var deleted = 0;
         console.log('bookmarks to delete: ' + total);
 
-        // mock delete all function.
+        // RECURSIVE delete single bookmark function.
         var deleteNextBookmark = function() {
           if($scope.data.selectedItems.length > 0 && deleted !== total) {
-            $timeout(function() {
-              Pinboardservice.deleteBookmark($scope.data.selectedItems[0])
-              .then(function(deletedBookMarkHash) {
-                  console.info('Deleted bookmark, hash: ' + deletedBookMarkHash);
-                  // increment deleted
-                  deleted++;
-                  // update app status
-                  Appstatusservice.updateCurrentProcess('deleted bookmark', deleted, total);
-                  // remove from scope list
+            Pinboardservice.deleteBookmark($scope.data.selectedItems[0].data.href)
+              .then(function(result) {
+                if(result.result_code === 'done') {
                   var deletionBmHash = $scope.data.selectedItems[0]['data']['hash'];
-                  $scope.removeBookmarkFrom('hash', deletedBookMarkHash, $scope.data.selectedItems);
-                  $scope.removeBookmarkFrom('hash', deletedBookMarkHash, $scope.data.items);
+                  deleted++;
+                  $scope.updateStatus('deleted bookmark, hash: ' + deletionBmHash, deleted, total);
+                  // remove from scope list
+                  $scope.removeItemFromCollection('hash', deletionBmHash, $scope.data.selectedItems);
+                  $scope.removeItemFromCollection('hash', deletionBmHash, $scope.data.items);
                   // recursively delete next bookmark
                   if($scope.data.selectedItems.length > 0 && deleted !== total) {
                     deleteNextBookmark(); 
                   }
-                }, function(reason) {
-                  console.error('Failed: ' + reason);
-                });
-            }, 200 + Math.random() * 300);
+                }
+              }, function(reason) {
+                console.error('Failed: ' + reason);
+              });
           } else {
             console.log('done deleting all bookmarks.');
           }
         }
 
         deleteNextBookmark();
+
       }
     }
 
@@ -188,7 +199,7 @@ angular.module('pinboredWebkitApp')
     };
 
     $scope.applyFilters = function() {
-      console.log('applying filters to list...');
+      // console.log('applying filters to list...');
       var word = $scope.filter.text;
       var tags = $scope.filter.tags;
       var logicType = 'OR';
@@ -237,7 +248,7 @@ angular.module('pinboredWebkitApp')
 
       // get recent bookmarks
       if ($scope.data.loadType === 'recent') {
-        console.log("getting recent bookmarks...");
+        $scope.updateStatus('getting recent bookmarks...');
         Pinboardservice.getRecentBookmarks($scope.config.maxItems)
         .then(function(result) {
             // for some reason, return of recent bookmarks is different
@@ -245,13 +256,15 @@ angular.module('pinboredWebkitApp')
             $scope.data.isLoading = false;
             $scope.createBookmarks(result.posts);
             $scope.updateFiltersPaging();
+            $scope.updateStatus('recent bookmarks loaded.');
         }, function(reason) {
           console.error('Failed: ' + reason);
+          $scope.updateStatus('recent bookmarks failed to load.');
         });
 
       // get all bookmarks
       } else if ($scope.data.loadType === 'all') {
-        console.log("TODO: getting ALL bookmarks...");
+        $scope.updateStatus('getting all bookmarks...');
         Pinboardservice.getAllBookmarks()
         .then(function(result) {
             // for some reason, return of recent bookmarks is different
@@ -259,8 +272,10 @@ angular.module('pinboredWebkitApp')
             $scope.data.isLoading = false;
             $scope.createBookmarks(result);
             $scope.updateFiltersPaging();
+            $scope.updateStatus('all bookmarks loaded.');
         }, function(reason) {
           console.error('Failed: ' + reason);
+          $scope.updateStatus('all bookmarks failed to load.');
         });
         $scope.data.isLoading = false;
       }
@@ -268,17 +283,19 @@ angular.module('pinboredWebkitApp')
 
     $scope.repopulateBookmarks = function() {
       if($scope.data.items.length === 0) {
-        console.log('checking if stored bookmark set exists...');
+        // console.log('checking if stored bookmark set exists...');
         // check if they are cached in service.
         var isEmpty = (Object.keys(Usersessionservice.storedBookmarks).length) === 0 ? true : false;
-        console.log("are cached bookmarks empty? " + isEmpty);
+        // console.log("are cached bookmarks empty? " + isEmpty);
 
         if(!isEmpty) {
-          console.log('cached bookmarks exist.');
+          // console.log('cached bookmarks exist.');
           if(Usersessionservice.storedBookmarks.length > 0) {
-            console.log('retrieving cached bookmarks.');
-            $scope.createBookmarks(Usersessionservice.storedBookmarks);
+            $scope.updateStatus('retrieving cached bookmarks...');
             $scope.data.isLoading = false;
+            $scope.createBookmarks(Usersessionservice.storedBookmarks);
+            $scope.updateFiltersPaging();
+            $scope.updateStatus('cached bookmarks retrieved.');
           }
         } else {
           // request recent bookmarks if there are none loaded yet.

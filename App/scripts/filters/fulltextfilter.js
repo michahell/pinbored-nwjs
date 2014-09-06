@@ -12,7 +12,7 @@ angular.module('pinboredWebkitApp')
   .filter('fulltext', function() {
     return function(bookmarkCollection, word) {
 
-      console.log('full text filter invoked.');
+      // console.log('full text filter invoked.');
 
       if(word !== undefined && word !== '' && word !== ' ') {
         var filteredList = [];

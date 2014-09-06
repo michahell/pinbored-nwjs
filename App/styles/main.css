@@ -240,6 +240,24 @@ tags-input .tags .tag-item .remove-button {
   padding-right: 2px;
 }
 
+/* upgrade to tooltip */
+
+.tooltip.left .tooltip-arrow {
+  border-left-color: #ECF0F1;
+}
+
+.tooltip.bottom .tooltip-arrow {
+ border-bottom-color: #ECF0F1; 
+}
+
+.tooltip.top .tooltip-arrow {
+ border-top-color: #ECF0F1; 
+}
+
+.tooltip-inner {
+  background: #ECF0F1;
+  color: #2C3E50;
+}
 
 
 
@@ -418,8 +436,9 @@ small, .small {
 /* screen and component specific */
 
 
-#overview .switch,
-#tags .switch {
+
+#overview .screentitle .switch,
+#tags .screentitle .switch {
   float: right;
 }
 
@@ -702,9 +721,19 @@ small, .small {
     /*margin: 0 200px;*/
     position: relative;
     left: auto;
-    width: 190px;
+    width: 255px;
     float: right;
     cursor: pointer;
+}
+
+.bookmark-item-right .label {
+  color: #2C3E50;
+  width: 25px;
+  height: 25px;
+  display: block;
+  margin: 2px;
+  padding: 6px;
+  float: right;
 }
 
 .bookmark-item-right .btn-inverse {
@@ -715,12 +744,42 @@ small, .small {
     background: rgba(0, 0, 0, 0.2);
 }
 
+.bookmark-item-right .form-group {
+  margin-bottom: 0px;
+}
+
+.bookmark-item-right .btn-group {
+  height: 100%;
+}
+
+.bookmark-item-right .btn-group .btn {
+  border-radius: 0px;
+  padding: 26px 15px;
+  height: 100%;
+}
+
 .hiddenContent {
-  height: auto;
   padding-top: 5px;
   padding-bottom: 2px;
-  /*background: #34495E;*/
   background: #314355;
+  -webkit-transition: 0.2s ease-out all;
+  transition: 0.2s ease-out all;
+  height: 180px;
+}
+
+.hiddenContent.ng-hide {
+  height: 0;
+}
+
+.hiddenContentContainer {
+  -webkit-transition: 0.2s ease-out all;
+  transition: 0.2s ease-out all;
+  transition-delay: 0.2s;
+  opacity: 1;
+}
+
+.hiddenContentContainer.ng-hide {
+  opacity: 0;
 }
 
 .hiddenContent .btn-toolbar {
@@ -747,7 +806,12 @@ small, .small {
 }
 
 .hiddenContent .editbuttonbar a.btn {
-  margin-right: 10px;
+  margin-right: 5px;
+  float: right;
+}
+
+.hiddenContent .editbuttonbar .switch {
+  float: right;
 }
 
 .hiddenContent .col-xs-12 {
@@ -778,20 +842,6 @@ small, .small {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-.bookmark-item-right .form-group {
-  margin-bottom: 0px;
-}
-
-.bookmark-item-right .btn-group {
-  height: 100%;
-}
-
-.bookmark-item-right .btn-group .btn {
-  border-radius: 0px;
-  padding: 26px 15px;
-  height: 100%;
-}
-
 .highlight {
   color: #1ABC9C;
   font-weight: bold;
@@ -805,7 +855,7 @@ small, .small {
 
 #stale-indicator {
   float: right;
-  width: 40px;
+  width: 110px;
   min-height: 72px;
   padding: 10px;
   color: rgba(255, 255, 255, 0.6);
@@ -815,22 +865,7 @@ small, .small {
 
 #stale-indicator .stale-indicator-container {
   text-align: center;
-  margin-top: 14px;
-}
-
-.glyphicon-refresh-animate {
-    -animation: spin .7s infinite linear;
-    -webkit-animation: spin2 .7s infinite linear;
-}
-
-@-webkit-keyframes spin2 {
-    from { -webkit-transform: rotate(0deg);}
-    to { -webkit-transform: rotate(360deg);}
-}
-
-@keyframes spin {
-    from { transform: scale(1) rotate(0deg);}
-    to { transform: scale(1) rotate(360deg);}
+  margin-top: 10px;
 }
 
 #stale-indicator.unknown,
@@ -838,52 +873,16 @@ small, .small {
   background: rgba(0, 0, 0, 0.1);
 }
 
-#stale-indicator.healthy {
-  background: rgba(46, 204, 113, 0.3);
-}
-
-#stale-indicator.sick {
-  background: rgba(241, 196, 15, 0.4);
-}
-
-#stale-indicator.dead {
-  background: rgba(231, 76, 60, 0.4);
-}
-
 /* ============================ ANIMATIONS ============================ */
 
 /* app status indicator */
+/* used: */
 
-.app-status-indicator-enter, 
-.app-status-indicator-leave { 
-    -webkit-transition: 4000ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -moz-transition: 4000ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -ms-transition: 4000ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -o-transition: 4000ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    transition: 4000ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    position: relative;
-    display: block;
-} 
- 
-.app-status-indicator-leave.app-status-indicator-leave-active,
-.app-status-indicator-enter {
-    -webkit-transform: scaleY(0);
-    -moz-transform: scaleY(0);
-    -ms-transform: scaleY(0);
-    -o-transform: scaleY(0);
-    transform: scaleY(0);
-    height: 0px;
-    opacity: 0;
-}
- 
-.app-status-indicator-enter.app-status-indicator-enter-active,
-.app-status-indicator-leave {
-    -webkit-transform: scaleY(1);
-    -moz-transform: scaleY(1);
-    -ms-transform: scaleY(1);
-    -o-transform: scaleY(1);
-    transform: scaleY(1);
-    height: 50px;
-    opacity: 1;
+.app-status-indicator {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
 }
 
+.app-status-indicator.ng-hide {
+  opacity: 0;
+}
