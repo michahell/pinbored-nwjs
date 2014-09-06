@@ -56,43 +56,21 @@ angular.module('pinboredWebkitApp')
       showSelection : false
     }
 
-    // functionality
-    $scope.createBookmarks = function(pinboardData) {
-      console.info(pinboardData);
-      var bookmarks = [];
-      for(var i=0; i<pinboardData.length; i++) {
-        var bmdata = pinboardData[i];
-        var bookMark = {
-          status: {
-            selected : false,
-            showEdit : false,
-            hasChanged : false,
-            staleness : 'unknown'
-          },
-          data: bmdata
-        }
-        bookmarks.push(bookMark);
-      }
-
-      // cache bookmarks in usersession
-      Usersessionservice.storeBookmarks(pinboardData);
-
-      // and store in scope
-      $scope.data.items = bookmarks;
+    $scope.watchers = {
+      selectedItemsWatcher : null
     }
+
+
+
+
+    // UTILITY FUNCTIONS
+
+
+
 
     $scope.removeItemFromCollection = function (byProperty, value, collection) {
       var deletedBookmark = $filter('searchcollection')(byProperty, value, collection);
       collection.splice(collection.indexOf(deletedBookmark), 1);
-    }
-
-    $scope.clearSelectedItems = function() {
-      if($scope.data.selectedItems.length > 0) {
-        for(var i=0; i<$scope.data.selectedItems; i++) {
-          $scope.data.selectedItems[i].status.selected = false;
-        }
-      }
-      $scope.data.selectedItems = [];
     }
 
     $scope.updateStatus = function (message, progress, total) {
@@ -104,28 +82,15 @@ angular.module('pinboredWebkitApp')
       Appstatusservice.updateCurrentProcess(message, progress, total);
     }
 
-    $scope.deleteBookmark = function (bookmarkItem) {
-      var responseFailed = function(message) {
-        console.info('bookmarkitem deleting failed:');
-        console.info(message);
-        alert('Failed to delete bookmark.');
-      };
 
-      Pinboardservice.deleteBookmark(bookmarkItem.data.href)
-        .then(function(result) {
-          if(result.result_code === 'done') {
-            console.log('delete request completed.');
-            $scope.removeItemFromCollection('hash', bookmarkItem.data.hash, $scope.data.items);
-            $scope.updateStatus('deleted bookmark, hash: ' + bookmarkItem.data.hash);
-          } else {
-            responseFailed(result);
-          }
-        }, function(reason) {
-          responseFailed(reason);
-        });
-    }
 
-    $scope.deleteSelectedBookmarks = function() {
+
+    // BATCH SELECTION ACTIONS
+
+
+
+
+    $scope.multiDeleteBookmarks = function() {
       var deleteConfirmed = confirm("Delete all selected bookmarks ?");
       if(deleteConfirmed) {
 
@@ -163,13 +128,13 @@ angular.module('pinboredWebkitApp')
       }
     }
 
-    $scope.deleteTags = function() {
+    $scope.multiDeleteTags = function() {
       var deleteConfirmed = confirm("Delete all tags of all selected bookmarks ?");
       if(deleteConfirmed) {
         console.log('deleting all tags of selected bookmarks...');
         
         // mock delete all tagsfunction.
-        var mockDeleteTags = function(i) {
+        var mockmultiDeleteTags = function(i) {
           // remove all tags from bookmark
           $scope.data.selectedItems[i].data.tags = '';
           $timeout(function() {
@@ -184,56 +149,50 @@ angular.module('pinboredWebkitApp')
 
         // for each selected bookmark, delete it.
         for(var i=0; i<$scope.data.selectedItems.length; i++) {
-          mockDeleteTags(i);
+          mockmultiDeleteTags(i);
         }
       }
     }
 
-    $scope.updatePaging = function() {
-      $scope.paging.total = Math.min($scope.data.items.length, $scope.data.filteredList.length);
-      console.log('paging total: ' + $scope.paging.total);
-    }
-
-    $scope.pageChanged = function() {
-      console.log('Page changed to: ' + $scope.paging.current);
-    };
-
-    $scope.applyFilters = function() {
-      // console.log('applying filters to list...');
-      var word = $scope.filter.text;
-      var tags = $scope.filter.tags;
-      var logicType = 'OR';
-      $scope.data.filteredList = fulltextFilter($scope.data.items, word);
-      $scope.data.filteredList = tagsFilter($scope.data.filteredList, tags, logicType);
-    }
-
-    $scope.cancelCurrentOperations = function(exception) {
-
-      $scope.multiAction.selectedAction = '';
-
-      // first, de-highlight and fold all items
-      if($scope.data.items.length > 0) {
-        for(var i=0; i<$scope.data.items.length; i++) {
-          if($scope.data.items[i] !== exception) {
-            $scope.data.items[i].status.selected = false;
-            $scope.data.items[i].status.showEdit = false;
-            // $scope.data.items[i].status.hasChanged = false;
-          }
+    $scope.changeMultiAction = function() {
+      if($scope.multiAction.selectedAction === '') {
+        $scope.multiAction.show = false;
+      } else {
+        $scope.multiAction.show = true;
+        switch($scope.multiAction.selectedAction) {
+          case "deleteAllItems":
+            $scope.multiAction.dangerousAction = true;
+            break;
+          case "deleteAllTags":
+            $scope.multiAction.dangerousAction = true;
+            break;
+          default:
+            $scope.multiAction.dangerousAction = false;
         }
       }
-
-      // then, clear currently selected items
-      $scope.data.selectedItems = [];
-
-      // hide multi action bar
-      $scope.multiAction.selectedAction = '';
-      $scope.multiAction.show = false;
     }
 
-    $scope.updateFiltersPaging = function() {
-      $scope.applyFilters();
-      $scope.updatePaging();
+    $scope.executeMultiAction = function() {
+      console.log('executing action: ' + $scope.multiAction.selectedAction);
+      if($scope.multiAction.selectedAction !== '') {
+        switch($scope.multiAction.selectedAction) {
+          case "deleteAllItems":
+              $scope.multiDeleteBookmarks();
+              break;
+            case "deleteAllTags":
+              $scope.multiDeleteTags();
+              break;
+        }
+      }
     }
+
+
+
+
+    // BOOKMARK (RE)LOADING
+
+
+
 
     $scope.reload = function() {
       
@@ -304,41 +263,133 @@ angular.module('pinboredWebkitApp')
       }
     }
 
-    $scope.changeMultiAction = function() {
-      if($scope.multiAction.selectedAction === '') {
-        $scope.multiAction.show = false;
-      } else {
-        $scope.multiAction.show = true;
-        switch($scope.multiAction.selectedAction) {
-          case "deleteAllItems":
-            $scope.multiAction.dangerousAction = true;
-            break;
-          case "deleteAllTags":
-            $scope.multiAction.dangerousAction = true;
-            break;
-          default:
-            $scope.multiAction.dangerousAction = false;
+    $scope.createBookmarks = function(pinboardData) {
+      console.info(pinboardData);
+      var bookmarks = [];
+      for(var i=0; i<pinboardData.length; i++) {
+        var bmdata = pinboardData[i];
+        var bookMark = {
+          status: {
+            selected : false,
+            showEdit : false,
+            hasChanged : false,
+            staleness : 'unknown'
+          },
+          data: bmdata
         }
+        bookmarks.push(bookMark);
       }
+
+      // cache bookmarks in usersession
+      Usersessionservice.storeBookmarks(pinboardData);
+
+      // and store in scope
+      $scope.data.items = bookmarks;
     }
 
-    $scope.executeMultiAction = function() {
-      console.log('executing action: ' + $scope.multiAction.selectedAction);
-      if($scope.multiAction.selectedAction !== '') {
-        switch($scope.multiAction.selectedAction) {
-          case "deleteAllItems":
-              $scope.deleteSelectedBookmarks();
-              break;
-            case "deleteAllTags":
-              $scope.deleteTags();
-              break;
+
+
+
+    // PAGING AND FILTERS
+
+
+
+
+    $scope.updateFiltersPaging = function() {
+      $scope.applyFilters();
+      $scope.updatePaging();
+    }    
+
+    $scope.updatePaging = function() {
+      $scope.paging.total = Math.min($scope.data.items.length, $scope.data.filteredList.length);
+      console.log('paging total: ' + $scope.paging.total);
+    }
+
+    $scope.pageChanged = function() {
+      console.log('Page changed to: ' + $scope.paging.current);
+    };
+
+    $scope.applyFilters = function() {
+      // console.log('applying filters to list...');
+      var word = $scope.filter.text;
+      var tags = $scope.filter.tags;
+      var logicType = 'OR';
+      $scope.data.filteredList = fulltextFilter($scope.data.items, word);
+      $scope.data.filteredList = tagsFilter($scope.data.filteredList, tags, logicType);
+    }
+
+
+
+
+    // EOF PAGING AND FILTERS
+
+
+
+
+    $scope.clearSelectedItems = function() {
+      if($scope.data.selectedItems.length > 0) {
+        for(var i=0; i<$scope.data.selectedItems; i++) {
+          $scope.data.selectedItems[i].status.selected = false;
         }
       }
+      $scope.data.selectedItems = [];
+    }
+
+    $scope.deleteBookmark = function (bookmarkItem) {
+      var responseFailed = function(message) {
+        console.info('bookmarkitem deleting failed:');
+        console.info(message);
+        alert('Failed to delete bookmark.');
+      };
+
+      Pinboardservice.deleteBookmark(bookmarkItem.data.href)
+        .then(function(result) {
+          if(result.result_code === 'done') {
+            console.log('delete request completed.');
+            $scope.removeItemFromCollection('hash', bookmarkItem.data.hash, $scope.data.items);
+            $scope.updateStatus('deleted bookmark, hash: ' + bookmarkItem.data.hash);
+          } else {
+            responseFailed(result);
+          }
+        }, function(reason) {
+          responseFailed(reason);
+        });
+    }
+
+    $scope.cancelCurrentOperations = function(exception) {
+
+      $scope.multiAction.selectedAction = '';
+
+      // first, de-highlight and fold all items
+      if($scope.data.items.length > 0) {
+        for(var i=0; i<$scope.data.items.length; i++) {
+          if($scope.data.items[i] !== exception) {
+            $scope.data.items[i].status.selected = false;
+            $scope.data.items[i].status.showEdit = false;
+            // $scope.data.items[i].status.hasChanged = false;
+          }
+        }
+      }
+
+      // then, clear currently selected items
+      $scope.data.selectedItems = [];
+
+      // hide multi action bar
+      $scope.multiAction.selectedAction = '';
+      $scope.multiAction.show = false;
     }
 
     $scope.changeLoadType = function() {
       console.log('load type selected: ' + $scope.data.loadType);
     }
+
+
+
+
+    // SETUP AND INITIALISATION
+
+
+
 
     // for debugging reasons
     window.$scope = $scope;
@@ -348,6 +399,17 @@ angular.module('pinboredWebkitApp')
 
     // repopulate bookmark items.
     $scope.repopulateBookmarks();
+
+    // setup a watchCollection on the filteredList
+    $scope.watchers.selectedItemsWatcher = $scope.$watchCollection('data.selectedItems', function(newList, oldList) {
+      console.log('selected items changed!');
+      // show multi action bar when selectedItems.length > 2
+      if($scope.data.selectedItems.length > 1) {
+        $scope.config.showSelection = true;
+      } else {
+        $scope.config.showSelection = false;
+      }
+    });
 
     // list effects activate
     // stroll.bind('#list ul', { live: true } );
