@@ -28,7 +28,7 @@
     <!-- main app status window -->
     <div ng-controller="AppStatusCtrl" ng-show="visible" class="app-status-indicator" 
     ng-animate="app-status-indicator">
-      <h7><span class="highlight">{{status.text}}</span></h7>
+      <h7><span class="{{status.color}}">{{status.text}}</span></h7>
     </div>
 
     <!-- bower:js -->

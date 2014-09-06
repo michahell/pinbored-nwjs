@@ -21,9 +21,7 @@ angular.module('pinboredWebkitApp')
     $scope.login = function() {
 
       $scope.busy = true;
-      // console.log('login called with: ' + username + ' and: ' + password);
 
-      // promise
       Pinboardservice.getUserToken($scope.username, $scope.password)
       .then(function(result) {
           if (result) {
@@ -36,7 +34,7 @@ angular.module('pinboredWebkitApp')
               Usersessionservice.setAuthenticated($scope.username, result.result);
               // show loginbox outro anim
               $scope.pstatus = true;
-              // reroute to main
+              // reroute to main after anim out time
               $timeout(function(){
                 $location.path('/main');
               }, 1000);
@@ -45,11 +43,11 @@ angular.module('pinboredWebkitApp')
           
           // reset status vars
           $scope.busy = false;
-          setTimeout(function(){
+          $timeout(function(){
             $scope.pstatus = null;
           }, 1000);
 
-          // show stuff
+          // show failure reason
         }, function(reason) {
           console.error('Failed: ' + reason);
         });
