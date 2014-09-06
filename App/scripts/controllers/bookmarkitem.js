@@ -17,10 +17,12 @@ angular.module('pinboredWebkitApp')
 
     // copy of current item
     $scope.itemcopy = null;
-    // current item watcher
+
+    // current item watcher and proxy watcher
     $scope.itemWatcher = null;
     $scope.proxyWatcher = null;
 
+    // proxy item model... ugly workaround, sigh.
     $scope.itemproxy = {
       toread : false,
       shared : false
@@ -28,21 +30,24 @@ angular.module('pinboredWebkitApp')
 
     $scope.update = function() {
       console.log('item update clicked');
+      // request update
+      Pinboardservice.updateBookmark($scope.item)
+      .then(function(result) {
+        if(result.result_code === 'done') {
+          console.info('bookmarkitem updated! ');
+          $scope.item.status.hasChanged = false;
+          // remove watcher FIRST
+          $scope.removeWatcher();
+          // deep copy the current item
+          $scope.itemcopy = angular.copy($scope.item);
+          // 
+        } else {
+          console.info(result);
+        }
+      }, function(reason) {
+        console.error('updating bookmarkitem failed: ' + reason);
+      });
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     $scope.reset = function() {
       console.log('item reset clicked');
@@ -150,24 +155,6 @@ angular.module('pinboredWebkitApp')
       $scope.item.status.showEdit = !$scope.item.status.showEdit;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     $scope.getSharedDescription = function () {
       if($scope.item.data.shared === 'yes')   return 'bookmark is public';
       else                                    return 'bookmark is private';
@@ -185,6 +172,7 @@ angular.module('pinboredWebkitApp')
       // add this clicked tag to parent filter.tags model (if it's not in there)
       if($scope.filter.tags.length > 0) {
         var exists = false;
+        // check if the tag already is in the filter list
         for (var i=0; i<$scope.filter.tags.length; i++) {
           // console.log($scope.filter.tags[i].text);
           if($scope.filter.tags[i].text === tag) {
@@ -192,10 +180,16 @@ angular.module('pinboredWebkitApp')
             break;            
           }
         }
-        if (exists === false) $scope.filter.tags.push( {text : tag} );
+        // it is not, so add it and update
+        if (exists === false) {
+          $scope.filter.tags.push( {text : tag} );
+          console.log('applying filters..')
+          $scope.updateFiltersPaging();
+        }
       } else {
+        // there are no tags in the filter list so add straight away
         $scope.filter.tags.push( {text : tag} );
-        $scope.applyFilters();
+        $scope.updateFiltersPaging();
       }
       $scope.cancelCurrentOperations();
     }
@@ -208,12 +202,6 @@ angular.module('pinboredWebkitApp')
         $scope.data.selectedItems.push($scope.item);
       } else if(!$scope.item.status.selected) {
         $scope.data.selectedItems.splice($scope.data.selectedItems.indexOf($scope.item), 1);
-      }
-      // show multi action bar when selectedItems.length > 2
-      if($scope.data.selectedItems.length > 1) {
-        $scope.config.showSelection = true;
-      } else {
-        $scope.config.showSelection = false;
       }
     }
 

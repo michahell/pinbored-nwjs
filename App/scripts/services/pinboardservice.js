@@ -194,8 +194,8 @@ angular.module('pinboredWebkitApp')
       var request = this.endpoint + 'posts/delete' + this.format + url + 
       this.token.replace('user', Usersessionservice.user).replace('apikey', Usersessionservice.apikey);
 
-      console.log('request');
-      console.log(request);
+      // console.log('request');
+      // console.log(request);
 
       // node restler handler
       rest.get(request, {timeout: self.timeout}).on('timeout', function(ms){
@@ -209,7 +209,13 @@ angular.module('pinboredWebkitApp')
     }
 
     this.updateBookmark = function(bookmark) {
+      // only difference between adding and updating is the 'replace' parameter
+      var promise = this.addBookmark(bookmark, 'yes');
+      return promise;
+    }
 
+    this.addBookmark = function(bookmark, replace) {
+      
       // check if authenticated
       if(!Usersessionservice.isAuthenticated()) {
           $timeout(function() {
@@ -218,14 +224,38 @@ angular.module('pinboredWebkitApp')
         return deferred.promise;
       }
 
-      console.log('pinboardservice: updating bookmark...')
+      if(replace === 'yes') {
+        console.log('pinboardservice: updating bookmark...');
+      } else {
+        console.log('pinboardservice: adding bookmark...');
+        replace = 'no';
+      } 
       
       var deferred = $q.defer();
 
-      'posts/add'
 
-      // mock delete bookmark
-      deferred.resolve(bookmark.data.hash);
+      // create request
+      var url = '&url=' + encodeURIComponent(bookmark.data.href);
+      var description = '&description=' + encodeURIComponent(bookmark.data.description);
+      var extended = '&extended=' + encodeURIComponent(bookmark.data.extended);
+      var tags = '&tags=' + encodeURIComponent(bookmark.data.tags);
+      var replace = '&replace=' + replace;
+      var shared = '&shared=' + bookmark.data.shared;
+      var toread = '&toread=' + bookmark.data.toread;
+
+      var request = this.endpoint + 'posts/add' + this.format + url + description + 
+      extended + tags + replace + shared + toread + 
+      this.token.replace('user', Usersessionservice.user).replace('apikey', Usersessionservice.apikey);
+
+      console.log('request');
+      console.log(request);
+
+      // node restler handler
+      rest.get(request, {timeout: self.timeout}).on('timeout', function(ms){
+        deferred.reject('pinboardservice: request timed out.');
+      }).on('complete', function(result, response){
+        self.handleRestlerComplete(result, response, deferred);
+      });
 
       return deferred.promise;
     }
