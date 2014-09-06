@@ -34,18 +34,20 @@ angular.module('pinboredWebkitApp')
       Pinboardservice.updateBookmark($scope.item)
       .then(function(result) {
         if(result.result_code === 'done') {
-          console.info('bookmarkitem updated! ');
-          $scope.item.status.hasChanged = false;
+          // status update!
+          $scope.updateStatus('bookmarkitem updated.');
           // remove watcher FIRST
           $scope.removeWatcher();
+          // 'soft' reset the current bookmark item
+          $scope.item.status.hasChanged = false;
           // deep copy the current item
           $scope.itemcopy = angular.copy($scope.item);
-          // 
         } else {
           console.info(result);
         }
       }, function(reason) {
         console.error('updating bookmarkitem failed: ' + reason);
+        $scope.updateStatus('updating bookmarkitem failed: ' + reason + '.');
       });
     }
 

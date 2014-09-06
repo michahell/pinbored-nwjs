@@ -73,13 +73,16 @@ angular.module('pinboredWebkitApp')
       collection.splice(collection.indexOf(deletedBookmark), 1);
     }
 
-    $scope.updateStatus = function (message, progress, total) {
-      console.info('$scope.updateStatus: ' + message);
+    $scope.updateStatus = function (message, progress, total, color) {
+      // console.info('$scope.updateStatus: ' + message);
       if(progress === undefined || progress === null || total === undefined || total === null) {
         progress = 0;
         total = 0;
       }
-      Appstatusservice.updateCurrentProcess(message, progress, total);
+      if(color === undefined || color === null) {
+        color = 'info';
+      }
+      Appstatusservice.updateCurrentProcess(message, progress, total, color);
     }
 
 
@@ -106,7 +109,7 @@ angular.module('pinboredWebkitApp')
                 if(result.result_code === 'done') {
                   var deletionBmHash = $scope.data.selectedItems[0]['data']['hash'];
                   deleted++;
-                  $scope.updateStatus('deleted bookmark, hash: ' + deletionBmHash, deleted, total);
+                  $scope.updateStatus('deleted bookmark, hash: ' + deletionBmHash + '.', deleted, total);
                   // remove from scope list
                   $scope.removeItemFromCollection('hash', deletionBmHash, $scope.data.selectedItems);
                   $scope.removeItemFromCollection('hash', deletionBmHash, $scope.data.items);
@@ -337,9 +340,7 @@ angular.module('pinboredWebkitApp')
 
     $scope.deleteBookmark = function (bookmarkItem) {
       var responseFailed = function(message) {
-        console.info('bookmarkitem deleting failed:');
-        console.info(message);
-        alert('Failed to delete bookmark.');
+        $scope.updateStatus('Failed to delete bookmark: ' + message + '.', 0, 0, 'danger');
       };
 
       Pinboardservice.deleteBookmark(bookmarkItem.data.href)
@@ -347,7 +348,7 @@ angular.module('pinboredWebkitApp')
           if(result.result_code === 'done') {
             console.log('delete request completed.');
             $scope.removeItemFromCollection('hash', bookmarkItem.data.hash, $scope.data.items);
-            $scope.updateStatus('deleted bookmark, hash: ' + bookmarkItem.data.hash);
+            $scope.updateStatus('deleted bookmark, hash: ' + bookmarkItem.data.hash + '.');
           } else {
             responseFailed(result);
           }

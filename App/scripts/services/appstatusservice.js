@@ -14,14 +14,16 @@ angular.module('pinboredWebkitApp')
     this.process = {
       text : '',
       progress : 0,
-      total : 0
+      total : 0,
+      color : ''
     }
 
-    this.updateCurrentProcess = function(text, progress, total) {
+    this.updateCurrentProcess = function(text, progress, total, color) {
       
       this.process.text = text;
       this.process.progress = progress;
       this.process.total = total;
+      this.process.color = color;
 
       // notify listeners and provide the current status
       $rootScope.$broadcast('app:statuschange', this.process);
