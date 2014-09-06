@@ -13,12 +13,40 @@
         </div>
       </div>
     </div>
-    <div id="stale-indicator" class="clearfix" ng-class="item.status.staleness">
+
+    <div id="stale-indicator" class="clearfix">
       <div class="stale-indicator-container">
-        <span ng-show="item.status.staleness === 'checking'"
-        class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+        <small>
+          <!-- STALE ICON STATES -->
+          <span class="label label-info" ng-show="item.status.staleness === 'unknown'"
+          tooltip-placement="top" tooltip="bookmark health unknown">
+            <span class="glyphicon glyphicon glyphicon-question-sign"></span>
+          </span>
+          <span class="label label-info" ng-show="item.status.staleness === 'checking'"
+          tooltip-placement="top" tooltip="bookmark is being checked...">
+            <span class="glyphicon glyphicon glyphicon-refresh"></span>
+          </span>
+          <span class="label label-success" ng-show="item.status.staleness === 'healthy'"
+          tooltip-placement="top" tooltip="bookmark is healthy!">
+            <span class="glyphicon glyphicon glyphicon-ok-sign"></span>
+          </span>
+          <span class="label label-danger" ng-show="item.status.staleness === 'dead'"
+          tooltip-placement="top" tooltip="bookmark is (probably) stale">
+            <span class="glyphicon glyphicon-exclamation-sign"></span>
+          </span>
+          <!-- STALE ICON STATES -->
+          <span class="label label-success" ng-show="item.data.toread === 'yes'"
+          tooltip-placement="top" tooltip="bookmark is 'to read'">
+            <span class="glyphicon glyphicon-book"></span>
+          </span>
+          <span class="label" ng-class="{'label-success': item.data.shared === 'no', 'label-danger': item.data.shared === 'yes'}"
+          tooltip-placement="top" tooltip="{{getSharedDescription()}}">
+            <span class="glyphicon glyphicon-lock"></span>
+          </span>
+        </small>
       </div>
-    </div>        
+    </div>
+
   </div>
 
   <div class="bookmark-item-left">
@@ -39,41 +67,56 @@
     </div>
   </div>
 
-  <div class="hiddenContent animated clearfix" ng-show="item.status.showEdit" stop-event>
-    
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="form-group">
-          <input ng-model="item.data.description" class="form-control hiddeninputs input-sm col-xs-4" type="text" stop-event>
+  <div class="hiddenContent clearfix" ng-show="item.status.showEdit" stop-event>
+
+    <div class="hiddenContentContainer" ng-show="item.status.showEdit" stop-event>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <input ng-model="item.data.description" class="form-control hiddeninputs input-sm col-xs-4" type="text" stop-event>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="form-group">
-          <input ng-model="item.data.href" class="form-control hiddeninputs input-sm col-xs-4" type="text" stop-event>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <input ng-model="item.data.href" class="form-control hiddeninputs input-sm col-xs-4" type="text" stop-event>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="form-group">
-          <textarea ng-model="item.data.extended" placeholder="no extended description." 
-          class="form-control hiddeninputs input-sm col-xs-4" rows="2" stop-event>
-          </textarea>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <textarea ng-model="item.data.extended" placeholder="no extended description." 
+            class="form-control hiddeninputs input-sm col-xs-4" rows="2" stop-event>
+            </textarea>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-
-      <div class="col-xs-12 editbuttonbar">
-        <a class="btn btn-primary btn-wide btn-xs" ng-class="{disabled: item.status.hasChanged}" ng-click="update()" 
-        href="javascript: void(0)" stop-event>update</a>
-        <a class="btn btn-warning btn-wide btn-xs" ng-show="item.status.hasChanged" ng-click="reset()"
-        href="javascript: void(0)" stop-event>reset</a>
+      <div class="row editbuttonbar">
+        <div class="col-xs-4">
+          <div class="text-left pull-left">
+            <flatui-switch model="itemproxy.shared" square=""></flatui-switch>
+            <label class="share-label">shared</label>
+          </div>
+          <div class="text-left pull-left">
+            <flatui-switch model="itemproxy.toread" square=""></flatui-switch>
+            <label class="share-label">to read</label>
+          </div>
+        </div>
+        <div class="col-xs-4">
+          b
+        </div>
+        <div class="col-xs-4 pull-right">
+          <a class="btn btn-primary btn-wide btn-xs" ng-class="{disabled: item.status.hasChanged === false}" ng-click="update()" 
+          href="javascript: void(0)" stop-event>update</a>
+          <a class="btn btn-warning btn-wide btn-xs" ng-class="{disabled: item.status.hasChanged === false}" ng-click="reset()"
+          href="javascript: void(0)" stop-event>reset</a>
+        </div>
       </div>
 
     </div>

@@ -4,8 +4,28 @@ pinbored-webkit
 Pinbored native OSX client built with Node-webkit and AngularJS. Future plans include windows / linux
 builds as well, but for now focus is on OSX (using NUWK! instead of CLI node-webkit magic for development simplification). See https://github.com/michahell/pinbored for more info of history of this project.
 
-For bookmark creation consider using Shiori: http://aki-null.net/shiori/ or another bookmarking app.
-i could add this functionality, but it's mainly aimed at **managing** one's bookmarks.
+Why?
+====
+Why use the excellent Pinboard service to manage my bookmarks? I have <insert browser> for that!
+
+* Access bookmarks across multiple browsers.
+* Independant of browser crashes, sudden loss of all bookmarks, malware.
+* Being (almost) sure that no google, mozilla or micronot are using my bookmarks for social profiling.
+
+Besides, there are several apps that already do this.
+
+* they are either commercial software...
+* or just plain suck.
+* also, excuse to buid a cool app.
+
+For bookmark creation consider using:
+
+* Shiori: http://aki-null.net/shiori/
+* browser dependant plugins or widgets.
+
+i could add this functionality in a later version, however this was never the intention of this app.
+The app is aimed at **managing** one's bookmarks, for example after a switch from <insert browser>
+to Pinboard with some 1000 unmanageable bookmarks...
 
 Roadmap
 =======

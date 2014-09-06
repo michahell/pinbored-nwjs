@@ -21,7 +21,7 @@ angular.module('pinboredWebkitApp')
     $scope.visible = false;
 
     // check if user is authenticated
-    console.log("testing if authenticated..");
+    // console.log("testing if authenticated..");
 
     // check if user is logged in on Pinboard
     if (Usersessionservice.isAuthenticated() === false) {
@@ -34,24 +34,22 @@ angular.module('pinboredWebkitApp')
       $scope.visible = true;
       $scope.status = status;
 
-      if($scope.countingDown === 0) {
-        // set up the counting down for hiding the app status footer
-        $scope.countingDown = setInterval(function() {
-          
-          if($scope.timeVisible <= 0) {
-            $scope.$apply($scope.visible = false);
-            $scope.countingDown = 0;
-            $scope.timeVisible = 5000;
-          } else {
-            $scope.timeVisible -= 100;  
-          }
-          
-        }, 100);
-      } else {
-        // reset time visible
-        $scope.timeVisible = 5000;
-      }
-      
+      // reset time visible
+      $scope.timeVisible = 5000;
+
+      // set up the counting down for hiding the app status footer
+      var countingDown = setInterval(function() {
+        
+        if($scope.timeVisible <= 0) {
+          $scope.$apply($scope.visible = false);
+          clearInterval(countingDown);
+          countingDown = 0;
+          $scope.timeVisible = 5000;
+        } else {
+          $scope.timeVisible -= 100;  
+        }
+        
+      }, 100);
 
     });
 
