@@ -17,7 +17,9 @@ angular
     'ngSanitize',
     'ngTouch',
     'ngTagsInput',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'angular-bootstrap-select',
+    'angular-bootstrap-select.extra'
   ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
