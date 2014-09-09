@@ -90,33 +90,6 @@ textarea {
 .list-group-item {
   padding: 0px;
   margin-bottom: 0px;
-  -webkit-transition:0.3s ease-out all;
-  -moz-transition:0.3s ease-out all;
-  -o-transition:0.3s ease-out all;
-  transition:0.3s ease-out all;
-}
-
-.list-group-item.ng-move,
-.list-group-item.ng-enter {
-  opacity:0;
-}
-
-
-.list-group-item.ng-move.ng-move-active,
-.list-group-item.ng-enter.ng-enter-active {
-  opacity:1;
-}
-
-.list-group-item.ng-leave.ng-leave-active {
-  -webkit-transform: scale(0, 0);
-  transform: scale(0, 0);
-  height: 0px;
-}
-
-.list-group-item.ng-leave {
-  -webkit-transform: scale(1, 1);
-  transform: scale(1, 1);
-  height: 73px;
 }
 
 .pagination {
@@ -705,6 +678,36 @@ small, .small {
 }
 
 /* list specific */
+
+.list-group-item {
+  -webkit-transition:0.3s ease-out all;
+  -moz-transition:0.3s ease-out all;
+  -o-transition:0.3s ease-out all;
+  transition:0.3s ease-out all;
+}
+
+.list-group-item.ng-move,
+.list-group-item.ng-enter {
+  opacity:0;
+}
+
+
+.list-group-item.ng-move.ng-move-active,
+.list-group-item.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
+.list-group-item.ng-leave.ng-leave-active {
+  -webkit-transform: scale(0, 0);
+  transform: scale(0, 0);
+  height: 0px;
+}
+
+.list-group-item.ng-leave {
+  -webkit-transform: scale(1, 1);
+  transform: scale(1, 1);
+  height: 73px;
+}
 
 #list {
   padding: 0px;

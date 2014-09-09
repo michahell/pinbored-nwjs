@@ -142,10 +142,10 @@ angular.module('pinboredWebkitApp')
                   }
                 }
               }, function(reason) {
-                console.error('Failed: ' + reason);
+                $scope.updateStatus('Failed: ' + reason, updated, total, 'danger');
               });
           } else {
-            console.log('done deleting all bookmarks.');
+            $scope.updateStatus('done deleting all selected bookmarks.');
           }
         }
 
@@ -158,29 +158,43 @@ angular.module('pinboredWebkitApp')
     }
 
     $scope.multiDeleteTags = function() {
-      var deleteConfirmed = confirm("Delete all tags of all selected bookmarks ?");
-      if(deleteConfirmed) {
-        console.log('deleting all tags of selected bookmarks...');
-        
-        // mock delete all tagsfunction.
-        var mockmultiDeleteTags = function(i) {
-          // remove all tags from bookmark
-          $scope.data.selectedItems[i].data.tags = '';
-          $timeout(function() {
+
+      $scope.confirm('Delete selected bookmarks ? \nThis request can not be cancelled when started!')
+      .then(function(){
+
+        var total = $scope.data.selectedItems.length;
+        var updated = 0;
+        console.log('bookmarks to delete all tags from: ' + total);
+
+        // delete all tagsfunction.
+        var deleteTagsFromNextBookmark = function(i) {
+          if($scope.data.selectedItems.length > 0 && updated !== total) {
+            // remove all tags from bookmark
+            $scope.data.selectedItems[i].data.tags = '';
             Pinboardservice.updateBookmark($scope.data.selectedItems[i])
             .then(function(result) {
-                console.info('updated bookmark: ' + result);
-              }, function(reason) {
-                console.error('Failed: ' + reason);
-              });
-          }, 500 + Math.random() * 800);
+              if(result.result_code === 'done') {
+                var updatedBmHash = $scope.data.selectedItems[i]['data']['hash'];
+                updated++;
+                $scope.updateStatus('updated bookmark: ' + updatedBmHash + '.', updated, total);
+                // recursively delete all tags on next bookmark
+                if($scope.data.selectedItems.length > 0 && updated !== total) {
+                  deleteTagsFromNextBookmark(i+1);
+                }
+              }
+            }, function(reason) {
+              $scope.updateStatus('Failed: ' + reason, updated, total, 'danger');
+            });
+          } else {
+            $scope.updateStatus('done deleting all tags from all selected bookmarks.');
+          }
         };
 
-        // for each selected bookmark, delete it.
-        for(var i=0; i<$scope.data.selectedItems.length; i++) {
-          mockmultiDeleteTags(i);
-        }
-      }
+        deleteTagsFromNextBookmark(0);
+
+      }, function(){
+        console.log('modal cancelled.');
+      });
     }
 
     $scope.changeMultiAction = function() {
