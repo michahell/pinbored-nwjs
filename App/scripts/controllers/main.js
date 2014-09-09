@@ -8,7 +8,7 @@
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('MainCtrl', function ($scope, $location, $timeout, $filter,
+  .controller('MainCtrl', function ($scope, $location, $timeout, $filter, $modal, $q,
     Pinboardservice, Usersessionservice, Appstatusservice, Utilservice,
     fulltextFilter, tagsFilter) {
     
@@ -68,13 +68,35 @@ angular.module('pinboredWebkitApp')
 
 
 
+    $scope.confirm = function (message) {
+
+      var deferred = $q.defer();
+
+      var modalInstance = $modal.open({
+        templateUrl: 'templates/modalConfirm.html',
+        controller: 'ModalConfirmCtrl',
+        resolve: {
+          message : function () {
+            return message;
+          }
+        }
+      });
+
+      modalInstance.result
+        .then(  function() { deferred.resolve();
+        },      function() { deferred.reject();
+      });
+
+      return deferred.promise;
+    };
+
     $scope.removeItemFromCollection = function (byProperty, value, collection) {
       var deletedBookmark = $filter('searchcollection')(byProperty, value, collection);
       collection.splice(collection.indexOf(deletedBookmark), 1);
     }
 
     $scope.updateStatus = function (message, progress, total, color) {
-      // console.info('$scope.updateStatus: ' + message);
+      console.info('$scope.updateStatus: ' + message);
       if(progress === undefined || progress === null || total === undefined || total === null) {
         progress = 0;
         total = 0;
@@ -94,8 +116,9 @@ angular.module('pinboredWebkitApp')
 
 
     $scope.multiDeleteBookmarks = function() {
-      var deleteConfirmed = confirm("Delete all selected bookmarks ?");
-      if(deleteConfirmed) {
+      
+      $scope.confirm('Delete selected bookmarks ?')
+      .then(function(){
 
         var total = $scope.data.selectedItems.length;
         var deleted = 0;
@@ -115,7 +138,7 @@ angular.module('pinboredWebkitApp')
                   $scope.removeItemFromCollection('hash', deletionBmHash, $scope.data.items);
                   // recursively delete next bookmark
                   if($scope.data.selectedItems.length > 0 && deleted !== total) {
-                    deleteNextBookmark(); 
+                    deleteNextBookmark();
                   }
                 }
               }, function(reason) {
@@ -126,9 +149,12 @@ angular.module('pinboredWebkitApp')
           }
         }
 
+        // delete the first bookmark and start recursion
         deleteNextBookmark();
 
-      }
+      }, function(){
+        console.log('modal cancelled.');
+      });
     }
 
     $scope.multiDeleteTags = function() {
@@ -413,6 +439,6 @@ angular.module('pinboredWebkitApp')
     });
 
     // list effects activate
-    // stroll.bind('#list ul', { live: true } );
+    // stroll.bind('#list .list-wrapper ul.list-group', { live: true } );
 
   });

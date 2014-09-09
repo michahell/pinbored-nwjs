@@ -40,106 +40,109 @@
 
     <!-- full text search -->
     <div class="bar" id="fulltextsearch" ng-show="config.showSearch">
-      <nav role="navigation" class="navbar navbar-inverse navbar-embossed">
-        
-        <div class="col-xs-6">
-          <div class="collapse navbar-collapse textselectable">
-            <form role="search" class="navbar-form navbar-left">
-              <div class="form-group">
-                <input type="text" ng-model="filter.text" placeholder="full-text search" class="form-control input-sm" 
-                ng-keydown="updateFiltersPaging()" ng-keyup="updateFiltersPaging()">
-              </div>
-              <!-- <button class="btn btn-default btn-sm" type="submit" ng-click="updateFiltersPaging()">search</button> -->
-            </form>
+      <div class="bar-container" ng-show="config.showSearch">
+        <nav role="navigation" class="navbar navbar-inverse navbar-embossed">
+          
+          <div class="col-xs-6">
+            <div class="collapse navbar-collapse textselectable">
+              <form role="search" class="navbar-form navbar-left">
+                <div class="form-group">
+                  <input type="text" ng-model="filter.text" placeholder="full-text search" class="form-control input-sm" 
+                  ng-keydown="updateFiltersPaging()" ng-keyup="updateFiltersPaging()">
+                </div>
+                <!-- <button class="btn btn-default btn-sm" type="submit" ng-click="updateFiltersPaging()">search</button> -->
+              </form>
+            </div>
           </div>
-        </div>
 
-        <div class="col-xs-2">
-          <flatui-checkbox model="config.searchAllWords" label="config.searchAllWordsText" value="1" name="container"></flatui-checkbox>
-        </div>
+          <div class="col-xs-2">
+            <flatui-checkbox model="config.searchAllWords" label="config.searchAllWordsText" value="1" name="container"></flatui-checkbox>
+          </div>
 
-        <div class="col-xs-2">
-          <!-- <flatui-checkbox model="config.searchAllWords" label="config.searchAllWordsText" value="1" name="container"></flatui-checkbox> -->
-        </div>
+          <div class="col-xs-1">
+            <!-- <flatui-checkbox model="config.searchAllWords" label="config.searchAllWordsText" value="1" name="container"></flatui-checkbox> -->
+          </div>
 
-        <div class="col-xs-2">
-          <label class="share-label">
-            <span class="highlight">{{data.filteredList.length}}</span> bookmarks found
-          </label>
-        </div>
+          <div class="col-xs-3">
+            <label class="share-label">
+              <span class="highlight">{{data.filteredList.length}}</span> bookmarks found
+            </label>
+          </div>
 
-      </nav>
+        </nav>
+      </div>
     </div>
 
     <!-- tags -->
     <div class="bar clearfix" id="tagsearch" ng-show="config.showTags">
-      <div class="col-xs-9">
-        <tags-input ng-model="filter.tags" ng-keyup="updateFiltersPaging()" ng-click="updateFiltersPaging()"
-        placeholder="search for tag"></tags-input>
-      </div>
-      <div class="col-xs-3">
-        <label class="share-label">
-          <span class="highlight">{{data.filteredList.length}}</span> bookmarks found
-        </label>
+      <div class="bar-container" ng-show="config.showTags">
+        <div class="col-xs-9">
+          <tags-input ng-model="filter.tags" ng-keyup="updateFiltersPaging()" ng-click="updateFiltersPaging()"
+          placeholder="search for tag"></tags-input>
+        </div>
+        <div class="col-xs-3">
+          <label class="share-label">
+            <span class="highlight">{{data.filteredList.length}}</span> bookmarks found
+          </label>
+        </div>
       </div>
     </div>
 
     <!-- screen pagination -->
     <div class="bar" id="pages" ng-show="config.showPager">
-
-      <pagination total-items="paging.total" items-per-page="config.itemsPerPage" 
-      ng-model="paging.current" ng-change="pageChanged()" max-size="paging.numPageButtons" 
-      class="pagination-sm" boundary-links="true"></pagination>
-
+      <div class="bar-container" ng-show="config.showPager">
+        <pagination total-items="paging.total" items-per-page="config.itemsPerPage" 
+        ng-model="paging.current" ng-change="pageChanged()" max-size="paging.numPageButtons" 
+        class="pagination-sm" boundary-links="true"></pagination>
+      </div>
     </div>
 
     <!-- multi tag select bar -->
     <div class="bar clearfix" id="selection" ng-show="config.showSelection">
-
-      <nav role="navigation" class="navbar navbar-inverse navbar-embossed">
-        
-        <div class="col-xs-2">
-          <label class="share-label pull-left">with selection: </label>
-        </div>
-
-        <div class="col-xs-2">
-          <select name="multiAction" class="select-block tall" 
-          ng-model="multiAction.selectedAction" ng-change="changeMultiAction()">
-            <option value="">select action</option>
-            <option value="addTag">add tag</option>
-            <option value="staleCheck">perform stale check</option>
-            <option value="deleteAllTags">delete all tags</option>
-            <option value="deleteAllItems">delete</option>
-          </select>
-        </div>
-
-        <div class="col-xs-5">
-          <div class="hider" ng-show="multiAction.show">
-            
-            <div class="collapse navbar-collapse textselectable">
-              <form role="search" class="navbar-form navbar-left">
-                <div class="form-group" ng-show="multiAction.selectedAction == 'addTag'">
-                  <input type="text" ng-model="multiAction.newTagName" placeholder="new tag name" 
-                  class="form-control input-sm">
-                </div>
-                <button class="btn btn-default btn-sm" type="submit" ng-class="{'btn-danger': multiAction.dangerousAction}"
-                ng-click="executeMultiAction()">execute action</button>
-              </form>
-            </div>
-
+      <div class="bar-container" ng-show="config.showSelection">
+        <nav role="navigation" class="navbar navbar-inverse navbar-embossed">
+          
+          <div class="col-xs-2">
+            <label class="share-label pull-left">with selection: </label>
           </div>
-        </div>
 
-        <div class="col-xs-3">
-          <label class="share-label">
-            <span class="highlight">{{data.selectedItems.length}}</span> selected bookmarks
-          </label>
-        </div>
+          <div class="col-xs-2">
+            <select name="multiAction" class="select-block tall" 
+            ng-model="multiAction.selectedAction" ng-change="changeMultiAction()">
+              <option value="">select action</option>
+              <option value="addTag">add tag</option>
+              <option value="staleCheck">perform stale check</option>
+              <option value="deleteAllTags">delete all tags</option>
+              <option value="deleteAllItems">delete</option>
+            </select>
+          </div>
 
-      </nav>
+          <div class="col-xs-5">
+            <div class="hider" ng-show="multiAction.show">
+              
+              <div class="collapse navbar-collapse textselectable">
+                <form role="search" class="navbar-form navbar-left">
+                  <div class="form-group" ng-show="multiAction.selectedAction == 'addTag'">
+                    <input type="text" ng-model="multiAction.newTagName" placeholder="new tag name" 
+                    class="form-control input-sm">
+                  </div>
+                  <button class="btn btn-default btn-sm" type="submit" ng-class="{'btn-danger': multiAction.dangerousAction}"
+                  ng-click="executeMultiAction()">execute action</button>
+                </form>
+              </div>
 
+            </div>
+          </div>
+
+          <div class="col-xs-3">
+            <label class="share-label">
+              <span class="highlight">{{data.selectedItems.length}}</span> selected bookmarks
+            </label>
+          </div>
+
+        </nav>
+      </div>
     </div>
-
   </div>
 
   <!-- bookmark items list -->
