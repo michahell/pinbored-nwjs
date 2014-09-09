@@ -30,6 +30,7 @@ angular.module('pinboredWebkitApp')
 
     $scope.update = function() {
       console.log('item update clicked');
+      $scope.updateStatus('updating bookmark...');
       // request update
       Pinboardservice.updateBookmark($scope.item)
       .then(function(result) {
@@ -209,11 +210,15 @@ angular.module('pinboredWebkitApp')
 
     $scope.delete = function() {
       console.log('item delete clicked');
-      var deleteConfirmed = confirm("Delete this bookmark ?");
-      if(deleteConfirmed) {
+
+      $scope.confirm('Delete this bookmark ?')
+      .then(function(){
         // call method in parent scope
         $scope.deleteBookmark($scope.item);
-      }
+      }, function() {
+        console.log('modal cancelled.');
+      });
+      
     }
 
     $scope.staleCheck = function() {
