@@ -4,7 +4,7 @@
     <div class="form-group">
       <div class="btn-toolbar">
         <div class="btn-group">
-          <a class="btn btn-inverse btn-sm" ng-click="staleCheck()" stop-event 
+          <a class="btn btn-inverse btn-sm" ng-click="staleCheck(item)" stop-event 
           href="javascript: void(0)"><span class="fui-eye"></span></a>
           <a class="btn btn-inverse btn-sm" ng-click="toggleEdit()" stop-event
           href="javascript: void(0)"><span class="fui-new"></span></a>
@@ -61,7 +61,7 @@
       <div class="tagContainer">
         <small>
           <span ng-repeat="tag in tagsToArray()" ng-click="clickTag(tag)" stop-event
-          class="label label-success clickabletag">{{tag}}</span>
+          class="label label-success clickabletag" ng-class="{'highlightedtag':checkTagHighlight(tag)}">{{tag}}</span>
         </small>
       </div>
     </div>

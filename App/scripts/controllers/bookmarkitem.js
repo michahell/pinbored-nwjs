@@ -28,6 +28,16 @@ angular.module('pinboredWebkitApp')
       shared : false
     }
 
+    $scope.checkTagHighlight = function(tag) {
+      // check parent scope tag filter list
+      for(var i=0; i<$scope.filter.tags.length; i++) {
+        if($scope.filter.tags[i].text === tag) {
+          return true;
+        }
+      }
+      return false;
+    }
+
     $scope.update = function() {
       console.log('item update clicked');
       $scope.updateStatus('updating bookmark...');
@@ -186,6 +196,7 @@ angular.module('pinboredWebkitApp')
         // it is not, so add it and update
         if (exists === false) {
           $scope.filter.tags.push( {text : tag} );
+          $scope.checkMaxTags();
           console.log('applying filters..')
           $scope.updateFiltersPaging();
         }
@@ -209,8 +220,6 @@ angular.module('pinboredWebkitApp')
     }
 
     $scope.delete = function() {
-      console.log('item delete clicked');
-
       $scope.confirm('Delete this bookmark ?')
       .then(function(){
         // call method in parent scope
@@ -221,23 +230,9 @@ angular.module('pinboredWebkitApp')
       
     }
 
-    $scope.staleCheck = function() {
+    $scope.staleCheck = function(bookmark) {
       // $scope.cancelCurrentOperations();
-      $scope.item.status.staleness = 'checking';
-      Pinboardservice.checkUrl($scope.item.data.href)
-      .then(function(result) {
-        if(result == 200) {
-          console.info('bookmarkitem healthy! ' + result);
-          $scope.item.status.staleness = 'healthy';
-        } else {
-          console.info('bookmarkitem STALE! ' + result);
-          $scope.item.status.staleness = 'dead';
-        }
-      }, function(reason) {
-        console.info('bookmarkitem STALE! ' + reason);
-        $scope.item.status.staleness = 'dead';
-      });
-      console.log('item stale check clicked: ' + $scope.item.data.href);
+      $scope.staleCheckBookmark(bookmark);
     }
 
     $scope.openBookmark = function(href) {

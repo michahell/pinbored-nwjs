@@ -1,18 +1,7 @@
 /* Account for fixed navbar */
 body {
   min-width: 1024px;
-  /*padding-top: 70px;
-  padding-bottom: 30px;*/
 }
-
-/* Finesse the page header spacing */
-/*.page-header {
-  margin-bottom: 30px;
-}
-.page-header .lead {
-  margin-bottom: 10px;
-}*/
-
 
 /* Non-responsive overrides
  *
@@ -51,10 +40,6 @@ body {
 .navbar-collapse {
   border-top: 0;
 }
-
-/*.navbar-brand {
-  margin-left: -15px;
-}*/
 
 /* Always apply the floated nav */
 .navbar-nav {

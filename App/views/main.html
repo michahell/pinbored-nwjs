@@ -6,7 +6,7 @@
 
     <div class="col-xs-3">
 
-      <select name="loadOptions" value="" class="select-block" 
+      <select name="loadOptions" class="selectpicker select-block" 
       ng-model="data.loadType" ng-change="changeLoadType()">
         <option value="recent">retrieve {{$scope.config.maxItems}} recent bookmarks</option>
         <option value="all">retrieve all bookmarks</option>
@@ -22,16 +22,16 @@
     <div class="col-xs-6 pull-right text-right">
       
       <div class="pull-right text-right">
+        <!-- <label class="share-label">paging</label> -->
         <flatui-switch model="config.showPager" square=""></flatui-switch>
-        <label class="share-label">paging</label>
       </div>
       <div class="pull-right text-right">
         <flatui-switch model="config.showTags" square=""></flatui-switch>
-        <label class="share-label">tag filter</label>
+        <!-- <label class="share-label">tag filter</label> -->
       </div>
       <div class="pull-right text-right">
         <flatui-switch model="config.showSearch" square=""></flatui-switch>
-        <label class="share-label">fulltext filter</label>
+        <!-- <label class="share-label">fulltext filter</label>  -->
       </div>
     </div>
   </div>
@@ -43,7 +43,7 @@
       <div class="bar-container" ng-show="config.showSearch">
         <nav role="navigation" class="navbar navbar-inverse navbar-embossed">
           
-          <div class="col-xs-6">
+          <div class="col-xs-7">
             <div class="collapse navbar-collapse textselectable">
               <form role="search" class="navbar-form navbar-left">
                 <div class="form-group">
@@ -56,12 +56,13 @@
           </div>
 
           <div class="col-xs-2">
-            <flatui-checkbox model="config.searchAllWords" label="config.searchAllWordsText" value="1" name="container"></flatui-checkbox>
+            <flatui-checkbox model="config.searchAllWords" label="config.searchAllWordsText" 
+            value="1" name="container"/>
           </div>
 
-          <div class="col-xs-1">
-            <!-- <flatui-checkbox model="config.searchAllWords" label="config.searchAllWordsText" value="1" name="container"></flatui-checkbox> -->
-          </div>
+          <!-- <div class="col-xs-1">
+            <flatui-checkbox model="config.searchAllWords" label="config.searchAllWordsText" value="1" name="container"></flatui-checkbox>
+          </div>-->
 
           <div class="col-xs-3">
             <label class="share-label">
@@ -76,9 +77,13 @@
     <!-- tags -->
     <div class="bar clearfix" id="tagsearch" ng-show="config.showTags">
       <div class="bar-container" ng-show="config.showTags">
-        <div class="col-xs-9">
+        <div class="col-xs-7">
           <tags-input ng-model="filter.tags" ng-keyup="updateFiltersPaging()" ng-click="updateFiltersPaging()"
-          placeholder="search for tag"></tags-input>
+          placeholder="search for tag" on-tag-added="checkMaxTags($tag)"></tags-input>
+        </div>
+        <div class="col-xs-2">
+          <flatui-checkbox model="config.tagFilterType" label="config.tagFilterTypeText" 
+          value="1" name="container"/>
         </div>
         <div class="col-xs-3">
           <label class="share-label">
@@ -93,7 +98,8 @@
       <div class="bar-container" ng-show="config.showPager">
         <pagination total-items="paging.total" items-per-page="config.itemsPerPage" 
         ng-model="paging.current" ng-change="pageChanged()" max-size="paging.numPageButtons" 
-        class="pagination-sm" boundary-links="true"></pagination>
+        boundary-links="true"></pagination>
+        <!-- pagination-sm -->
       </div>
     </div>
 
@@ -106,8 +112,8 @@
             <label class="share-label pull-left">with selection: </label>
           </div>
 
-          <div class="col-xs-2">
-            <select name="multiAction" class="select-block tall" 
+          <div class="col-xs-3">
+            <select name="multiAction" class="selectpicker select-block tall"
             ng-model="multiAction.selectedAction" ng-change="changeMultiAction()">
               <option value="">select action</option>
               <option value="addTag">add tag</option>
@@ -117,7 +123,7 @@
             </select>
           </div>
 
-          <div class="col-xs-5">
+          <div class="col-xs-4">
             <div class="hider" ng-show="multiAction.show">
               
               <div class="collapse navbar-collapse textselectable">
