@@ -117,7 +117,7 @@ angular.module('pinboredWebkitApp')
 
     $scope.multiDeleteBookmarks = function() {
       
-      $scope.confirm('Delete selected bookmarks ?')
+      $scope.confirm('Delete selected bookmarks ? \nThis request can not be cancelled when started!')
       .then(function(){
 
         var total = $scope.data.selectedItems.length;

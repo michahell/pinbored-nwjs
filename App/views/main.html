@@ -150,7 +150,7 @@
 
     <div class="list-wrapper" ng-class="{fullheight: data.filteredList.length > 0}">
       <!-- screen list group -->
-      <ul class="list-group grow"> <!-- flip -->
+      <ul class="list-group">
         <li ng-repeat="item in data.filteredList | offset: (paging.current - 1) * config.itemsPerPage | limitTo: config.itemsPerPage"
         class="list-group-item" ng-class="{selected: item.status.selected}" 
         ng-controller="BookmarkItemCtrl" ng-click="selectItem()">

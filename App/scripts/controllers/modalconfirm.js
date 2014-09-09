@@ -15,7 +15,8 @@ angular.module('pinboredWebkitApp')
       return;
     }
 
-    $scope.message = message;
+    // parse message for newlines etc. and store it
+    $scope.message = message.replace('\n', '<br/>');
 
     $scope.ok = function () {
       $modalInstance.close();
