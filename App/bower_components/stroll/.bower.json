@@ -1,0 +1,14 @@
+{
+  "name": "stroll",
+  "homepage": "https://github.com/hakimel/stroll.js",
+  "_release": "bd84075690",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "bd840756901fa013627055ddd32a45f9df8f8fc2"
+  },
+  "_source": "git://github.com/hakimel/stroll.js.git",
+  "_target": "*",
+  "_originalSource": "stroll",
+  "_direct": true
+}

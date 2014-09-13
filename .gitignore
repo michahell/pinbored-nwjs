@@ -1,11 +1,11 @@
-resources
-node_modules
-dist
 Build
+cache
 inspiration
+node_modules
+Resources
+dist
 
 .tmp
 .sass-cache
-bower_components
 project.sublime-project
 project.sublime-workspace

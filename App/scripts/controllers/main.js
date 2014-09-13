@@ -12,10 +12,19 @@ angular.module('pinboredWebkitApp')
     Pinboardservice, Usersessionservice, Appstatusservice, Utilservice,
     fulltextFilter, tagsFilter) {
     
+    // if not authenticated, redirect to login page
     if (Usersessionservice.isAuthenticated() === false) {
       $location.path("/login");
       return;
     }
+
+    // if logged off, redirect to login page as well
+    $scope.$on('user:authenticated', function(event, data) {
+      if(Usersessionservice.authenticated === false) {
+        $location.path("/login");
+        return;
+      }
+    });
 
     // page model
     $scope.data = {
@@ -480,7 +489,7 @@ angular.module('pinboredWebkitApp')
         });
     }
 
-    $scope.staleCheckBookmark = function() {
+    $scope.staleCheckBookmark = function(bookmark) {
       bookmark.status.staleness = 'checking';
       Pinboardservice.checkUrl(bookmark.data.href)
       .then(function(result) {

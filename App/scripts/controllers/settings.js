@@ -10,6 +10,20 @@
 angular.module('pinboredWebkitApp')
   .controller('SettingsCtrl', function ($scope, Pinboardservice, Usersessionservice, $location) {
     
+    // if not authenticated, redirect to login page
+    if (Usersessionservice.isAuthenticated() === false) {
+      $location.path("/login");
+      return;
+    }
+
+    // if logged off, redirect to login page as well
+    $scope.$on('user:authenticated', function(event, data) {
+      if(Usersessionservice.authenticated === false) {
+        $location.path("/login");
+        return;
+      }
+    });
+    
     $scope.data = {
       test : false
     }

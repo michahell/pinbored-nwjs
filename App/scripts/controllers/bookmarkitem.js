@@ -231,6 +231,7 @@ angular.module('pinboredWebkitApp')
     }
 
     $scope.staleCheck = function(bookmark) {
+      console.log(bookmark);
       // $scope.cancelCurrentOperations();
       $scope.staleCheckBookmark(bookmark);
     }
