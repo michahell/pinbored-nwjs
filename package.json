@@ -1,0 +1,7 @@
+{
+  "name": "pinbored-webkit-grunt",
+  "version": "0.0.2",
+  "devDependencies": {
+    "grunt-node-webkit-builder": "^0.2.3"
+  }
+}

@@ -472,9 +472,9 @@ small, .small {
   float: left;
 }
 
-/*.vertical-offset-100{
+.vertical-offset-170 {
     padding-top:170px;
-}*/
+}
 
 .app-status-indicator {
   position: absolute;

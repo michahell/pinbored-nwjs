@@ -10,14 +10,19 @@
 angular.module('pinboredWebkitApp')
   .controller('TagsCtrl', function ($scope, Pinboardservice, Usersessionservice, $location) {
     
-    // check if user is authenticated
-    // console.log("testing if authenticated..");
-
-    // check if user is logged in on Pinboard
+    // if not authenticated, redirect to login page
     if (Usersessionservice.isAuthenticated() === false) {
       $location.path("/login");
       return;
     }
+
+    // if logged off, redirect to login page as well
+    $scope.$on('user:authenticated', function(event, data) {
+      if(Usersessionservice.authenticated === false) {
+        $location.path("/login");
+        return;
+      }
+    });
 
     // page model
     $scope.data = {

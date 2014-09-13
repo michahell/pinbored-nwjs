@@ -17,12 +17,24 @@ angular.module('pinboredWebkitApp')
 
     // root scope listeners
     $scope.$on('user:authenticated', function(event, data) {
-      $scope.showNav = true;
-      $scope.username = Usersessionservice.user;
+      if(Usersessionservice.authenticated === true) {
+        $scope.showNav = true;
+        $scope.username = Usersessionservice.user;
+      } else if(Usersessionservice.authenticated === false) {
+        $scope.showNav = false;
+        return;
+      }
     });
 
     $scope.$on('user:pagechange', function(event, currentPage) {
       $scope.activePage = Usersessionservice.currentPage;
     });
+
+    $scope.logout = function() {
+      // TODO logout
+      console.log('logging out...');
+      Usersessionservice.destroy();
+      console.info('logged out.');
+    }
 
   });

@@ -19,7 +19,7 @@ angular.module('pinboredWebkitApp')
     this.apikey = '';
     this.currentPage = '';
 
-    // in memory bookmarks
+    // in memory cached bookmarks
     this.storedBookmarks = {};
 
     // temp ref
@@ -62,6 +62,7 @@ angular.module('pinboredWebkitApp')
       this.apikey = sessionStorage.apikey;
 
       this.authenticated = true;
+      
       // notify listeners and provide the data that changed
       $rootScope.$broadcast('user:authenticated', this.authenticated);
 
@@ -72,6 +73,22 @@ angular.module('pinboredWebkitApp')
       console.log('storing bookmarks.');
       self.storedBookmarks = bookmarksList;
       // console.info(this.storedBookmarks);
+    }
+
+    this.destroy = function() {
+      // destroy all session variables
+      this.user = '';
+      this.apikey = '';
+      this.currentPage = '';
+
+      // destroy in memory cached bookmarks
+      this.storedBookmarks = {};
+
+      // finally set authenticated to false
+      this.authenticated = false;
+
+      // notify listeners that user authentication changed
+      $rootScope.$broadcast('user:authenticated', this.authenticated);
     }
 
   });
