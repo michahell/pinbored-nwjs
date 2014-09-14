@@ -2,7 +2,6 @@ pinbored-webkit
 ===============
 
 [![Code Climate](https://codeclimate.com/github/michahell/pinbored-webkit/badges/gpa.svg)](https://codeclimate.com/github/michahell/pinbored-webkit)
-
 [![Build Status](https://travis-ci.org/michahell/pinbored-webkit.svg)](https://travis-ci.org/michahell/pinbored-webkit)
 
 Pinbored native OSX client built with Node-webkit and AngularJS. Future plans include windows / linux

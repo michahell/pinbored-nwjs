@@ -69,13 +69,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-open');
 
   // Default task(s)
-  grunt.registerTask('default', ['karma', 'open:report', 'nodewebkit:buildOsx', 'nodewebkit:buildWin', 'nodewebkit:buildLin32', 'nodewebkit:buildLin64'
-  ]);
+  grunt.registerTask('default', ['karma', 'open:report', 'nodewebkit:buildOsx', 'nodewebkit:buildWin', 'nodewebkit:buildLin32', 'nodewebkit:buildLin64']);
 
   // testing task(s)
   grunt.registerTask('test', ['karma', 'open:report']);
 
   // building task(s)
+  grunt.registerTask('build', ['nodewebkit:buildOsx', 'nodewebkit:buildWin', 'nodewebkit:buildLin32', 'nodewebkit:buildLin64']);
+
   grunt.registerTask('osx', ['nodewebkit:buildOsx']);
   grunt.registerTask('win', ['nodewebkit:buildWin']);
   grunt.registerTask('lin32', ['nodewebkit:buildLin32']);
