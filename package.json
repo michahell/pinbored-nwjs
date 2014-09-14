@@ -4,11 +4,14 @@
   "devDependencies": {
     "grunt-node-webkit-builder": "^0.2.3",
     "jshint": "^2.5.5",
-    "karma": "^0.12.23"
+    "karma": "^0.12.23",
+    "karma-htmlfile-reporter": "^0.1.2",
+    "karma-jasmine": "^0.1.5",
+    "karma-nodewebkit-launcher": "0.0.8"
   },
   "scripts": {
     "postinstall": "cd App && npm install && bower install",
-    "pretest": "npm install",
+    "pretest": "npm install && export NODEWEBKIT_BIN='/Applications/node-webkit.app/Contents/MacOS/node-webkit'",
     "test": "karma start karma.conf.js",
     "test-single-run": "karma start karma.conf.js  --single-run",
     "prestart": "grunt"

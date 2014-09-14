@@ -13,3 +13,4 @@ App/node_modules
 .sass-cache
 project.sublime-project
 project.sublime-workspace
+karma.report.html
