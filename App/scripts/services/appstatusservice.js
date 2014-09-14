@@ -16,7 +16,7 @@ angular.module('pinboredWebkitApp')
       progress : 0,
       total : 0,
       color : ''
-    }
+    };
 
     this.updateCurrentProcess = function(text, progress, total, color) {
       
@@ -27,6 +27,6 @@ angular.module('pinboredWebkitApp')
 
       // notify listeners and provide the current status
       $rootScope.$broadcast('app:statuschange', this.process);
-    }
+    };
 
   });

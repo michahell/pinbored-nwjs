@@ -9,10 +9,10 @@
  */
 angular.module('pinboredWebkitApp')
   .service('Usersessionservice', function Usersessionservice($rootScope, $cookies, Utilservice) {
-    // AngularJS will instantiate a singleton by calling "new" on this function
+    // AngularJS will instantiate a singleton by calling 'new' on this function
 
-    var gui = require('nw.gui');
-    var win = gui.Window.get();
+    // var gui = require('nw.gui');
+    // var win = gui.Window.get();
 
     this.authenticated = false;
     this.user = '';
@@ -29,11 +29,11 @@ angular.module('pinboredWebkitApp')
       this.currentPage = newCurrentPage;
       // notify listeners and provide the data that changed
       $rootScope.$broadcast('user:pagechange', this.currentPage);
-    }
+    };
 
     this.setAuthenticated = function(username, apikey) {
       // return if no correct input is given
-      if(Utilservice.isEmpty(username) || Utilservice.isEmpty(apikey)) return;
+      if(Utilservice.isEmpty(username) || Utilservice.isEmpty(apikey)) { return; }
       // console.info('setAuthenticated: ' + username + ', ' + apikey);
 
       this.authenticated = true;
@@ -46,15 +46,15 @@ angular.module('pinboredWebkitApp')
 
       // notify listeners and provide the data that changed
       $rootScope.$broadcast('user:authenticated', this.authenticated);
-    }
+    };
 
     this.isAuthenticated = function() {
 
       // check if user and apikey are still in session storage. if not, return.
       if(Utilservice.isEmpty(sessionStorage.user) || Utilservice.isEmpty(sessionStorage.apikey)) {
         this.authenticated = false;
+        console.info('user was not authenticated.');
         return this.authenticated;
-        console.info("user was not authenticated.");
       } 
       
       // if they are store them again in the service
@@ -67,13 +67,13 @@ angular.module('pinboredWebkitApp')
       $rootScope.$broadcast('user:authenticated', this.authenticated);
 
       return this.authenticated;
-    }
+    };
 
     this.storeBookmarks = function(bookmarksList) {
       console.log('storing bookmarks.');
       self.storedBookmarks = bookmarksList;
       // console.info(this.storedBookmarks);
-    }
+    };
 
     this.destroy = function() {
       // destroy all session variables
@@ -89,6 +89,6 @@ angular.module('pinboredWebkitApp')
 
       // notify listeners that user authentication changed
       $rootScope.$broadcast('user:authenticated', this.authenticated);
-    }
+    };
 
   });

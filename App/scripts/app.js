@@ -21,7 +21,7 @@ angular
     'angular-bootstrap-select',
     'angular-bootstrap-select.extra'
   ])
-  .config(function ($routeProvider, $locationProvider) {
+  .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
