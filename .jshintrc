@@ -1,4 +1,6 @@
 {
+  "loopfunc" : false,
+  "devel"    : false,
   "node"     : true,
   "browser"  : true,
   "es5"      : true,
@@ -16,9 +18,9 @@
   "regexp"   : true,
   "undef"    : true,
   "unused"   : true,
-  "strict"   : true,
+  "strict"   : false,
   "trailing" : false,
-  "smarttabs": true,
+  "smarttabs": false,
   "white"    : false,
   "globals"   : {
     "$"                    : false,
