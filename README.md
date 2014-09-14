@@ -34,20 +34,17 @@ On OSX, somehow the number of max-open files is by default 256. This is too litt
 so one must set it to allow more. ```ulimit -S -n 4096``` allows 4096 files to be open, i have found this is
 enough. This is because right now, the whole node_modules and bower_components folders are zipped into application bundles, which contain huge amounts of (unused) files.
 
-single command (see below what does what)
------------------------------------------
+steps
+-----
 
 1. clone project
-2. run ```npm install && cd App && npm install && bower install && cd .. && grunt```
-
-multi-step
-----------
-
-1. clone project
-2. run ```npm install```            (dev dependancies)
-3. run ```cd App && npm install```  (app node dependancies)
-4. run ```bower install```          (app bower dependancies)
-5. run ```cd .. && grunt```         (run task runner)
+2. run ```npm install``` \t\t\t\t (install dev / app dependancies and bower components)
+3. optionally run ```npm start``` \t\t\t (starts build process for ALL platforms)
+4. optionally run: 
+    * ```grunt osx``` \t\t\t (for OSX application bundle)
+    * ```grunt win``` \t\t\t (for Windows application bundle)
+    * ```grunt lin32``` \t\t\t (for Linux 32 bits application bundle)
+    * ```grunt lin64``` \t\t\t (for Linux 64 bits application bundle)
 
 
 Roadmap

@@ -2,11 +2,10 @@
   "name": "pinbored-webkit-grunt",
   "version": "0.0.2",
   "devDependencies": {
-    "grunt-node-webkit-builder": "^0.2.3",
-    "shelljs": "^0.3.0"
+    "grunt-node-webkit-builder": "^0.2.3"
   },
   "scripts": {
-    "postinstall": "bower install",
-    "prestart": "npm install"
+    "postinstall": "cd App && npm install && bower install",
+    "prestart": "grunt"
   }
 }
