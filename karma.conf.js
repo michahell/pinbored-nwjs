@@ -29,7 +29,9 @@ module.exports = function(config){
       'App/scripts/controllers/**/*.js',
       'App/scripts/directives/**/*.js',
       'App/scripts/filters/**/*.js',
-      'App/scripts/services/**/*.js'
+      'App/scripts/services/**/*.js',
+
+      'App/scripts/tests/**/*.js'
     ],
 
     frameworks: ['jasmine'],

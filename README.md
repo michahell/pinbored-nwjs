@@ -1,6 +1,8 @@
 pinbored-webkit
 ===============
 
+[![Code Climate](https://codeclimate.com/github/michahell/pinbored-webkit/badges/gpa.svg)](https://codeclimate.com/github/michahell/pinbored-webkit)
+
 Pinbored native OSX client built with Node-webkit and AngularJS. Future plans include windows / linux
 builds as well, but for now focus is on OSX (using NUWK! instead of CLI node-webkit magic for development simplification). See https://github.com/michahell/pinbored for more info of history of this project.
 
