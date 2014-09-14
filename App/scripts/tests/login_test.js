@@ -1,5 +1,5 @@
 
-// describe('loginCtrl', function() {
+describe('loginCtrl', function() {
 
 //   // load module
 //   beforeEach(module('pinboredWebkitApp'));
@@ -25,4 +25,4 @@
 
 //   }));
 
-// });
+});
