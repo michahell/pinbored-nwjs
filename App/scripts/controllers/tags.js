@@ -12,14 +12,14 @@ angular.module('pinboredWebkitApp')
     
     // if not authenticated, redirect to login page
     if (Usersessionservice.isAuthenticated() === false) {
-      $location.path("/login");
+      $location.path('/login');
       return;
     }
 
     // if logged off, redirect to login page as well
-    $scope.$on('user:authenticated', function(event, data) {
+    $scope.$on('user:authenticated', function() { // args: event, data
       if(Usersessionservice.authenticated === false) {
-        $location.path("/login");
+        $location.path('/login');
         return;
       }
     });
@@ -29,25 +29,25 @@ angular.module('pinboredWebkitApp')
       isLoading : true,
       tags : [],
       numTags : 0
-    }
+    };
 
     // update current page
     Usersessionservice.setCurrentPage('tags');
 
-    function createTags(tagdata) {
-      for (var tag in tagdata) {
-        // console.log(tag, tagdata[tag]);
-        $scope.data.tags.push({
-          tagname : tag,
-          occurrences : tagdata[tag]
-        });
-      }
-      // console.log($scope.data.tags);
-      $scope.data.numTags = $scope.data.tags.length;
-    }
+    // function createTags(tagdata) {
+    //   for (var tag in tagdata) {
+    //     // console.log(tag, tagdata[tag]);
+    //     $scope.data.tags.push({
+    //       tagname : tag,
+    //       occurrences : tagdata[tag]
+    //     });
+    //   }
+    //   // console.log($scope.data.tags);
+    //   $scope.data.numTags = $scope.data.tags.length;
+    // }
 
     // get all tags
-    // console.log("getting ALL tags...");
+    // console.log('getting ALL tags...');
     // Pinboardservice.getAllTags()
     // .then(function(result) {
     //   $scope.data.isLoading = false;

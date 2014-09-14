@@ -9,17 +9,17 @@
  */
 angular.module('pinboredWebkitApp')
 
-  .directive("flatuiRadio", function() {
+  .directive('flatuiRadio', function() {
     return {
-      restrict: "AE",
+      restrict: 'AE',
       templateUrl: 'templates/radiobutton.html',
       replace: true,
       scope: {
-          model: "=",
-          label: "=",
-          value: "=",
-          required: "=",
-          name: "=",
+          model: '=',
+          label: '=',
+          value: '=',
+          required: '=',
+          name: '=',
           disabled: '@'
       },
       compile: function(element, attrs) {
@@ -32,18 +32,18 @@ angular.module('pinboredWebkitApp')
     };
   })
 
-  .directive("flatuiCheckbox", function() {
+  .directive('flatuiCheckbox', function() {
     return {
-      restrict: "AE",
+      restrict: 'AE',
       templateUrl: 'templates/checkbox.html',
       replace: true,
       scope: {
-        model: "=",
-        label: "=",
-        value: "=",
-        required: "=",
-        name: "=",
-        disabled: "@"
+        model: '=',
+        label: '=',
+        value: '=',
+        required: '=',
+        name: '=',
+        disabled: '@'
       },
       compile: function(element, attrs) {
         if (attrs.disabled === void 0) {

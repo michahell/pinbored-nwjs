@@ -13,9 +13,9 @@ angular.module('pinboredWebkitApp')
     return function(bookmarkCollection, word) {
 
       // console.log('full text filter invoked.');
+      var filteredList = [];
 
       if(word !== undefined && word !== '' && word !== ' ') {
-        var filteredList = [];
         if(word.length > 0) {
           for(var j=0; j<bookmarkCollection.length; j++) {
             var bookmark = bookmarkCollection[j];

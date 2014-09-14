@@ -16,7 +16,7 @@ angular.module('pinboredWebkitApp')
     $scope.activePage = '';
 
     // root scope listeners
-    $scope.$on('user:authenticated', function(event, data) {
+    $scope.$on('user:authenticated', function() { // args: event, data
       if(Usersessionservice.authenticated === true) {
         $scope.showNav = true;
         $scope.username = Usersessionservice.user;
@@ -26,7 +26,7 @@ angular.module('pinboredWebkitApp')
       }
     });
 
-    $scope.$on('user:pagechange', function(event, currentPage) {
+    $scope.$on('user:pagechange', function() { // args: event, currentPage
       $scope.activePage = Usersessionservice.currentPage;
     });
 
@@ -35,6 +35,6 @@ angular.module('pinboredWebkitApp')
       console.log('logging out...');
       Usersessionservice.destroy();
       console.info('logged out.');
-    }
+    };
 
   });

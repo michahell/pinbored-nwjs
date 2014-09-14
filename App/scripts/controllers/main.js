@@ -14,14 +14,14 @@ angular.module('pinboredWebkitApp')
     
     // if not authenticated, redirect to login page
     if (Usersessionservice.isAuthenticated() === false) {
-      $location.path("/login");
+      $location.path('/login');
       return;
     }
 
     // if logged off, redirect to login page as well
-    $scope.$on('user:authenticated', function(event, data) {
+    $scope.$on('user:authenticated', function() { // args: event, data
       if(Usersessionservice.authenticated === false) {
-        $location.path("/login");
+        $location.path('/login');
         return;
       }
     });
@@ -34,25 +34,25 @@ angular.module('pinboredWebkitApp')
       items: [],
       filteredList : [],
       selectedItems : []
-    }
+    };
 
     $scope.paging = {
       numPageButtons : 10,
       current : 1,
       total : 0
-    }
+    };
 
     $scope.filter = {
       text : '',
       tags : []
-    }
+    };
 
     $scope.multiAction = {
       show : false,
       selectedAction : '',
       dangerousAction : false,
       newTagName : ''
-    }
+    };
 
     $scope.config = {
       tagFilterType : false,
@@ -66,11 +66,11 @@ angular.module('pinboredWebkitApp')
       showTags : false,
       showPager : false,
       showSelection : false
-    }
+    };
 
     $scope.watchers = {
       selectedItemsWatcher : null
-    }
+    };
 
 
 
@@ -85,7 +85,7 @@ angular.module('pinboredWebkitApp')
         // remove tag, one too many
         $scope.filter.tags.splice($scope.filter.tags.indexOf($scope.filter.tags[$scope.filter.tags.length-1]), 1);
       }
-    }
+    };
 
     $scope.confirm = function (message) {
 
@@ -112,7 +112,7 @@ angular.module('pinboredWebkitApp')
     $scope.removeItemFromCollection = function (byProperty, value, collection) {
       var deletedBookmark = $filter('searchcollection')(byProperty, value, collection);
       collection.splice(collection.indexOf(deletedBookmark), 1);
-    }
+    };
 
     $scope.updateStatus = function (message, progress, total, color) {
       console.info('$scope.updateStatus: ' + message);
@@ -124,7 +124,7 @@ angular.module('pinboredWebkitApp')
         color = 'info';
       }
       Appstatusservice.updateCurrentProcess(message, progress, total, color);
-    }
+    };
 
 
 
@@ -149,7 +149,8 @@ angular.module('pinboredWebkitApp')
             Pinboardservice.deleteBookmark($scope.data.selectedItems[0].data.href)
               .then(function(result) {
                 if(result.result_code === 'done') {
-                  var deletionBmHash = $scope.data.selectedItems[0]['data']['hash'];
+                  // var deletionBmHash = $scope.data.selectedItems[0]['data']['hash'];
+                  var deletionBmHash = $scope.data.selectedItems[0].data.hash;
                   deleted++;
                   $scope.updateStatus('deleted bookmark, hash: ' + deletionBmHash + '.', deleted, total);
                   // remove from scope list
@@ -161,12 +162,12 @@ angular.module('pinboredWebkitApp')
                   }
                 }
               }, function(reason) {
-                $scope.updateStatus('Failed: ' + reason, updated, total, 'danger');
+                $scope.updateStatus('Failed: ' + reason, deleted, total, 'danger');
               });
           } else {
             $scope.updateStatus('done deleting all selected bookmarks.');
           }
-        }
+        };
 
         // delete the first bookmark and start recursion
         deleteNextBookmark();
@@ -174,7 +175,7 @@ angular.module('pinboredWebkitApp')
       }, function(){
         console.log('modal cancelled.');
       });
-    }
+    };
 
     $scope.multiDeleteTags = function() {
 
@@ -193,7 +194,8 @@ angular.module('pinboredWebkitApp')
             Pinboardservice.updateBookmark($scope.data.selectedItems[i])
             .then(function(result) {
               if(result.result_code === 'done') {
-                var updatedBmHash = $scope.data.selectedItems[i]['data']['hash'];
+                // var updatedBmHash = $scope.data.selectedItems[i]['data']['hash'];
+                var updatedBmHash = $scope.data.selectedItems[i].data.hash;
                 updated++;
                 $scope.updateStatus('updated bookmark: ' + updatedBmHash + '.', updated, total);
                 // recursively delete all tags on next bookmark
@@ -216,7 +218,7 @@ angular.module('pinboredWebkitApp')
       }, function(){
         console.log('modal cancelled.');
       });
-    }
+    };
 
     $scope.multiStaleCheck = function() {
 
@@ -235,7 +237,7 @@ angular.module('pinboredWebkitApp')
             .then(function(result) {
               var checkedBmHash = $scope.data.selectedItems[i].data.hash;
               checked++;
-              if(result == 200) {
+              if(result === 200) {
                 $scope.updateStatus('checked bookmark is healthy: ' + checkedBmHash + '.', checked, total);
                 $scope.data.selectedItems[i].status.staleness = 'healthy';
               } else {
@@ -253,7 +255,7 @@ angular.module('pinboredWebkitApp')
         }
       }
 
-    }
+    };
 
     $scope.multiAddTag = function() {
 
@@ -274,7 +276,8 @@ angular.module('pinboredWebkitApp')
               // update bookmark
               Pinboardservice.updateBookmark($scope.data.selectedItems[i])
               .then(function(result) {
-                var updatedBmHash = $scope.data.selectedItems[i]['data']['hash'];
+                // var updatedBmHash = $scope.data.selectedItems[i]['data']['hash'];
+                var updatedBmHash = $scope.data.selectedItems[i].data.hash;
                 updated++;
                 if(result.result_code === 'done') {
                   $scope.updateStatus('updated bookmark: ' + updatedBmHash + '.', updated, total);
@@ -290,7 +293,7 @@ angular.module('pinboredWebkitApp')
       }, function(){
         console.log('modal cancelled.');
       });
-    }
+    };
 
     $scope.changeMultiAction = function() {
       if($scope.multiAction.selectedAction === '') {
@@ -298,37 +301,37 @@ angular.module('pinboredWebkitApp')
       } else {
         $scope.multiAction.show = true;
         switch($scope.multiAction.selectedAction) {
-          case "deleteAllItems":
+          case 'deleteAllItems':
             $scope.multiAction.dangerousAction = true;
             break;
-          case "deleteAllTags":
+          case 'deleteAllTags':
             $scope.multiAction.dangerousAction = true;
             break;
           default:
             $scope.multiAction.dangerousAction = false;
         }
       }
-    }
+    };
 
     $scope.executeMultiAction = function() {
       console.log('executing action: ' + $scope.multiAction.selectedAction);
       if($scope.multiAction.selectedAction !== '') {
         switch($scope.multiAction.selectedAction) {
-          case "deleteAllItems":
+          case 'deleteAllItems':
             $scope.multiDeleteBookmarks();
             break;
-          case "deleteAllTags":
+          case 'deleteAllTags':
             $scope.multiDeleteTags();
             break;
-          case "staleCheck":
+          case 'staleCheck':
             $scope.multiStaleCheck();
             break;
-          case "addTag":
+          case 'addTag':
             $scope.multiAddTag();
             break;
         }
       }
-    }
+    };
 
 
 
@@ -382,7 +385,7 @@ angular.module('pinboredWebkitApp')
         });
         $scope.data.isLoading = false;
       }
-    }
+    };
 
     $scope.repopulateBookmarks = function() {
       if($scope.data.items.length === 0) {
@@ -405,7 +408,7 @@ angular.module('pinboredWebkitApp')
           $scope.reload();
         }
       }
-    }
+    };
 
     $scope.createBookmarks = function(pinboardData) {
       // console.info(pinboardData);
@@ -420,7 +423,7 @@ angular.module('pinboredWebkitApp')
             staleness : 'unknown'
           },
           data: bmdata
-        }
+        };
         bookmarks.push(bookMark);
       }
 
@@ -429,7 +432,7 @@ angular.module('pinboredWebkitApp')
 
       // and store in scope
       $scope.data.items = bookmarks;
-    }
+    };
 
 
 
@@ -442,12 +445,12 @@ angular.module('pinboredWebkitApp')
     $scope.updateFiltersPaging = function() {
       $scope.applyFilters();
       $scope.updatePaging();
-    }    
+    };
 
     $scope.updatePaging = function() {
       $scope.paging.total = Math.min($scope.data.items.length, $scope.data.filteredList.length);
       console.log('paging total: ' + $scope.paging.total);
-    }
+    };
 
     $scope.pageChanged = function() {
       console.log('Page changed to: ' + $scope.paging.current);
@@ -460,7 +463,7 @@ angular.module('pinboredWebkitApp')
       var logicType = ($scope.config.tagFilterType === true) ? 'AND' : 'OR';
       $scope.data.filteredList = fulltextFilter($scope.data.items, word);
       $scope.data.filteredList = tagsFilter($scope.data.filteredList, tags, logicType);
-    }
+    };
 
 
 
@@ -487,13 +490,13 @@ angular.module('pinboredWebkitApp')
         }, function(reason) {
           responseFailed(reason);
         });
-    }
+    };
 
     $scope.staleCheckBookmark = function(bookmark) {
       bookmark.status.staleness = 'checking';
       Pinboardservice.checkUrl(bookmark.data.href)
       .then(function(result) {
-        if(result == 200) {
+        if(result === 200) {
           console.info('bookmarkitem healthy! ' + result);
           bookmark.status.staleness = 'healthy';
         } else {
@@ -504,7 +507,7 @@ angular.module('pinboredWebkitApp')
         console.info('bookmarkitem STALE! ' + reason);
         bookmark.status.staleness = 'dead';
       });
-    }
+    };
 
 
 
@@ -521,7 +524,7 @@ angular.module('pinboredWebkitApp')
         }
       }
       $scope.data.selectedItems = [];
-    }
+    };
 
     $scope.cancelCurrentOperations = function(exception) {
 
@@ -544,11 +547,11 @@ angular.module('pinboredWebkitApp')
       // hide multi action bar
       $scope.multiAction.selectedAction = '';
       $scope.multiAction.show = false;
-    }
+    };
 
     $scope.changeLoadType = function() {
       console.log('load type selected: ' + $scope.data.loadType);
-    }
+    };
 
 
 
@@ -568,7 +571,7 @@ angular.module('pinboredWebkitApp')
     $scope.repopulateBookmarks();
 
     // setup a watchCollection on the filteredList
-    $scope.watchers.selectedItemsWatcher = $scope.$watchCollection('data.selectedItems', function(newList, oldList) {
+    $scope.watchers.selectedItemsWatcher = $scope.$watchCollection('data.selectedItems', function() { // args: newList, oldList
       console.log('selected items changed!');
       // show multi action bar when selectedItems.length > 2
       if($scope.data.selectedItems.length > 1) {

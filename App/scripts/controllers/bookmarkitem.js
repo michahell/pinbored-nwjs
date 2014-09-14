@@ -26,7 +26,7 @@ angular.module('pinboredWebkitApp')
     $scope.itemproxy = {
       toread : false,
       shared : false
-    }
+    };
 
     $scope.checkTagHighlight = function(tag) {
       // check parent scope tag filter list
@@ -36,7 +36,7 @@ angular.module('pinboredWebkitApp')
         }
       }
       return false;
-    }
+    };
 
     $scope.update = function() {
       console.log('item update clicked');
@@ -60,12 +60,12 @@ angular.module('pinboredWebkitApp')
         console.error('updating bookmarkitem failed: ' + reason);
         $scope.updateStatus('updating bookmarkitem failed: ' + reason + '.');
       });
-    }
+    };
 
     $scope.reset = function() {
       console.log('item reset clicked');
       $scope.resetBookmark();
-    }
+    };
 
     $scope.resetBookmark = function () {
       if($scope.item.status.hasChanged) {
@@ -86,7 +86,7 @@ angular.module('pinboredWebkitApp')
       } else {
         console.log('nothing reset since bookmark was unchanged.');
       }
-    }
+    };
 
     $scope.mapToProxyValues = function () {
       // map to proxy shared from 'no' to false and from 'yes' to true
@@ -101,14 +101,14 @@ angular.module('pinboredWebkitApp')
       } else if($scope.item.data.toread === 'yes') {
         $scope.itemproxy.toread = true;
       }
-    }
+    };
 
     $scope.closeEditing = function() {
       // remove watcher FIRST
       $scope.removeWatcher();
       // then, reset bookmark
       $scope.resetBookmark();
-    }
+    };
 
     $scope.openEditing = function() {
       // deep copy the current item
@@ -117,14 +117,14 @@ angular.module('pinboredWebkitApp')
       $scope.mapToProxyValues();
       // start watching the current item
       $scope.addWatcher();
-    }
+    };
 
     $scope.currentItemChanged = function() {
       console.log('item change detected!');
       $scope.item.status.hasChanged = !angular.equals($scope.item.data, $scope.itemcopy.data);
       // console.log('item DATA has changed compared to item copy DATA: ');
       // console.log($scope.item.status.hasChanged);
-    }
+    };
 
     $scope.proxyChanged = function () {
       // map proxy shared from false to 'no' and true to 'yes'
@@ -139,23 +139,27 @@ angular.module('pinboredWebkitApp')
       } else if($scope.itemproxy.toread === true) {
         $scope.item.data.toread = 'yes';
       }
-    }
+    };
 
     $scope.removeWatcher = function() {
       // remove watcher if it exists
-      if($scope.itemWatcher !== null) $scope.itemWatcher();
-      if($scope.proxyWatcher !== null) $scope.proxyWatcher();
-    }
+      if($scope.itemWatcher !== null) {
+        $scope.itemWatcher();
+      }
+      if($scope.proxyWatcher !== null) {
+        $scope.proxyWatcher();
+      }
+    };
 
     $scope.addWatcher = function() {
-      $scope.itemWatcher = $scope.$watchCollection('item.data', function(newItem, oldItem) {
+      $scope.itemWatcher = $scope.$watchCollection('item.data', function() { //newItem, oldItem
         $scope.currentItemChanged();
       });
-      $scope.proxyWatcher = $scope.$watchCollection('itemproxy', function(newItem, oldItem) {
+      $scope.proxyWatcher = $scope.$watchCollection('itemproxy', function() { //newItem, oldItem
         $scope.proxyChanged();
       });
       console.log('set up watcher for current item...');
-    }
+    };
 
     $scope.toggleEdit = function() {
       $scope.cancelCurrentOperations($scope.item);
@@ -166,17 +170,20 @@ angular.module('pinboredWebkitApp')
         $scope.openEditing();
       }
       $scope.item.status.showEdit = !$scope.item.status.showEdit;
-    }
+    };
 
     $scope.getSharedDescription = function () {
-      if($scope.item.data.shared === 'yes')   return 'bookmark is public';
-      else                                    return 'bookmark is private';
-    }
+      if($scope.item.data.shared === 'yes') {
+        return 'bookmark is public';
+      } else {
+        return 'bookmark is private';
+      }      
+    };
 
     $scope.tagsToArray = function() {
       // break apart tags into an array
       return $scope.item.data.tags.split(' ');
-    }
+    };
 
     $scope.clickTag = function(tag) {
 
@@ -197,7 +204,7 @@ angular.module('pinboredWebkitApp')
         if (exists === false) {
           $scope.filter.tags.push( {text : tag} );
           $scope.checkMaxTags();
-          console.log('applying filters..')
+          console.log('applying filters..');
           $scope.updateFiltersPaging();
         }
       } else {
@@ -206,7 +213,7 @@ angular.module('pinboredWebkitApp')
         $scope.updateFiltersPaging();
       }
       $scope.cancelCurrentOperations();
-    }
+    };
 
     $scope.selectItem = function() {
       $scope.item.status.selected = !$scope.item.status.selected;
@@ -217,7 +224,7 @@ angular.module('pinboredWebkitApp')
       } else if(!$scope.item.status.selected) {
         $scope.data.selectedItems.splice($scope.data.selectedItems.indexOf($scope.item), 1);
       }
-    }
+    };
 
     $scope.delete = function() {
       $scope.confirm('Delete this bookmark ?')
@@ -228,16 +235,16 @@ angular.module('pinboredWebkitApp')
         console.log('modal cancelled.');
       });
       
-    }
+    };
 
     $scope.staleCheck = function(bookmark) {
       console.log(bookmark);
       // $scope.cancelCurrentOperations();
       $scope.staleCheckBookmark(bookmark);
-    }
+    };
 
     $scope.openBookmark = function(href) {
       gui.Shell.openExternal(href);
-    }
+    };
 
   });

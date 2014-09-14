@@ -14,9 +14,10 @@ angular.module('pinboredWebkitApp')
     $scope.pstatus = null;
 
     $scope.loginEnter = function(keyEvent) {
-      if (keyEvent.which === 13)
+      if (keyEvent.which === 13) {
         $scope.login();
-    }
+      }
+    };
 
     $scope.login = function() {
 
@@ -25,7 +26,7 @@ angular.module('pinboredWebkitApp')
       Pinboardservice.getUserToken($scope.username, $scope.password)
       .then(function(result) {
           if (result) {
-            if(result == '401') {
+            if(result === '401') {
               console.info('not logged in: ' + result);
               $scope.pstatus = false;
             } else {
@@ -52,6 +53,6 @@ angular.module('pinboredWebkitApp')
           console.error('Failed: ' + reason);
         });
 
-    }
+    };
 
   });

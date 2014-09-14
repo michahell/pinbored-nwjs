@@ -8,13 +8,13 @@
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('AppStatusCtrl', function ($scope, Usersessionservice, Appstatusservice, $location, $timeout) {
+  .controller('AppStatusCtrl', function ($scope, Usersessionservice) {
     
     $scope.status = {
       text : '',
       progress : 0,
       total : 0
-    }
+    };
 
     $scope.countingDown = 0;
     $scope.timeVisible = 5000;
