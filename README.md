@@ -39,15 +39,15 @@ enough. This is because right now, the whole node_modules and bower_components f
 steps
 -----
 
-1. clone project
-2. run ```npm install``` (install dev / app dependancies and bower components)
-3. optionally run ```npm start``` (starts build process for ALL platforms)
-4. optionally run: 
+1. clone project somewhere
+2. run ```npm install``` (installs dev. and app dependancies and bower components)
+3. run ```npm test``` (tests everything and shows jasmine report in google chrome)
+1. run * ```grunt``` (for ALL application bundles) OR
+2. run
     * ```grunt osx``` (for OSX application bundle)
     * ```grunt win``` (for Windows application bundle)
     * ```grunt lin32``` (for Linux 32 bits application bundle)
     * ```grunt lin64``` (for Linux 64 bits application bundle)
-
 
 Roadmap
 =======

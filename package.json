@@ -26,8 +26,8 @@
     "karma-nodewebkit-launcher": "0.0.8"
   },
   "scripts": {
-    "postinstall": "cd App && npm install && bower install",
-    "pretest": "npm install && export NODEWEBKIT_BIN='/Applications/node-webkit.app/Contents/MacOS/node-webkit'",
+    "postinstall": "chmod +x config.sh && ./config.sh && cd App && npm install && bower install",
+    "pretest": "npm install",
     "test": "grunt test",
     "prestart": "grunt"
   }
