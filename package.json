@@ -1,6 +1,20 @@
 {
-  "name": "pinbored-webkit-grunt",
+  "author" : {
+    "name" : "Michahell", 
+    "email" : "maggelo@gmail.com", 
+    "url" : "http://www.powergeek.nl/"
+  },
+  "name": "pinbored",
+  "description" : "a bookmark management app",
   "version": "0.0.2",
+  "bugs" : {
+    "url" : "https://github.com/michahell/pinbored-webkit/issues",
+    "email" : "maggelo@gmail.com"
+  },
+  "repository" : { 
+    "type" : "git",
+    "url" : "https://github.com/michahell/pinbored-webkit.git"
+  },
   "devDependencies": {
     "grunt-karma": "^0.9.0",
     "grunt-node-webkit-builder": "^0.2.3",
