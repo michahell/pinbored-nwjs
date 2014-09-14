@@ -1,4 +1,3 @@
-'use strict';
 
 /**
  * @ngdoc directive
@@ -15,19 +14,19 @@ angular.module('pinboredWebkitApp')
       templateUrl: 'templates/radiobutton.html',
       replace: true,
       scope: {
-          model: '=',
-          label: '=',
-          value: '=',
-          required: '=',
-          name: '=',
-          disabled: '@'
+        model: '=',
+        label: '=',
+        value: '=',
+        required: '=',
+        name: '=',
+        disabled: '@'
       },
       compile: function(element, attrs) {
-          if (attrs.disabled === void 0) {
-              attrs.disabled = false;
-          } else {
-              attrs.disabled = true;
-          }
+        if (attrs.disabled === void 0) {
+          attrs.disabled = false;
+        } else {
+          attrs.disabled = true;
+        }
       }
     };
   })
