@@ -9,26 +9,34 @@ builds as well, but for now focus is on OSX (using NUWK! instead of CLI node-web
 
 Why?
 ====
+
 Why use a separate bookmark service to manage bookmarks? I have < insert browser > for that?
 
 * Access bookmarks across multiple browsers.
 * Independant of browser crashes, sudden loss of all bookmarks, malware.
 * Being sure that no google, mozilla or microsoft are using your bookmarks for whatever.
 
-Besides, there are several apps that already do this.
-
-* they are either commercial software...
-* or just plain suck.
-* also, excuse to buid a cool app.
+There are several apps that already do this but they are either commercial software or did not have the simple features that i want them to have.
 
 For bookmark creation consider using:
 
 * Shiori: http://aki-null.net/shiori/ or just: ```brew cask install shiori```
 * browser dependant plugins or widgets.
 
-i could add this functionality in a later version, however this was never the intention of this app. <br/>
+i could add bookmark creation functionality in a later version, however this was never the intention of this app.
 The app is aimed at **managing** one's bookmarks, for example after a switch from < insert browser >
 to Pinboard with some 1000 unmanageable bookmarks.
+
+Screenshots
+===========
+![login](screenshots/login.png?raw=true "login screen")
+![overview](screenshots/overview-bars.png?raw=trueg "overview all bars")
+![overview](screenshots/overview-bars-2.png?raw=true "overview bookmark load type")
+![overview](screenshots/overview-update.png?raw=true "overview individual update")
+![overview](screenshots/overview-private.png?raw=true "overview private icon")
+![overview](screenshots/overview-selection.png?raw=true "overview selection")
+![overview](screenshots/overview-selection-stale.png?raw=true "overview selection stale check")
+![overview](screenshots/overview-tag-select.png?raw=true "overview tag selection")
 
 Building
 ========
