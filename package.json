@@ -27,9 +27,7 @@
     "karma-nodewebkit-launcher": "0.0.8"
   },
   "scripts": {
-    "postinstall": "chmod +x config.sh && ./config.sh && cd App && npm install && bower install",
-    "pretest": "npm install",
-    "test": "grunt test",
-    "prestart": "grunt"
+    "postinstall" : "chmod +x config.sh && ./config.sh && cd App && npm install && bower install",
+    "start" : "grunt build"
   }
 }
