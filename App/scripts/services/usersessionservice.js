@@ -8,7 +8,7 @@
  * Service in the pinboredWebkitApp.
  */
 angular.module('pinboredWebkitApp')
-  .service('Usersessionservice', function Usersessionservice($rootScope, $cookies, Utilservice) {
+  .service('Usersessionservice', function Usersessionservice($rootScope, Utilservice) {
     // AngularJS will instantiate a singleton by calling 'new' on this function
 
     // var gui = require('nw.gui');

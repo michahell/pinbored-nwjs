@@ -11,11 +11,11 @@
 angular
   .module('pinboredWebkitApp', [
     'ngAnimate',
-    'ngCookies',
-    'ngResource',
+    // 'ngCookies',
+    // 'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch',
+    // 'ngTouch',
     'ngTagsInput',
     'ui.bootstrap',
     'angular-bootstrap-select',
