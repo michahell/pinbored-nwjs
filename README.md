@@ -6,11 +6,11 @@ builds as well, but for now focus is on OSX (using NUWK! instead of CLI node-web
 
 Why?
 ====
-Why use the excellent Pinboard service to manage my bookmarks? I have <insert browser> for that!
+Why use a separate bookmark service to manage bookmarks? I have < insert browser > for that?
 
 * Access bookmarks across multiple browsers.
 * Independant of browser crashes, sudden loss of all bookmarks, malware.
-* Being (almost) sure that no google, mozilla or micronot are using my bookmarks for social profiling.
+* Being sure that no google, mozilla or microsoft are using your bookmarks for whatever.
 
 Besides, there are several apps that already do this.
 
@@ -20,12 +20,12 @@ Besides, there are several apps that already do this.
 
 For bookmark creation consider using:
 
-* Shiori: http://aki-null.net/shiori/
+* Shiori: http://aki-null.net/shiori/ or just: ```brew cask install shiori```
 * browser dependant plugins or widgets.
 
-i could add this functionality in a later version, however this was never the intention of this app.
-The app is aimed at **managing** one's bookmarks, for example after a switch from <insert browser>
-to Pinboard with some 1000 unmanageable bookmarks...
+i could add this functionality in a later version, however this was never the intention of this app. <br/>
+The app is aimed at **managing** one's bookmarks, for example after a switch from < insert browser >
+to Pinboard with some 1000 unmanageable bookmarks.
 
 Building
 ========
