@@ -3,13 +3,13 @@ node_js:
   - "0.11"
 
 before_install:
-  - sudo npm install -g grunt-cli
-  - sudo npm install -g bower
+  - npm install -g grunt-cli
+  - npm install -g bower
 
 install:
-  - sudo npm install -g grunt-cli
-  - sudo npm install -g bower
+  - npm install -g grunt-cli
+  - npm install -g bower
 
 before_script:
-  - sudo npm install -g grunt-cli
-  - sudo npm install -g bower
+  - npm install -g grunt-cli
+  - npm install -g bower
