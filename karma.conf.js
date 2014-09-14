@@ -1,4 +1,7 @@
 
+// temp set environment variable for node-webkit
+process.env.NODEWEBKIT_BIN = '/Applications/node-webkit.app/Contents/MacOS/node-webkit';
+
 module.exports = function(config){
   config.set({
 
