@@ -46,15 +46,36 @@ module.exports = function(grunt) {
         src: ['./App/**/*'] // Your node-webkit app
       }
 
+    },
+
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js'
+      }
+    },
+
+    open : {
+      report : {
+        path : 'karma.report.html',
+        app: 'Google Chrome'
+      }
     }
 
   });
 
   // Load the plugin that provides the "nodewebkit" task.
   grunt.loadNpmTasks('grunt-node-webkit-builder');
+  grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-open');
 
-  // Default task(s).
-  grunt.registerTask('default', ['nodewebkit:buildOsx', 'nodewebkit:buildWin', 'nodewebkit:buildLin32', 'nodewebkit:buildLin64']);
+  // Default task(s)
+  grunt.registerTask('default', ['karma', 'open:report', 'nodewebkit:buildOsx', 'nodewebkit:buildWin', 'nodewebkit:buildLin32', 'nodewebkit:buildLin64'
+  ]);
+
+  // testing task(s)
+  grunt.registerTask('test', ['karma', 'open:report']);
+
+  // building task(s)
   grunt.registerTask('osx', ['nodewebkit:buildOsx']);
   grunt.registerTask('win', ['nodewebkit:buildWin']);
   grunt.registerTask('lin32', ['nodewebkit:buildLin32']);
