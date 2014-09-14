@@ -3,10 +3,14 @@
   "version": "0.0.2",
   "devDependencies": {
     "grunt-node-webkit-builder": "^0.2.3",
-    "jshint": "^2.5.5"
+    "jshint": "^2.5.5",
+    "karma": "^0.12.23"
   },
   "scripts": {
     "postinstall": "cd App && npm install && bower install",
+    "pretest": "npm install",
+    "test": "karma start karma.conf.js",
+    "test-single-run": "karma start karma.conf.js  --single-run",
     "prestart": "grunt"
   }
 }
