@@ -2,7 +2,9 @@
   "name": "pinbored-webkit-grunt",
   "version": "0.0.2",
   "devDependencies": {
+    "grunt-karma": "^0.9.0",
     "grunt-node-webkit-builder": "^0.2.3",
+    "grunt-open": "^0.2.3",
     "jshint": "^2.5.5",
     "karma": "^0.12.23",
     "karma-htmlfile-reporter": "^0.1.2",
@@ -12,8 +14,7 @@
   "scripts": {
     "postinstall": "cd App && npm install && bower install",
     "pretest": "npm install && export NODEWEBKIT_BIN='/Applications/node-webkit.app/Contents/MacOS/node-webkit'",
-    "test": "karma start karma.conf.js",
-    "test-single-run": "karma start karma.conf.js  --single-run",
+    "test": "grunt test",
     "prestart": "grunt"
   }
 }
