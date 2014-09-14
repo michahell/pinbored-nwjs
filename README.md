@@ -27,6 +27,29 @@ i could add this functionality in a later version, however this was never the in
 The app is aimed at **managing** one's bookmarks, for example after a switch from <insert browser>
 to Pinboard with some 1000 unmanageable bookmarks...
 
+Building
+========
+
+On OSX, somehow the number of max-open files is by default 256. This is too little to build this project,
+so one must set it to allow more. ```ulimit -S -n 4096``` allows 4096 files to be open, i have found this is
+enough. This is because right now, the whole node_modules and bower_components folders are zipped into application bundles, which contain huge amounts of (unused) files.
+
+single command (see below what does what)
+-----------------------------------------
+
+1. clone project
+2. run ```npm install && cd App && npm install && bower install && cd .. && grunt```
+
+multi-step
+----------
+
+1. clone project
+2. run ```npm install```            (dev dependancies)
+3. run ```cd App && npm install```  (app node dependancies)
+4. run ```bower install```          (app bower dependancies)
+5. run ```cd .. && grunt```         (run task runner)
+
+
 Roadmap
 =======
 
