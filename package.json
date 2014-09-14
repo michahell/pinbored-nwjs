@@ -28,6 +28,7 @@
   },
   "scripts": {
     "postinstall" : "chmod +x config.sh && ./config.sh && cd App && npm install && bower install",
+    "pretest" : "npm install",
     "start" : "grunt build"
   }
 }
