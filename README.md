@@ -38,13 +38,13 @@ steps
 -----
 
 1. clone project
-2. run ```npm install``` \t\t\t\t (install dev / app dependancies and bower components)
-3. optionally run ```npm start``` \t\t\t (starts build process for ALL platforms)
+2. run ```npm install``` (install dev / app dependancies and bower components)
+3. optionally run ```npm start``` (starts build process for ALL platforms)
 4. optionally run: 
-    * ```grunt osx``` \t\t\t (for OSX application bundle)
-    * ```grunt win``` \t\t\t (for Windows application bundle)
-    * ```grunt lin32``` \t\t\t (for Linux 32 bits application bundle)
-    * ```grunt lin64``` \t\t\t (for Linux 64 bits application bundle)
+    * ```grunt osx``` (for OSX application bundle)
+    * ```grunt win``` (for Windows application bundle)
+    * ```grunt lin32``` (for Linux 32 bits application bundle)
+    * ```grunt lin64``` (for Linux 64 bits application bundle)
 
 
 Roadmap
