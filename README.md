@@ -3,6 +3,8 @@ pinbored-webkit
 
 [![Code Climate](https://codeclimate.com/github/michahell/pinbored-webkit/badges/gpa.svg)](https://codeclimate.com/github/michahell/pinbored-webkit)
 
+[![Build Status](https://travis-ci.org/michahell/pinbored-webkit.svg)](https://travis-ci.org/michahell/pinbored-webkit)
+
 Pinbored native OSX client built with Node-webkit and AngularJS. Future plans include windows / linux
 builds as well, but for now focus is on OSX (using NUWK! instead of CLI node-webkit magic for development simplification). See https://github.com/michahell/pinbored for more info of history of this project.
 
@@ -42,7 +44,7 @@ steps
 1. clone project somewhere
 2. run ```npm install``` (installs dev. and app dependancies and bower components)
 3. run ```npm test``` (tests everything and shows jasmine report in google chrome)
-1. run * ```grunt``` (for ALL application bundles) OR
+1. run ```grunt``` (for ALL application bundles) OR
 2. run
     * ```grunt osx``` (for OSX application bundle)
     * ```grunt win``` (for Windows application bundle)
