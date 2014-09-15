@@ -51,7 +51,7 @@ module.exports = function(config){
     //   'karma-htmlfile-reporter'
     // ]
 
-    reporters: ['progress', 'html'],
+    reporters: ['html'], //'progress', 
 
     htmlReporter: {
       outputFile: 'karma.report.html'

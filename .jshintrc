@@ -36,6 +36,8 @@
     "describe"             : false,
     "expect"               : false,
     "it"                   : false,
+    "xit"                  : false,
+    "pending"              : false,
     "jasmine"              : false,
     "JSHINT"               : false,
     "mostRecentAjaxRequest": false,

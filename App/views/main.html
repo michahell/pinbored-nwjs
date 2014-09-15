@@ -151,7 +151,7 @@
         <li ng-repeat="item in data.filteredList | offset: (paging.current - 1) * config.itemsPerPage | limitTo: config.itemsPerPage"
         class="list-group-item" ng-class="{selected: item.status.selected || item.status.showEdit}" 
         ng-controller="BookmarkItemCtrl" ng-click="selectItem()">
-          <div ng-include src="'templates/BookmarkItem.html'"></div>
+          <div ng-include src="'views/BookmarkItem.html'"></div>
         </li>
       </ul>
     </div>
