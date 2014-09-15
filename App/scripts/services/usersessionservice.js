@@ -1,4 +1,3 @@
-'use strict';
 
 /**
  * @ngdoc service
@@ -9,16 +8,15 @@
  */
 angular.module('pinboredWebkitApp')
   .service('Usersessionservice', function Usersessionservice($rootScope, Utilservice) {
-    // AngularJS will instantiate a singleton by calling 'new' on this function
 
-    // var gui = require('nw.gui');
-    // var win = gui.Window.get();
-
+    // auth related
     this.authenticated = false;
     this.user = '';
     this.apikey = '';
-    this.currentPage = '';
 
+    // app session related
+    this.currentPage = '';
+    
     // in memory cached bookmarks
     this.storedBookmarks = {};
 
@@ -50,18 +48,15 @@ angular.module('pinboredWebkitApp')
 
     this.isAuthenticated = function() {
 
-      // check if user and apikey are still in session storage. if not, return.
+      // check if user and apikey are still in session storage.
       if(Utilservice.isEmpty(sessionStorage.user) || Utilservice.isEmpty(sessionStorage.apikey)) {
         this.authenticated = false;
-        console.info('user was not authenticated.');
-        return this.authenticated;
-      } 
-      
-      // if they are store them again in the service
-      this.user = sessionStorage.user;
-      this.apikey = sessionStorage.apikey;
-
-      this.authenticated = true;
+      } else {
+        // if they are, store them again in the service
+        this.user = sessionStorage.user;
+        this.apikey = sessionStorage.apikey;
+        this.authenticated = true;
+      }
       
       // notify listeners and provide the data that changed
       $rootScope.$broadcast('user:authenticated', this.authenticated);
@@ -70,7 +65,7 @@ angular.module('pinboredWebkitApp')
     };
 
     this.storeBookmarks = function(bookmarksList) {
-      console.log('storing bookmarks.');
+      // console.log('storing bookmarks.');
       self.storedBookmarks = bookmarksList;
       // console.info(this.storedBookmarks);
     };

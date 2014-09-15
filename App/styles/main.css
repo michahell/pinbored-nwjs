@@ -21,6 +21,18 @@
   margin-right: 0px;
 }
 
+.navbar-nav li.active:after {
+  content: ' ';
+  position: absolute;
+  border: solid 10px transparent;
+  border-top: solid 0px transparent;
+  border-width: 10px;
+  left: 50%;
+  margin-left: -10px;
+  margin-top: -20px;
+  border-color: transparent transparent #2C3E50 transparent;
+}
+
 textarea { 
   resize:none; 
 }
@@ -46,18 +58,10 @@ textarea {
 
 /* following is specifically for flat-ui */
 
-/*.select {
-  margin-bottom: 0px;
-  margin-top: 3px;
+.navbar .container {
+  padding-left: 0px;
+  padding-right: 0px;
 }
-
-.select .btn.btn-xs .filter-option {
-  top: 6px;
-}
-
-.select.select-block .dropdown-menu {
-  border: 2px solid #16A085;
-}*/
 
 .screentitle .btn-xs {
   margin-top: 3px;
@@ -92,72 +96,6 @@ textarea {
   padding: 0px;
   margin-bottom: 0px;
 }
-
-/*.pagination {
-  border-radius: 0px;
-}
-
-.pagination-sm > li > a {
-  font-size: 14px;
-}
-
-.pagination > li > span,
-.pagination > li > a,
-.pagination > .disabled > span {
-  /*padding: 5px 6px;
-  border: none;
-  background: transparent;
-  /*color: #34495E;
-  color: #466A8F;
-}
-
-.pagination > li > a:hover {
-  color: #639CD6;
-}
-
-.pagination > .disabled > a,
-.pagination > .disabled > a:hover {
-  background: transparent;
-}
-
-.pagination > li > a:hover,
-.pagination > .disabled > span:hover {
-  background: transparent;
-}
-
-.pagination > .active > span {
-  background: transparent;
-  color: #ECF0F1;
-}
-
-.pagination > .active > span:hover {
-  background: transparent;
-  color: #ECF0F1;
-}
-
-.pagination > .active > a,
-.pagination > .active > a:hover {
-  background: transparent;
-}
-
-.pagination > li > span:hover,
-.pagination > li > a:focus {
-  background: transparent;
-  color: #95A5A6;
-  cursor: pointer;
-}
-
-.pagination > li:first-child > a, 
-.pagination > li:first-child > span {
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;
-}
-
-.pagination > li:last-child > a, 
-.pagination > li:last-child > span {
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-}*/
 
 .navbar-form .btn {
   height: auto;
@@ -856,6 +794,10 @@ small, .small {
   padding-bottom: 3px;
 }
 
+.bookmark-item-inner small {
+  font-size: 14px;
+}
+
 .bookmark-item-right {
     /*margin: 0 200px;*/
     position: relative;
@@ -900,10 +842,11 @@ small, .small {
 .hiddenContent {
   padding-top: 5px;
   padding-bottom: 2px;
-  background: #314355;
+  /*background: #314355;*/
+  background: #253443;
   -webkit-transition: 0.2s ease-out all;
   transition: 0.2s ease-out all;
-  height: 180px;
+  height: 183px;
 }
 
 .hiddenContent.ng-hide {
@@ -926,9 +869,9 @@ small, .small {
   padding-right: 5px;
 }
 
-.hiddenContent .btn-toolbar .btn-group a {
+/*.hiddenContent .btn-toolbar .btn-group a {
   border-radius: 0px;
-}
+}*/
 
 .btn-group-sm > .btn {
   padding: 8px 15px;
@@ -949,9 +892,16 @@ small, .small {
   float: right;
 }
 
-.hiddenContent .editbuttonbar .switch {
-  float: right;
+.hiddenContent .editbuttonbar a.btn.btn-sm,
+.hiddenContent .editbuttonbar button.btn.btn-sm,
+.hiddenContent .editbuttonbar label.btn.btn-sm {
+  padding: 10px 13px;
+  line-height: 1;
 }
+
+/*.hiddenContent .editbuttonbar .switch {
+  float: right;
+}*/
 
 .hiddenContent .col-xs-12 {
   padding-left: 5px;

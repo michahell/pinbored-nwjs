@@ -99,24 +99,29 @@
 
       <div class="row editbuttonbar">
         <div class="col-xs-4">
-          <div class="text-left pull-left">
-            <flatui-switch model="itemproxy.shared" square=""></flatui-switch>
-            <label class="share-label">shared</label>
+
+          <div class="btn-group">
+            <button class="btn btn-primary btn-wide btn-sm" ng-model="itemproxy.shared" btn-checkbox>
+              shared <span class="btn-tip">{{itemproxy.shared === true ? 'YES' : 'NO'}}</span>
+            </button>
+            <button class="btn btn-primary btn-wide btn-sm" ng-model="itemproxy.toread" btn-checkbox>
+              to read <span class="btn-tip">{{itemproxy.toread === true ? 'YES' : 'NO'}}</span>
+            </button>
           </div>
-          <div class="text-left pull-left">
-            <flatui-switch model="itemproxy.toread" square=""></flatui-switch>
-            <label class="share-label">to read</label>
-          </div>
+
         </div>
+        
         <div class="col-xs-4">
-          b
+          
         </div>
+
         <div class="col-xs-4 pull-right">
-          <a class="btn btn-primary btn-wide btn-xs" ng-class="{disabled: item.status.hasChanged === false}" ng-click="update()" 
-          href="javascript: void(0)" stop-event>update</a>
-          <a class="btn btn-warning btn-wide btn-xs" ng-class="{disabled: item.status.hasChanged === false}" ng-click="reset()"
-          href="javascript: void(0)" stop-event>reset</a>
+          <a class="btn btn-success btn-wide btn-sm" ng-class="{disabled: item.status.hasChanged === false}" 
+          ng-click="update()" href="javascript: void(0)" stop-event>update</a>
+          <a class="btn btn-primary btn-wide btn-sm" ng-class="{disabled: item.status.hasChanged === false}"
+          ng-click="reset()" href="javascript: void(0)" stop-event>reset</a>
         </div>
+
       </div>
 
     </div>

@@ -1,4 +1,3 @@
-'use strict';
 
 /**
  * @ngdoc function
@@ -11,30 +10,30 @@ angular.module('pinboredWebkitApp')
   .controller('LoginCtrl', function ($scope, Usersessionservice, Pinboardservice, $location, $timeout) {
     
     $scope.busy = false;
-    $scope.pstatus = null;
+    $scope.loginAnimation = null;
 
     $scope.loginEnter = function(keyEvent) {
       if (keyEvent.which === 13) {
-        $scope.login();
+        $scope.login($scope.username, $scope.password);
       }
     };
 
-    $scope.login = function() {
+    $scope.login = function(username, password) {
 
       $scope.busy = true;
 
-      Pinboardservice.getUserToken($scope.username, $scope.password)
+      Pinboardservice.getUserToken(username, password)
       .then(function(result) {
           if (result) {
             if(result === '401') {
               console.info('not logged in: ' + result);
-              $scope.pstatus = false;
+              $scope.loginAnimation = false;
             } else {
               console.info('logged in.');
               // set some stuff in Usersessionservice
               Usersessionservice.setAuthenticated($scope.username, result.result);
               // show loginbox outro anim
-              $scope.pstatus = true;
+              $scope.loginAnimation = true;
               // reroute to main after anim out time
               $timeout(function(){
                 $location.path('/main');
@@ -45,7 +44,7 @@ angular.module('pinboredWebkitApp')
           // reset status vars
           $scope.busy = false;
           $timeout(function(){
-            $scope.pstatus = null;
+            $scope.loginAnimation = null;
           }, 1000);
 
           // show failure reason
