@@ -72,7 +72,13 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['karma', 'open:report', 'nodewebkit:buildOsx', 'nodewebkit:buildWin', 'nodewebkit:buildLin32', 'nodewebkit:buildLin64']);
 
   // testing task(s)
-  grunt.registerTask('test', ['karma', 'open:report']);
+  // grunt.registerTask('test', ['karma', 'open:report']);
+  grunt.registerTask('test', 'runs testing and shows report', function () {
+    var tasks = ['karma', 'open:report'];
+    // Use the force option for all tasks declared in the previous line
+    grunt.option('force', true);
+    grunt.task.run(tasks);
+  });
 
   // building task(s)
   grunt.registerTask('build', ['nodewebkit:buildOsx', 'nodewebkit:buildWin', 'nodewebkit:buildLin32', 'nodewebkit:buildLin64']);

@@ -1,19 +1,19 @@
 {
-  "author" : {
-    "name" : "Michahell", 
-    "email" : "maggelo@gmail.com", 
-    "url" : "http://www.powergeek.nl/"
+  "author": {
+    "name": "Michahell",
+    "email": "maggelo@gmail.com",
+    "url": "http://www.powergeek.nl/"
   },
   "name": "pinbored",
-  "description" : "a bookmark management app",
+  "description": "a bookmark management app",
   "version": "0.0.2",
-  "bugs" : {
-    "url" : "https://github.com/michahell/pinbored-webkit/issues",
-    "email" : "maggelo@gmail.com"
+  "bugs": {
+    "url": "https://github.com/michahell/pinbored-webkit/issues",
+    "email": "maggelo@gmail.com"
   },
-  "repository" : { 
-    "type" : "git",
-    "url" : "https://github.com/michahell/pinbored-webkit.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/michahell/pinbored-webkit.git"
   },
   "private": true,
   "devDependencies": {
@@ -27,8 +27,8 @@
     "karma-nodewebkit-launcher": "0.0.8"
   },
   "scripts": {
-    "postinstall" : "chmod +x config.sh && ./config.sh && cd App && npm install && bower install",
-    "pretest" : "npm install",
-    "start" : "grunt build"
+    "postinstall": "chmod +x config.sh && ./config.sh && cd App && npm install && bower install",
+    "test": "npm install",
+    "start": "grunt build"
   }
 }
