@@ -11,7 +11,7 @@ describe('login controller', function() {
 
   beforeEach(function() {
     // inject required services
-    inject(function($q, $http, $timeout, $location, $rootScope, $controller, _Usersessionservice_, _Utilservice_, _Pinboardservice_) {
+    inject(function($q, $http, $timeout, $location, $rootScope, $controller, _Usersessionservice_, _Utilservice_) {
       q = $q;
       http = $http;
       timeout = $timeout;
@@ -20,9 +20,24 @@ describe('login controller', function() {
       controller = $controller;
       Utilservice = _Utilservice_;
       Usersessionservice = _Usersessionservice_;
-      Pinboardservice = _Pinboardservice_;
       scope = rootScope.$new();
     });
+
+    // mock pinboard service
+    Pinboardservice = {
+      setTimeout : function() {},
+      handleRestlerComplete : function() {},
+      getUserToken : function() {},
+      getRecentBookmarks : function() {},
+      getAllBookmarks : function() {},
+      getBookmark : function() {},
+      deleteBookmark : function() {},
+      updateBookmark : function(bookmarkitem) {},
+      addBookmark : function() {},
+      getAllTags : function() {},
+      deleteTag : function() {},
+      checkUrl : function() {}
+    };
 
     // Create the controller
     loginCtrl = controller('LoginCtrl', {

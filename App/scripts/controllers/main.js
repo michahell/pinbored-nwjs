@@ -7,7 +7,7 @@
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('MainCtrl', function ($scope, $location, $timeout, $filter, $modal, $q,
+  .controller('MainCtrl', function ($scope, $location, $filter, $modal, $q,
     Pinboardservice, Usersessionservice, Appstatusservice, Utilservice,
     fulltextFilter, tagsFilter) {
     
@@ -427,6 +427,8 @@ angular.module('pinboredWebkitApp')
         };
         bookmarks.push(bookMark);
       }
+
+      console.info(bookmarks);
 
       // cache bookmarks in usersession
       Usersessionservice.storeBookmarks(pinboardData);
