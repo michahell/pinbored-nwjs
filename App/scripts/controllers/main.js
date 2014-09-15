@@ -101,9 +101,11 @@ angular.module('pinboredWebkitApp')
       });
 
       modalInstance.result
-        .then(  function() { deferred.resolve();
-        },      function() { deferred.reject();
-      });
+        .then(function() {
+          deferred.resolve();
+        }, function() {
+          deferred.reject();
+        });
 
       return deferred.promise;
     };
@@ -300,14 +302,14 @@ angular.module('pinboredWebkitApp')
       } else {
         $scope.multiAction.show = true;
         switch($scope.multiAction.selectedAction) {
-          case 'deleteAllItems':
-            $scope.multiAction.dangerousAction = true;
-            break;
-          case 'deleteAllTags':
-            $scope.multiAction.dangerousAction = true;
-            break;
-          default:
-            $scope.multiAction.dangerousAction = false;
+        case 'deleteAllItems':
+          $scope.multiAction.dangerousAction = true;
+          break;
+        case 'deleteAllTags':
+          $scope.multiAction.dangerousAction = true;
+          break;
+        default:
+          $scope.multiAction.dangerousAction = false;
         }
       }
     };
@@ -316,18 +318,18 @@ angular.module('pinboredWebkitApp')
       console.log('executing action: ' + $scope.multiAction.selectedAction);
       if($scope.multiAction.selectedAction !== '') {
         switch($scope.multiAction.selectedAction) {
-          case 'deleteAllItems':
-            $scope.multiDeleteBookmarks();
-            break;
-          case 'deleteAllTags':
-            $scope.multiDeleteTags();
-            break;
-          case 'staleCheck':
-            $scope.multiStaleCheck();
-            break;
-          case 'addTag':
-            $scope.multiAddTag();
-            break;
+        case 'deleteAllItems':
+          $scope.multiDeleteBookmarks();
+          break;
+        case 'deleteAllTags':
+          $scope.multiDeleteTags();
+          break;
+        case 'staleCheck':
+          $scope.multiStaleCheck();
+          break;
+        case 'addTag':
+          $scope.multiAddTag();
+          break;
         }
       }
     };
@@ -362,10 +364,10 @@ angular.module('pinboredWebkitApp')
             $scope.createBookmarks(result.posts);
             $scope.updateFiltersPaging();
             $scope.updateStatus('recent bookmarks loaded.');
-        }, function(reason) {
-          console.error('Failed: ' + reason);
-          $scope.updateStatus('recent bookmarks failed to load.');
-        });
+          }, function(reason) {
+            console.error('Failed: ' + reason);
+            $scope.updateStatus('recent bookmarks failed to load.');
+          });
 
       // get all bookmarks
       } else if ($scope.data.loadType === 'all') {
@@ -378,10 +380,10 @@ angular.module('pinboredWebkitApp')
             $scope.createBookmarks(result);
             $scope.updateFiltersPaging();
             $scope.updateStatus('all bookmarks loaded.');
-        }, function(reason) {
-          console.error('Failed: ' + reason);
-          $scope.updateStatus('all bookmarks failed to load.');
-        });
+          }, function(reason) {
+            console.error('Failed: ' + reason);
+            $scope.updateStatus('all bookmarks failed to load.');
+          });
         $scope.data.isLoading = false;
       }
     };
