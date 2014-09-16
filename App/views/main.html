@@ -6,8 +6,7 @@
 
     <div class="col-xs-3">
 
-      <select name="loadOptions" class="selectpicker select-block" 
-      ng-model="data.loadType" ng-change="changeLoadType()">
+      <select name="loadOptions" class="selectpicker select-block" ng-model="data.loadType">
         <option value="recent">retrieve {{$scope.config.maxItems}} recent bookmarks</option>
         <option value="all">retrieve all bookmarks</option>
       </select>
@@ -88,15 +87,15 @@
     <div class="bar" id="pages" ng-show="config.showPager">
       <div class="bar-container" ng-show="config.showPager">
         <pagination total-items="paging.total" items-per-page="config.itemsPerPage" 
-        ng-model="paging.current" ng-change="pageChanged()" max-size="paging.numPageButtons" 
+        ng-model="paging.current" max-size="paging.numPageButtons" 
         boundary-links="true"></pagination>
         <!-- pagination-sm -->
       </div>
     </div>
 
     <!-- multi tag select bar -->
-    <div class="bar clearfix" id="selection" ng-show="config.showSelection">
-      <div class="bar-container" ng-show="config.showSelection">
+    <div class="bar clearfix" id="selection" ng-show="data.selectedItems.length > 1">
+      <div class="bar-container" ng-show="data.selectedItems.length > 1">
         <nav role="navigation" class="navbar navbar-inverse navbar-embossed">
           
           <div class="col-xs-2">

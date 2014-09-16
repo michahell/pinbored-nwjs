@@ -33,6 +33,7 @@ module.exports = function(config){
       'App/scripts/directives/**/*.js',
       'App/scripts/filters/**/*.js',
       'App/scripts/services/**/*.js',
+      'App/scripts/modules/**/*.js',
 
       'App/scripts/tests/**/*.js'
     ],
