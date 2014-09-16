@@ -1,4 +1,3 @@
-'use strict';
 
 // catch node-webkit errors globally
 process.on('uncaughtException', function(e) {

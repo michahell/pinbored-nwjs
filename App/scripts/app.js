@@ -1,4 +1,3 @@
-'use strict';
 
 /**
  * @ngdoc overview
@@ -18,6 +17,7 @@ angular
     // 'ngTouch',
     'ngTagsInput',
     'ui.bootstrap',
+    'ui.splash',
     'angular-bootstrap-select',
     'angular-bootstrap-select.extra'
   ])
