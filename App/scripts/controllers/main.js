@@ -7,7 +7,7 @@
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('MainCtrl', function ($scope, $location, $filter, $modal, $q,
+  .controller('MainCtrl', function ($scope, $location, $filter, $modal, $q, $splash,
     Pinboardservice, Usersessionservice, Appstatusservice, Utilservice,
     fulltextFilter, tagsFilter) {
     
@@ -86,19 +86,27 @@ angular.module('pinboredWebkitApp')
       }
     };
 
-    $scope.confirm = function (message) {
+    $scope.confirm = function (messageString) {
 
       var deferred = $q.defer();
 
-      var modalInstance = $modal.open({
-        templateUrl: 'templates/modalConfirm.html',
-        controller: 'ModalConfirmCtrl',
-        resolve: {
-          message : function () {
-            return message;
-          }
-        }
+      var modalInstance = $splash.open({
+        title: 'Are you sure',
+        message: messageString
+      }, {
+        templateUrl: 'templates/modal-confirm-content.html',
+        windowTemplateUrl: 'templates/modal-confirm-index.html'
       });
+
+      // var modalInstance = $modal.open({
+      //   templateUrl: 'templates/modalConfirm.html',
+      //   controller: 'ModalConfirmCtrl',
+      //   resolve: {
+      //     message : function () {
+      //       return messageString;
+      //     }
+      //   }
+      // });
 
       modalInstance.result
         .then(function() {
@@ -137,8 +145,8 @@ angular.module('pinboredWebkitApp')
 
     $scope.multiDeleteBookmarks = function() {
       
-      $scope.confirm('Delete selected bookmarks ? \nThis request can not be cancelled when started!')
-      .then(function(){
+      $scope.confirm('Delete selected bookmarks ? <br/>This request can not be cancelled when started!')
+      .then(function() {
 
         var total = $scope.data.selectedItems.length;
         var deleted = 0;

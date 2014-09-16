@@ -220,6 +220,7 @@ h3.modal-title {
 
 .modal {
   top: 20%;
+  display: block;
 }
 
 /* dropdown button fixes */
