@@ -119,7 +119,10 @@ angular.module('pinboredWebkitApp')
       rest.get(request, {timeout: self.timeout}).on('timeout', function(){ // arg: ms
         deferred.reject('pinboardservice: request timed out.');
       }).on('complete', function(result, response){
-        self.handleRestlerComplete(result, response, deferred);
+        // we only need the posts part. for some reason this is not the same result sent as in
+        // get all bookmarks. probably there is metadata.
+        var posts = JSON.stringify(JSON.parse(result).posts);
+        self.handleRestlerComplete(posts, response, deferred);
       });
       
       return deferred.promise;

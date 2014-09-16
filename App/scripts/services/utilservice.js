@@ -7,7 +7,7 @@
  * Service in the pinboredWebkitApp.
  */
 angular.module('pinboredWebkitApp')
-  .service('Utilservice', function Utilservice() {
+  .service('Utilservice', function Utilservice($filter) {
     // AngularJS will instantiate a singleton by calling 'new' on this function
 
     this.isEmpty = function(input) {
@@ -16,6 +16,11 @@ angular.module('pinboredWebkitApp')
         result = false;
       }
       return result;
+    };
+
+    this.removeItemFromCollection = function (byProperty, value, collection) {
+      var deletedBookmark = $filter('searchcollection')(byProperty, value, collection);
+      collection.splice(collection.indexOf(deletedBookmark), 1);
     };
 
   });
