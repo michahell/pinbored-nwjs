@@ -1,5 +1,8 @@
 module.exports = function(grunt) {
 
+  // requirements
+  require('load-grunt-tasks')(grunt);
+
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -48,7 +51,7 @@ module.exports = function(grunt) {
 
     },
 
-    karma: {
+    karma : {
       unit: {
         configFile: 'karma.conf.js'
       }
@@ -59,8 +62,17 @@ module.exports = function(grunt) {
         path : 'karma.report.html',
         app: 'Google Chrome'
       }
-    }
+    },
 
+    shell: {
+      multiple: {
+        command: [
+          'export CODECLIMATE_REPO_TOKEN=10daff674413d0c7f0a4a4c177db01e8215217c74c23ec408dc4325e7ece27ca',
+          'codeclimate < coverage/lcov.info'
+        ].join('&&')
+      }
+    }
+    
   });
 
   // Load the plugin that provides the "nodewebkit" task.
@@ -68,13 +80,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-open');
 
-  // Default task(s)
-  grunt.registerTask('default', ['karma', 'open:report', 'nodewebkit:buildOsx', 'nodewebkit:buildWin', 'nodewebkit:buildLin32', 'nodewebkit:buildLin64']);
-
   // testing task(s)
   // grunt.registerTask('test', ['karma', 'open:report']);
-  grunt.registerTask('test', 'runs testing and shows report', function () {
-    var tasks = ['karma', 'open:report'];
+  grunt.registerTask('test', 'runs testing, shows report, generates coverage', function () {
+    var tasks = ['karma', 'open:report', 'shell'];
     // Use the force option for all tasks declared in the previous line
     grunt.option('force', true);
     grunt.task.run(tasks);
@@ -87,5 +96,10 @@ module.exports = function(grunt) {
   grunt.registerTask('win', ['nodewebkit:buildWin']);
   grunt.registerTask('lin32', ['nodewebkit:buildLin32']);
   grunt.registerTask('lin64', ['nodewebkit:buildLin64']);
+
+  // Default task(s)
+  // grunt.registerTask('default', ['karma', 'open:report', 'nodewebkit:buildOsx', 'nodewebkit:buildWin', 'nodewebkit:buildLin32', 'nodewebkit:buildLin64']);
+
+  grunt.registerTask('default', ['test', 'build']);
 
 };

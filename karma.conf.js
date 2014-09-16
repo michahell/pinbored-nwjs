@@ -44,30 +44,34 @@ module.exports = function(config){
 
     singleRun: true,
 
-    // plugins with 'karma' prefix loaded by default!
-    // see: http://karma-runner.github.io/0.12/config/plugins.html
+    reporters: ['progress', 'coverage', 'html'],
 
-    // plugins : [
-    //   'karma-jasmine',
-    //   'karma-htmlfile-reporter'
-    // ]
+    preprocessors: {
+      // source files, that you wanna generate coverage for
+      // do not include tests or libraries
+      // (these files will be instrumented by Istanbul)
 
-    reporters: ['html'], //'progress', 
+      'App/scripts/node-webkit-config.js' : ['coverage'],
+      'App/scripts/app.js' : ['coverage'],
+      'App/scripts/controllers/**/*.js' : ['coverage'],
+      'App/scripts/directives/**/*.js' : ['coverage'],
+      'App/scripts/filters/**/*.js' : ['coverage'],
+      'App/scripts/services/**/*.js' : ['coverage'],
+      'App/scripts/modules/**/*.js' : ['coverage']
+    },
+
+    // optionally, configure the reporter
+    coverageReporter: {
+      type : 'lcovonly',
+      dir : 'coverage',
+      subdir: '.'
+    },
 
     htmlReporter: {
       outputFile: 'karma.report.html'
     }
 
-    // customLaunchers: {
-    //   'NodeWebkit': {
-    //     base: 'NodeWebkit',
-    //     options: {
-    //       window: {
-    //         // 'main': 'index.html'
-    //       }
-    //     }
-    //   }
-    // }
+    // logLevel: 'DEBUG'
 
   });
 };
