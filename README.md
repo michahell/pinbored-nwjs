@@ -1,15 +1,15 @@
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/michahell/pinbored-webkit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 pinbored-webkit
 ===============
 
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/michahell/pinbored-webkit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Code Climate](https://codeclimate.com/github/michahell/pinbored-webkit/badges/gpa.svg)](https://codeclimate.com/github/michahell/pinbored-webkit)
 [![Build Status](https://travis-ci.org/michahell/pinbored-webkit.svg)](https://travis-ci.org/michahell/pinbored-webkit)
 
 Pinbored native OSX client built with Node-webkit and AngularJS. Future plans include windows / linux
 builds as well, but for now focus is on OSX (using NUWK! instead of CLI node-webkit magic for development simplification). See https://github.com/michahell/pinbored for more info of history of this project.
 
-Why?
-====
+Why
+===
 
 Why use a separate bookmark service to manage bookmarks? I have < insert browser > for that?
 
@@ -30,6 +30,7 @@ to Pinboard with some 1000 unmanageable bookmarks.
 
 Screenshots
 ===========
+
 ![login](screenshots/login.png?raw=true "login screen")
 ![overview](screenshots/overview-bars.png?raw=trueg "overview all bars")
 ![overview](screenshots/overview-bars-2.png?raw=true "overview bookmark load type")
