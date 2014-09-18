@@ -1,4 +1,3 @@
-[![Stories in Ready](https://badge.waffle.io/michahell/pinbored-webkit.png?label=ready&title=Ready)](https://waffle.io/michahell/pinbored-webkit)
 pinbored-webkit
 ===============
 
@@ -7,6 +6,7 @@ pinbored-webkit
 [![Code Climate](https://codeclimate.com/github/michahell/pinbored-webkit/badges/gpa.svg)](https://codeclimate.com/github/michahell/pinbored-webkit)
 [![Test Coverage](https://codeclimate.com/github/michahell/pinbored-webkit/badges/coverage.svg)](https://codeclimate.com/github/michahell/pinbored-webkit)
 [![Build Status](https://travis-ci.org/michahell/pinbored-webkit.svg)](https://travis-ci.org/michahell/pinbored-webkit)
+[![Stories in Ready](https://badge.waffle.io/michahell/pinbored-webkit.png?label=done&title=done)](https://waffle.io/michahell/pinbored-webkit)
 <img src="http://img.shields.io/michahell/pinbored-webkit.svg">
 
 Pinbored native OSX client built with Node-webkit and AngularJS. Future plans include windows / linux
