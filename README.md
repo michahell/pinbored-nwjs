@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/michahell/pinbored-webkit.png?label=ready&title=Ready)](https://waffle.io/michahell/pinbored-webkit)
 pinbored-webkit
 ===============
 
