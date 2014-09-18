@@ -387,6 +387,23 @@ small, .small {
   height: 0;
 }
 
+#selection .bar-container form-group input, 
+#selection .bar-container form-group button,
+#selection .hider {
+  -webkit-transition: opacity ease-out 0.4s;
+  transition: opacity ease-out 0.4s;
+  transition-delay: 0.0s;
+  /*transform: scale(1.0, 1.0);*/
+  opacity: 1;
+}
+
+#selection .bar-container form-group.ng-hide input, 
+#selection .bar-container form-group.ng-hide button,
+#selection .hider {
+  /*transform: scale(0.1, 0.1);*/
+  opacity: 0;
+}
+
 /*#bar-wrapper {
   display: table-row;
 }*/
@@ -521,10 +538,15 @@ small, .small {
   background-color: #27AE60;
   color: #2C3E50;
   cursor: pointer;
+  -webkit-transition: 0.2s ease-out all;
+  transition: 0.2s ease-out all;
 }
 
 #overview .clickabletag:hover {
-  background-color: #2ECC71;
+  /*background-color: #2ECC71;*/
+  /*background-color: #4DCC7D;*/
+  /*background-color: #4DCC6C;*/
+  background-color: #69CC83;
   color: #34495E;
 }
 
@@ -662,6 +684,17 @@ small, .small {
   opacity:0;
 }
 
+.list-group-item.ng-enter-stagger,
+.list-group-item.ng-leave-stagger,
+.list-group-item.ng-move-stagger {
+  /* 50ms between each item being animated after the other */
+  -webkit-transition-delay:50ms;
+  transition-delay:50ms;
+
+  /* this is required here to prevent any CSS inheritance issues */
+  -webkit-transition-duration:0;
+  transition-duration:0;
+}
 
 .list-group-item.ng-move.ng-move-active,
 .list-group-item.ng-enter.ng-enter-active {

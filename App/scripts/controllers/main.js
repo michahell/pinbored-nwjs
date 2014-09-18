@@ -284,8 +284,6 @@ angular.module('pinboredWebkitApp')
         $scope.multiAction.show = true;
         switch($scope.multiAction.selectedAction) {
         case 'deleteAllItems':
-          $scope.multiAction.dangerousAction = true;
-          break;
         case 'deleteAllTags':
           $scope.multiAction.dangerousAction = true;
           break;
