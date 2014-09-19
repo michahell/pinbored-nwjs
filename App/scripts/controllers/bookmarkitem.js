@@ -50,7 +50,6 @@ angular.module('pinboredWebkitApp')
     };
 
     $scope.update = function() {
-      console.log('item update clicked');
       Appstatusservice.updateStatus('updating bookmark...');
       // request update
       Pinboardservice.updateBookmark($scope.item)
@@ -58,12 +57,14 @@ angular.module('pinboredWebkitApp')
         if(result.result_code === 'done') {
           // status update!
           Appstatusservice.updateStatus('bookmarkitem updated.');
-          // remove watcher FIRST
-          $scope.removeWatcher();
+          // remove watchers FIRST
+          $scope.removeWatchers();
           // 'soft' reset the current bookmark item
           $scope.item.status.hasChanged = false;
           // deep copy the current item
           $scope.itemcopy = angular.copy($scope.item);
+          // re-add the watchers
+          $scope.addWatchers();
         } else {
           console.info(result);
         }
@@ -120,7 +121,7 @@ angular.module('pinboredWebkitApp')
 
     $scope.closeEditing = function() {
       // remove watcher FIRST
-      $scope.removeWatcher();
+      $scope.removeWatchers();
       // then, reset bookmark
       $scope.resetBookmark();
     };
@@ -131,7 +132,7 @@ angular.module('pinboredWebkitApp')
       // map toread and shared to proxy values
       $scope.mapToProxyValues();
       // start watching the current item
-      $scope.addWatcher();
+      $scope.addWatchers();
     };
 
     $scope.currentItemChanged = function() {
@@ -158,7 +159,7 @@ angular.module('pinboredWebkitApp')
       $scope.item.data.tags = $scope.tagObjectsToBookmark();
     };
 
-    $scope.removeWatcher = function() {
+    $scope.removeWatchers = function() {
       // remove watcher if it exists
       if($scope.itemWatcher !== null) {
         $scope.itemWatcher();
@@ -168,7 +169,7 @@ angular.module('pinboredWebkitApp')
       }
     };
 
-    $scope.addWatcher = function() {
+    $scope.addWatchers = function() {
       $scope.itemWatcher = $scope.$watchCollection('item.data', function() { //newItem, oldItem
         $scope.currentItemChanged();
       });
