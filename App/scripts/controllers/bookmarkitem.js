@@ -9,7 +9,11 @@
 angular.module('pinboredWebkitApp')
   .controller('BookmarkItemCtrl', function ($scope, Usersessionservice, Pinboardservice, Appstatusservice) {
 
-    var gui = require('nw.gui');
+    try {
+      var gui = require('nw.gui');
+    } catch (error) {
+      console.error('error loading nw.gui: ' + error);
+    }
 
     // current item!
     // $scope.item
@@ -26,17 +30,6 @@ angular.module('pinboredWebkitApp')
       tags : [],
       toread : false,
       shared : false
-    };
-
-    $scope.showItemproxyTags = function() {
-      // console.log($scope.itemproxy.tags);
-    };
-    
-    $scope.updateItemProxyTags = function(tag) {
-      // console.log('update item proxy tags: ');
-      // console.log($scope.itemproxy.tags);
-      // console.log(tag);
-      $scope.proxyChanged();
     };
 
     $scope.checkTagHighlight = function(tag) {
@@ -277,13 +270,17 @@ angular.module('pinboredWebkitApp')
     };
 
     $scope.staleCheck = function(bookmark) {
-      console.log(bookmark);
+      // console.log(bookmark);
       // $scope.cancelCurrentOperations();
       $scope.staleCheckBookmark(bookmark);
     };
 
     $scope.openBookmark = function(href) {
+      console.log('openBookmark gets called with: ');
+      console.log(href);
       gui.Shell.openExternal(href);
+      console.log(gui);
+      console.log(gui.Shell);
     };
 
   });

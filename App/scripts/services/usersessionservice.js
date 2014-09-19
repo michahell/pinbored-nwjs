@@ -10,6 +10,7 @@ angular.module('pinboredWebkitApp')
   .service('Usersessionservice', function Usersessionservice($rootScope, Utilservice) {
 
     // auth related
+    this.connection = false;
     this.authenticated = false;
     this.user = '';
     this.apikey = '';

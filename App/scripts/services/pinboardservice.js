@@ -7,7 +7,7 @@
  * Service in the pinboredWebkitApp.
  */
 angular.module('pinboredWebkitApp')
-  .service('Pinboardservice', function Pinboardservice($q, $http, $timeout, Usersessionservice) {
+  .service('Pinboardservice', function Pinboardservice($q, $http, $timeout, Usersessionservice, Modalservice) {
     // AngularJS will instantiate a singleton by calling 'new' on this function
 
     this.authstring = 'https://user:password@api.pinboard.in/v1/';
@@ -20,11 +20,33 @@ angular.module('pinboredWebkitApp')
 
     try {
       var rest = require('restler');
+      var dns = require('dns');
     } catch (error) {
-      console.error('error loading restler: ' + error);
+      console.error('error loading restler / dns: ' + error);
     }
 
     /* ====================== INTERNALS ======================= */
+
+    this.checkConnection = function() {
+
+      console.log('pinboardservice: checking connection...');
+
+      var deferred = $q.defer();
+
+      dns.resolve('www.google.com', function(err) {
+        if (err) {
+          // no connection
+          Usersessionservice.connection = false;
+          deferred.reject(err);
+        } else {
+          // connection
+          Usersessionservice.connection = true;
+          deferred.resolve();
+        }
+      });
+
+      return deferred.promise;
+    };
 
     this.setTimeout = function(newMilliSeconds) {
       this.timeout = newMilliSeconds;
@@ -64,6 +86,18 @@ angular.module('pinboredWebkitApp')
       }
     };
 
+    this.executeStandardRequest = function(request, deferred) {
+      // node restler handler
+      rest.get(request, {timeout: self.timeout}).on('timeout', function(){ // arg: ms
+        console.error('pinboardservice: request timed out.');
+        // show modal expressing error
+        Modalservice.alert('error', 'request timed out');
+        deferred.reject('pinboardservice: request timed out.');
+      }).on('complete', function(result, response){
+        self.handleRestlerComplete(result, response, deferred);
+      });
+    };
+
     /* ==================== AUTHENTICATION ==================== */
 
     this.getUserToken = function(username, password) {
@@ -76,14 +110,9 @@ angular.module('pinboredWebkitApp')
       // request API token for session duration
       var request = authstringReplaced + 'user/api_token' + this.format;
 
-      // node restler handler
-      rest.get(request, {timeout: self.timeout}).on('timeout', function(){ // arg: ms
-        console.error('pinboardservice: request timed out.');
-        deferred.reject('pinboardservice: request timed out.');
-      }).on('complete', function(result, response){
-        self.handleRestlerComplete(result, response, deferred);
-      });
-      
+      // execute standard request
+      self.executeStandardRequest(request, deferred);
+
       return deferred.promise;
     };
 
@@ -146,12 +175,8 @@ angular.module('pinboredWebkitApp')
       var request = this.endpoint + 'posts/all' + this.format + 
       this.token.replace('user', Usersessionservice.user).replace('apikey', Usersessionservice.apikey);
 
-      // node restler handler
-      rest.get(request, {timeout: self.timeout}).on('timeout', function(){ // arg: ms
-        deferred.reject('pinboardservice: request timed out.');
-      }).on('complete', function(result, response){
-        self.handleRestlerComplete(result, response, deferred);
-      });
+      // execute standard request
+      self.executeStandardRequest(request, deferred);
       
       return deferred.promise;
     };
@@ -196,15 +221,8 @@ angular.module('pinboredWebkitApp')
       var request = this.endpoint + 'posts/delete' + this.format + url + 
       this.token.replace('user', Usersessionservice.user).replace('apikey', Usersessionservice.apikey);
 
-      // console.log('request');
-      // console.log(request);
-
-      // node restler handler
-      rest.get(request, {timeout: self.timeout}).on('timeout', function(){ // arg: ms
-        deferred.reject('pinboardservice: request timed out.');
-      }).on('complete', function(result, response){
-        self.handleRestlerComplete(result, response, deferred);
-      });
+      // execute standard request
+      self.executeStandardRequest(request, deferred);
 
       return deferred.promise;
 
@@ -248,15 +266,8 @@ angular.module('pinboredWebkitApp')
       extended + tags + replacement + shared + toread + 
       this.token.replace('user', Usersessionservice.user).replace('apikey', Usersessionservice.apikey);
 
-      console.log('request');
-      console.log(request);
-
-      // node restler handler
-      rest.get(request, {timeout: self.timeout}).on('timeout', function(){ // arg: ms
-        deferred.reject('pinboardservice: request timed out.');
-      }).on('complete', function(result, response){
-        self.handleRestlerComplete(result, response, deferred);
-      });
+      // execute standard request
+      self.executeStandardRequest(request, deferred);
 
       return deferred.promise;
     };
@@ -281,14 +292,8 @@ angular.module('pinboredWebkitApp')
       var request = this.endpoint + 'tags/get' + this.format + 
       this.token.replace('user', Usersessionservice.user).replace('apikey', Usersessionservice.apikey);
 
-      console.info(request);
-      
-      // node restler handler
-      rest.get(request, {timeout: self.timeout}).on('timeout', function(){ // arg: ms
-        deferred.reject('pinboardservice: request timed out.');
-      }).on('complete', function(result, response){
-        self.handleRestlerComplete(result, response, deferred);
-      });
+      // execute standard request
+      self.executeStandardRequest(request, deferred);
       
       return deferred.promise;
     };

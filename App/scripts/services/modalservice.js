@@ -10,12 +10,12 @@ angular.module('pinboredWebkitApp')
   .service('Modalservice', function Modalservice($q, $splash) {
     // AngularJS will instantiate a singleton by calling 'new' on this function
 
-    this.alert = function (messageString) {
+    this.alert = function (windowTitle, messageString) {
 
       var deferred = $q.defer();
 
       var modalInstance = $splash.open({
-        title: 'Are you sure',
+        title: windowTitle || 'alert',
         message: messageString
       }, {
         templateUrl: 'templates/modal-alert-content.html',
@@ -32,12 +32,12 @@ angular.module('pinboredWebkitApp')
       return deferred.promise;
     };
 
-    this.confirm = function (messageString) {
+    this.confirm = function (windowTitle, messageString) {
 
       var deferred = $q.defer();
 
       var modalInstance = $splash.open({
-        title: 'Are you sure',
+        title: windowTitle || 'Are you sure',
         message: messageString
       }, {
         templateUrl: 'templates/modal-confirm-content.html',
