@@ -97,6 +97,16 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-xs-12">
+          <!-- <div class="form-group"> -->
+            <tags-input ng-model="itemproxy.tags" ng-keyup="showItemproxyTags()" ng-click="showItemproxyTags()"
+            on-tag-added="updateItemProxyTags($tag)" on-tag-removed="updateItemProxyTags($tag)" 
+            placeholder="add a tag"></tags-input>
+          <!-- </div> -->
+        </div>
+      </div>
+
       <div class="row editbuttonbar">
         <div class="col-xs-4">
 

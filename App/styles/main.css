@@ -387,20 +387,20 @@ small, .small {
   height: 0;
 }
 
-#selection .bar-container form-group input, 
+/*#selection .bar-container form-group input, 
 #selection .bar-container form-group button,
 #selection .hider {
   -webkit-transition: opacity ease-out 0.4s;
   transition: opacity ease-out 0.4s;
   transition-delay: 0.0s;
-  /*transform: scale(1.0, 1.0);*/
+  transform: scale(1.0, 1.0);
   opacity: 1;
 }
 
 #selection .bar-container form-group.ng-hide input, 
 #selection .bar-container form-group.ng-hide button,
 #selection .hider {
-  /*transform: scale(0.1, 0.1);*/
+  /*transform: scale(0.1, 0.1);
   opacity: 0;
 }
 
@@ -673,10 +673,10 @@ small, .small {
 /* list specific */
 
 .list-group-item {
-  -webkit-transition:0.3s ease-out all;
-  -moz-transition:0.3s ease-out all;
-  -o-transition:0.3s ease-out all;
-  transition:0.3s ease-out all;
+  -webkit-transition:0.1s ease-out all;
+  -moz-transition:0.1s ease-out all;
+  -o-transition:0.1s ease-out all;
+  transition:0.1s ease-out all;
 }
 
 .list-group-item.ng-move,
@@ -688,12 +688,12 @@ small, .small {
 .list-group-item.ng-leave-stagger,
 .list-group-item.ng-move-stagger {
   /* 50ms between each item being animated after the other */
-  -webkit-transition-delay:50ms;
-  transition-delay:50ms;
+  -webkit-transition-delay: 0.1s;
+  transition-delay: 0.1;
 
   /* this is required here to prevent any CSS inheritance issues */
-  -webkit-transition-duration:0;
-  transition-duration:0;
+  -webkit-transition-duration: 0;
+  transition-duration: 0;
 }
 
 .list-group-item.ng-move.ng-move-active,
@@ -733,18 +733,18 @@ small, .small {
   margin-top: 20%;
 }
 
-#list .list-wrapper {
+#list > .list-wrapper {
   overflow-x: hidden;
   overflow-y: scroll;
   z-index: 5;
   position: relative;
 }
 
-#list .fullheight {
+#list > .fullheight {
   height: 100%;
 }
 
-#list .list-wrapper > ul {
+#list > .list-wrapper > ul {
   /*background-color: #2C3E50;*/
   background-color: #34495E;
   line-height: 1;
@@ -762,7 +762,7 @@ small, .small {
           perspective: 400px;
 }
 
-#list .list-wrapper > ul li {
+#list > .list-wrapper > ul > li {
   line-height: 1;
   z-index: 15;
   /*background-color: rgba(236, 240, 241, 0.4);*/
@@ -776,28 +776,28 @@ small, .small {
   border-bottom: 1px solid #2C3E50;
 }
 
-#list .list-wrapper > ul li.selected {
+#list > .list-wrapper > ul > li.selected {
   /*background-color: #2C3E50;*/
   background-color: #212F3C;
 }
 
-#list .list-wrapper > ul li .link-item-toolbar .btn-toolbar {
+#list > .list-wrapper > ul > li .link-item-toolbar .btn-toolbar {
   float: right;
 }
 
-#list .list-wrapper > ul li:nth-child(odd) {
+#list > .list-wrapper > ul > li:nth-child(odd) {
   /*background-color : #34495E;*/
 }
 
-#list .list-wrapper > ul li:nth-child(even) {
+#list > .list-wrapper > ul > li:nth-child(even) {
   /*background-color : #2C3E50;*/
 }
 
-#list .list-wrapper > ul li .list-group-item-heading {
+#list > .list-wrapper > ul >li .list-group-item-heading {
   color: white;
 }
 
-#list .list-wrapper > ul li .list-group-item-text {
+#list > .list-wrapper > ul > li .list-group-item-text {
   color: white;
 }
 
@@ -880,7 +880,7 @@ small, .small {
   background: #253443;
   -webkit-transition: 0.2s ease-out all;
   transition: 0.2s ease-out all;
-  height: 183px;
+  height: 230px;
 }
 
 .hiddenContent.ng-hide {
@@ -896,6 +896,12 @@ small, .small {
 
 .hiddenContentContainer.ng-hide {
   opacity: 0;
+}
+
+.hiddenContentContainer tags-input .tags {
+  margin-top: 5px;
+  margin-left: 2px;
+  margin-bottom: 5px;
 }
 
 .hiddenContent .btn-toolbar {

@@ -8,7 +8,7 @@
  */
 angular.module('pinboredWebkitApp')
   .controller('MainCtrl', function ($scope, $location, $filter, $modal, $q, $splash,
-    Pinboardservice, Usersessionservice, Appstatusservice, Utilservice,
+    Pinboardservice, Usersessionservice, Appstatusservice, Utilservice, Modalservice,
     fulltextFilter, tagsFilter) {
     
     // if not authenticated, redirect to login page
@@ -86,28 +86,6 @@ angular.module('pinboredWebkitApp')
       }
     };
 
-    $scope.confirm = function (messageString) {
-
-      var deferred = $q.defer();
-
-      var modalInstance = $splash.open({
-        title: 'Are you sure',
-        message: messageString
-      }, {
-        templateUrl: 'templates/modal-confirm-content.html',
-        windowTemplateUrl: 'templates/modal-confirm-index.html'
-      });
-
-      modalInstance.result
-        .then(function() {
-          deferred.resolve();
-        }, function() {
-          deferred.reject();
-        });
-
-      return deferred.promise;
-    };
-
 
 
 
@@ -118,7 +96,7 @@ angular.module('pinboredWebkitApp')
 
     $scope.multiDeleteBookmarks = function() {
       
-      $scope.confirm('Delete selected bookmarks ? <br/>This request can not be cancelled when started!')
+      Modalservice.confirm('Delete selected bookmarks ? <br/>This request can not be cancelled when started!')
       .then(function() {
 
         var total = $scope.data.selectedItems.length;
@@ -161,7 +139,7 @@ angular.module('pinboredWebkitApp')
 
     $scope.multiDeleteTags = function() {
 
-      $scope.confirm('Delete selected bookmarks ? \nThis request can not be cancelled when started!')
+      Modalservice.confirm('Delete selected bookmarks ? \nThis request can not be cancelled when started!')
       .then(function(){
 
         var total = $scope.data.selectedItems.length;
@@ -241,7 +219,7 @@ angular.module('pinboredWebkitApp')
 
     $scope.multiAddTag = function() {
 
-      $scope.confirm('Add tag ' + $scope.multiAction.newTagName + ' to selected bookmarks ? \nThis request can not be cancelled when started!')
+      Modalservice.confirm('Add tag ' + $scope.multiAction.newTagName + ' to selected bookmarks ? \nThis request can not be cancelled when started!')
       .then(function(){
 
         var newTagName = $scope.multiAction.newTagName;
@@ -530,7 +508,7 @@ angular.module('pinboredWebkitApp')
     $scope.repopulateBookmarks();
 
     // for debugging reasons
-    // window.$scope = $scope;
+    window.$scope = $scope;
 
     // list effects activate
     // stroll.bind('#list .list-wrapper ul.list-group', { live: true } );

@@ -7,7 +7,7 @@
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('BookmarkItemCtrl', function ($scope, Usersessionservice, Pinboardservice) {
+  .controller('BookmarkItemCtrl', function ($scope, Usersessionservice, Pinboardservice, Appstatusservice) {
 
     var gui = require('nw.gui');
 
@@ -23,8 +23,20 @@ angular.module('pinboredWebkitApp')
 
     // proxy item model... ugly workaround, sigh.
     $scope.itemproxy = {
+      tags : [],
       toread : false,
       shared : false
+    };
+
+    $scope.showItemproxyTags = function() {
+      // console.log($scope.itemproxy.tags);
+    };
+    
+    $scope.updateItemProxyTags = function(tag) {
+      // console.log('update item proxy tags: ');
+      // console.log($scope.itemproxy.tags);
+      // console.log(tag);
+      $scope.proxyChanged();
     };
 
     $scope.checkTagHighlight = function(tag) {
@@ -39,13 +51,13 @@ angular.module('pinboredWebkitApp')
 
     $scope.update = function() {
       console.log('item update clicked');
-      $scope.updateStatus('updating bookmark...');
+      Appstatusservice.updateStatus('updating bookmark...');
       // request update
       Pinboardservice.updateBookmark($scope.item)
       .then(function(result) {
         if(result.result_code === 'done') {
           // status update!
-          $scope.updateStatus('bookmarkitem updated.');
+          Appstatusservice.updateStatus('bookmarkitem updated.');
           // remove watcher FIRST
           $scope.removeWatcher();
           // 'soft' reset the current bookmark item
@@ -57,7 +69,7 @@ angular.module('pinboredWebkitApp')
         }
       }, function(reason) {
         console.error('updating bookmarkitem failed: ' + reason);
-        $scope.updateStatus('updating bookmarkitem failed: ' + reason + '.');
+        Appstatusservice.updateStatus('updating bookmarkitem failed: ' + reason + '.');
       });
     };
 
@@ -80,6 +92,8 @@ angular.module('pinboredWebkitApp')
             }
           }
         }
+        // also reset the item proxy data
+        $scope.mapToProxyValues();
         console.log('reset to previous item state.');
         $scope.item.status.hasChanged = false;
       } else {
@@ -100,6 +114,8 @@ angular.module('pinboredWebkitApp')
       } else if($scope.item.data.toread === 'yes') {
         $scope.itemproxy.toread = true;
       }
+      // map item tags to proxy tags
+      $scope.itemproxy.tags = $scope.tagObjectsFromBookmark();
     };
 
     $scope.closeEditing = function() {
@@ -138,6 +154,8 @@ angular.module('pinboredWebkitApp')
       } else if($scope.itemproxy.toread === true) {
         $scope.item.data.toread = 'yes';
       }
+      // map proxy tags to item tags
+      $scope.item.data.tags = $scope.tagObjectsToBookmark();
     };
 
     $scope.removeWatcher = function() {
@@ -155,6 +173,7 @@ angular.module('pinboredWebkitApp')
         $scope.currentItemChanged();
       });
       $scope.proxyWatcher = $scope.$watchCollection('itemproxy', function() { //newItem, oldItem
+        console.log('item proxy changed...');
         $scope.proxyChanged();
       });
       console.log('set up watcher for current item...');
@@ -182,6 +201,26 @@ angular.module('pinboredWebkitApp')
     $scope.tagsToArray = function() {
       // break apart tags into an array
       return $scope.item.data.tags.split(' ');
+    };
+
+    $scope.tagObjectsFromBookmark = function() {
+      // break apart tags into an array
+      var tagsList = $scope.item.data.tags.split(' ');
+      var objList = [];
+      // create object for each tag in the list
+      for (var i=0; i<tagsList.length; i++) { 
+        objList.push({text : tagsList[i]});
+      }
+      return objList;
+    };
+
+    $scope.tagObjectsToBookmark = function() {
+      var tagsList = [];
+      // create object for each tag in the list
+      for (var i=0; i<$scope.itemproxy.tags.length; i++) { 
+        tagsList.push($scope.itemproxy.tags[i].text);
+      }
+      return tagsList.join(' ');
     };
 
     $scope.clickTag = function(tag) {

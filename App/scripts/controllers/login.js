@@ -50,6 +50,8 @@ angular.module('pinboredWebkitApp')
           // show failure reason
         }, function(reason) {
           console.error('Failed: ' + reason);
+          // show modal indicating failure to login
+          
         });
 
     };
