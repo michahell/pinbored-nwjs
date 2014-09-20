@@ -7,7 +7,7 @@
  * Service in the pinboredWebkitApp.
  */
 angular.module('pinboredWebkitApp')
-  .service('Modalservice', function Modalservice($q, $splash) {
+  .service('Modalservice', function Modalservice($q, $splash, Utilservice) {
     // AngularJS will instantiate a singleton by calling 'new' on this function
 
     this.alert = function (windowTitle, messageString) {
@@ -37,7 +37,7 @@ angular.module('pinboredWebkitApp')
       var deferred = $q.defer();
 
       var modalInstance = $splash.open({
-        title: windowTitle || 'Are you sure',
+        title: !Utilservice.isEmpty(windowTitle) ? windowTitle : 'Are you sure',
         message: messageString
       }, {
         templateUrl: 'templates/modal-confirm-content.html',

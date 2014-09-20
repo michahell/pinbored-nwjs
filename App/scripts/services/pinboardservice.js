@@ -124,9 +124,9 @@ angular.module('pinboredWebkitApp')
 
       // check if authenticated
       if(!Usersessionservice.isAuthenticated()) {
-          $timeout(function() {
-            deferred.reject('pinboardservice: user not authenticated.');
-          }, 100);
+        $timeout(function() {
+          deferred.reject('pinboardservice: user not authenticated.');
+        }, 100);
         return deferred.promise;
       }
 
@@ -163,9 +163,9 @@ angular.module('pinboredWebkitApp')
 
       // check if authenticated
       if(!Usersessionservice.isAuthenticated()) {
-          $timeout(function() {
-            deferred.reject('pinboardservice: user not authenticated.');
-          }, 100);
+        $timeout(function() {
+          deferred.reject('pinboardservice: user not authenticated.');
+        }, 100);
         return deferred.promise;
       }
 
@@ -187,9 +187,9 @@ angular.module('pinboredWebkitApp')
 
       // check if authenticated
       if(!Usersessionservice.isAuthenticated()) {
-          $timeout(function() {
-            deferred.reject('pinboardservice: user not authenticated.');
-          }, 100);
+        $timeout(function() {
+          deferred.reject('pinboardservice: user not authenticated.');
+        }, 100);
         return deferred.promise;
       }
 
@@ -208,9 +208,9 @@ angular.module('pinboredWebkitApp')
 
       // check if authenticated
       if(!Usersessionservice.isAuthenticated()) {
-          $timeout(function() {
-            deferred.reject('pinboardservice: user not authenticated.');
-          }, 100);
+        $timeout(function() {
+          deferred.reject('pinboardservice: user not authenticated.');
+        }, 100);
         return deferred.promise;
       }
 
@@ -240,9 +240,9 @@ angular.module('pinboredWebkitApp')
 
       // check if authenticated
       if(!Usersessionservice.isAuthenticated()) {
-          $timeout(function() {
-            deferred.reject('pinboardservice: user not authenticated.');
-          }, 100);
+        $timeout(function() {
+          deferred.reject('pinboardservice: user not authenticated.');
+        }, 100);
         return deferred.promise;
       }
 
@@ -280,9 +280,9 @@ angular.module('pinboredWebkitApp')
 
       // check if authenticated
       if(!Usersessionservice.isAuthenticated()) {
-          $timeout(function() {
-            deferred.reject('pinboardservice: user not authenticated.');
-          }, 100);
+        $timeout(function() {
+          deferred.reject('pinboardservice: user not authenticated.');
+        }, 100);
         return deferred.promise;
       }
 
@@ -310,9 +310,9 @@ angular.module('pinboredWebkitApp')
 
       // check if authenticated
       if(!Usersessionservice.isAuthenticated()) {
-          $timeout(function() {
-            deferred.reject('pinboardservice: user not authenticated.');
-          }, 100);
+        $timeout(function() {
+          deferred.reject('pinboardservice: user not authenticated.');
+        }, 100);
         return deferred.promise;
       }
 

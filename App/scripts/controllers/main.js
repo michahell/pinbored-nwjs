@@ -96,7 +96,7 @@ angular.module('pinboredWebkitApp')
 
     $scope.multiDeleteBookmarks = function() {
       
-      Modalservice.confirm('Delete selected bookmarks ? <br/>This request can not be cancelled when started!')
+      Modalservice.confirm('', 'Delete selected bookmarks ? <br/>This request can not be cancelled when started!')
       .then(function() {
 
         var total = $scope.data.selectedItems.length;
@@ -139,7 +139,7 @@ angular.module('pinboredWebkitApp')
 
     $scope.multiDeleteTags = function() {
 
-      Modalservice.confirm('Delete selected bookmarks ? \nThis request can not be cancelled when started!')
+      Modalservice.confirm('', 'Delete all tags on selected bookmarks ? \nThis request can not be cancelled when started!')
       .then(function(){
 
         var total = $scope.data.selectedItems.length;
@@ -219,7 +219,7 @@ angular.module('pinboredWebkitApp')
 
     $scope.multiAddTag = function() {
 
-      Modalservice.confirm('Add tag ' + $scope.multiAction.newTagName + ' to selected bookmarks ? \nThis request can not be cancelled when started!')
+      Modalservice.confirm('', 'Add tag <br/><span class="modal-tag-highlight">' + $scope.multiAction.newTagName + '</span><br/> to selected bookmarks ? \nThis request can not be cancelled when started!')
       .then(function(){
 
         var newTagName = $scope.multiAction.newTagName;

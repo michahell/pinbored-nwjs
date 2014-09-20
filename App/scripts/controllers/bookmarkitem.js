@@ -7,7 +7,8 @@
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('BookmarkItemCtrl', function ($scope, Usersessionservice, Pinboardservice, Appstatusservice) {
+  .controller('BookmarkItemCtrl', function ($scope, 
+    Usersessionservice, Pinboardservice, Appstatusservice, Modalservice) {
 
     try {
       var gui = require('nw.gui');
@@ -259,7 +260,7 @@ angular.module('pinboredWebkitApp')
     };
 
     $scope.delete = function() {
-      $scope.confirm('Delete this bookmark ?')
+      Modalservice.confirm('', 'Delete this bookmark ?')
       .then(function(){
         // call method in parent scope
         $scope.deleteBookmark($scope.item);

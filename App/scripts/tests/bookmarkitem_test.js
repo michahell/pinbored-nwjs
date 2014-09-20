@@ -107,8 +107,8 @@ describe('bookmark item controller', function() {
     spyOn(scope, 'openEditing').andCallThrough();
     spyOn(scope, 'closeEditing').andCallThrough();
     spyOn(scope, 'mapToProxyValues').andCallThrough();
-    spyOn(scope, 'addWatcher').andCallThrough();
-    spyOn(scope, 'removeWatcher').andCallThrough();
+    spyOn(scope, 'addWatchers').andCallThrough();
+    spyOn(scope, 'removeWatchers').andCallThrough();
     spyOn(scope, 'resetBookmark').andCallThrough();
 
   });
@@ -127,8 +127,8 @@ describe('bookmark item controller', function() {
     expect(angular.isFunction(scope.openEditing)).toBe(true);
     expect(angular.isFunction(scope.currentItemChanged)).toBe(true);
     expect(angular.isFunction(scope.proxyChanged)).toBe(true);
-    expect(angular.isFunction(scope.removeWatcher)).toBe(true);
-    expect(angular.isFunction(scope.addWatcher)).toBe(true);
+    expect(angular.isFunction(scope.removeWatchers)).toBe(true);
+    expect(angular.isFunction(scope.addWatchers)).toBe(true);
     expect(angular.isFunction(scope.toggleEdit)).toBe(true);
     expect(angular.isFunction(scope.getSharedDescription)).toBe(true);
     expect(angular.isFunction(scope.tagsToArray)).toBe(true);
@@ -157,7 +157,7 @@ describe('bookmark item controller', function() {
     scope.update();
     expect(Pinboardservice.updateBookmark).toHaveBeenCalled();
     timeout.flush();
-    expect(scope.removeWatcher).toHaveBeenCalled();
+    expect(scope.removeWatchers).toHaveBeenCalled();
     expect(scope.item.status.hasChanged).toBe(false);
   });
 
@@ -183,7 +183,7 @@ describe('bookmark item controller', function() {
 
   it('should close editing', function() {
     scope.closeEditing();
-    expect(scope.removeWatcher).toHaveBeenCalled();
+    expect(scope.removeWatchers).toHaveBeenCalled();
     expect(scope.resetBookmark).toHaveBeenCalled();
   });
 
@@ -191,7 +191,7 @@ describe('bookmark item controller', function() {
     scope.openEditing();
     expect(scope.itemcopy).toEqual(scope.item);
     expect(scope.mapToProxyValues).toHaveBeenCalled();
-    expect(scope.addWatcher).toHaveBeenCalled();
+    expect(scope.addWatchers).toHaveBeenCalled();
   });
 
   it('should detect changes asdasd', function() {
@@ -231,13 +231,13 @@ describe('bookmark item controller', function() {
   });
 
   it('should remove watchers', function() {
-    scope.removeWatcher();
+    scope.removeWatchers();
     expect(scope.itemWatcher).toBe(null);
     expect(scope.proxyWatcher).toBe(null);
   });
 
   it('should add watchers', function() {
-    scope.addWatcher();
+    scope.addWatchers();
     expect(scope.itemWatcher).not.toBe(undefined);
     expect(scope.proxyWatcher).not.toBe(undefined);
   });
