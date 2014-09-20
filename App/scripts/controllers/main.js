@@ -7,7 +7,7 @@
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('MainCtrl', function ($scope, $location, $filter, $modal, $q, $splash,
+  .controller('MainCtrl', function ($scope, $location, $filter, $modal, $q, $splash, $timeout,
     Pinboardservice, Usersessionservice, Appstatusservice, Utilservice, Modalservice,
     fulltextFilter, tagsFilter) {
     
@@ -42,6 +42,8 @@ angular.module('pinboredWebkitApp')
     };
 
     $scope.filter = {
+      textFilterDelay : 750,
+      textFilterTimeout : null,
       text : '',
       tags : []
     };
@@ -65,25 +67,6 @@ angular.module('pinboredWebkitApp')
       showTags : false,
       showPager : false,
       showSelection : false
-    };
-
-    // $scope.watchers = {
-    //   selectedItemsWatcher : null
-    // };
-
-
-
-
-    // UTILITY FUNCTIONS
-
-
-
-
-    $scope.checkMaxTags = function() {
-      if($scope.filter.tags.length > $scope.config.maxTagSearch) {
-        // remove tag, one too many
-        $scope.filter.tags.splice($scope.filter.tags.indexOf($scope.filter.tags[$scope.filter.tags.length-1]), 1);
-      }
     };
 
 
@@ -217,6 +200,10 @@ angular.module('pinboredWebkitApp')
 
     };
 
+    $scope.multiFoldIntoTag = function() {
+      console.log('$scope.multiFoldIntoTag called!');
+    };
+
     $scope.multiAddTag = function() {
 
       // first check for tag input
@@ -281,7 +268,12 @@ angular.module('pinboredWebkitApp')
 
     $scope.executeMultiAction = function() {
       console.log('executing action: ' + $scope.multiAction.selectedAction);
-      if($scope.multiAction.selectedAction !== '') {
+      if(!Utilservice.isEmpty($scope.multiAction.selectedAction)) {
+
+        // new method:
+        // $scope['multi' + $scope.multiAction.selectedAction]();
+
+        // old method:
         switch($scope.multiAction.selectedAction) {
         case 'deleteAllItems':
           $scope.multiDeleteBookmarks();
@@ -292,10 +284,14 @@ angular.module('pinboredWebkitApp')
         case 'staleCheck':
           $scope.multiStaleCheck();
           break;
+        case 'foldIntoTag':
+          $scope.multiFoldIntoTag();
+          break;
         case 'addTag':
           $scope.multiAddTag();
           break;
         }
+
       }
     };
 
@@ -398,9 +394,33 @@ angular.module('pinboredWebkitApp')
 
 
 
+    $scope.checkMaxTags = function() {
+      if($scope.filter.tags.length > $scope.config.maxTagSearch) {
+        // remove tag, one too many
+        $scope.filter.tags.splice($scope.filter.tags.indexOf($scope.filter.tags[$scope.filter.tags.length-1]), 1);
+      }
+    };
+
+    $scope.onTagAdded = function (tag) {
+      $scope.checkMaxTags(tag);
+      $scope.updateFiltersPaging();
+    };
+
+    $scope.onTagRemoved = function () {
+      $scope.updateFiltersPaging();
+    };
+
     $scope.updateFiltersPaging = function() {
-      $scope.applyFilters();
-      $scope.updatePaging();
+      // if the textFilterPromise exists, cancel it:
+      if($scope.filter.textFilterTimeout !== null) {
+        $timeout.cancel($scope.filter.textFilterTimeout);
+      }
+
+      // create new $timeout promise to apply filters and update the paging
+      $scope.filter.textFilterTimeout = $timeout(function() {
+        $scope.applyFilters();
+        $scope.updatePaging();
+      }, $scope.filter.textFilterDelay);
     };
 
     $scope.updatePaging = function() {

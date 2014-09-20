@@ -688,8 +688,8 @@ small, .small {
 .list-group-item.ng-leave-stagger,
 .list-group-item.ng-move-stagger {
   /* 50ms between each item being animated after the other */
-  -webkit-transition-delay: 0.1s;
-  transition-delay: 0.1;
+  -webkit-transition-delay: 50ms;
+  transition-delay: 50ms;
 
   /* this is required here to prevent any CSS inheritance issues */
   -webkit-transition-duration: 0;
@@ -702,12 +702,16 @@ small, .small {
 }
 
 .list-group-item.ng-leave.ng-leave-active {
+  -webkit-transition-duration: 0;
+  transition-duration: 0;
   -webkit-transform: scale(0, 0);
   transform: scale(0, 0);
   height: 0px;
 }
 
 .list-group-item.ng-leave {
+  -webkit-transition-duration: 0;
+  transition-duration: 0;
   -webkit-transform: scale(1, 1);
   transform: scale(1, 1);
   height: 73px;

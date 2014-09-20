@@ -69,7 +69,8 @@
       <div class="bar-container" ng-show="config.showTags">
         <div class="col-xs-7">
           <tags-input ng-model="filter.tags" placeholder="search for tag" 
-          on-tag-added="checkMaxTags($tag)"></tags-input><!-- ng-keyup="updateFiltersPaging()" ng-click="updateFiltersPaging()" -->
+          on-tag-added="onTagAdded($tag)" on-tag-removed="onTagAdded($tag)"></tags-input>
+          <!-- ng-keyup="updateFiltersPaging()" ng-click="updateFiltersPaging()" -->
         </div>
         <div class="col-xs-2">
           <flatui-checkbox model="config.tagFilterType" label="config.tagFilterTypeText" 
@@ -107,6 +108,7 @@
             ng-model="multiAction.selectedAction" ng-change="changeMultiAction()">
               <option value="">select action</option>
               <option value="addTag">add tag</option>
+              <option value="foldIntoTag">fold into one tag</option>
               <option value="staleCheck">perform stale check</option>
               <option value="deleteAllTags">delete all tags</option>
               <option value="deleteAllItems">delete</option>
