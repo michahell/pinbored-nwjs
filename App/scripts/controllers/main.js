@@ -219,40 +219,48 @@ angular.module('pinboredWebkitApp')
 
     $scope.multiAddTag = function() {
 
-      Modalservice.confirm('', 'Add tag <br/><span class="modal-tag-highlight">' + $scope.multiAction.newTagName + '</span><br/> to selected bookmarks ? \nThis request can not be cancelled when started!')
-      .then(function(){
+      // first check for tag input
+      if(!Utilservice.isEmpty($scope.multiAction.newTagName)) {
 
-        var newTagName = $scope.multiAction.newTagName;
-        var total = $scope.data.selectedItems.length;
-        var updated = 0;
-        console.log('bookmarks to add tags to: ' + total);
+        Modalservice.confirm('', 'Add tag <br/><span class="modal-tag-highlight">' + $scope.multiAction.newTagName + '</span><br/> to selected bookmarks ? \nThis request can not be cancelled when started!')
+        .then(function(){
 
-        if($scope.data.selectedItems.length > 0) {
-          for(var i=0; i<$scope.data.selectedItems.length; i++) {
-            // following is inside anonymous function closure because of loop iterator scope problem
-            (function(i, newTagName){
-              // set initial status to checking
-              $scope.data.selectedItems[i].data.tags += ' ' + newTagName;
-              // update bookmark
-              Pinboardservice.updateBookmark($scope.data.selectedItems[i])
-              .then(function(result) {
-                // var updatedBmHash = $scope.data.selectedItems[i]['data']['hash'];
-                var updatedBmHash = $scope.data.selectedItems[i].data.hash;
-                updated++;
-                if(result.result_code === 'done') {
-                  Appstatusservice.updateStatus('updated bookmark: ' + updatedBmHash + '.', updated, total);
-                } else {
-                  Appstatusservice.updateStatus('Failed: ' + result.result_code + '.', updated, total, 'danger');
-                }
-              }, function(reason) {
-                Appstatusservice.updateStatus('Failed: ' + reason, updated, total, 'danger');
-              });
-            })(i, newTagName);
+          var newTagName = $scope.multiAction.newTagName;
+          var total = $scope.data.selectedItems.length;
+          var updated = 0;
+          console.log('bookmarks to add tags to: ' + total);
+
+          if($scope.data.selectedItems.length > 0) {
+            for(var i=0; i<$scope.data.selectedItems.length; i++) {
+              // following is inside anonymous function closure because of loop iterator scope problem
+              (function(i, newTagName){
+                // set initial status to checking
+                $scope.data.selectedItems[i].data.tags += ' ' + newTagName;
+                // update bookmark
+                Pinboardservice.updateBookmark($scope.data.selectedItems[i])
+                .then(function(result) {
+                  // var updatedBmHash = $scope.data.selectedItems[i]['data']['hash'];
+                  var updatedBmHash = $scope.data.selectedItems[i].data.hash;
+                  updated++;
+                  if(result.result_code === 'done') {
+                    Appstatusservice.updateStatus('updated bookmark: ' + updatedBmHash + '.', updated, total);
+                  } else {
+                    Appstatusservice.updateStatus('Failed: ' + result.result_code + '.', updated, total, 'danger');
+                  }
+                }, function(reason) {
+                  Appstatusservice.updateStatus('Failed: ' + reason, updated, total, 'danger');
+                });
+              })(i, newTagName);
+            }
           }
-        }
-      }, function(){
-        console.log('modal cancelled.');
-      });
+        }, function(){
+          console.log('modal cancelled.');
+        });
+      } else {
+        // todo alert empty tag input
+        Modalservice.alert('', 'no new tag name was given!');
+      }
+
     };
 
     $scope.changeMultiAction = function() {

@@ -1,10 +1,9 @@
 Build
 cache
+coverage
 inspiration
 node_modules
 Resources
-
-dist
 
 App/bower_components
 App/node_modules

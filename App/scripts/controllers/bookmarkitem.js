@@ -33,6 +33,10 @@ angular.module('pinboredWebkitApp')
       shared : false
     };
 
+    $scope.updateItemProxyTags = function(tag) {
+      console.log('tag removed!');
+    };
+
     $scope.checkTagHighlight = function(tag) {
       // check parent scope tag filter list
       for(var i=0; i<$scope.filter.tags.length; i++) {
