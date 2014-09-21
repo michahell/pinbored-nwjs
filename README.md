@@ -43,6 +43,13 @@ Screenshots
 ![overview](screenshots/overview-selection-stale.png?raw=true "overview selection stale check")
 ![overview](screenshots/overview-tag-select.png?raw=true "overview tag selection")
 
+Disclaimer
+==========
+
+Additional to the MIT license it is important that you know and understand the following:
+
+*all requests performed by the application to the Pinboard API are sequences of consecutive, single operation REST requests and are not transactions with rollback history like in SQL transactions. They are 'destructive operations' by nature (that means no undo! Future versions might support custom undo history and functionality if so desired)* 
+
 Building
 ========
 

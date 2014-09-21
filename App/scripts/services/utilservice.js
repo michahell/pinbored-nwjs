@@ -18,6 +18,10 @@ angular.module('pinboredWebkitApp')
       return result;
     };
 
+    this.capitalize = function(string) {
+      return string.charAt(0).toUpperCase() + string.substr(1);
+    };
+
     this.removeItemFromCollection = function (byProperty, value, collection) {
       var deletedBookmark = $filter('searchcollection')(byProperty, value, collection);
       collection.splice(collection.indexOf(deletedBookmark), 1);
