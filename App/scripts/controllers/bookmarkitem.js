@@ -285,11 +285,9 @@ angular.module('pinboredWebkitApp')
     };
 
     $scope.openBookmark = function(href) {
-      console.log('openBookmark gets called with: ');
-      console.log(href);
+      // console.log('openBookmark gets called with: ');
+      // console.log(href);
       gui.Shell.openExternal(href);
-      console.log(gui);
-      console.log(gui.Shell);
     };
 
   });
