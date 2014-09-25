@@ -42,10 +42,11 @@ module.exports = function(grunt) {
           'angular-bootstrap/ui-bootstrap.js': 'angular-bootstrap/ui-bootstrap.js',
           'angular-resource/angular-resource.js': 'angular-resource/angular-resource.js',
           'angular-cookies/angular-cookies.js': 'angular-cookies/angular-cookies.js',
-          'angular-sanitize/angular-sanitize.js': 'angular-sanitize/angular-sanitize.js',
-          'angular-animate/angular-animate.js': 'angular-animate/angular-animate.js',
-          'angular-touch/angular-touch.js': 'angular-touch/angular-touch.js',
           'angular-route/angular-route.js': 'angular-route/angular-route.js',
+          'angular-sanitize/angular-sanitize.js': 'angular-sanitize/angular-sanitize.js',
+          'angular-touch/angular-touch.js': 'angular-touch/angular-touch.js',
+          'angular-animate/angular-animate.js': 'angular-animate/angular-animate.js',
+          'angular-mocks/angular-mocks.js': 'angular-mocks/angular-mocks.js',
 
           'ng-tags-input/ng-tags-input.min.js': 'ng-tags-input/ng-tags-input.min.js',
           'bootstrap-select/dist/js/bootstrap-select.js': 'bootstrap-select/dist/js/bootstrap-select.js',
@@ -150,6 +151,6 @@ module.exports = function(grunt) {
   // Default task(s)
   // grunt.registerTask('default', ['karma', 'open:report', 'nodewebkit:buildOsx', 'nodewebkit:buildWin', 'nodewebkit:buildLin32', 'nodewebkit:buildLin64']);
 
-  grunt.registerTask('default', ['test', 'build']);
+  grunt.registerTask('default', ['test', 'osx']);
 
 };

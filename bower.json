@@ -19,5 +19,7 @@
     "angular-bootstrap-select": "~0.0.3",
     "bootstrap-select": "~1.6.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "angular-mocks": "~1.2.25"
+  }
 }
