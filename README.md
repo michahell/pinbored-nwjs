@@ -11,6 +11,18 @@ pinbored-webkit
 Pinbored native OSX client built with Node-webkit and AngularJS. Future plans include windows / linux
 builds as well, but for now focus is on OSX (using NUWK! instead of CLI node-webkit magic for development simplification). See https://github.com/michahell/pinbored for more info of history of this project.
 
+Download binaries
+=================
+
+* OSX:
+  [v0.0.2]()
+* Windows:
+  [v0.0.2]()
+* Linux 32 bits:
+  [v0.0.2]()
+* Linux 64 bits:
+  [v0.0.2]()
+
 Why
 ===
 

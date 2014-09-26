@@ -25,6 +25,17 @@ module.exports = function(grunt) {
           // e.g. 'bower_components/chai/lib/chai.js' will be copied to 'bower_components_dist/libs/chai.js'
           // 'libs/chai.js': 'chai/lib/chai.js'
 
+          // FONTS
+          'flat-ui/dist/fonts/lato/lato-regular.woff': 'flat-ui/dist/fonts/lato/lato-regular.woff',
+          'flat-ui/dist/fonts/lato/lato-light.woff': 'flat-ui/dist/fonts/lato/lato-light.woff',
+          'flat-ui/dist/fonts/lato/lato-bold.woff': 'flat-ui/dist/fonts/lato/lato-bold.woff',
+          'flat-ui/dist/fonts/lato/lato-regular.svg#latoregular': 'flat-ui/dist/fonts/lato/lato-regular.svg#latoregular',
+          'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.woff': 'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.woff',
+          'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.svg#flat-ui-icons-regular': 'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.svg#flat-ui-icons-regular',
+          'bootstrap/dist/fonts/glyphicons-halflings-regular.woff': 'bootstrap/dist/fonts/glyphicons-halflings-regular.woff',
+          'bootstrap/dist/fonts/glyphicons-halflings-regular.svg': 'bootstrap/dist/fonts/glyphicons-halflings-regular.svg',
+          'bootstrap/dist/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular': 'bootstrap/dist/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular',
+
           // CSS
           'bootstrap/dist/css/bootstrap.css': 'bootstrap/dist/css/bootstrap.css',
           'animate.css/animate.min.css': 'animate.css/animate.min.css',
