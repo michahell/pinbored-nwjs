@@ -13,9 +13,9 @@ module.exports = function(grunt) {
         // Task-specific options go here
         srcPrefix : 'App/bower_components',
         destPrefix : 'App/bower_components_dist',
-        runBower : true,
-        report : true,
-        clean : true
+        runBower : false,
+        clean : false,
+        report : true
       },
       bowercomponents: {
         // Target-specific file lists and/or options go here
@@ -126,6 +126,7 @@ module.exports = function(grunt) {
   });
 
   // Load the plugin that provides the "nodewebkit" task.
+  grunt.loadNpmTasks('grunt-npmcopy');
   grunt.loadNpmTasks('grunt-bowercopy');
   grunt.loadNpmTasks('grunt-node-webkit-builder');
   grunt.loadNpmTasks('grunt-karma');

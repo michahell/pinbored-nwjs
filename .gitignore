@@ -5,6 +5,7 @@ inspiration
 node_modules
 
 App/bower_components
+App/bower_components_dist
 App/node_modules
 
 .tmp
