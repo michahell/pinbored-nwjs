@@ -13,7 +13,7 @@ module.exports = function(grunt) {
         // Task-specific options go here
         srcPrefix : 'App/bower_components',
         destPrefix : 'App/bower_components_dist',
-        runBower : false,
+        runBower : true,
         clean : false,
         report : true
       },

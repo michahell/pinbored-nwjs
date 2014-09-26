@@ -13,3 +13,4 @@ App/node_modules
 project.sublime-project
 project.sublime-workspace
 karma.report.html
+npm-debug.log
