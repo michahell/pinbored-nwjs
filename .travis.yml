@@ -11,5 +11,8 @@ deploy:
   api_key:
     secure: RANFObwH/IdHMIV3iFWi+5yJ2zJ0oUboOIi4rXH67foeVJIthME8FLGKeVFsvU37SWLpyoXbgGJBwDfxnjsgNFtjQaulHZfOWzGZDUpgp3ieqa8vcS7X+mLS4OUuyhLDgwphCJvE+j64W/2QKAjAMwEYOfmUilAyeu4DHNUwbL4=
   file: Build/pinbored - v0.0.2/osx/pinbored.app
+  skip_cleanup: true
   on:
     repo: michahell/pinbored-webkit
+    tags: true
+    all_branches: true

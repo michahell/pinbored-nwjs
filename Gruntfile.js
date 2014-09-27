@@ -29,12 +29,12 @@ module.exports = function(grunt) {
           'flat-ui/dist/fonts/lato/lato-regular.woff': 'flat-ui/dist/fonts/lato/lato-regular.woff',
           'flat-ui/dist/fonts/lato/lato-light.woff': 'flat-ui/dist/fonts/lato/lato-light.woff',
           'flat-ui/dist/fonts/lato/lato-bold.woff': 'flat-ui/dist/fonts/lato/lato-bold.woff',
-          'flat-ui/dist/fonts/lato/lato-regular.svg#latoregular': 'flat-ui/dist/fonts/lato/lato-regular.svg#latoregular',
+          // 'flat-ui/dist/fonts/lato/lato-regular.svg#latoregular': 'flat-ui/dist/fonts/lato/lato-regular.svg#latoregular',
           'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.woff': 'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.woff',
-          'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.svg#flat-ui-icons-regular': 'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.svg#flat-ui-icons-regular',
+          // 'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.svg#flat-ui-icons-regular': 'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.svg#flat-ui-icons-regular',
           'bootstrap/dist/fonts/glyphicons-halflings-regular.woff': 'bootstrap/dist/fonts/glyphicons-halflings-regular.woff',
-          'bootstrap/dist/fonts/glyphicons-halflings-regular.svg': 'bootstrap/dist/fonts/glyphicons-halflings-regular.svg',
-          'bootstrap/dist/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular': 'bootstrap/dist/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular',
+          // 'bootstrap/dist/fonts/glyphicons-halflings-regular.svg': 'bootstrap/dist/fonts/glyphicons-halflings-regular.svg',
+          // 'bootstrap/dist/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular': 'bootstrap/dist/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular',
 
           // CSS
           'bootstrap/dist/css/bootstrap.css': 'bootstrap/dist/css/bootstrap.css',
@@ -137,7 +137,6 @@ module.exports = function(grunt) {
   });
 
   // Load the plugin that provides the "nodewebkit" task.
-  grunt.loadNpmTasks('grunt-npmcopy');
   grunt.loadNpmTasks('grunt-bowercopy');
   grunt.loadNpmTasks('grunt-node-webkit-builder');
   grunt.loadNpmTasks('grunt-karma');
