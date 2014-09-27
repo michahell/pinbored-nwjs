@@ -2,6 +2,7 @@ language: node_js
 node_js:
 - '0.11'
 install:
+git fetch --tags
 - npm install -g grunt-cli
 - npm install -g bower
 after_success:
@@ -13,6 +14,6 @@ deploy:
   file: Build/pinbored - v0.0.2/osx/pinbored.app
   skip_cleanup: true
   on:
-    repo: michahell/pinbored-webkit
+    #repo: michahell/pinbored-webkit
     tags: true
     all_branches: true
