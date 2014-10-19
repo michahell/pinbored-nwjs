@@ -14,14 +14,7 @@ builds as well, but for now focus is on OSX (using NUWK! instead of CLI node-web
 Download binaries
 =================
 
-* OSX:
-  [v0.0.2]()
-* Windows:
-  [v0.0.2]()
-* Linux 32 bits:
-  [v0.0.2]()
-* Linux 64 bits:
-  [v0.0.2]()
+TBA
 
 Why
 ===
@@ -83,6 +76,12 @@ steps
     * ```grunt lin64``` (for Linux 64 bits application bundle)
 
 npm test isn't used since the same gruntfile is used for Travis, which cannot build node-webkit headlessly (yet).
+
+(possible) caveats
+------------------
+*On Ubuntu Linux, which i use to test & compile, there can be some hassle getting the 'node' command to work:
+ see: https://stackoverflow.com/questions/18130164/nodejs-vs-node-on-ubuntu-12-04/18130296#18130296
+
 
 Roadmap
 =======
