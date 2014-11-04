@@ -68,12 +68,11 @@ requirements
 ------------
 
 * Node.js and NPM
-* global install of Grunt and Bower (or run)
+* global install of Grunt, Bower.
 
 steps
 -----
 
-0. [optional] run ```npm preinstall``` to install Grunt and Bower globally, requiring your sudo password.
 1. clone project somewhere
 2. run ```npm install``` (installs dev. and app dependancies and bower components)
 3. run ```grunt test``` (tests everything and shows jasmine report in google chrome)
