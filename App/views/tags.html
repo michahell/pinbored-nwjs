@@ -8,7 +8,7 @@
       <button class="btn btn-primary btn-xs" type="submit" ng-click="reload()">reload</button>
     </div>
 
-    <div class="minitoolbar col-xs-7 pull-right text-right">
+    <!-- <div class="minitoolbar col-xs-7 pull-right text-right">
       
       <div class="col pull-right text-right">
         <flatui-switch model="config.showTagActions" square=""></flatui-switch>
@@ -18,74 +18,32 @@
         <flatui-switch model="config.showSearch" square=""></flatui-switch>
         <label class="share-label" for="showSearch">fulltext filter</label>
       </div>
-    </div>
+    </div> -->
+
   </div>
 
   <div class="bar-wrapper clearfix">
-
-    <!-- full text search -->
-    <div class="bar" id="fulltextsearch" ng-show="config.showSearch">
-      <nav role="navigation" class="navbar navbar-inverse navbar-embossed">
         
-        <div class="col-xs-6">
-          <div class="collapse navbar-collapse textselectable">
-            <form role="search" class="navbar-form navbar-left">
-              <div class="form-group">
-                <input type="text" ng-model="filter.text" placeholder="full-text search" 
-                class="form-control input-sm">
-              </div>
-              <button class="btn btn-default btn-sm" type="submit" ng-click="applyFilters()">search</button>
-            </form>
-          </div>
-        </div>
+  </div>
 
-        <div class="col-xs-2">
-          <flatui-checkbox model="config.searchAllWords" label="config.searchAllWordsText" value="1" name="container"></flatui-checkbox>
-        </div>
+  <!-- bookmark items list -->
+  <div class="section" id="list">
 
-        <div class="col-xs-2">
-          <!-- <flatui-checkbox model="config.searchAllWords" label="config.searchAllWordsText" value="1" name="container"></flatui-checkbox> -->
-        </div>
-
-        <div class="col-xs-2">
-          <label class="share-label">
-            <span class="highlight">{{filteredList.length}}</span> bookmarks found
-          </label>
-        </div>
-
-      </nav>
-    </div>
-
-    <!-- screen pagination -->
-    <div class="bar" id="tagActionBar" ng-show="config.showTagActions">
-      
-      <div class="col-xs-2">
-        <label class="share-label pull-left">tag group action: </label>
-      </div>
-
-      <div class="col-xs-2">
-        <select name="herolist" value="X-Men" class="select-block" style="display: none;">
-          <option value="0">Choose hero</option>
-          <option value="1">Spider Man</option>
-          <option value="2">Wolverine</option>
-          <option value="3">Captain America</option>
-          <option value="X-Men" selected="selected">X-Men</option>
-          <option value="Crocodile">Crocodile</option>
-        </select>
-        <div class="btn-group select select-block">
-          <button class="btn dropdown-toggle clearfix btn-primary btn-xs" data-toggle="dropdown">
-            <span class="filter-option pull-left">most recent</span>&nbsp;<span class="caret"></span>
-          </button>
-          <span class="dropdown-arrow dropdown-arrow-inverse"></span>
-          <ul class="dropdown-menu dropdown-inverse" role="menu" style="max-height: 100px; overflow-y: auto; min-height: 50px;">
-            <li rel="2"><a tabindex="-1" href="javascript: void(0)" class=""><span class="pull-left">all bookmarks</span></a></li>
-            <li rel="4" class="selected"><a tabindex="-1" href="javascript: void(0)" class=""><span class="pull-left">most recent</span></a></li>
-          </ul>
-        </div>
-      </div>
+    <!-- <div class="list-wrapper" ng-class="{fullheight: data.filteredList.length > 0}"> -->
+      <!-- screen list group -->
+      <ul class="list-group">
+        <li ng-repeat="item in data.filteredList"
+        class="list-group-item" ng-class="{selected: item.status.selected || item.status.showEdit}" 
+        ng-controller="BookmarkItemCtrl" ng-click="selectItem()">
+          <div ng-include src="'views/BookmarkItem.html'"></div>
+        </li>
+      </ul>
 
     </div>
 
+    <div class="listBackgroundMessage">
+      <h5>NO BOOKMARKS FOUND.</h5>
+    </div>
   </div>
 
 </div>

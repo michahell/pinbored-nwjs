@@ -25,6 +25,7 @@ angular.module('pinboredWebkitApp')
 
     // page model
     $scope.data = {
+      //filteredList
       isLoading : true,
       tags : [],
       numTags : 0
@@ -46,7 +47,8 @@ angular.module('pinboredWebkitApp')
     // }
 
     // get all tags
-    // console.log('getting ALL tags...');
+    console.log('getting ALL tags...');
+    
     // Pinboardservice.getAllTags()
     // .then(function(result) {
     //   $scope.data.isLoading = false;
