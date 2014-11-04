@@ -69,7 +69,7 @@ requirements
 
 * [Node.js and NPM](http://nodejs.org/)
 * Global install of [Grunt](http://gruntjs.com/), [Bower](http://bower.io/).
-* Some patience! the ```npm install``` command can take quite a while to finish, unfortunately...
+* Some patience! the ```npm install``` command can take quite a while to finish. Among others this is due to the nodewebkit module being downloaded by [karma-nodewebkit-launcher](https://www.npmjs.org/package/karma-nodewebkit-launcher) which needs it to be able to test using node webkit.
 
 steps
 -----
@@ -77,12 +77,12 @@ steps
 1. clone project somewhere, doesn't matter where.
 2. run ```npm install``` (installs dev. and app dependancies and bower components)
 3. run ```grunt test``` (tests everything and shows jasmine report in google chrome)
-1. run ```grunt build``` (for ALL application bundles) OR
+1. run ```grunt build``` (build for ALL platforms, **untested!**) OR
 2. run
     * ```grunt osx``` (for OSX application bundle)
-    * ```grunt win``` (for Windows application bundle)
-    * ```grunt lin32``` (for Linux 32 bits application bundle)
-    * ```grunt lin64``` (for Linux 64 bits application bundle)
+    * ```grunt win``` (for Windows application bundle, **untested!**)
+    * ```grunt lin32``` (for Linux 32 bits application bundle, **untested!**)
+    * ```grunt lin64``` (for Linux 64 bits application bundle, **untested!**)
 
 npm test isn't used since the same gruntfile is used for Travis, which cannot build node-webkit headlessly (yet).
 
