@@ -67,13 +67,14 @@ enough. This is because right now, the whole node_modules and bower_components f
 requirements
 ------------
 
-* Node.js and NPM
-* global install of Grunt, Bower.
+* [Node.js and NPM](http://nodejs.org/)
+* Global install of [Grunt](http://gruntjs.com/), [Bower](http://bower.io/).
+* Some patience! the ```npm install``` command can take quite a while to finish, unfortunately...
 
 steps
 -----
 
-1. clone project somewhere
+1. clone project somewhere, doesn't matter where.
 2. run ```npm install``` (installs dev. and app dependancies and bower components)
 3. run ```grunt test``` (tests everything and shows jasmine report in google chrome)
 1. run ```grunt build``` (for ALL application bundles) OR
