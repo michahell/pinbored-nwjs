@@ -31,7 +31,7 @@
     "load-grunt-tasks": "^0.6.0"
   },
   "scripts": {
-    "preinstall" : "sudo npm install -g grunt-cli && sudo npm install -g bower",
+    "preinstall" : "chmod +x config.sh && ./config.sh",
     "postinstall": "grunt bowercopy && cd App && npm install",
     "test": "npm install",
     "start": "grunt build"
