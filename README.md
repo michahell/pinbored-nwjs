@@ -65,13 +65,22 @@ Additional to the MIT license it is important that you know and understand the f
 Building
 ========
 
-On OSX, somehow the number of max-open files is by default 256. This is too little to build this project,
+~~On OSX, somehow the number of max-open files is by default 256. This is too little to build this project,
 so one must set it to allow more. ```ulimit -S -n 4096``` allows 4096 files to be open, i have found this is
-enough. This is because right now, the whole node_modules and bower_components folders are zipped into application bundles, which contain huge amounts of (unused) files.
+enough. This is because right now, the whole node_modules and bower_components folders are zipped into application bundles, which contain huge amounts of (unused) files.~~
+
+*The above is no longer the case, because the HUGE amount of projectfiles created by bower are removed in a grunt build step and only the ones really used (distribution files) are needed during building, thanks to the awesome [grunt-bowercopy](https://www.npmjs.org/package/grunt-bowercopy) task!*
+
+requirements
+------------
+
+* Node.js and NPM
+* global install of Grunt and Bower (or run)
 
 steps
 -----
 
+0. [optional] run ```npm preinstall``` to install Grunt and Bower globally, requiring your sudo password.
 1. clone project somewhere
 2. run ```npm install``` (installs dev. and app dependancies and bower components)
 3. run ```grunt test``` (tests everything and shows jasmine report in google chrome)

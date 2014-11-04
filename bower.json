@@ -13,7 +13,7 @@
     "angular-route": ">=1.2.16",
     "animate.css": ">=3.1.1",
     "stroll": "*",
-    "ng-tags-input": "2.0.1",
+    "ng-tags-input": ">=2.0.1",
     "angular-bootstrap": "~0.11.0",
     "flat-ui": "~2.2.0",
     "angular-bootstrap-select": "~0.0.3",
