@@ -11,11 +11,6 @@ pinbored-webkit
 
 [Pinbored](http://michahell.github.io/pinbored-webkit) is a 'native' (currently OSX only) [Pinboard](https://pinboard.in/) client built with Node-webkit and AngularJS. Future plans include windows / linux builds as well, but for now the focus is on OSX. See the [abandoned AS3 client version](https://github.com/michahell/pinbored) for more info on the history of this project.
 
-Download binaries
-=================
-
-T.B.A.
-
 Why
 ===
 
@@ -40,6 +35,11 @@ Screenshots
 ===========
 
 Can be seen on the project page: http://michahell.github.io/pinbored-webkit/#screenshots
+
+Download binaries
+=================
+
+Can be downloaded on the project page:  http://michahell.github.io/pinbored-webkit/#binary-downloads
 
 Disclaimer
 ==========
