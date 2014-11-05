@@ -1,12 +1,14 @@
 Build
 cache
 coverage
-coverage/lcov.info
+coverage/*
 inspiration
 node_modules
 
 App/bower_components
+App/bower_components/*
 App/bower_components_dist
+App/bower_components_dist/*
 App/node_modules
 
 .tmp
@@ -15,3 +17,5 @@ project.sublime-project
 project.sublime-workspace
 karma.report.html
 npm-debug.log
+
+RESOURCES.md
