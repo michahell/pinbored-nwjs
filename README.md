@@ -39,14 +39,7 @@ to Pinboard with some 1000 unmanageable bookmarks.
 Screenshots
 ===========
 
-![login](screenshots/login.png?raw=true "login screen")
-![overview](screenshots/overview-bars.png?raw=trueg "overview all bars")
-![overview](screenshots/overview-bars-2.png?raw=true "overview bookmark load type")
-![overview](screenshots/overview-update.png?raw=true "overview individual update")
-![overview](screenshots/overview-private.png?raw=true "overview private icon")
-![overview](screenshots/overview-selection.png?raw=true "overview selection")
-![overview](screenshots/overview-selection-stale.png?raw=true "overview selection stale check")
-![overview](screenshots/overview-tag-select.png?raw=true "overview tag selection")
+Can be seen on the project page: http://michahell.github.io/pinbored-webkit/#screenshots
 
 Disclaimer
 ==========
