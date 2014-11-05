@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <link rel="stylesheet" type="text/css" href="stylesheets/custom.css" media="screen">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -35,33 +36,61 @@
 <a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Binary downloads</h3>
 
 <p>You can currently only download the OSX version.</p>
+<section id="binaries" class="clearfix">
+  <div class="pinbored-download">
+    <a href="https://github.com/michahell/pinbored-webkit/tree/gh-pages/downloads/pinbored-osx-v0.0.2.zip" 
+    id="pinbored-osx-v0.0.2"><span>OSX v0.0.2.zip</span></a>
+  </div>
+</section>
+<br/>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<!--
+<h3>
+<a id="install-with-cask" class="anchor" href="#install-with-cask" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install with homebrew cask</h3>
+
+<p>Installing pinbored using homebrew-cask is as simple as:
+<pre><code>$ brew cask install pinbored </code></pre>
+-->
+
+<h3>
+<a id="building-from-source" class="anchor" href="#building-from-source" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building from source</h3>
+
+<p>There are instructions on how to build from source in the <a href="https://github.com/michahell/pinbored-webkit/blob/master/README.md" id="pinbored-readme">README.md</a>.</p>
+
+<pre><code>$ git clone https://github.com/michahell/pinbored-webkit.git
+$ npm install
+$ grunt test
+$ grunt osx
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<h3>
+<a id="screenshots" class="anchor" href="#screenshots" aria-hidden="true"><span class="octicon octicon-link"></span></a>Screenshots thumbnails</h3>
+
+<p>
+  <a href="#login"><img src="images/screenshots/login.png" width="200px"></a>
+  <a href="#overview-tag-select"><img src="images/screenshots/overview-tag-select.png" width="200px"></a>
+  <a href="#overview-selection"><img src="images/screenshots/overview-selection.png" width="200px"></a>
+  <a href="#overview-selection-stale"><img src="images/screenshots/overview-selection-stale.png" width="200px"></a>
+  <a href="#overview-bars"><img src="images/screenshots/overview-bars.png" width="200px"></a>
+  <a href="#overview-private"><img src="images/screenshots/overview-private.png" width="200px"></a>
+  <a href="#overview-update"><img src="images/screenshots/overview-update.png" width="200px"></a>
+  <a href="#overview-bars-2"><img src="images/screenshots/overview-bars-2.png" width="200px"></a>
+</p>
 
 <h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<a id="screenshots" class="anchor" href="#screenshots" aria-hidden="true"><span class="octicon octicon-link"></span></a>Screenshots detail</h3>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<p>
+  <img id="login" src="images/screenshots/login.png">
+  <img id="overview-tag-select" src="images/screenshots/overview-tag-select.png">
+  <img id="overview-selection" src="images/screenshots/overview-selection.png">
+  <img id="overview-selection-stale" src="images/screenshots/overview-selection-stale.png">
+  <img id="overview-bars" src="images/screenshots/overview-bars.png">
+  <img id="overview-private" src="images/screenshots/overview-private.png">
+  <img id="overview-update" src="images/screenshots/overview-update.png">
+  <img id="overview-bars-2" src="images/screenshots/overview-bars-2.png">
+</p>
 
-<h3>
-<a id="rather-drive-stick" class="anchor" href="#rather-drive-stick" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
         </section>
 
         <footer>

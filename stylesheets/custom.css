@@ -1,0 +1,14 @@
+.pinbored-download {
+  background: url(../images/pinbored-icon-128.png) no-repeat;
+  background-size: 48px 48px;
+  padding-top: 10px;
+  padding-left: 48px;
+  width: auto;
+  height: 48px;
+}
+
+.pinbored-logo {
+  background: url(../images/pinbored-icon-128.png) no-repeat;
+  width: 128px;
+  height: 128px;
+}
