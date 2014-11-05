@@ -77,12 +77,12 @@ steps
 1. clone project somewhere, doesn't matter where.
 2. run ```npm install``` (installs dev. and app dependancies and bower components)
 3. run ```grunt test``` (tests everything and shows jasmine report in google chrome)
-1. run ```grunt build``` (build for ALL platforms, **untested!**) OR
-2. run
+4. run:
+    * ```grunt build``` (build for ALL platforms, **untested**) OR
     * ```grunt osx``` (for OSX application bundle)
-    * ```grunt win``` (for Windows application bundle, **untested!**)
-    * ```grunt lin32``` (for Linux 32 bits application bundle, **untested!**)
-    * ```grunt lin64``` (for Linux 64 bits application bundle, **untested!**)
+    * ```grunt win``` (for Windows application bundle, **untested**)
+    * ```grunt lin32``` (for Linux 32 bits application bundle, **being tested**)
+    * ```grunt lin64``` (for Linux 64 bits application bundle, **untested**)
 
 npm test isn't used since the same gruntfile is used for Travis, which cannot build node-webkit headlessly (yet).
 

@@ -1,6 +1,7 @@
 Build
 cache
 coverage
+coverage/lcov.info
 inspiration
 node_modules
 
