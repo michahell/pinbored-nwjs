@@ -81,8 +81,11 @@ npm test isn't used since the same gruntfile is used for Travis, which cannot bu
 
 (possible) caveats
 ------------------
-*On Ubuntu Linux, which i use to test & compile, there can be some hassle getting the 'node' command to work:
+* On Ubuntu Linux, which I use to test & build for linux, there can be some hassle getting the 'node' command to work:
  see: https://stackoverflow.com/questions/18130164/nodejs-vs-node-on-ubuntu-12-04/18130296#18130296
+* removing the core node package using apt-get worked for me to get node and npm working together fine.
+* Also, on Ubuntu version 14.x.x and up there is a [libudev.so.0 issue](https://www.exponential.io/blog/install-node-webkit-on-ubuntu-linux) but following the guide and thus installing node-webkit outside of npm works flawlessly.
+* And finally, for some reason, the grunt-bowercopy task needs npm module 'esprima' on Ubuntu. Since on OSX that module is not needed, just installing it suffices: ```$ npm install esprima ```.
 
 
 Roadmap
