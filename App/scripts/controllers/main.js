@@ -8,7 +8,7 @@
  */
 angular.module('pinboredWebkitApp')
   .controller('MainCtrl', function ($scope, $location, $filter, $modal, $q, $splash, $timeout,
-    Pinboardservice, Usersessionservice, Appstatusservice, Utilservice, Modalservice,
+    Bookmarkservice, Pinboardservice, Usersessionservice, Appstatusservice, Utilservice, Modalservice,
     fulltextFilter, tagsFilter) {
     
     // if not authenticated, redirect to login page
