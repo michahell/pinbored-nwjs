@@ -1,13 +1,13 @@
 
 /**
  * @ngdoc function
- * @name pinboredWebkitApp.controller:MainCtrl
+ * @name pinboredWebkitApp.controller:OverviewCtrl
  * @description
  * # MainCtrl
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('MainCtrl', function ($scope, $location, $filter, $modal, $q, $splash, $timeout,
+  .controller('OverviewCtrl', function ($scope, $location, $filter, $modal, $q, $splash, $timeout,
     Bookmarkservice, Pinboardservice, Usersessionservice, Appstatusservice, Utilservice, Modalservice,
     fulltextFilter, tagsFilter) {
     

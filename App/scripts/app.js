@@ -24,20 +24,24 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/overview.html',
+        controller: 'OverviewCtrl'
       })
       .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
       })
       .when('/main', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/overview.html',
+        controller: 'OverviewCtrl'
       })
       .when('/tags', {
         templateUrl: 'views/tags.html',
         controller: 'TagsCtrl'
+      })
+      .when('/tools', {
+        templateUrl: 'views/tools.html',
+        controller: 'ToolsCtrl'
       })
       .when('/settings', {
         templateUrl: 'views/settings.html',

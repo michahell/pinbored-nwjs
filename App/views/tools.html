@@ -1,0 +1,98 @@
+<div class="screen" id="tools">
+
+  <!-- screen title -->
+  <div class="screentitle clearfix">
+    <h6>Additional tools!</h6>
+
+  </div>
+
+  <div class="bar-wrapper clearfix">
+        
+  </div>
+  
+  <div class="tooltitle clearfix">
+    <h6>check for duplicates</h6>
+    <div class="col-xs-4">
+        <button class="btn btn-inverse btn-sm pull-right" ng-class="{disabled: tools.duplicates.isLoading === true}" 
+        type="submit" ng-click="checkDuplicates()">check for duplicate bookmarks</button>
+    </div>
+  </div>
+  
+  <!-- bookmark items list -->
+  <div class="section" id="list">
+    
+    <div class="list-wrapper list-duplicates">
+
+      <div class="tooltitle clearfix">
+        <h6>duplicate bookmark names</h6>
+      </div>
+
+      <!-- screen list group -->
+      <ul class="list-group">
+        <li ng-repeat="item in duplicatecheck.duplicates.name track by $index"
+        class="list-group-item"
+        ng-controller="BookmarkItemCtrl">
+          <div ng-include src="'views/BookmarkItem.html'"></div>
+        </li>
+      </ul>
+
+      <!-- screen list group -->
+      <!-- <ul class="list-group">
+        <li ng-repeat="item in duplicatecheck.duplicates.name track by $index"
+        class="list-group-item">
+          <div>
+            <p>{{item.bookmark.description}}</p>
+            <p>{{item.bookmark.href}}</p>
+            <p>{{item.bookmark.extended}}</p>
+          </div>
+          <div>
+            <p>{{item.duplicate.description}}</p>
+            <p>{{item.duplicate.href}}</p>
+            <p>{{item.duplicate.extended}}</p>
+          </div>
+        </li>
+      </ul> -->
+
+
+      <div class="tooltitle clearfix">
+        <h6>duplicate bookmark hrefs</h6>
+      </div>
+
+      <!-- screen list group -->
+      <ul class="list-group">
+        <li ng-repeat="item in duplicatecheck.duplicates.href track by $index"
+        class="list-group-item">
+          <div>
+            <p>{{item.description}}</p>
+            <p>{{item.href}}</p>
+            <p>{{item.extended}}</p>
+          </div>
+        </li>
+      </ul>
+
+      
+      <div class="tooltitle clearfix">
+        <h6>duplicate bookmark descriptions</h6>
+      </div>
+
+      <!-- screen list group -->
+      <ul class="list-group">
+        <li ng-repeat="item in duplicatecheck.duplicates.extended track by $index"
+        class="list-group-item">
+          <div>
+            <p>{{item.description}}</p>
+            <p>{{item.href}}</p>
+            <p>{{item.extended}}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="listBackgroundMessage">
+      <h5>NO DUPLICATES FOUND.</h5>
+    </div>
+  </div>
+
+  </div>
+
+</div>

@@ -8,6 +8,8 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     
+
+    // copy only neccesary files from bower modules
     bowercopy: {
       options: {
         // Task-specific options go here
@@ -68,6 +70,7 @@ module.exports = function(grunt) {
       }
     },
 
+    // building native binaries
     nodewebkit: {
       
       buildOsx : {
@@ -112,12 +115,28 @@ module.exports = function(grunt) {
 
     },
 
+    // traceur: {
+    //   options: {
+    //     // traceur options here
+    //   },
+    //   custom: {
+    //     files: [{
+    //       expand: true,
+    //       cwd: 'src/es6',
+    //       src: ['*.js'],
+    //       dest: 'src/es5'
+    //     }]
+    //   },
+    // },
+  
+    // karma settings, conf.js file
     karma : {
       unit: {
         configFile: 'karma.conf.js'
       }
     },
 
+    // open karma testing report
     open : {
       report : {
         path : 'karma.report.html',
@@ -125,6 +144,7 @@ module.exports = function(grunt) {
       }
     },
 
+    // codeclimate coverage lcov.info
     shell: {
       multiple: {
         command: [
@@ -141,6 +161,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-node-webkit-builder');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-open');
+  // grunt.loadNpmTasks('grunt-traceur');
 
   // testing task(s)
   // grunt.registerTask('test', ['karma', 'open:report']);
