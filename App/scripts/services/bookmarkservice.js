@@ -86,7 +86,6 @@ angular.module('pinboredWebkitApp')
             // update bookmark
             Pinboardservice.updateBookmark(selection[i])
             .then(function(result) {
-              // var updatedBmHash = $scope.data.selectedItems[i]['data']['hash'];
               var updatedBmHash = selection[i].data.hash;
               updated++;
               if(result.result_code === 'done') {
@@ -115,7 +114,6 @@ angular.module('pinboredWebkitApp')
           Pinboardservice.updateBookmark(selection[i])
           .then(function(result) {
             if(result.result_code === 'done') {
-              // var updatedBmHash = $scope.data.selectedItems[i]['data']['hash'];
               var updatedBmHash = selection[i].data.hash;
               updated++;
               Appstatusservice.updateStatus('updated bookmark: ' + updatedBmHash + '.', updated, total);
@@ -136,6 +134,76 @@ angular.module('pinboredWebkitApp')
 
       deleteTagsFromNextBookmark(0);
     };
+
+    this.selectionStaleCheck = function(selection) {
+      var total = selection.length;
+      var checked = 0;
+      console.log('bookmarks to stale check: ' + total);
+
+      if(selection.length > 0) {
+        for(var i=0; i<selection.length; i++) {
+          // following is inside anonymous function closure because of loop iterator scope problem
+          (function(i){
+            // set initial status to checking
+            selection[i].status.staleness = 'checking';
+            // perform the check url request
+            Pinboardservice.checkUrl(selection[i].data.href)
+            .then(function(result) {
+              var checkedBmHash = selection[i].data.hash;
+              checked++;
+              if(result === 200) {
+                Appstatusservice.updateStatus('checked bookmark is healthy: ' + checkedBmHash + '.', checked, total);
+                selection[i].status.staleness = 'healthy';
+              } else {
+                Appstatusservice.updateStatus('checked bookmark is stale: ' + checkedBmHash + '.', checked, total);
+                selection[i].status.staleness = 'dead';
+              }
+              if(checked === total) {
+                Appstatusservice.updateStatus('done stale checking all selected bookmarks.');
+              }
+            }, function(reason) {
+              Appstatusservice.updateStatus('Failed: ' + reason, checked, total, 'danger');
+              selection[i].status.staleness = 'unknown';
+            });
+          })(i);
+        }
+      }
+    };
+
+    this.selectionRecursiveDelete = function(selection, allBookmarks) {
+      var total = selection.length;
+      var deleted = 0;
+      console.log('bookmarks to delete: ' + total);
+
+      // RECURSIVE delete single bookmark function.
+      var deleteNextBookmark = function() {
+        if(selection.length > 0 && deleted !== total) {
+          Pinboardservice.deleteBookmark(selection[0].data.href)
+            .then(function(result) {
+              if(result.result_code === 'done') {
+                // var deletionBmHash = selection[0]['data']['hash'];
+                var deletionBmHash = selection[0].data.hash;
+                deleted++;
+                Appstatusservice.updateStatus('deleted bookmark, hash: ' + deletionBmHash + '.', deleted, total);
+                // remove from scope list
+                Utilservice.removeItemFromCollection('hash', deletionBmHash, selection);
+                Utilservice.removeItemFromCollection('hash', deletionBmHash, allBookmarks);
+                // recursively delete next bookmark
+                if(selection.length > 0 && deleted !== total) {
+                  deleteNextBookmark();
+                }
+              }
+            }, function(reason) {
+              Appstatusservice.updateStatus('Failed: ' + reason, deleted, total, 'danger');
+            });
+        } else {
+          Appstatusservice.updateStatus('done deleting all selected bookmarks.');
+        }
+      };
+
+      // delete the first bookmark and start recursion
+      deleteNextBookmark();
+    }
 
 
 

@@ -81,40 +81,8 @@ angular.module('pinboredWebkitApp')
     $scope.multiDeleteAllItems = function() {
       Modalservice.confirm('', 'Delete selected bookmarks ? <br/>This request can not be cancelled when started!')
       .then(function() {
-
-        var total = $scope.data.selectedItems.length;
-        var deleted = 0;
-        console.log('bookmarks to delete: ' + total);
-
-        // RECURSIVE delete single bookmark function.
-        var deleteNextBookmark = function() {
-          if($scope.data.selectedItems.length > 0 && deleted !== total) {
-            Pinboardservice.deleteBookmark($scope.data.selectedItems[0].data.href)
-              .then(function(result) {
-                if(result.result_code === 'done') {
-                  // var deletionBmHash = $scope.data.selectedItems[0]['data']['hash'];
-                  var deletionBmHash = $scope.data.selectedItems[0].data.hash;
-                  deleted++;
-                  Appstatusservice.updateStatus('deleted bookmark, hash: ' + deletionBmHash + '.', deleted, total);
-                  // remove from scope list
-                  Utilservice.removeItemFromCollection('hash', deletionBmHash, $scope.data.selectedItems);
-                  Utilservice.removeItemFromCollection('hash', deletionBmHash, $scope.data.items);
-                  // recursively delete next bookmark
-                  if($scope.data.selectedItems.length > 0 && deleted !== total) {
-                    deleteNextBookmark();
-                  }
-                }
-              }, function(reason) {
-                Appstatusservice.updateStatus('Failed: ' + reason, deleted, total, 'danger');
-              });
-          } else {
-            Appstatusservice.updateStatus('done deleting all selected bookmarks.');
-          }
-        };
-
-        // delete the first bookmark and start recursion
-        deleteNextBookmark();
-
+        // recursively delete all items
+        Bookmarkservice.selectionRecursiveDelete($scope.data.selectedItems, $scope.data.items);
       }, function(){
         console.log('modal cancelled.');
       });
@@ -131,39 +99,7 @@ angular.module('pinboredWebkitApp')
     };
 
     $scope.multiStaleCheck = function() {
-      var total = $scope.data.selectedItems.length;
-      var checked = 0;
-      console.log('bookmarks to stale check: ' + total);
-
-      if($scope.data.selectedItems.length > 0) {
-        for(var i=0; i<$scope.data.selectedItems.length; i++) {
-          // following is inside anonymous function closure because of loop iterator scope problem
-          (function(i){
-            // set initial status to checking
-            $scope.data.selectedItems[i].status.staleness = 'checking';
-            // perform the check url request
-            Pinboardservice.checkUrl($scope.data.selectedItems[i].data.href)
-            .then(function(result) {
-              var checkedBmHash = $scope.data.selectedItems[i].data.hash;
-              checked++;
-              if(result === 200) {
-                Appstatusservice.updateStatus('checked bookmark is healthy: ' + checkedBmHash + '.', checked, total);
-                $scope.data.selectedItems[i].status.staleness = 'healthy';
-              } else {
-                Appstatusservice.updateStatus('checked bookmark is stale: ' + checkedBmHash + '.', checked, total);
-                $scope.data.selectedItems[i].status.staleness = 'dead';
-              }
-              if(checked === total) {
-                Appstatusservice.updateStatus('done stale checking all selected bookmarks.');
-              }
-            }, function(reason) {
-              Appstatusservice.updateStatus('Failed: ' + reason, checked, total, 'danger');
-              $scope.data.selectedItems[i].status.staleness = 'unknown';
-            });
-          })(i);
-        }
-      }
-
+      Bookmarkservice.selectionStaleCheck($scope.data.selectedItems);
     };
 
     $scope.multiFoldIntoTag = function() {
@@ -186,7 +122,6 @@ angular.module('pinboredWebkitApp')
     $scope.multiAddTag = function() {
       // first check for tag input
       if(!Utilservice.isEmpty($scope.multiAction.newTagName)) {
-
         Modalservice.confirm('', 'Add tag <br/><span class="modal-tag-highlight">' + $scope.multiAction.newTagName + '</span><br/> to selected bookmarks ? <br/>This request can not be cancelled when started!')
         .then(function() {
           // code moved into function so other batch functions may use it
