@@ -17,9 +17,6 @@ angular.module('pinboredWebkitApp')
 
     // app session related
     this.currentPage = '';
-    
-    // in memory cached bookmarks
-    this.storedBookmarks = {};
 
     // temp ref
     var self = this;
@@ -63,12 +60,6 @@ angular.module('pinboredWebkitApp')
       $rootScope.$broadcast('user:authenticated', this.authenticated);
 
       return this.authenticated;
-    };
-
-    this.storeBookmarks = function(bookmarksList) {
-      // console.log('storing bookmarks.');
-      self.storedBookmarks = bookmarksList;
-      // console.info(this.storedBookmarks);
     };
 
     this.destroy = function() {

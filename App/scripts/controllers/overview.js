@@ -78,71 +78,6 @@ angular.module('pinboredWebkitApp')
 
 
 
-    $scope.selectionAddTag = function(newTagName) {
-      var total = $scope.data.selectedItems.length;
-      var updated = 0;
-      console.log('bookmarks to add tags to: ' + total);
-
-      if($scope.data.selectedItems.length > 0) {
-        for(var i=0; i<$scope.data.selectedItems.length; i++) {
-          // following is inside anonymous function closure because of loop iterator scope problem
-          (function(i, newTagName){
-            // set initial status to checking
-            $scope.data.selectedItems[i].data.tags += ' ' + newTagName;
-            // update bookmark
-            Pinboardservice.updateBookmark($scope.data.selectedItems[i])
-            .then(function(result) {
-              // var updatedBmHash = $scope.data.selectedItems[i]['data']['hash'];
-              var updatedBmHash = $scope.data.selectedItems[i].data.hash;
-              updated++;
-              if(result.result_code === 'done') {
-                Appstatusservice.updateStatus('updated bookmark: ' + updatedBmHash + '.', updated, total);
-              } else {
-                Appstatusservice.updateStatus('Failed: ' + result.result_code + '.', updated, total, 'danger');
-              }
-            }, function(reason) {
-              Appstatusservice.updateStatus('Failed: ' + reason, updated, total, 'danger');
-            });
-          })(i, newTagName);
-        }
-      }
-    };
-
-    $scope.selectionDeleteAllTags = function() {
-      var total = $scope.data.selectedItems.length;
-      var updated = 0;
-      console.log('bookmarks to delete all tags from: ' + total);
-
-      // delete all tagsfunction.
-      var deleteTagsFromNextBookmark = function(i) {
-        if($scope.data.selectedItems.length > 0 && updated !== total) {
-          // remove all tags from bookmark
-          $scope.data.selectedItems[i].data.tags = '';
-          Pinboardservice.updateBookmark($scope.data.selectedItems[i])
-          .then(function(result) {
-            if(result.result_code === 'done') {
-              // var updatedBmHash = $scope.data.selectedItems[i]['data']['hash'];
-              var updatedBmHash = $scope.data.selectedItems[i].data.hash;
-              updated++;
-              Appstatusservice.updateStatus('updated bookmark: ' + updatedBmHash + '.', updated, total);
-              // recursively delete all tags on next bookmark
-              if($scope.data.selectedItems.length > 0 && updated !== total) {
-                deleteTagsFromNextBookmark(i+1);
-              }
-            } else {
-              Appstatusservice.updateStatus('Failed: ' + result.result_code + '.', updated, total, 'danger');
-            }
-          }, function(reason) {
-            Appstatusservice.updateStatus('Failed: ' + reason, updated, total, 'danger');
-          });
-        } else {
-          Appstatusservice.updateStatus('done deleting all tags from all selected bookmarks.');
-        }
-      };
-
-      deleteTagsFromNextBookmark(0);
-    };
-
     $scope.multiDeleteAllItems = function() {
       Modalservice.confirm('', 'Delete selected bookmarks ? <br/>This request can not be cancelled when started!')
       .then(function() {
@@ -189,7 +124,7 @@ angular.module('pinboredWebkitApp')
       Modalservice.confirm('', 'Delete all tags on selected bookmarks ? \nThis request can not be cancelled when started!')
       .then(function(){
         // code moved into function so other batch functions may use it
-        $scope.selectionDeleteAllTags();
+        Bookmarkservice.selectionDeleteAllTags($scope.data.selectedItems);
       }, function(){
         console.log('modal cancelled.');
       });
@@ -237,35 +172,35 @@ angular.module('pinboredWebkitApp')
         Modalservice.confirm('', 'Fold existing tags into <br/><span class="modal-tag-highlight">' + $scope.multiAction.foldTagName + '</span> ? <br/>This request can not be cancelled when started!')
         .then(function() {
           // first batch delete all tags from selected bookmarks
-          $scope.selectionDeleteAllTags();
+          Bookmarkservice.selectionDeleteAllTags($scope.data.selectedItems);
           // then add a new tag
-          $scope.selectionAddTag($scope.multiAction.foldTagName);
+          Bookmarkservice.selectionAddTag($scope.multiAction.newTagName, $scope.data.selectedItems);
         }, function() {
-          
+          console.log('modal cancelled.');  
         });
       } else {
         Modalservice.alert('', 'no new tag name was given!');
       }
-
     };
 
     $scope.multiAddTag = function() {
-
       // first check for tag input
       if(!Utilservice.isEmpty($scope.multiAction.newTagName)) {
 
         Modalservice.confirm('', 'Add tag <br/><span class="modal-tag-highlight">' + $scope.multiAction.newTagName + '</span><br/> to selected bookmarks ? <br/>This request can not be cancelled when started!')
         .then(function() {
           // code moved into function so other batch functions may use it
-          $scope.selectionAddTag($scope.multiAction.newTagName);
+          Bookmarkservice.selectionAddTag($scope.multiAction.newTagName, $scope.data.selectedItems);
         }, function() {
           console.log('modal cancelled.');
         });
       } else {
         Modalservice.alert('', 'no new tag name was given!');
       }
-
     };
+
+    // this method serves to color the selection action button depending on the 'severity'
+    // of the selected action.
 
     $scope.changeMultiAction = function() {
       if($scope.multiAction.selectedAction === '') {
@@ -286,7 +221,7 @@ angular.module('pinboredWebkitApp')
     $scope.executeMultiAction = function() {
       console.log('executing action: ' + $scope.multiAction.selectedAction);
       if(!Utilservice.isEmpty($scope.multiAction.selectedAction)) {
-        // new method:
+        // execute the selected multi action method:
         console.log('method call: ' + 'multi' + Utilservice.capitalize($scope.multiAction.selectedAction));
         $scope['multi' + Utilservice.capitalize($scope.multiAction.selectedAction)]();
       }
@@ -302,7 +237,7 @@ angular.module('pinboredWebkitApp')
 
     $scope.reload = function() {
       
-      // set some stuff
+      // set some stupid local state
       $scope.data.isLoading = true;
       $scope.data.items = [];
       $scope.filteredList = [];
@@ -311,20 +246,9 @@ angular.module('pinboredWebkitApp')
 
       $scope.cancelCurrentOperations();
 
-      var loader = function(loadType, args) {
-        if(loadType === 'recent') { 
-          // get recent bookmarks
-          return Pinboardservice.getRecentBookmarks(args);
-        }
-        if(loadType === 'all') { 
-          // get all bookmarks
-          return Pinboardservice.getAllBookmarks(args);
-        }
-      };
-      
-      loader($scope.data.loadType, $scope.config.maxItems).then(function(result) {
+      Bookmarkservice.loadBookmarks($scope.data.loadType, $scope.config.maxItems).then(function(result) {
           $scope.data.isLoading = false;
-          $scope.createBookmarks(result);
+          $scope.data.items = Bookmarkservice.createBookmarkObjects(result);
           $scope.updateFiltersPaging();
           Appstatusservice.updateStatus($scope.data.loadType +' bookmarks loaded.');
         }, function(reason) {
@@ -334,53 +258,24 @@ angular.module('pinboredWebkitApp')
 
     };
 
+
     $scope.repopulateBookmarks = function() {
       if($scope.data.items.length === 0) {
-        // console.log('checking if stored bookmark set exists...');
         // check if they are cached in service.
-        var isEmpty = (Object.keys(Usersessionservice.storedBookmarks).length) === 0 ? true : false;
-        // console.log("are cached bookmarks empty? " + isEmpty);
+        var isEmpty = (Object.keys(Bookmarkservice.storedBookmarkData).length) === 0 ? true : false;
 
         if(!isEmpty) {
-          // console.log('cached bookmarks exist.');
-          if(Usersessionservice.storedBookmarks.length > 0) {
+          if(Bookmarkservice.storedBookmarkData.length > 0) {
             Appstatusservice.updateStatus('retrieving cached bookmarks...');
             $scope.data.isLoading = false;
-            $scope.createBookmarks(Usersessionservice.storedBookmarks);
+            $scope.data.items = Bookmarkservice.createBookmarkObjects(Bookmarkservice.storedBookmarkData);
             $scope.updateFiltersPaging();
             Appstatusservice.updateStatus('cached bookmarks retrieved.');
           }
         } else {
-          // request recent bookmarks if there are none loaded yet.
           $scope.reload();
         }
       }
-    };
-
-    $scope.createBookmarks = function(pinboardData) {
-      // console.info(pinboardData);
-      var bookmarks = [];
-      for(var i=0; i<pinboardData.length; i++) {
-        var bmdata = pinboardData[i];
-        var bookMark = {
-          status: {
-            selected : false,
-            showEdit : false,
-            hasChanged : false,
-            staleness : 'unknown'
-          },
-          data: bmdata
-        };
-        bookmarks.push(bookMark);
-      }
-
-      // console.info(bookmarks);
-
-      // cache bookmarks in usersession
-      Usersessionservice.storeBookmarks(pinboardData);
-
-      // and store in scope
-      $scope.data.items = bookmarks;
     };
 
 
@@ -407,12 +302,16 @@ angular.module('pinboredWebkitApp')
       $scope.updateFiltersPaging();
     };
 
+    // this method is essentially a manual debounce for filtering.
+    // debounce was apparently added in Angular 1.3 but why change
+    // a winning team? naively thinking, most likely, Angular itself 
+    // will use a similar approach anyway.
+
     $scope.updateFiltersPaging = function() {
       // if the textFilterPromise exists, cancel it:
       if($scope.filter.textFilterTimeout !== null) {
         $timeout.cancel($scope.filter.textFilterTimeout);
       }
-
       // create new $timeout promise to apply filters and update the paging
       $scope.filter.textFilterTimeout = $timeout(function() {
         $scope.applyFilters();
@@ -433,58 +332,6 @@ angular.module('pinboredWebkitApp')
       $scope.data.filteredList = fulltextFilter($scope.data.items, word);
       $scope.data.filteredList = tagsFilter($scope.data.filteredList, tags, logicType);
     };
-
-
-
-
-    // INDIVIDUAL BOOKMARK OPERATIONS
-
-
-
-
-    $scope.deleteBookmark = function (bookmarkItem) {
-      var responseFailed = function(message) {
-        Appstatusservice.updateStatus('Failed to delete bookmark: ' + message + '.', 0, 0, 'danger');
-      };
-
-      Pinboardservice.deleteBookmark(bookmarkItem.data.href)
-        .then(function(result) {
-          if(result.result_code === 'done') {
-            console.log('delete request completed.');
-            Utilservice.removeItemFromCollection('hash', bookmarkItem.data.hash, $scope.data.items);
-            Appstatusservice.updateStatus('deleted bookmark, hash: ' + bookmarkItem.data.hash + '.');
-          } else {
-            responseFailed(result);
-          }
-        }, function(reason) {
-          responseFailed(reason);
-        });
-    };
-
-    $scope.staleCheckBookmark = function(bookmark) {
-      bookmark.status.staleness = 'checking';
-      Pinboardservice.checkUrl(bookmark.data.href)
-      .then(function(result) {
-        if(result === 200) {
-          console.info('bookmarkitem healthy! ' + result);
-          bookmark.status.staleness = 'healthy';
-        } else {
-          console.info('bookmarkitem STALE! ' + result);
-          bookmark.status.staleness = 'dead';
-        }
-      }, function(reason) {
-        console.info('bookmarkitem STALE! ' + reason);
-        bookmark.status.staleness = 'dead';
-      });
-    };
-
-
-
-
-    // EOF INDIVIDUAL BOOKMARK OPERATIONS
-
-
-
 
     $scope.clearSelectedItems = function() {
       if($scope.data.selectedItems.length > 0) {

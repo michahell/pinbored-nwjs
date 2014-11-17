@@ -8,7 +8,7 @@
  */
 angular.module('pinboredWebkitApp')
   .controller('BookmarkItemCtrl', function ($scope, 
-    Usersessionservice, Pinboardservice, Appstatusservice, Modalservice) {
+    Usersessionservice, Pinboardservice, Appstatusservice, Modalservice, Bookmarkservice) {
 
     try {
       var gui = require('nw.gui');
@@ -271,7 +271,7 @@ angular.module('pinboredWebkitApp')
       Modalservice.confirm('', 'Delete this bookmark ?')
       .then(function(){
         // call method in parent scope
-        $scope.deleteBookmark($scope.item);
+        Bookmarkservice.deleteBookmark($scope.item, $scope.data.items);
       }, function() {
         console.log('modal cancelled.');
       });
@@ -281,7 +281,7 @@ angular.module('pinboredWebkitApp')
     $scope.staleCheck = function(bookmark) {
       // console.log(bookmark);
       // $scope.cancelCurrentOperations();
-      $scope.staleCheckBookmark(bookmark);
+      Bookmarkservice.staleCheckBookmark(bookmark);
     };
 
     $scope.openBookmark = function(href) {
