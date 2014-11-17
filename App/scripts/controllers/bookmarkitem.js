@@ -183,7 +183,7 @@ angular.module('pinboredWebkitApp')
     };
 
     $scope.toggleEdit = function() {
-      $scope.cancelCurrentOperations($scope.item);
+      // $scope.cancelCurrentOperations($scope.item);
       console.log('toggle edit clicked');
       if($scope.item.status.showEdit) {
         $scope.closeEditing();

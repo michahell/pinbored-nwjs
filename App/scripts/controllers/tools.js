@@ -7,7 +7,8 @@
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('ToolsCtrl', function ($scope, $location, Usersessionservice, Appstatusservice) {
+  .controller('ToolsCtrl', function ($scope, $location, 
+    Usersessionservice, Appstatusservice, Bookmarkservice) {
     
     // if not authenticated, redirect to login page
     if (Usersessionservice.isAuthenticated() === false) {
@@ -36,15 +37,15 @@ angular.module('pinboredWebkitApp')
     $scope.loadCachedBookmarks = function() {
       console.log('checking if stored bookmark set exists...');
       // check if they are cached in service.
-      var isEmpty = (Object.keys(Usersessionservice.storedBookmarks).length) === 0 ? true : false;
+      var isEmpty = (Object.keys(Bookmarkservice.storedBookmarkData).length) === 0 ? true : false;
       console.log("are cached bookmarks empty? " + isEmpty);
 
       if(isEmpty === false) {
         // console.log('cached bookmarks exist.');
-        if(Usersessionservice.storedBookmarks.length > 0) {
+        if(Bookmarkservice.storedBookmarkData.length > 0) {
           Appstatusservice.updateStatus('retrieving cached bookmarks...');
           $scope.duplicatecheck.isLoading = false;
-          $scope.duplicatecheck.bookmarks = Usersessionservice.storedBookmarks;
+          $scope.duplicatecheck.bookmarks = Bookmarkservice.storedBookmarkData;
           Appstatusservice.updateStatus('cached bookmarks retrieved.');
         }
       } else {
@@ -84,29 +85,34 @@ angular.module('pinboredWebkitApp')
         return duplicates;
       };
       
-      // check for duplicate urls
-      Appstatusservice.updateStatus('checking for duplicate urls...');
-      // check name duplicate function
+      // check for duplicate names
       var checkHrefDuplicates = function(bookmark, otherBookmark) {
         return bookmark.href === otherBookmark.href;
       };
       
       // check for duplicate names
-      Appstatusservice.updateStatus('checking for duplicate names...');
       var checkNameDuplicates = function(bookmark, otherBookmark) {
         return bookmark.description === otherBookmark.description;
       };
 
       // check for duplicate descriptions
-      Appstatusservice.updateStatus('checking for duplicate descriptions...');
       var checkDescriptionDuplicates = function(bookmark, otherBookmark) {
         return (bookmark.extended !== '' && otherBookmark.extended !== '' && bookmark.extended !== ' ' && bookmark.extended !== ' ' && bookmark.extended === otherBookmark.extended);
       };
 
       // make it so. Execute aaaaalll the tests!
-      $scope.duplicatecheck.duplicates.href = doublyIterate($scope.duplicatecheck.bookmarks, checkHrefDuplicates);
-      $scope.duplicatecheck.duplicates.name = doublyIterate($scope.duplicatecheck.bookmarks, checkNameDuplicates);
-      $scope.duplicatecheck.duplicates.extended = doublyIterate($scope.duplicatecheck.bookmarks, checkDescriptionDuplicates);
+      // $scope.duplicatecheck.duplicates.href = doublyIterate($scope.duplicatecheck.bookmarks, checkHrefDuplicates);
+      // $scope.duplicatecheck.duplicates.name = doublyIterate($scope.duplicatecheck.bookmarks, checkNameDuplicates);
+      // $scope.duplicatecheck.duplicates.extended = doublyIterate($scope.duplicatecheck.bookmarks, checkDescriptionDuplicates);
+
+      $scope.duplicatecheck.duplicates.href = Bookmarkservice.createBookmarkObjects(
+        doublyIterate($scope.duplicatecheck.bookmarks, checkHrefDuplicates));
+
+      $scope.duplicatecheck.duplicates.name = Bookmarkservice.createBookmarkObjects(
+        doublyIterate($scope.duplicatecheck.bookmarks, checkNameDuplicates));
+
+      $scope.duplicatecheck.duplicates.extended = Bookmarkservice.createBookmarkObjects(
+        doublyIterate($scope.duplicatecheck.bookmarks, checkDescriptionDuplicates));
 
       console.info($scope.duplicatecheck.duplicates.href);
       console.info($scope.duplicatecheck.duplicates.name);

@@ -18,7 +18,7 @@ angular.module('pinboredWebkitApp')
     this.storedBookmarkData = {};
 
     this.storeBookmarkData = function(pinboardData) {
-      self.storedBookmarkData = pinboardData;
+      this.storedBookmarkData = pinboardData;
     };
 
 
