@@ -41,12 +41,24 @@ Download binaries
 
 Can be downloaded on the project page:  http://michahell.github.io/pinbored-webkit/#binary-downloads
 
-Disclaimer
-==========
+Running the app using node-webkit
+=================================
 
-Additional to the MIT license it is important that you know and understand the following:
+If you have node-webkit installed, you can use the following command in the root of the project dir to just run the app using the latest version:
+```
+$ <node-webkit executable location> <location of pinbored-webkit> App/
+```
 
-*all requests performed by the application to the Pinboard API are sequences of consecutive, single operation REST requests and are not transactions with rollback history like in SQL transactions. They are 'destructive operations' by nature (that means no undo! Future versions might support custom undo history and functionality if so desired)* 
+In my case, this is:
+```
+$ /Applications/node-webkit.app/Contents/MacOS/node-webkit ~/prog/angular/pinbored-webkit/App/
+```
+
+Or, if you have the **nw** alias configured:
+
+```
+$ nw /App
+```
 
 Building
 ========
@@ -87,6 +99,12 @@ npm test isn't used since the same gruntfile is used for Travis, which cannot bu
 * Also, on Ubuntu version 14.x.x and up there is a [libudev.so.0 issue](https://www.exponential.io/blog/install-node-webkit-on-ubuntu-linux) but following the guide and thus installing node-webkit outside of npm works flawlessly.
 * And finally, for some reason, the grunt-bowercopy task needs npm module 'esprima' on Ubuntu. Since on OSX that module is not needed, just installing it suffices: ```$ npm install esprima ```.
 
+Disclaimer
+==========
+
+Additional to the MIT license it is important that you know and understand the following:
+
+*all requests performed by the application to the Pinboard API are sequences of consecutive, single operation REST requests and are not transactions with rollback history like in SQL transactions. They are 'destructive operations' by nature (that means no undo! Future versions might support custom undo history and functionality if so desired)* 
 
 Roadmap
 =======
