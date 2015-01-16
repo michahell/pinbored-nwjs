@@ -19,7 +19,8 @@ angular
     'ui.bootstrap',
     'ui.splash',
     'angular-bootstrap-select',
-    'angular-bootstrap-select.extra'
+    'angular-bootstrap-select.extra',
+    'gridster'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -40,8 +41,9 @@ angular
         controller: 'TagsCtrl'
       })
       .when('/tools', {
-        templateUrl: 'views/tools.html',
-        controller: 'ToolsCtrl'
+        // templateUrl: 'views/tools.html',
+        // controller: 'ToolsCtrl'
+        redirectTo: '/'
       })
       .when('/settings', {
         templateUrl: 'views/settings.html',

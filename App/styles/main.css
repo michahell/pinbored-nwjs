@@ -1075,15 +1075,14 @@ small, .small {
 
 /* TAGS VIEW */
 
+#tags .hiddeninputs {
+  margin: 0px;
+}
 
 .tagbox {
-  min-width: 335px;
-  margin-top: 2px;
-  margin-left: 2px;
   padding: 5px;
-  height: auto;
   background: #2C3E50;
-  float: left;
+  height: 100%;
 }
 
 .tag-options {

@@ -1,5 +1,5 @@
 
-<div class="tagbox pull-left">
+<div class="tagbox">
   
   <div class="row">
 
@@ -16,15 +16,43 @@
 
   <div class="row tag-options">
     <div class="col-xs-12">
-      
-        <button type="button" class="btn btn-inverse btn-xs" ng-click="selectTagUnique(item)">
-          <!-- tooltip-placement="top"
-          tooltip="if you want to know which bookmarks only have this tag and no other tags." -->
-          show bookmarks uniquely tagged
+        
+        <button type="button" class="btn btn-inverse btn-xs" ng-click="toggleTagOptions()">
+          edit tag
+        </button>
+
+        <button type="button" class="btn btn-inverse btn-xs" ng-click="foldTag(item)">
+          combine into
         </button>
 
         <button type="button" class="btn btn-inverse btn-xs" ng-click="deleteTag(item)">
           delete tag
+        </button>
+
+    </div>
+  </div>
+
+  <div class="row tag-options" ng-hide="status.hidden">
+    <div class="col-xs-12">
+        
+        <div class="form-group">
+          <input ng-model="item.tagname" class="form-control hiddeninputs input-sm col-xs-4" type="text" stop-event>
+        </div>
+
+    </div>
+  </div>
+
+  <div class="row tag-options" ng-hide="status.hidden">
+    <div class="col-xs-12">
+        
+        <button type="button" class="btn btn-wide btn-warning btn-xs pull-left" 
+        ng-click="revertChanges(item)" ng-class="{disabled: status.hasChanged === false}">
+          revert changes
+        </button>
+
+        <button type="button" class="btn btn-wide btn-success btn-xs pull-right"
+        ng-click="saveChanges(item)" ng-class="{disabled: status.hasChanged === false}">
+          save changes
         </button>
 
     </div>

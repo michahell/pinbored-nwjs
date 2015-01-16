@@ -34,8 +34,15 @@
   <div class="section" id="list">
     
     <div class="list-wrapper" ng-class="{fullheight: data.tags.length > 0}">
-      <div ng-controller="TagItemCtrl" ng-click="selectItem()" ng-include src="'views/tagitem.html'"
-      ng-repeat="item in data.tags | orderBy:'occurrences' | offset: (paging.current - 1) * config.itemsPerPage | limitTo: config.itemsPerPage" />
+
+      <div gridster="gridsterOpts">
+        <ul>
+            <li gridster-item="item"
+            ng-repeat="item in data.wrappedTags | orderBy:'occurrences' | offset: (paging.current - 1) * config.itemsPerPage | limitTo: config.itemsPerPage" 
+            ng-controller="TagItemCtrl" ng-include src="'views/tagitem.html'"></li>
+        </ul>
+      </div>
+
     </div>
 
     <div class="listBackgroundMessage">

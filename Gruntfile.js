@@ -31,10 +31,10 @@ module.exports = function(grunt) {
           'flat-ui/dist/fonts/lato/lato-regular.woff': 'flat-ui/dist/fonts/lato/lato-regular.woff',
           'flat-ui/dist/fonts/lato/lato-light.woff': 'flat-ui/dist/fonts/lato/lato-light.woff',
           'flat-ui/dist/fonts/lato/lato-bold.woff': 'flat-ui/dist/fonts/lato/lato-bold.woff',
-          // 'flat-ui/dist/fonts/lato/lato-regular.svg#latoregular': 'flat-ui/dist/fonts/lato/lato-regular.svg#latoregular',
           'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.woff': 'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.woff',
-          // 'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.svg#flat-ui-icons-regular': 'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.svg#flat-ui-icons-regular',
           'bootstrap/dist/fonts/glyphicons-halflings-regular.woff': 'bootstrap/dist/fonts/glyphicons-halflings-regular.woff',
+          // 'flat-ui/dist/fonts/lato/lato-regular.svg#latoregular': 'flat-ui/dist/fonts/lato/lato-regular.svg#latoregular',
+          // 'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.svg#flat-ui-icons-regular': 'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.svg#flat-ui-icons-regular',
           // 'bootstrap/dist/fonts/glyphicons-halflings-regular.svg': 'bootstrap/dist/fonts/glyphicons-halflings-regular.svg',
           // 'bootstrap/dist/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular': 'bootstrap/dist/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular',
 
@@ -45,6 +45,7 @@ module.exports = function(grunt) {
           'bootstrap-select/dist/css/bootstrap-select.css': 'bootstrap-select/dist/css/bootstrap-select.css',
           'flat-ui/dist/css/flat-ui.css': 'flat-ui/dist/css/flat-ui.css',
           'stroll/css/stroll.min.css': 'stroll/css/stroll.min.css',
+          'angular-gridster/dist/angular-gridster.min.css': 'angular-gridster/dist/angular-gridster.min.css',
 
           // JS
           'jquery/dist/jquery.js': 'jquery/dist/jquery.js',
@@ -60,6 +61,9 @@ module.exports = function(grunt) {
           'angular-touch/angular-touch.js': 'angular-touch/angular-touch.js',
           'angular-animate/angular-animate.js': 'angular-animate/angular-animate.js',
           'angular-mocks/angular-mocks.js': 'angular-mocks/angular-mocks.js',
+
+          'javascript-detect-element-resize/jquery.resize.js': 'javascript-detect-element-resize/jquery.resize.js',
+          'angular-gridster/src/angular-gridster.js': 'angular-gridster/src/angular-gridster.js',
 
           'ng-tags-input/ng-tags-input.min.js': 'ng-tags-input/ng-tags-input.min.js',
           'bootstrap-select/dist/js/bootstrap-select.js': 'bootstrap-select/dist/js/bootstrap-select.js',
@@ -162,6 +166,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-open');
   // grunt.loadNpmTasks('grunt-traceur');
+
+  // updating task(s)
+  grunt.registerTask('update', ['bowercopy']);
 
   // testing task(s)
   // grunt.registerTask('test', ['karma', 'open:report']);
