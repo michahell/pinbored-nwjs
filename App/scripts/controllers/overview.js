@@ -42,7 +42,7 @@ angular.module('pinboredWebkitApp')
     };
 
     $scope.filter = {
-      textFilterDelay : 750,
+      filterDelay : 750,
       textFilterTimeout : null,
       text : '',
       tags : []
@@ -169,8 +169,12 @@ angular.module('pinboredWebkitApp')
 
 
 
+    
+    $scope.forceReload = function() {
+      $scope.reload($scope.data.loadType);
+    };
 
-    $scope.reload = function() {
+    $scope.reload = function(loadType) {
       
       // set some stupid local state
       $scope.data.isLoading = true;
@@ -181,35 +185,43 @@ angular.module('pinboredWebkitApp')
 
       $scope.cancelCurrentOperations();
 
-      Bookmarkservice.loadBookmarks($scope.data.loadType, $scope.config.maxItems).then(function(result) {
+      Bookmarkservice.loadBookmarks(loadType, $scope.config.maxItems).then(function(result) {
           $scope.data.isLoading = false;
           $scope.data.items = Bookmarkservice.createBookmarkObjects(result);
           $scope.updateFiltersPaging();
-          Appstatusservice.updateStatus($scope.data.loadType +' bookmarks loaded.');
+          Appstatusservice.updateStatus(loadType +' bookmarks loaded.');
         }, function(reason) {
           console.error('Failed: ' + reason);
-          Appstatusservice.updateStatus($scope.data.loadType +' bookmarks failed to load.');
+          Appstatusservice.updateStatus(loadType +' bookmarks failed to load.');
         });
 
     };
 
 
     $scope.repopulateBookmarks = function() {
-      if($scope.data.items.length === 0) {
-        // check if they are cached in service.
-        var isEmpty = (Object.keys(Bookmarkservice.storedBookmarkData).length) === 0 ? true : false;
+      var tempLoadType;
 
-        if(!isEmpty) {
-          if(Bookmarkservice.storedBookmarkData.length > 0) {
-            Appstatusservice.updateStatus('retrieving cached bookmarks...');
-            $scope.data.isLoading = false;
-            $scope.data.items = Bookmarkservice.createBookmarkObjects(Bookmarkservice.storedBookmarkData);
-            $scope.updateFiltersPaging();
-            Appstatusservice.updateStatus('cached bookmarks retrieved.');
-          }
-        } else {
-          $scope.reload();
+      // temp loadType substitution
+      if(Bookmarkservice.hasFilterBuffer()) {
+        tempLoadType = 'filtered';
+        return $scope.reload(tempLoadType);
+      } else {
+        tempLoadType = $scope.data.loadType;
+      }
+
+      // check if there are cached bookmarks.
+      var hasCachedBookmarks = !(Utilservice.objectSize(Bookmarkservice.storedBookmarkData) === 0 ? true : false);
+
+      if(hasCachedBookmarks) {
+        if(Bookmarkservice.storedBookmarkData.length > 0) {
+          Appstatusservice.updateStatus('retrieving cached bookmarks...');
+          $scope.data.isLoading = false;
+          $scope.data.items = Bookmarkservice.createBookmarkObjects(Bookmarkservice.storedBookmarkData);
+          $scope.updateFiltersPaging();
+          Appstatusservice.updateStatus('cached bookmarks retrieved.');
         }
+      } else {
+        $scope.reload(tempLoadType);
       }
     };
 
@@ -220,6 +232,27 @@ angular.module('pinboredWebkitApp')
 
 
 
+
+    $scope.applyFilterBuffer = function() {
+      if(Bookmarkservice.hasFilterBuffer()) {
+        // add filter buffer tags
+        for(var i=0; i<Bookmarkservice.filterBuffer.tags.length; i++) {
+          var filterBufferTag = Bookmarkservice.filterBuffer.tags[i];
+          $scope.filter.tags.push(filterBufferTag);
+        }
+        // set tag uniqueness (only those tags and no others)
+        $scope.config.tagFilterType = Bookmarkservice.filterBuffer.tagFilterType;
+
+        // add filter buffer text
+        $scope.filter.text = Bookmarkservice.filterBuffer.text;
+
+        // clear the filter buffer
+        Bookmarkservice.clearFilterBuffer();
+
+        // and update filters!
+        $scope.updateFiltersPaging();
+      }
+    };
 
     $scope.checkMaxTags = function() {
       if($scope.filter.tags.length > $scope.config.maxTagSearch) {
@@ -251,7 +284,7 @@ angular.module('pinboredWebkitApp')
       $scope.filter.textFilterTimeout = $timeout(function() {
         $scope.applyFilters();
         $scope.updatePaging();
-      }, $scope.filter.textFilterDelay);
+      }, $scope.filter.filterDelay);
     };
 
     $scope.updatePaging = function() {
@@ -300,6 +333,13 @@ angular.module('pinboredWebkitApp')
       $scope.multiAction.show = false;
     };
 
+    $scope.$on("$destroy", function() {
+      if ($scope.filter.textFilterTimeout !== null) {
+        $timeout.cancel($scope.filter.textFilterTimeout);
+        $scope.filter.textFilterTimeout = null;
+      }
+    });
+
 
 
 
@@ -309,10 +349,13 @@ angular.module('pinboredWebkitApp')
     
 
     // update current page
-    Usersessionservice.setCurrentPage('overview');
+    Usersessionservice.setCurrentSection('overview');
 
     // repopulate bookmark items.
     $scope.repopulateBookmarks();
+
+    // and filter them, if there is any filterBuffer
+    $scope.applyFilterBuffer();
 
     // for debugging reasons
     window.$scope = $scope;

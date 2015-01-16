@@ -31,7 +31,7 @@ angular
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
       })
-      .when('/main', {
+      .when('/overview', {
         templateUrl: 'views/overview.html',
         controller: 'OverviewCtrl'
       })

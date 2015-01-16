@@ -1,0 +1,33 @@
+
+<div class="tagbox pull-left">
+  
+  <div class="row">
+
+    <div class="col-xs-6">
+      <span class="pull-left label label-success clickabletag" 
+      ng-click="selectTag(item)">{{item.tagname}}</span>
+    </div>
+
+    <div class="col-xs-6">
+      <small class="pull-right info">{{item.occurrences}}</small>
+    </div>
+
+  </div>
+
+  <div class="row tag-options">
+    <div class="col-xs-12">
+      
+        <button type="button" class="btn btn-inverse btn-xs" ng-click="selectTagUnique(item)">
+          <!-- tooltip-placement="top"
+          tooltip="if you want to know which bookmarks only have this tag and no other tags." -->
+          show bookmarks uniquely tagged
+        </button>
+
+        <button type="button" class="btn btn-inverse btn-xs" ng-click="deleteTag(item)">
+          delete tag
+        </button>
+
+    </div>
+  </div>
+
+</div>

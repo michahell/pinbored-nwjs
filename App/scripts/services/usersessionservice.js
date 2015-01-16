@@ -16,15 +16,21 @@ angular.module('pinboredWebkitApp')
     this.apikey = '';
 
     // app session related
-    this.currentPage = '';
+    this.currentSection = '';
+    this.pageHistory = {
+      overview : {},
+      tags : {
+        currentPage : null
+      }
+    };
 
     // temp ref
     var self = this;
 
-    this.setCurrentPage = function(newCurrentPage) {
-      this.currentPage = newCurrentPage;
+    this.setCurrentSection = function(newCurrentSection) {
+      this.currentSection = newCurrentSection;
       // notify listeners and provide the data that changed
-      $rootScope.$broadcast('user:pagechange', this.currentPage);
+      $rootScope.$broadcast('user:pagechange', this.currentSection);
     };
 
     this.setAuthenticated = function(username, apikey) {
@@ -66,7 +72,7 @@ angular.module('pinboredWebkitApp')
       // destroy all session variables
       this.user = '';
       this.apikey = '';
-      this.currentPage = '';
+      this.currentSection = '';
 
       // destroy in memory cached bookmarks
       this.storedBookmarks = {};

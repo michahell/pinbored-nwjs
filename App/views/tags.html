@@ -5,45 +5,43 @@
     <h6>Tags</h6>
 
     <div class="col-xs-3">
-      <button class="btn btn-primary btn-xs" type="submit" ng-click="reload()">reload</button>
+      <button class="btn btn-primary btn-xs" type="submit" ng-click="repopulateTags()">reload</button>
     </div>
 
-    <!-- <div class="minitoolbar col-xs-7 pull-right text-right">
-      
-      <div class="col pull-right text-right">
-        <flatui-switch model="config.showTagActions" square=""></flatui-switch>
-        <label class="share-label" for="showTags">tag actions</label>
+    <div class="col-xs-6 pull-right text-right">
+      <div class="btn-group">
+        <label class="btn btn-primary btn-sm" ng-model="config.showPager" btn-checkbox>paging</label>
       </div>
-      <div class="col pull-right text-right">
-        <flatui-switch model="config.showSearch" square=""></flatui-switch>
-        <label class="share-label" for="showSearch">fulltext filter</label>
-      </div>
-    </div> -->
+    </div>
 
   </div>
 
   <div class="bar-wrapper clearfix">
-        
+
+    <!-- screen pagination -->
+    <div class="bar" id="pages" ng-show="config.showPager">
+      <div class="bar-container" ng-show="config.showPager">
+        <pagination total-items="paging.total" items-per-page="config.itemsPerPage" 
+        ng-model="paging.current" max-size="paging.numPageButtons" 
+        boundary-links="true"></pagination>
+        <!-- pagination-sm -->
+      </div>
+    </div>
+    
   </div>
 
   <!-- bookmark items list -->
   <div class="section" id="list">
-
-    <!-- <div class="list-wrapper" ng-class="{fullheight: data.filteredList.length > 0}"> -->
-      <!-- screen list group -->
-      <ul class="list-group">
-        <li ng-repeat="item in data.filteredList"
-        class="list-group-item" ng-class="{selected: item.status.selected || item.status.showEdit}" 
-        ng-controller="BookmarkItemCtrl" ng-click="selectItem()">
-          <div ng-include src="'views/BookmarkItem.html'"></div>
-        </li>
-      </ul>
-
+    
+    <div class="list-wrapper" ng-class="{fullheight: data.tags.length > 0}">
+      <div ng-controller="TagItemCtrl" ng-click="selectItem()" ng-include src="'views/tagitem.html'"
+      ng-repeat="item in data.tags | orderBy:'occurrences' | offset: (paging.current - 1) * config.itemsPerPage | limitTo: config.itemsPerPage" />
     </div>
 
     <div class="listBackgroundMessage">
-      <h5>NO BOOKMARKS FOUND.</h5>
+      <h5>NO TAGS FOUND.</h5>
     </div>
+
   </div>
 
 </div>

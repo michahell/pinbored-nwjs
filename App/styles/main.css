@@ -529,33 +529,6 @@ small, .small {
   margin-bottom: 0px;
 }
 
-#overview .clickabletag {
-  margin-right: 5px;
-  background-color: #27AE60;
-  color: #2C3E50;
-  cursor: pointer;
-  -webkit-transition: 0.2s ease-out all;
-  transition: 0.2s ease-out all;
-}
-
-#overview .clickabletag:hover {
-  /*background-color: #2ECC71;*/
-  /*background-color: #4DCC7D;*/
-  /*background-color: #4DCC6C;*/
-  background-color: #69CC83;
-  color: #34495E;
-}
-
-#overview .highlightedtag {
-  background-color: #F39C12;
-  color: #2C3E50;
-}
-
-#overview .highlightedtag:hover {
-  background-color: #F1C40F;
-  color: #34495E;
-}
-
 #overview .tagsinput {
   background: transparent;
   border: none;
@@ -1066,4 +1039,57 @@ small, .small {
 
 #list > .list-duplicates h6 {
   color: yellow;
+}
+
+
+/* INDIVIDUAL TAG ITEM */
+
+
+.clickabletag {
+  margin-right: 5px;
+  background-color: #27AE60;
+  color: #2C3E50;
+  cursor: pointer;
+  -webkit-transition: 0.2s ease-out all;
+  transition: 0.2s ease-out all;
+}
+
+.clickabletag:hover {
+  /*background-color: #2ECC71;*/
+  /*background-color: #4DCC7D;*/
+  /*background-color: #4DCC6C;*/
+  background-color: #69CC83;
+  color: #34495E;
+}
+
+.highlightedtag {
+  background-color: #F39C12;
+  color: #2C3E50;
+}
+
+.highlightedtag:hover {
+  background-color: #F1C40F;
+  color: #34495E;
+}
+
+
+/* TAGS VIEW */
+
+
+.tagbox {
+  min-width: 335px;
+  margin-top: 2px;
+  margin-left: 2px;
+  padding: 5px;
+  height: auto;
+  background: #2C3E50;
+  float: left;
+}
+
+.tag-options {
+  margin-top: 5px;
+}
+
+.info {
+  color: white;
 }

@@ -37,6 +37,6 @@ angular.module('pinboredWebkitApp')
     }
 
     // update current page
-    Usersessionservice.setCurrentPage('settings');
+    Usersessionservice.setCurrentSection('settings');
 
   });

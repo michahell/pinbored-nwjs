@@ -15,7 +15,7 @@
 
     <div class="col-xs-1">
       <button class="btn btn-primary btn-sm pull-left" ng-class="{disabled: data.isLoading === true}" 
-      type="submit" ng-click="reload()">reload</button>
+      type="submit" ng-click="forceReload()">reload</button>
     </div>
 
     <div class="col-xs-6 pull-right text-right">
@@ -168,5 +168,7 @@
     <div class="listBackgroundMessage">
       <h5>NO BOOKMARKS FOUND.</h5>
     </div>
+    
+  </div>
 
 </div>

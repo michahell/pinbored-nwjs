@@ -121,6 +121,6 @@ angular.module('pinboredWebkitApp')
     }
 
     // update current page
-    Usersessionservice.setCurrentPage('tools');
+    Usersessionservice.setCurrentSection('tools');
 
   });

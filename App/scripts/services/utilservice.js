@@ -18,6 +18,10 @@ angular.module('pinboredWebkitApp')
       return result;
     };
 
+    this.objectSize = function(object) {
+      return Object.keys(object).length;
+    };
+
     this.capitalize = function(string) {
       return string.charAt(0).toUpperCase() + string.substr(1);
     };

@@ -300,6 +300,7 @@ angular.module('pinboredWebkitApp')
 
     this.deleteTag = function() { // arg: tag
       // 'tags/delete'
+      console.warn('DELETE TAG CALLED : IMPLEMENTATION NEEDED!');
     };
 
     /* =================== CUSTOM REQUESTS ==================== */

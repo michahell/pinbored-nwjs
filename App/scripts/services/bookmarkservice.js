@@ -7,12 +7,18 @@
  * Service in the pinboredWebkitApp.
  */
 angular.module('pinboredWebkitApp')
-  .service('Bookmarkservice', function Bookmarkservice(Pinboardservice, Appstatusservice, 
-    Usersessionservice, Utilservice) {
+  .service('Bookmarkservice', function Bookmarkservice($rootScope, $filter, 
+    Pinboardservice, Appstatusservice, Usersessionservice, Utilservice) {
     // AngularJS will instantiate a singleton by calling 'new' on this function
 
 
 
+
+    // filter buffer
+    this.filterBuffer = {};
+
+    // filter buffer watcher
+    this.filterBufferWatcher;
 
     // in memory cached bookmarks
     this.storedBookmarkData = {};
@@ -29,14 +35,38 @@ angular.module('pinboredWebkitApp')
 
 
 
-    this.loadBookmarks = function(loadType, args) {
-      if(loadType === 'recent') { 
-        // get recent bookmarks
-        return Pinboardservice.getRecentBookmarks(args);
+    this.recreateFilterBuffer = function() {
+      console.log('recreating filter buffer...');
+      // temp self reference
+      self = this;
+      // declare filter buffer
+      this.filterBuffer = {
+        hasBuffer : false,
+        tagFilterType : false,
+        tags : [],
+        text : ''
+      };
+    };
+
+    this.hasFilterBuffer = function() {
+      console.log('hasFilterBuffer ? ' + this.filterBuffer.hasBuffer);
+      return this.filterBuffer.hasBuffer;
+    };
+
+    this.clearFilterBuffer = function() {
+      console.log('clearing filter buffer...');
+      // and recreate filter buffer
+      this.recreateFilterBuffer();
+    };
+
+    this.loadBookmarks = function(loadType, amount) {
+      if(loadType === 'recent') {
+        // get (amount of) recent bookmarks
+        return Pinboardservice.getRecentBookmarks(amount);
       }
-      if(loadType === 'all') { 
+      if(loadType === 'all' || loadType === 'filtered') {
         // get all bookmarks
-        return Pinboardservice.getAllBookmarks(args);
+        return Pinboardservice.getAllBookmarks();
       }
     };
 
@@ -248,5 +278,15 @@ angular.module('pinboredWebkitApp')
         bookmark.status.staleness = 'dead';
       });
     };
+
+
+
+
+    // SETUP AND INITIALISATION
+
+
+
+
+    this.recreateFilterBuffer();
 
   });

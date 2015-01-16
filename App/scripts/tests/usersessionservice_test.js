@@ -43,7 +43,7 @@ describe('user session service', function() {
   });
 
   it('should set current page', function() {
-    Usersessionservice.setCurrentPage(3);
+    Usersessionservice.setCurrentSection(3);
     expect(rootScope.$broadcast).toHaveBeenCalledWith('user:pagechange', 3);
   });
 
