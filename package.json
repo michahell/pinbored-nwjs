@@ -23,7 +23,6 @@
     "grunt-node-webkit-builder": ">=0.2.3",
     "grunt-open": ">=0.2.3",
     "grunt-shell": ">=1.1.1",
-    "grunt-traceur": "^0.2.10",
     "jshint": ">=2.5.5",
     "karma": ">=0.12.23",
     "karma-coverage": ">=0.2.6",
