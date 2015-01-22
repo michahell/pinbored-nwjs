@@ -38,7 +38,7 @@
       <div gridster="gridsterOpts">
         <ul>
             <li gridster-item="item"
-            ng-repeat="item in data.wrappedTags | orderBy:'occurrences' | offset: (paging.current - 1) * config.itemsPerPage | limitTo: config.itemsPerPage" 
+            ng-repeat="item in data.wrappedTags | orderBy:['occurrences','tagname'] | offset: (paging.current - 1) * config.itemsPerPage | limitTo: config.itemsPerPage" 
             ng-controller="TagItemCtrl" ng-include src="'views/tagitem.html'"></li>
         </ul>
       </div>

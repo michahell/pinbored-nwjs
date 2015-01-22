@@ -39,7 +39,8 @@ angular.module('pinboredWebkitApp')
     };
 
     $scope.removeWatcher = function() {
-      $scope.itemWatcher();
+      if ($scope.itemWatcher !== null)
+        $scope.itemWatcher();
     };
 
     $scope.openTagOptions = function() {
@@ -77,32 +78,58 @@ angular.module('pinboredWebkitApp')
       return;
     };
 
-    $scope.renameTag = function(tag) {
-
+    $scope.renameTag = function(oldTagName, newTagName) {
+      Pinboardservice.renameTag(oldTagName, newTagName)
+        .then(function(result){
+          console.log(result);
+          if(result.result === 'done'){
+            // status update!
+            Appstatusservice.updateStatus('tag renamed.');
+            // close tag options (also removes watcher)
+            $scope.closeTagOptions();
+            // make new original copy
+            $scope.original = angular.copy($scope.item);
+          }
+        }, function(reason) {
+          console.error('renaming tag failed: ' + reason);
+          Appstatusservice.updateStatus('renaming tag failed: ' + reason + '.');
+        });
     };
 
-    $scope.foldTag = function(tag) {
-
+    $scope.foldTag = function(oldTagName, newTagName) {
+      $scope.renameTag(oldTagName, newTagName);
     };
 
-    $scope.deleteTag = function() {
+    $scope.deleteTag = function(tag) {
       Modalservice.confirm('', 'Delete this tag ?')
       .then(function(){
-        // close tag options
-        $scope.closeTagOptions();
         // call method in parent scope
-        Pinboardservice.deleteTag();
+        Pinboardservice.deleteTag(tag.tagname)
+        .then(function(result){
+          // console.log(result);
+          if(result.result === 'done'){
+            // status update!
+            Appstatusservice.updateStatus('tag deleted.');
+            // close tag options (also removes watcher)
+            $scope.closeTagOptions();
+            // delete tag item
+            $scope.$parent.removeTag(tag);
+          }
+        }, function(reason) {
+        console.error('deleting tag failed: ' + reason);
+        Appstatusservice.updateStatus('deleting tag failed: ' + reason + '.');
+        });
       }, function() {
         console.log('modal cancelled.');
       });
     };
 
-    $scope.revertChanges = function() {
-      
+    $scope.revertChanges = function(tag) {
+      $scope.item.tagname = $scope.original.tagname;
     };
 
-    $scope.saveChanges = function() {
-      
+    $scope.saveChanges = function(tag) {
+      $scope.renameTag($scope.original.tagname, tag.tagname);
     };
 
   });

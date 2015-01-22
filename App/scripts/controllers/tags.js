@@ -133,6 +133,11 @@ angular.module('pinboredWebkitApp')
       });
     }
 
+    $scope.removeTag = function(tag) {
+      $scope.data.tags.splice($scope.data.tags.indexOf(tag), 1);
+      $scope.data.wrappedTags.splice($scope.data.wrappedTags.indexOf(tag), 1);
+    }
+
 
 
 
