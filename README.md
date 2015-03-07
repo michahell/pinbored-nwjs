@@ -14,6 +14,8 @@ Pinbored is also on [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://
 Why
 ===
 
+![Bookmark all the things!](http://memegenerator.net/instance/55806052)
+
 Why use a separate bookmark service to manage bookmarks? I have < insert browser > for that?
 
 * Access bookmarks across multiple browsers.
