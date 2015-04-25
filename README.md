@@ -89,11 +89,10 @@ steps
 Caveats
 -------
 *  OSX
-   None!
+   * None!
 *  Windows
-   Unknown. Help me build on windows!
+   * Unknown. Help me build on windows!
 *  Linux
-   Unknown. Help me build on windows!
    * On Ubuntu Linux, which I used to test & build for linux, there can be some hassle getting the 'node' command to work:
    see: https://stackoverflow.com/questions/18130164/nodejs-vs-node-on-ubuntu-12-04/18130296#18130296
    * removing the core node package using apt-get worked for me to get node and npm working together fine.
