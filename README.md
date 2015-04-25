@@ -17,7 +17,7 @@ pinbored-webkit
 [Pinbored](http://michahell.github.io/pinbored-webkit) is a 'native' [Pinboard](https://pinboard.in/) client application built with Node-webkit and AngularJS. Currently only OSX binaries are offered, but that is only because I use OSX myself and have not yet started building on other OSes. See the [abandoned AS3 client version](https://github.com/michahell/pinbored) for more info on the history of this project.
 
 Why
-===
+---
 
 Why use a separate bookmark service to manage bookmarks? I have < insert browser > for that?
 
@@ -37,12 +37,12 @@ The app is aimed at **managing** one's bookmarks, for example after a switch fro
 to Pinboard with some 1000 unmanageable bookmarks.
 
 Screenshots
-===========
+-----------
 
 Can be seen on the project page: http://michahell.github.io/pinbored-webkit/#screenshots
 
 Download binaries
-=================
+-----------------
 
 Can be downloaded on the project page:  http://michahell.github.io/pinbored-webkit/#binary-downloads
 
@@ -104,7 +104,7 @@ Disclaimer
 
 Additional to the MIT license it is important that you know and understand the following:
 
-*all requests performed by the application to the Pinboard API are sequences of consecutive, single operation REST requests and are not transactions with rollback history like in SQL transactions. They are 'destructive operations' by nature (that means no undo! Future versions might support custom undo history and functionality if so desired)* 
+*all requests performed by the application to the Pinboard API are sequences of consecutive, single operation REST requests and are not transactions with rollback history like in SQL transactions. They are 'destructive operations' by nature (that means no undo). Future versions might support custom undo history and functionality. 
 
 Roadmap
 =======
