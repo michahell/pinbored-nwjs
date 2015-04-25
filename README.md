@@ -63,11 +63,9 @@ $ nw /App
 Building from source
 ====================
 
-~~On OSX, somehow the number of max-open files is by default 256. This is too little to build this project,
-so one must set it to allow more. ```ulimit -S -n 4096``` allows 4096 files to be open, i have found this is
-enough. This is because right now, the whole node_modules and bower_components folders are zipped into application bundles, which contain huge amounts of (unused) files.~~
-
-*The above is no longer the case, because the HUGE amount of projectfiles created by bower are removed in a grunt build step and only the ones really used (distribution files) are needed during building, thanks to the awesome [grunt-bowercopy](https://www.npmjs.org/package/grunt-bowercopy) task!*
+quirks
+------
+~~On OSX ```ulimit -S -n 4096``` no longer neccesary due to the  [grunt-bowercopy](https://www.npmjs.org/package/grunt-bowercopy) task.~~
 
 requirements
 ------------
@@ -79,21 +77,26 @@ requirements
 steps
 -----
 
-1. clone project somewhere, doesn't matter where.
+1. clone project.
 2. run ```npm install``` (installs dev. and app dependancies and bower components)
-3. run ```grunt test``` (tests everything and shows jasmine report in google chrome)
+3. run ```grunt test``` (optional, tests everything and shows jasmine report in google chrome)
 4. run:
     * ```grunt build``` (build for ALL platforms, **untested**) OR
-    * ```grunt osx``` (for OSX application bundle)
-    * ```grunt win``` (for Windows application bundle, **untested**)
-    * ```grunt lin32``` (for Linux 32 bits application bundle, **being tested**)
-    * ```grunt lin64``` (for Linux 64 bits application bundle, **untested**)
+    * ```grunt osx``` (for OSX 32 and 64 bits app bundle)
+    * ```grunt win``` (for Windows 32 and 64 bits app exe, **untested**)
+    * ```grunt lin``` (for Linux 32 and 64 bits app binary, **being tested**)
 
-npm test isn't used since the same gruntfile is used for Travis, which cannot build node-webkit headlessly (yet).
+OSX caveats
+-----------
+None!
 
-(possible) caveats
-------------------
-* On Ubuntu Linux, which I use to test & build for linux, there can be some hassle getting the 'node' command to work:
+windows caveats
+---------------
+Unknown. Help me build on windows!
+
+Linux caveats
+-------------
+* On Ubuntu Linux, which I used to test & build for linux, there can be some hassle getting the 'node' command to work:
  see: https://stackoverflow.com/questions/18130164/nodejs-vs-node-on-ubuntu-12-04/18130296#18130296
 * removing the core node package using apt-get worked for me to get node and npm working together fine.
 * Also, on Ubuntu version 14.x.x and up there is a [libudev.so.0 issue](https://www.exponential.io/blog/install-node-webkit-on-ubuntu-linux) but following the guide and thus installing node-webkit outside of npm works flawlessly.
