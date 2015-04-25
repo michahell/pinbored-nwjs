@@ -9,11 +9,11 @@ pinbored-webkit
 [![Codacy Badge](https://www.codacy.com/project/badge/8c9342d436414724bee17f6ab6f5076f)](https://www.codacy.com/app/maggelo/pinbored-webkit)
 [![Test Coverage](https://codeclimate.com/github/michahell/pinbored-webkit/badges/coverage.svg)](https://codeclimate.com/github/michahell/pinbored-webkit)
 [![GitHub issues](https://img.shields.io/github/issues/michahell/pinbored-webkit.svg)]()
+[![GitHub release](https://img.shields.io/github/release/michahell/pinbored-webkit.svg)]()
+[![GitHub license](https://img.shields.io/github/license/michahell/pinbored-webkit.svg)]()
 [![Stories in Ready](https://badge.waffle.io/michahell/pinbored-webkit.png?label=In%20Progress&title=In%20Progress)](https://waffle.io/michahell/pinbored-webkit)
 [![Gitter](https://badges.gitter.im/JoinChat.svg)](https://gitter.im/michahell/pinbored-webkit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Flattr me](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=michahell&url=https://github.com/michahell/pinbored-webkit&title=pinbored-webkit&language=english&tags=github&category=software)
-[![GitHub release](https://img.shields.io/github/release/michahell/pinbored-webkit.svg)]()
-[![GitHub license](https://img.shields.io/github/license/michahell/pinbored-webkit.svg)]()
 
 [Pinbored](http://michahell.github.io/pinbored-webkit) is a 'native' [Pinboard](https://pinboard.in/) client application built with Node-webkit and AngularJS. Currently only OSX binaries are offered, but that is only because I use OSX myself and have not yet started building on other OSes. See the [abandoned AS3 client version](https://github.com/michahell/pinbored) for more info on the history of this project.
 
