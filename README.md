@@ -5,7 +5,9 @@ pinbored-webkit
 [![devDependency Status](https://david-dm.org/michahell/pinbored-webkit/dev-status.svg)](https://david-dm.org/michahell/pinbored-webkit/#info=devDependencies)
 [![Code Climate](https://codeclimate.com/github/michahell/pinbored-webkit/badges/gpa.svg)](https://codeclimate.com/github/michahell/pinbored-webkit)
 [![Test Coverage](https://codeclimate.com/github/michahell/pinbored-webkit/badges/coverage.svg)](https://codeclimate.com/github/michahell/pinbored-webkit)
+
 [![Gitter](https://badges.gitter.im/JoinChat.svg)](https://gitter.im/michahell/pinbored-webkit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Flattr me](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=michahell&url=https://github.com/michahell/pinbored-webkit&title=pinbored-webkit&language=english&tags=github&category=software)
 
 
 [Pinbored](http://michahell.github.io/pinbored-webkit) is a 'native' (currently OSX only) [Pinboard](https://pinboard.in/) client built with Node-webkit and AngularJS. Future plans include windows / linux builds as well, but for now the focus is on OSX. See the [abandoned AS3 client version](https://github.com/michahell/pinbored) for more info on the history of this project.
