@@ -1,10 +1,19 @@
 #!/bin/bash
 
-# increase max open file size for OSX
-# ulimit -S -n 4096
+# optional install of required global NPM modules if they are not installed
+echo ' --- NPM PREINSTALL REQS TEST ---'
 
-# optional install of required global NPM modules
-echo ' --- NPM PREINSTALL ---'
+function warningMsg () {
+  echo '\033[0;33m'"$1"'\033[0m'
+}
+
+# test for npm modules
+command -v which node >/dev/null 2>&1 || { HAS_NODE=0; warningMsg >&2 "warning: node not found ?"; }
+command -v which npm >/dev/null 2>&1 || { HAS_NPM=0; warningMsg >&2 "warning: npm not found ?"; }
+
+npm list -g --depth=0 | grep 'grunt-cli' >/dev/null 2>&1 || { HAS_GRUNT=0; warningMsg >&2 "warning: grunt-cli not installed -g"; }
+npm list -g --depth=0 | grep 'bower' >/dev/null 2>&1 || { HAS_BOWER=0; warningMsg >&2 "warning: bower not installed -g"; }
+
 echo -n 'Do you wish to install grunt-cli and bower locally ? This requires sudo. if unsure, answer no and install them yourself. the npm postinstall task which is run after this will likely error since grunt will not be installed if you choose no. (y/n) : '
 
 read answer

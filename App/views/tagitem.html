@@ -17,22 +17,22 @@
   <div class="row tag-options">
     <div class="col-xs-12">
         
-        <button type="button" class="btn btn-inverse btn-xs" ng-click="toggleTagOptions()">
-          edit tag
+        <button type="button" data-toggle="button" class="btn btn-inverse btn-xs" ng-click="toggleTagOptions('rename')">
+          rename tag
         </button>
 
-        <button type="button" class="btn btn-inverse btn-xs" ng-click="foldTag(item)">
-          combine into
+        <button type="button" data-toggle="button" class="btn btn-inverse btn-xs" ng-click="toggleTagOptions('fold')">
+          fold into tag
         </button>
 
-        <button type="button" class="btn btn-inverse btn-xs" ng-click="deleteTag(item)">
+        <button type="button" data-toggle="button" class="btn btn-inverse btn-xs" ng-click="delete(item)">
           delete tag
         </button>
 
     </div>
   </div>
 
-  <div class="row tag-options" ng-hide="status.hidden">
+  <div class="row tag-options" ng-hide="status.hidden.rename">
     <div class="col-xs-12">
         
         <div class="form-group">
@@ -42,7 +42,33 @@
     </div>
   </div>
 
-  <div class="row tag-options" ng-hide="status.hidden">
+  <div class="row tag-options" ng-hide="status.hidden.rename">
+    <div class="col-xs-12">
+        
+        <button type="button" class="btn btn-wide btn-warning btn-xs pull-left" 
+        ng-click="revertChanges(item)" ng-class="{disabled: status.hasChanged === false}">
+          revert changes
+        </button>
+
+        <button type="button" class="btn btn-wide btn-success btn-xs pull-right"
+        ng-click="saveChanges(item)" ng-class="{disabled: status.hasChanged === false}">
+          save changes
+        </button>
+
+    </div>
+  </div>
+
+  <div class="row tag-options" ng-hide="status.hidden.fold">
+    <div class="col-xs-12">
+
+      <tags-input ng-model="filter.tags" placeholder="search for tag" 
+      on-tag-added="onTagAdded($tag)" on-tag-removed="onTagAdded($tag)"></tags-input>
+      <!-- ng-keyup="updateFiltersPaging()" ng-click="updateFiltersPaging()" -->
+
+    </div>
+  </div>
+
+  <div class="row tag-options" ng-hide="status.hidden.fold">
     <div class="col-xs-12">
         
         <button type="button" class="btn btn-wide btn-warning btn-xs pull-left" 

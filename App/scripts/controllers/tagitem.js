@@ -24,7 +24,10 @@ angular.module('pinboredWebkitApp')
     $scope.itemWatcher = null;
 
     $scope.status = {
-      hidden : true,
+      hidden : {
+        rename : true,
+        fold : true
+      },
       hasChanged : false
     };
 
@@ -43,25 +46,33 @@ angular.module('pinboredWebkitApp')
         $scope.itemWatcher();
     };
 
-    $scope.openTagOptions = function() {
-      console.log('opening tag options - with focus on: ' + focus);
+    $scope.toggleTagOptions = function(option) {
+      if(option === 'fold')
+        ($scope.status.hidden.fold === true) ? $scope.openTagOptions('fold') : $scope.closeTagOptions();
+      else if(option === 'rename')
+        ($scope.status.hidden.rename === true) ? $scope.openTagOptions('rename') : $scope.closeTagOptions();
+    };
+
+    $scope.openTagOptions = function(option) {
+      console.log('opening tag option: ' + option);
+      switch(option) {
+        case 'fold' :
+          $scope.status.hidden.fold = false;
+        break;
+        case 'rename' :
+          $scope.status.hidden.rename = false;
+        break;
+      }
       $scope.item.sizeY = 2;
-      $scope.status.hidden = false;
       $scope.addWatcher();
     };
 
-    $scope.closeTagOptions = function() {
+    $scope.closeTagOptions = function(option) {
       console.log('closing tag options!');
+      $scope.status.hidden.fold = true;
+      $scope.status.hidden.rename = true;
       $scope.item.sizeY = 1;
-      $scope.status.hidden = true;
       $scope.removeWatcher();
-    };
-
-    $scope.toggleTagOptions = function() {
-      if($scope.status.hidden)
-        $scope.openTagOptions();
-      else
-        $scope.closeTagOptions();
     };
 
     $scope.selectTag = function(tag) {
@@ -69,59 +80,83 @@ angular.module('pinboredWebkitApp')
       Bookmarkservice.filterBuffer.tags.push({text : tag.tagname});
       Bookmarkservice.filterBuffer.tagFilterType = false;
       Bookmarkservice.filterBuffer.hasBuffer = true;
-
       // close tag options
       $scope.closeTagOptions();
-
       // redirect to overview page
       $location.path('/overview');
       return;
     };
 
-    $scope.renameTag = function(oldTagName, newTagName) {
+    $scope.renameTag = function(oldTagName, newTagName, type) {
       Pinboardservice.renameTag(oldTagName, newTagName)
         .then(function(result){
           console.log(result);
           if(result.result === 'done'){
-            // status update!
-            Appstatusservice.updateStatus('tag renamed.');
+            var str = (type === 'rename') ? 'renamed' : 'folded';
+            // status update
+            Appstatusservice.updateStatus('tag ' + str);
             // close tag options (also removes watcher)
             $scope.closeTagOptions();
             // make new original copy
             $scope.original = angular.copy($scope.item);
           }
         }, function(reason) {
-          console.error('renaming tag failed: ' + reason);
-          Appstatusservice.updateStatus('renaming tag failed: ' + reason + '.');
+          var str = (type === 'rename') ? 'renaming' : 'folding';
+          Appstatusservice.updateStatus(str + ' tag failed: ' + reason + '.');
         });
     };
 
-    $scope.foldTag = function(oldTagName, newTagName) {
-      $scope.renameTag(oldTagName, newTagName);
+    $scope.foldTag = function(tag, intoTagName) {
+      $scope.renameTag(tag.tagname, intoTagName, 'fold');
     };
 
     $scope.deleteTag = function(tag) {
-      Modalservice.confirm('', 'Delete this tag ?')
-      .then(function(){
-        // call method in parent scope
-        Pinboardservice.deleteTag(tag.tagname)
-        .then(function(result){
-          // console.log(result);
-          if(result.result === 'done'){
-            // status update!
-            Appstatusservice.updateStatus('tag deleted.');
-            // close tag options (also removes watcher)
-            $scope.closeTagOptions();
-            // delete tag item
-            $scope.$parent.removeTag(tag);
-          }
-        }, function(reason) {
+      // call method in parent scope
+      Pinboardservice.deleteTag(tag.tagname)
+      .then(function(result){
+        // console.log(result);
+        if(result.result === 'done'){
+          // status update!
+          Appstatusservice.updateStatus('tag deleted.');
+          // close tag options (also removes watcher)
+          $scope.closeTagOptions();
+          // delete tag item
+          $scope.$parent.removeTag(tag);
+        }
+      }, function(reason) {
         console.error('deleting tag failed: ' + reason);
         Appstatusservice.updateStatus('deleting tag failed: ' + reason + '.');
-        });
+      });
+    };
+
+    $scope.rename = function(tag) {
+      var originalTagName = $scope.original.tagname;
+      console.log('Renaming from: ' + originalTagName + ' to: ' + tag.tagname + '...');
+      $scope.renameTag(originalTagName, tag.tagname, 'rename');
+    };
+
+    $scope.fold = function(tag, intoTagName) {
+      console.log('folding: ' + tag.tagname + ' into: ' + intoTagName + '...');
+      $scope.foldTag(tag, intoTagName);
+    };
+
+    $scope.delete = function(tag) {
+      Modalservice.confirm('', 'Delete this tag ?')
+      .then(function() {
+        $scope.deleteTag(tag);
       }, function() {
         console.log('modal cancelled.');
       });
+    };
+
+    $scope.applyFold = function() {
+      console.log('applying fold...');
+      // apply
+
+      // remove item (it has folded...)
+
+      // update count of folded into tag
+
     };
 
     $scope.revertChanges = function(tag) {

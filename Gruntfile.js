@@ -79,11 +79,11 @@ module.exports = function(grunt) {
       
       buildOsx : {
         options: {
-          platforms: ['osx'],
+          platforms: ['osx32', 'osx64'],
           buildType: 'versioned', // [appName] -v[appVersion]
           macCredits: './Resources/pinbored-credits.html',
           macIcns: './Resources/pinbored-icon.icns',
-          // macZip: 'false',
+          // macZip: 'false', // set to false (speedup) by default
           buildDir: './Build', // Where the build version of my node-webkit app is saved
         },
         src: ['./App/**/*'] // Your node-webkit app
@@ -91,7 +91,7 @@ module.exports = function(grunt) {
 
       buildWin : {
         options: {
-          platforms: ['win'],
+          platforms: ['win32', 'win64'],
           buildType: 'versioned', // [appName] -v[appVersion]
           // winIco: 'null',
           buildDir: './Build', // Where the build version of my node-webkit app is saved
@@ -99,18 +99,9 @@ module.exports = function(grunt) {
         src: ['./App/**/*'] // Your node-webkit app
       },
 
-      buildLin32 : {
+      buildLin : {
         options: {
-          platforms: ['linux32'],
-          buildType: 'versioned', // [appName] -v[appVersion]
-          buildDir: './Build', // Where the build version of my node-webkit app is saved
-        },
-        src: ['./App/**/*'] // Your node-webkit app
-      },
-
-      buildLin64 : {
-        options: {
-          platforms: ['linux64'],
+          platforms: ['linux32', 'linux64'],
           buildType: 'versioned', // [appName] -v[appVersion]
           buildDir: './Build', // Where the build version of my node-webkit app is saved
         },
@@ -180,15 +171,11 @@ module.exports = function(grunt) {
   });
 
   // building task(s)
-  grunt.registerTask('build', ['nodewebkit:buildOsx', 'nodewebkit:buildWin', 'nodewebkit:buildLin32', 'nodewebkit:buildLin64']);
+  grunt.registerTask('build', ['nodewebkit:buildOsx', 'nodewebkit:buildWin', 'nodewebkit:buildLin']);
 
   grunt.registerTask('osx', ['nodewebkit:buildOsx']);
   grunt.registerTask('win', ['nodewebkit:buildWin']);
-  grunt.registerTask('lin32', ['nodewebkit:buildLin32']);
-  grunt.registerTask('lin64', ['nodewebkit:buildLin64']);
-
-  // Default task(s)
-  // grunt.registerTask('default', ['karma', 'open:report', 'nodewebkit:buildOsx', 'nodewebkit:buildWin', 'nodewebkit:buildLin32', 'nodewebkit:buildLin64']);
+  grunt.registerTask('lin', ['nodewebkit:buildLin']);
 
   grunt.registerTask('default', ['test', 'osx']);
 

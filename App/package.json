@@ -30,5 +30,25 @@
     "height": 768,
     "position": "mouse",
     "resizable": true
+  },
+  "platformOverrides": {
+    "win": {
+      "window": {
+        "frame": true,
+        "toolbar": false
+      }
+    },
+    "linux": {
+      "window": {
+        "frame": true,
+        "toolbar": false
+      }
+    },
+    "osx": {
+      "window": {
+        "frame": true,
+        "toolbar": false
+      }
+    }
   }
 }
