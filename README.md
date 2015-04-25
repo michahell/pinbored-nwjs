@@ -1,7 +1,7 @@
 pinbored-webkit
 ===============
 
-![Pinbored](http://powergeek.nl/static-imgs/pinbored-icon.png)
+![Pinbored](http://powergeek.nl/static-imgs/pinbored-logo-github.png)
 
 [![Stories in Ready](https://badge.waffle.io/michahell/pinbored-webkit.png?label=In%20Progress&title=In%20Progress)](https://waffle.io/michahell/pinbored-webkit)
 [![devDependency Status](https://david-dm.org/michahell/pinbored-webkit/dev-status.svg)](https://david-dm.org/michahell/pinbored-webkit/#info=devDependencies)
