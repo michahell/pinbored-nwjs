@@ -9,13 +9,11 @@ pinbored-webkit
 [![Gitter](https://badges.gitter.im/JoinChat.svg)](https://gitter.im/michahell/pinbored-webkit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Flattr me](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=michahell&url=https://github.com/michahell/pinbored-webkit&title=pinbored-webkit&language=english&tags=github&category=software)
 
-
-[Pinbored](http://michahell.github.io/pinbored-webkit) is a 'native' (currently OSX only) [Pinboard](https://pinboard.in/) client built with Node-webkit and AngularJS. Future plans include windows / linux builds as well, but for now the focus is on OSX. See the [abandoned AS3 client version](https://github.com/michahell/pinbored) for more info on the history of this project.
+![Pinbored](http://powergeek.nl/static-imgs/pinbored-icon.png)
+[Pinbored](http://michahell.github.io/pinbored-webkit) is a 'native' [Pinboard](https://pinboard.in/) client application built with Node-webkit and AngularJS. Currently only OSX binaries are offered, but that is only because I use OSX myself and have not yet started building on other OSes. See the [abandoned AS3 client version](https://github.com/michahell/pinbored) for more info on the history of this project.
 
 Why
 ===
-
-![Bookmark all the things!](http://cdn.meme.am/instances/500x/55806052.jpg)
 
 Why use a separate bookmark service to manage bookmarks? I have < insert browser > for that?
 
@@ -30,7 +28,7 @@ For bookmark creation consider using:
 * Shiori: http://aki-null.net/shiori/ or just: ```brew cask install shiori```
 * browser dependant plugins or widgets.
 
-i could add bookmark creation functionality in a later version, however this was never the intention of this app.
+I could add bookmark creation functionality in a later version, however this was never the intention of this app.
 The app is aimed at **managing** one's bookmarks, for example after a switch from < insert browser >
 to Pinboard with some 1000 unmanageable bookmarks.
 
@@ -44,17 +42,12 @@ Download binaries
 
 Can be downloaded on the project page:  http://michahell.github.io/pinbored-webkit/#binary-downloads
 
-Running the app using node-webkit
-=================================
+Running from source
+===================
 
-If you have node-webkit installed, you can use the following command in the root of the project dir to just run the app using the latest version:
+If you have node-webkit installed, you can use the following pseudo command in the root of the project dir to just run the app using the latest version:
 ```
-$ <node-webkit executable location> <location of pinbored-webkit> App/
-```
-
-In my case, this is:
-```
-$ /Applications/node-webkit.app/Contents/MacOS/node-webkit ~/prog/angular/pinbored-webkit/App/
+$ <node-webkit executable location> App/
 ```
 
 Or, if you have the **nw** alias configured:
@@ -63,8 +56,8 @@ Or, if you have the **nw** alias configured:
 $ nw /App
 ```
 
-Building
-========
+Building from source
+====================
 
 ~~On OSX, somehow the number of max-open files is by default 256. This is too little to build this project,
 so one must set it to allow more. ```ulimit -S -n 4096``` allows 4096 files to be open, i have found this is
