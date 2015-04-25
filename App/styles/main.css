@@ -2,14 +2,14 @@
 /* Bootstrap overrides */
 
 .container {
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 0;
+  padding-right: 0;
   width: auto;
 }
 
 .navbar {
-  min-height: 0px;
-  margin-bottom: 0px;
+  min-height: 0;
+  margin-bottom: 0;
 }
 
 .navbar > .container {
@@ -18,7 +18,7 @@
 }
 
 .navbar-nav.navbar-right:last-child {
-  margin-right: 0px;
+  margin-right: 0;
 }
 
 .navbar-nav li.active:after {
@@ -38,7 +38,7 @@ textarea {
 }
 
 .row {
-  margin: 0px;
+  margin: 0;
 }
 
 .col-xs-1, 
@@ -53,14 +53,14 @@ textarea {
 .col-xs-10,
 .col-xs-11, 
 .col-xs-12 {
-  padding: 0px;
+  padding: 0;
 }
 
 /* following is specifically for flat-ui */
 
 .navbar .container {
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .screentitle .btn-xs {
@@ -73,7 +73,7 @@ textarea {
 }
 
 .navbar >.container .navbar-collapse .navbar-nav.navbar-right:last-child {
-  margin-right: 0px;
+  margin-right: 0;
 }
 
 .navbar-nav > li > .dropdown-menu {
@@ -81,11 +81,11 @@ textarea {
 }
 
 .navbar > .container .navbar-brand {
-  margin-left: 0px;
+  margin-left: 0;
 }
 
 .tagsinput {
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 .login-form:before {
@@ -93,8 +93,8 @@ textarea {
 }
 
 .list-group-item {
-  padding: 0px;
-  margin-bottom: 0px;
+  padding: 0;
+  margin-bottom: 0;
 }
 
 .navbar-form .btn {
@@ -109,16 +109,16 @@ textarea {
 /* style of ng-tags-input component */
 
 tags-input .host {
-  margin: 0px;
+  margin: 0;
 }
 
 tags-input .tags {
   background-color: transparent;
   -webkit-appearance: none;
-  border: 0px;
+  border: 0;
   box-shadow : none;
   border-radius: 4px;
-  padding: 0px;
+  padding: 0;
 }
 
 tags-input.ng-invalid .tags {
@@ -145,7 +145,7 @@ tags-input .tags .input {
   border-radius: 4px;
   color: #536A81;
   padding: 5px;
-  margin: 0px;
+  margin: 0;
   margin-top: 2px;
   margin-left: 1px;
   transition: border .25s linear, color .25s linear, background-color .25s linear;
@@ -174,7 +174,7 @@ tags-input .tags .tag-item {
   font-size: 15px;
   font-weight: bold;
   line-height: 1;
-  border: 0px;
+  border: 0;
   border-radius: 4px;
   margin: 2px;
   margin-right: 5px;
@@ -226,7 +226,7 @@ h3.modal-title {
 /* dropdown button fixes */
 
 .bootstrap-select.btn-group:not(.input-group-btn) {
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 button.selectpicker.dropdown-toggle {
@@ -260,29 +260,9 @@ button.selectpicker.dropdown-toggle span.caret,
 /* flat ui pagination overrides */
 
 ul.pagination-plain {
-  margin-bottom: 0px;
+  margin-bottom: 0;
   margin-top: 4px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* start of kustom CSS */
 
@@ -334,7 +314,7 @@ small, .small {
 
 .navbar-brand {
   height: 53px;
-  padding: 0px;
+  padding: 0;
   padding-top: 11px;
   margin-top: -7px;
 }
@@ -367,8 +347,8 @@ small, .small {
 }
 
 .bar.ng-hide {
-  height: 0px;
-  padding: 0px;
+  height: 0;
+  padding: 0;
 }
 
 .bar-container {
@@ -410,18 +390,18 @@ small, .small {
 }*/
 
 .screentitle {
-  margin: 0px;
+  margin: 0;
   padding: 8px;
   background-color: #2C3E50;
   text-transform: lowercase;
-  line-height: 0px;
+  line-height: 0;
 }
 
 .screentitle > h6 {
-  margin: 0px;
+  margin: 0;
   margin-top: 5px;
   margin-right: 15px;
-  padding: 0px;
+  padding: 0;
   font-weight: bold;
   color: #BDC3C7;
   text-transform: lowercase;
@@ -442,7 +422,7 @@ small, .small {
   background: #ECF0F1;
   text-align: left;
   padding-left: 20px;
-  bottom: 0px;
+  bottom: 0;
   z-index: 20;
   border-top: 2px #;
   -webkit-transition:all linear 0.3s;
@@ -476,8 +456,8 @@ small, .small {
   background-color: #2C3E50;
   width: 100%;
   height: 100%;
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   position: absolute;
   left: 0;
   top: 0;
@@ -527,7 +507,7 @@ small, .small {
 
 #overview label,
 #tags label {
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 #overview .clickabletag {
@@ -560,22 +540,22 @@ small, .small {
 #overview .tagsinput {
   background: transparent;
   border: none;
-  padding: 0px;
+  padding: 0;
 }
 
 #overview .tagsinput .tag {
-  margin-bottom: 0px;
+  margin-bottom: 0;
   vertical-align: middle;
 }
 
 #overview .tagsinput input {
   vertical-align: middle;
-  margin: 0px;
+  margin: 0;
 }
 
 #overview .tagsinput-add {
   background-color: transparent;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   vertical-align: middle;
 }
 
@@ -593,7 +573,7 @@ small, .small {
 #pages {
   /*line-height: 0;
   height: auto;
-  padding: 0px;*/
+  padding: 0;*/
   text-align: center;
 }
 
@@ -640,19 +620,19 @@ small, .small {
 
 #overview .navbar,
 #tags .navbar {
-  min-height: 0px;
-  margin-bottom: 0px;
+  min-height: 0;
+  margin-bottom: 0;
   min-height: 35px;
 }
 
 #overview .navbar-collapse,
 #tags .navbar-collapse {
-  padding: 0px;
+  padding: 0;
 }
 
 #overview .navbar-collapse .navbar-form,
 #tags .navbar-collapse .navbar-form {
-  padding: 0px;
+  padding: 0;
 }
 
 #overview .navbar-embossed > .navbar-collapse,
@@ -703,7 +683,7 @@ small, .small {
   transition-duration: 0;
   -webkit-transform: scale(0, 0);
   transform: scale(0, 0);
-  height: 0px;
+  height: 0;
 }
 
 .list-group-item.ng-leave {
@@ -715,7 +695,7 @@ small, .small {
 }
 
 #list {
-  padding: 0px;
+  padding: 0;
   display: table-row;  /* height is dynamic, and will expand... */
   height: 100%;        /* ...as content is added (won't scroll) */
 }
@@ -728,7 +708,7 @@ small, .small {
   z-index: 3;
   color: #2C3E50;
   border: none;
-  border-radius: 0px;
+  border-radius: 0;
   text-align:  center;
   vertical-align: middle;
   margin-top: 20%;
@@ -749,11 +729,11 @@ small, .small {
   /*background-color: #2C3E50;*/
   background-color: #34495E;
   line-height: 1;
-  margin: 0px;
+  margin: 0;
   width: 100%;
   height: 100%;
   border: none;
-  border-radius: 0px;
+  border-radius: 0;
   z-index: 9;
 
   -webkit-perspective: 400px;
@@ -773,7 +753,7 @@ small, .small {
   /*background-color: #2C3E50;*/
   background-color: #34495E;
   border: none;
-  border-radius: 0px;
+  border-radius: 0;
   border-bottom: 1px solid #2C3E50;
 }
 
@@ -861,7 +841,7 @@ small, .small {
 }
 
 .bookmark-item-right .form-group {
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 .bookmark-item-right .btn-group {
@@ -869,7 +849,7 @@ small, .small {
 }
 
 .bookmark-item-right .btn-group .btn {
-  border-radius: 0px;
+  border-radius: 0;
   padding: 26px 15px;
   height: 100%;
 }
@@ -911,7 +891,7 @@ small, .small {
 }
 
 /*.hiddenContent .btn-toolbar .btn-group a {
-  border-radius: 0px;
+  border-radius: 0;
 }*/
 
 .btn-group-sm > .btn {
@@ -958,17 +938,17 @@ small, .small {
 }
 
 .hiddeninputs {
-  border-radius: 0px;
+  border-radius: 0;
   background-color: rgba(0, 0, 0, 0.1);
   color: #ddd;
-  border: 0px;
+  border: 0;
   margin: 2px;
   margin-left: 3px;
   padding-left: 8px;
 }
 
 .hiddeninputs:hover {
-  /*border-radius: 0px;*/
+  /*border-radius: 0;*/
   background-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -987,7 +967,7 @@ small, .small {
   font-size: 20px;
   font-weight: bold;
   line-height: 1;
-  border: 0px;
+  border: 0;
   border-radius: 6px;
   margin: 10px;
 }
@@ -1031,15 +1011,15 @@ small, .small {
   padding: 8px;
   background-color: #bdc3c7;
   text-transform: lowercase;
-  line-height: 0px;
+  line-height: 0;
   border-radius: 3px;
 }
 
 .tooltitle h6 {
-  margin: 0px;
+  margin: 0;
   margin-top: 5px;
   margin-right: 15px;
-  padding: 0px;
+  padding: 0;
   font-weight: bold;
   color: #34495e;
   text-transform: lowercase;
@@ -1104,7 +1084,7 @@ small, .small {
 /* TAGS VIEW */
 
 #tags .hiddeninputs {
-  margin: 0px;
+  margin: 0;
 }
 
 .tagbox {
