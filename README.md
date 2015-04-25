@@ -52,13 +52,13 @@ Running from source
 
 If you have node-webkit installed, you can use the following pseudo command in the root of the project dir to just run the app using the latest version:
 ```
-$ <node-webkit executable location> App/
+$ <node-webkit executable location> App
 ```
 
 Or, if you have the **nw** alias configured:
 
 ```
-$ nw /App
+$ nw App
 ```
 
 Building from source
