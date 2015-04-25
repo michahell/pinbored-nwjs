@@ -387,20 +387,21 @@ small, .small {
   height: 0;
 }
 
-/*#selection .bar-container form-group input, 
+
+#selection .bar-container form-group input, 
 #selection .bar-container form-group button,
 #selection .hider {
   -webkit-transition: opacity ease-out 0.4s;
   transition: opacity ease-out 0.4s;
   transition-delay: 0.0s;
-  transform: scale(1.0, 1.0);
+  /*transform: scale(1.0, 1.0);*/
   opacity: 1;
 }
 
 #selection .bar-container form-group.ng-hide input, 
 #selection .bar-container form-group.ng-hide button,
 #selection .hider {
-  /*transform: scale(0.1, 0.1);
+  /*transform: scale(0.1, 0.1);*/
   opacity: 0;
 }
 
@@ -527,6 +528,33 @@ small, .small {
 #overview label,
 #tags label {
   margin-bottom: 0px;
+}
+
+#overview .clickabletag {
+  margin-right: 5px;
+  background-color: #27AE60;
+  color: #2C3E50;
+  cursor: pointer;
+  -webkit-transition: 0.2s ease-out all;
+  transition: 0.2s ease-out all;
+}
+
+#overview .clickabletag:hover {
+  /*background-color: #2ECC71;*/
+  /*background-color: #4DCC7D;*/
+  /*background-color: #4DCC6C;*/
+  background-color: #69CC83;
+  color: #34495E;
+}
+
+#overview .highlightedtag {
+  background-color: #F39C12;
+  color: #2C3E50;
+}
+
+#overview .highlightedtag:hover {
+  background-color: #F1C40F;
+  color: #34495E;
 }
 
 #overview .tagsinput {

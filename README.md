@@ -7,6 +7,7 @@ pinbored-webkit
 [![Test Coverage](https://codeclimate.com/github/michahell/pinbored-webkit/badges/coverage.svg)](https://codeclimate.com/github/michahell/pinbored-webkit)
 [![Gitter](https://badges.gitter.im/JoinChat.svg)](https://gitter.im/michahell/pinbored-webkit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
+
 [Pinbored](http://michahell.github.io/pinbored-webkit) is a 'native' (currently OSX only) [Pinboard](https://pinboard.in/) client built with Node-webkit and AngularJS. Future plans include windows / linux builds as well, but for now the focus is on OSX. See the [abandoned AS3 client version](https://github.com/michahell/pinbored) for more info on the history of this project.
 
 Why
@@ -111,3 +112,10 @@ Roadmap
 
 [Milestones](https://github.com/michahell/pinbored-webkit/milestones) orrrrr
 the awesome waffle.io version: [awesome waffle.io scrum board](https://waffle.io/michahell/pinbored-webkit)
+=======
+Roadmap
+=======
+
+* [Milestone V 0.0.1](https://github.com/michahell/pinbored-webkit/milestones/0.0.1%20Iron%20Orchid)
+* [Milestone V 0.0.2](https://github.com/michahell/pinbored-webkit/milestones/0.0.2%20Tin%20Thistle)
+* [Milestone V 0.0.3](https://github.com/michahell/pinbored-webkit/milestones/0.0.3%20Gold%20Dahlia)
