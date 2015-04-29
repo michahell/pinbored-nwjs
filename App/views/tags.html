@@ -37,9 +37,11 @@
 
       <div gridster="gridsterOpts">
         <ul>
-            <li gridster-item="item"
+            <!-- tagItem{{ 300 - (5 + item.row * 10 + item.col) }} !-->
+            <li gridster-item="item" id="tagItem{{item.id}}"
             ng-repeat="item in data.wrappedTags | orderBy:['occurrences','tagname'] | offset: (paging.current - 1) * config.itemsPerPage | limitTo: config.itemsPerPage" 
-            ng-controller="TagItemCtrl" ng-include src="'views/tagitem.html'"></li>
+            ng-controller="TagItemCtrl" ng-include src="'views/tagitem.html'"
+            ng-style="{ 'z-index' : 300 - (5 + item.row * 10 + item.col) }"></li>
         </ul>
       </div>
 

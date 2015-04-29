@@ -34,6 +34,7 @@ angular.module('pinboredWebkitApp')
     $scope.data = {
       isLoading : true,
       tags : [],
+      tagNames : [],
       wrappedTags : [],
       numTags : 0
     };
@@ -66,8 +67,8 @@ angular.module('pinboredWebkitApp')
       minSizeY: 1, // minumum row height of an item
       maxSizeY: 5, // maximum row height of an item
       resizable: {
-       enabled: false,
-       handles: ['n', 'e', 's', 'w', 'ne', 'se', 'sw', 'nw'],
+       enabled: true,
+       handles: [], // ['n', 'e', 's', 'w', 'ne', 'se', 'sw', 'nw']
        start: function(event, $element, widget) {}, // optional callback fired when resize is started,
        resize: function(event, $element, widget) {}, // optional callback fired when item is resized,
        stop: function(event, $element, widget) {} // optional callback fired when item is finished resizing
@@ -84,21 +85,33 @@ angular.module('pinboredWebkitApp')
     $scope.createTags = function(tagdata) {
 
       // console.log(tagdata);
+      var tagID = 0;
 
       for (var tag in tagdata) {
-        // console.log(tag, tagdata[tag]);
-        $scope.data.tags.push({
-          tagname : tag,
-          occurrences : parseInt(tagdata[tag])
-        });
+        if (tagdata.hasOwnProperty(tag)) {
+          // console.log(tag, tagdata[tag]);
+          // store raw data
+          $scope.data.tags.push({
+            tagname : tag,
+            occurrences : parseInt(tagdata[tag])
+          });
 
-        // wrapped tags (for angular-gridster)
-        $scope.data.wrappedTags.push({
-          tagname : tag,
-          occurrences : parseInt(tagdata[tag]),
-          sizeX: 2,
-          sizeY: 1
-        });
+          // store stripped down version for autocomplete
+          $scope.data.tagNames.push({
+            text : tag
+          });
+
+          // wrapped tags (for angular-gridster)
+          $scope.data.wrappedTags.push({
+            id : tagID,
+            tagname : tag,
+            occurrences : parseInt(tagdata[tag]),
+            sizeX: 2,
+            sizeY: 1
+          });
+
+          tagID++;
+        }
       }
       
       // console.log($scope.data.tags);

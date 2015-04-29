@@ -46,12 +46,12 @@
     <div class="col-xs-12">
         
         <button type="button" class="btn btn-wide btn-warning btn-xs pull-left" 
-        ng-click="revertChanges(item)" ng-class="{disabled: status.hasChanged === false}">
+        ng-click="revertRenameChanges(item)" ng-class="{disabled: status.hasNameChanged === false}">
           revert changes
         </button>
 
         <button type="button" class="btn btn-wide btn-success btn-xs pull-right"
-        ng-click="saveChanges(item)" ng-class="{disabled: status.hasChanged === false}">
+        ng-click="saveRenameChanges(item)" ng-class="{disabled: status.hasNameChanged === false}">
           save changes
         </button>
 
@@ -60,25 +60,19 @@
 
   <div class="row tag-options" ng-hide="status.hidden.fold">
     <div class="col-xs-12">
-
-      <tags-input ng-model="filter.tags" placeholder="search for tag" 
-      on-tag-added="onTagAdded($tag)" on-tag-removed="onTagAdded($tag)"></tags-input>
-      <!-- ng-keyup="updateFiltersPaging()" ng-click="updateFiltersPaging()" -->
-
+      <tags-input ng-model="status.newFoldTags" placeholder="search for tag" 
+      on-tag-added="onTagAdded($tag)" on-tag-removed="onTagRemoved($tag)">
+        <auto-complete source="loadTagItems($query)"></auto-complete>
+      </tags-input>
     </div>
   </div>
 
   <div class="row tag-options" ng-hide="status.hidden.fold">
     <div class="col-xs-12">
         
-        <button type="button" class="btn btn-wide btn-warning btn-xs pull-left" 
-        ng-click="revertChanges(item)" ng-class="{disabled: status.hasChanged === false}">
-          revert changes
-        </button>
-
         <button type="button" class="btn btn-wide btn-success btn-xs pull-right"
-        ng-click="saveChanges(item)" ng-class="{disabled: status.hasChanged === false}">
-          save changes
+        ng-click="saveFoldChanges(item)" ng-class="{disabled: status.hasFoldChanged === false}">
+          fold into chosen tag
         </button>
 
     </div>

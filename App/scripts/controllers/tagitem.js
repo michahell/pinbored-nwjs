@@ -7,7 +7,7 @@
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('TagItemCtrl', function ($scope, $location,
+  .controller('TagItemCtrl', function ($scope, $location, $filter,
     Usersessionservice, Pinboardservice, Appstatusservice, Modalservice, Bookmarkservice) {
 
     try {
@@ -28,15 +28,43 @@ angular.module('pinboredWebkitApp')
         rename : true,
         fold : true
       },
-      hasChanged : false
+      hasNameChanged : false,
+      hasFoldChanged : false,
+      newFoldTags : []
+    };
+
+    // array return format: { text: 'Tag1' }, { text: 'Tag2' }, { text: 'Tag3' }, { text: 'Tag4' }
+    // see: http://mbenford.github.io/ngTagsInput/gettingstarted under 'Autocomplete'
+    $scope.loadTagItems = function(query) {
+      // return filtered parent scope' tagNames with query (which is user input)
+      return $filter('filter')($scope.data.tagNames, query) || [];
+    };
+
+    $scope.spliceMaxTags = function(tag) {
+      // remove last tag from array
+      if($scope.status.newFoldTags.length > 1) {
+        $scope.status.newFoldTags.splice($scope.status.newFoldTags.indexOf($scope.status.newFoldTags[$scope.status.newFoldTags.length - 1]), 1);
+      }
+    };
+
+    $scope.onTagAdded = function(tag) {
+      // enable savechanges
+      $scope.status.hasFoldChanged = true;
+      // remove extra added tags (custom max tags..)
+      $scope.spliceMaxTags(tag);
+    };
+
+    $scope.onTagRemoved = function(tag) {
+      // enable savechanges
+      $scope.status.hasFoldChanged = false;
     };
 
     $scope.addWatcher = function() {
       $scope.itemWatcher = $scope.$watch('item.tagname', function(newValue) {
         if(newValue === $scope.original.tagname) {
-          $scope.status.hasChanged = false;
+          $scope.status.hasNameChanged = false;
         } else {
-          $scope.status.hasChanged = true;
+          $scope.status.hasNameChanged = true;
         }
       });
     };
@@ -58,9 +86,11 @@ angular.module('pinboredWebkitApp')
       switch(option) {
         case 'fold' :
           $scope.status.hidden.fold = false;
+          $scope.status.hidden.rename = true;
         break;
         case 'rename' :
           $scope.status.hidden.rename = false;
+          $scope.status.hidden.fold = true;
         break;
       }
       $scope.item.sizeY = 2;
@@ -150,7 +180,7 @@ angular.module('pinboredWebkitApp')
     };
 
     $scope.applyFold = function() {
-      console.log('applying fold...');
+      console.log('TODO applying fold...');
       // apply
 
       // remove item (it has folded...)
@@ -159,12 +189,17 @@ angular.module('pinboredWebkitApp')
 
     };
 
-    $scope.revertChanges = function(tag) {
+    $scope.revertRenameChanges = function(tag) {
       $scope.item.tagname = $scope.original.tagname;
     };
 
-    $scope.saveChanges = function(tag) {
+    $scope.saveRenameChanges = function(tag) {
       $scope.renameTag($scope.original.tagname, tag.tagname);
+    };
+
+    $scope.saveFoldChanges = function(tag) {
+      console.log('save fold changes called!');
+      // $scope.renameTag($scope.original.tagname, tag.tagname);
     };
 
   });
