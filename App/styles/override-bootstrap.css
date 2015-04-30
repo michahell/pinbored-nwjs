@@ -24,7 +24,7 @@
   content: ' ';
   position: absolute;
   border: solid 10px transparent;
-  border-top: solid 0px transparent;
+  border-top: solid 0 transparent;
   border-width: 10px;
   left: 50%;
   margin-left: -10px;

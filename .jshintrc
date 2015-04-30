@@ -3,7 +3,6 @@
   "devel"    : false,
   "node"     : true,
   "browser"  : true,
-  "es5"      : true,
   "esnext"   : true,
   "bitwise"  : true,
   "camelcase": false,

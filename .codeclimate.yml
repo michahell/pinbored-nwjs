@@ -1,0 +1,11 @@
+languages:
+  Ruby: false
+  JavaScript: true
+  PHP: false
+  Python: false
+
+#exclude_paths:
+#- app/helpers/users_helper.rb #Exclude a specific file
+#- app/controllers/* #Exclude all contents of a folder (including all subfolders)
+#- app/controllers/*.rb #Exclude all files of a specific type within a folder and its subfolders
+#- lib/**/*.rb #Recursively ignore all files ending in .rb

@@ -145,6 +145,7 @@ small, .small {
   padding: 7px;
   height: 50px;
   background-color: #2C3E50;
+  box-sizing: border-box;
   border-top: 1px solid #34495E;
   -webkit-transition:all ease-out 0.2s;
   -o-transition:all ease-out 0.2s;
@@ -214,6 +215,7 @@ small, .small {
 }
 
 .app-status-indicator {
+  box-sizing: border-box;
   position: absolute;
   width: 100%;
   height: 50px;
@@ -236,12 +238,12 @@ small, .small {
   color: #34495E;
 }
 
-.app-status-indicator h7 span.danger {
+.app-status-indicator h7 .danger {
   color: #C0392B;
   font-weight: bold;
 }
 
-.app-status-indicator h7 span.info {
+.app-status-indicator h7 .info {
   color: #16A085;
   font-weight: bold;
 }
@@ -404,10 +406,12 @@ small, .small {
 .list-group-item.ng-move-stagger {
   /* 50ms between each item being animated after the other */
   -webkit-transition-delay: 50ms;
+  -moz-transition-delay: 50ms;
   transition-delay: 50ms;
 
   /* this is required here to prevent any CSS inheritance issues */
   -webkit-transition-duration: 0;
+  -o-transition-duration: 0;
   transition-duration: 0;
 }
 
@@ -418,16 +422,20 @@ small, .small {
 
 .list-group-item.ng-leave.ng-leave-active {
   -webkit-transition-duration: 0;
+  -o-transition-duration: 0;
   transition-duration: 0;
   -webkit-transform: scale(0, 0);
+  -o-transform: scale(0, 0);
   transform: scale(0, 0);
   height: 0;
 }
 
 .list-group-item.ng-leave {
   -webkit-transition-duration: 0;
+  -o-transition-duration: 0;
   transition-duration: 0;
   -webkit-transform: scale(1, 1);
+  -moz-transform: scale(1, 1);
   transform: scale(1, 1);
   height: 73px;
 }
@@ -545,6 +553,7 @@ small, .small {
 }
 
 .bookmark-item-right .label {
+  box-sizing: border-box;
   color: #2C3E50;
   width: 25px;
   height: 25px;
@@ -571,16 +580,19 @@ small, .small {
 }
 
 .bookmark-item-right .btn-group .btn {
+  box-sizing: border-box;
   border-radius: 0;
   padding: 26px 15px;
   height: 100%;
 }
 
 .hiddenContent {
+  box-sizing: border-box;
   padding-top: 5px;
   padding-bottom: 2px;
   background: #253443;
   -webkit-transition: 0.2s ease-out all;
+  -moz-transition: 0.2s ease-out all;
   transition: 0.2s ease-out all;
   height: 230px;
 }
@@ -591,6 +603,7 @@ small, .small {
 
 .hiddenContentContainer {
   -webkit-transition: 0.2s ease-out all;
+  -moz-transition: 0.2s ease-out all;
   transition: 0.2s ease-out all;
   transition-delay: 0.2s;
   opacity: 1;
@@ -642,11 +655,12 @@ small, .small {
   padding-right: 5px;
 }
 
-.hiddenContent input.input-sm {
+.hiddenContent .input-sm {
   height: 30px;
 }
 
 .hiddenContent textarea.hiddeninputs {
+  box-sizing: border-box;
   padding: 10px;
 }
 
@@ -767,6 +781,7 @@ small, .small {
   color: #2C3E50;
   cursor: pointer;
   -webkit-transition: 0.2s ease-out all;
+  -moz-transition: 0.2s ease-out all;
   transition: 0.2s ease-out all;
 }
 

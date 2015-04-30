@@ -8,6 +8,7 @@
   color: #2C3E50;
   cursor: pointer;
   -webkit-transition: 0.2s ease-out all;
+  -moz-transition: 0.2s ease-out all;
   transition: 0.2s ease-out all;
 }
 

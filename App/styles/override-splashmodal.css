@@ -16,6 +16,7 @@
     perspective: 1000px;
     transition: opacity 0.5s, visibility 0s 0.5s;
     -webkit-transition: opacity 0.5s, visibility 0s 0.5s;
+    -moz-transition: opacity 0.5s, visibility 0s 0.5s;
 }
 
 .splash-open.splash {
@@ -31,6 +32,7 @@
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     -webkit-transform: translate3d(0,0,150px);
+    -moz-transform: translate3d(0,0,150px);
     transform: translate3d(0,0,150px);
     -webkit-transition: -webkit-transform 0.5s;
     transition: transform 0.5s;
@@ -39,6 +41,7 @@
 
 .splash-open.splash .splash-inner {
     -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
 }
 
@@ -62,6 +65,7 @@
 .btn-outline {
     margin-top: 40px;
     color: #fff;
+    box-sizing: border-box;
     border: 2px solid #fff;
     border-radius: 2px;
     background-color: transparent;

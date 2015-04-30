@@ -10,11 +10,11 @@ angular.module('pinboredWebkitApp')
   .controller('TagItemCtrl', function ($scope, $location, $filter,
     Usersessionservice, Pinboardservice, Appstatusservice, Modalservice, Bookmarkservice) {
 
-    try {
-      var gui = require('nw.gui');
-    } catch (error) {
-      console.error('error loading nw.gui: ' + error);
-    }
+    // try {
+    //   var gui = require('nw.gui');
+    // } catch (error) {
+    //   console.error('error loading nw.gui: ' + error);
+    // }
 
     // current item!
     // $scope.item
@@ -40,7 +40,7 @@ angular.module('pinboredWebkitApp')
       return $filter('filter')($scope.data.tagNames, query) || [];
     };
 
-    $scope.spliceMaxTags = function(tag) {
+    $scope.spliceMaxTags = function() {
       // remove last tag from array
       if($scope.status.newFoldTags.length > 1) {
         $scope.status.newFoldTags.splice($scope.status.newFoldTags.indexOf($scope.status.newFoldTags[$scope.status.newFoldTags.length - 1]), 1);
@@ -51,7 +51,7 @@ angular.module('pinboredWebkitApp')
       // enable savechanges
       $scope.status.hasFoldChanged = true;
       // remove extra added tags (custom max tags..)
-      $scope.spliceMaxTags(tag);
+      $scope.spliceMaxTags();
     };
 
     $scope.onTagRemoved = function(tag) {
@@ -70,15 +70,17 @@ angular.module('pinboredWebkitApp')
     };
 
     $scope.removeWatcher = function() {
-      if ($scope.itemWatcher !== null)
+      if ($scope.itemWatcher !== null) {
         $scope.itemWatcher();
+      }
     };
 
     $scope.toggleTagOptions = function(option) {
-      if(option === 'fold')
+      if(option === 'fold') {
         ($scope.status.hidden.fold === true) ? $scope.openTagOptions('fold') : $scope.closeTagOptions();
-      else if(option === 'rename')
+      } else if(option === 'rename') {
         ($scope.status.hidden.rename === true) ? $scope.openTagOptions('rename') : $scope.closeTagOptions();
+      }
     };
 
     $scope.openTagOptions = function(option) {
@@ -97,7 +99,7 @@ angular.module('pinboredWebkitApp')
       $scope.addWatcher();
     };
 
-    $scope.closeTagOptions = function(option) {
+    $scope.closeTagOptions = function() {
       console.log('closing tag options!');
       $scope.status.hidden.fold = true;
       $scope.status.hidden.rename = true;
@@ -179,7 +181,7 @@ angular.module('pinboredWebkitApp')
       });
     };
 
-    $scope.revertRenameChanges = function(tag) {
+    $scope.revertRenameChanges = function() {
       $scope.item.tagname = $scope.original.tagname;
     };
 

@@ -68,17 +68,17 @@ angular.module('pinboredWebkitApp')
       maxSizeY: 5, // maximum row height of an item
       resizable: {
        enabled: true,
-       handles: [], // ['n', 'e', 's', 'w', 'ne', 'se', 'sw', 'nw']
-       start: function(event, $element, widget) {}, // optional callback fired when resize is started,
-       resize: function(event, $element, widget) {}, // optional callback fired when item is resized,
-       stop: function(event, $element, widget) {} // optional callback fired when item is finished resizing
+       handles: [] // ['n', 'e', 's', 'w', 'ne', 'se', 'sw', 'nw']
+       // start: function(event, $element, widget) {}, // optional callback fired when resize is started,
+       // resize: function(event, $element, widget) {}, // optional callback fired when item is resized,
+       // stop: function(event, $element, widget) {} // optional callback fired when item is finished resizing
       },
       draggable: {
-       enabled: false, // whether dragging items is supported
-       handle: '.my-class', // optional selector for resize handle
-       start: function(event, $element, widget) {}, // optional callback fired when drag is started,
-       drag: function(event, $element, widget) {}, // optional callback fired when item is moved,
-       stop: function(event, $element, widget) {} // optional callback fired when item is finished dragging
+       enabled: false // whether dragging items is supported
+       // handle: '.my-class', // optional selector for resize handle
+       // start: function(event, $element, widget) {}, // optional callback fired when drag is started,
+       // drag: function(event, $element, widget) {}, // optional callback fired when item is moved,
+       // stop: function(event, $element, widget) {} // optional callback fired when item is finished dragging
       }
     };
 
@@ -127,7 +127,7 @@ angular.module('pinboredWebkitApp')
         console.warn('no tags received, so no tags created.');
         return false;
       }
-    }
+    };
 
     $scope.repopulateTags = function() {
       // get all tags  
@@ -144,12 +144,12 @@ angular.module('pinboredWebkitApp')
       }, function(failreason) {
         console.error('Failed: ' + failreason);
       });
-    }
+    };
 
     $scope.removeTag = function(tag) {
       $scope.data.tags.splice($scope.data.tags.indexOf(tag), 1);
       $scope.data.wrappedTags.splice($scope.data.wrappedTags.indexOf(tag), 1);
-    }
+    };
 
 
 
