@@ -34,23 +34,17 @@ module.exports = function(grunt) {
           'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.woff': 'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.woff',
           'bootstrap/dist/fonts/glyphicons-halflings-regular.woff': 'bootstrap/dist/fonts/glyphicons-halflings-regular.woff',
           'bootstrap/dist/fonts/glyphicons-halflings-regular.woff2': 'bootstrap/dist/fonts/glyphicons-halflings-regular.woff2',
-          // 'flat-ui/dist/fonts/lato/lato-regular.svg#latoregular': 'flat-ui/dist/fonts/lato/lato-regular.svg#latoregular',
-          // 'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.svg#flat-ui-icons-regular': 'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.svg#flat-ui-icons-regular',
-          // 'bootstrap/dist/fonts/glyphicons-halflings-regular.svg': 'bootstrap/dist/fonts/glyphicons-halflings-regular.svg',
-          // 'bootstrap/dist/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular': 'bootstrap/dist/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular',
 
           // CSS
           'bootstrap/dist/css/bootstrap.css': 'bootstrap/dist/css/bootstrap.css',
           'animate.css/animate.min.css': 'animate.css/animate.min.css',
           'ng-tags-input/ng-tags-input.min.css': 'ng-tags-input/ng-tags-input.min.css',
-          // 'bootstrap-select/dist/css/bootstrap-select.css': 'bootstrap-select/dist/css/bootstrap-select.css',
           'flat-ui/dist/css/flat-ui.css': 'flat-ui/dist/css/flat-ui.css',
-          // 'stroll/css/stroll.min.css': 'stroll/css/stroll.min.css',
           'angular-gridster/dist/angular-gridster.min.css': 'angular-gridster/dist/angular-gridster.min.css',
-          // 'iCheck/skins/flat/blue.css': 'iCheck/skins/flat/blue.css',
+          'iCheck/skins/flat/blue.css': 'iCheck/skins/flat/blue.css',
 
           // CSS extra files? Hopefully this works..
-          // 'iCheck/skins/flat/' : 'iCheck/skins/flat/',
+          'iCheck/skins/flat/' : 'iCheck/skins/flat/',
 
           // JS
           'jquery/dist/jquery.js': 'jquery/dist/jquery.js',
@@ -60,26 +54,20 @@ module.exports = function(grunt) {
 
           'angular-bootstrap/ui-bootstrap.js': 'angular-bootstrap/ui-bootstrap.js',
           'angular-resource/angular-resource.js': 'angular-resource/angular-resource.js',
-          // 'angular-cookies/angular-cookies.js': 'angular-cookies/angular-cookies.js',
           'angular-route/angular-route.js': 'angular-route/angular-route.js',
           'angular-sanitize/angular-sanitize.js': 'angular-sanitize/angular-sanitize.js',
-          // 'angular-touch/angular-touch.js': 'angular-touch/angular-touch.js',
           'angular-animate/angular-animate.js': 'angular-animate/angular-animate.js',
           'angular-mocks/angular-mocks.js': 'angular-mocks/angular-mocks.js',
 
-          // 'javascript-detect-element-resize/jquery.resize.js': 'javascript-detect-element-resize/jquery.resize.js',
           'angular-gridster/src/angular-gridster.js': 'angular-gridster/src/angular-gridster.js',
 
           'ng-tags-input/ng-tags-input.js': 'ng-tags-input/ng-tags-input.js',
           'ng-tags-input/ng-tags-input.min.js': 'ng-tags-input/ng-tags-input.min.js',
           
-          // 'iCheck/icheck.js': 'iCheck/icheck.js',
-          // 'iCheck/icheck.min.js': 'iCheck/icheck.min.js',
+          'iCheck/icheck.js': 'iCheck/icheck.js',
+          'iCheck/icheck.min.js': 'iCheck/icheck.min.js',
 
-          // 'bootstrap-select/dist/js/bootstrap-select.js': 'bootstrap-select/dist/js/bootstrap-select.js',
-          // 'angular-bootstrap-select/build/angular-bootstrap-select.js': 'angular-bootstrap-select/build/angular-bootstrap-select.js',
-          'flat-ui/dist/js/flat-ui.js': 'flat-ui/dist/js/flat-ui.js',
-          // 'stroll/js/stroll.min.js': 'stroll/js/stroll.min.js'
+          'flat-ui/dist/js/flat-ui.js': 'flat-ui/dist/js/flat-ui.js'
         }
       }
     },

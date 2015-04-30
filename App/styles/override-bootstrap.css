@@ -1,0 +1,56 @@
+/* Bootstrap overrides */
+
+.container {
+  padding-left: 0;
+  padding-right: 0;
+  width: auto;
+}
+
+.navbar {
+  min-height: 0;
+  margin-bottom: 0;
+}
+
+.navbar > .container {
+  width: auto;
+  display: block;
+}
+
+.navbar-nav.navbar-right:last-child {
+  margin-right: 0;
+}
+
+.navbar-nav li.active:after {
+  content: ' ';
+  position: absolute;
+  border: solid 10px transparent;
+  border-top: solid 0px transparent;
+  border-width: 10px;
+  left: 50%;
+  margin-left: -10px;
+  margin-top: -20px;
+  border-color: transparent transparent #2C3E50 transparent;
+}
+
+textarea { 
+  resize:none; 
+}
+
+.row {
+  margin: 0;
+}
+
+.col-xs-1, 
+.col-xs-2,
+.col-xs-3, 
+.col-xs-4,
+.col-xs-5, 
+.col-xs-6,
+.col-xs-7, 
+.col-xs-8,
+.col-xs-9, 
+.col-xs-10,
+.col-xs-11, 
+.col-xs-12 {
+  padding: 0;
+}

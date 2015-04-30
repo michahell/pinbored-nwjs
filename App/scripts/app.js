@@ -13,8 +13,6 @@ angular
     'ngRoute',
     'ngResource',
     'ngSanitize',
-    // 'ngCookies',
-    // 'ngTouch',
     'ngTagsInput',
     'ui.bootstrap',
     'ui.splash',

@@ -1,0 +1,19 @@
+/* TAGS VIEW */
+
+#tags .hiddeninputs {
+  margin: 0;
+}
+
+#tags .tagbox {
+  padding: 5px;
+  background: #2C3E50;
+  height: 100%;
+}
+
+#tags .tag-options {
+  margin-top: 5px;
+}
+
+#tags .info {
+  color: white;
+}

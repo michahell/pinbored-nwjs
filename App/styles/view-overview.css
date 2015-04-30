@@ -1,0 +1,53 @@
+#overview .screentitle .bootstrap-switch-square {
+  margin-top: 2px;
+}
+
+#overview .clickabletag {
+  margin-right: 5px;
+  background-color: #27AE60;
+  color: #2C3E50;
+  cursor: pointer;
+  -webkit-transition: 0.2s ease-out all;
+  transition: 0.2s ease-out all;
+}
+
+#overview .clickabletag:hover {
+  background-color: #69CC83;
+  color: #34495E;
+}
+
+#overview .highlightedtag {
+  background-color: #F39C12;
+  color: #2C3E50;
+}
+
+#overview .highlightedtag:hover {
+  background-color: #F1C40F;
+  color: #34495E;
+}
+
+#overview .tagsinput {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+#overview .tagsinput .tag {
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+#overview .tagsinput input {
+  vertical-align: middle;
+  margin: 0;
+}
+
+#overview .tagsinput-add {
+  background-color: transparent;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+#overview .tagContainer {
+  height: 20px;
+}

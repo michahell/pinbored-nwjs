@@ -1,0 +1,49 @@
+/* following is specifically for flat-ui */
+
+.navbar .container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.screentitle .btn-xs {
+  margin-top: 3px;
+}
+
+.screentitle .btn-sm {
+  padding: 10px 13px;
+  line-height: 1;
+}
+
+.navbar >.container .navbar-collapse .navbar-nav.navbar-right:last-child {
+  margin-right: 0;
+}
+
+.navbar-nav > li > .dropdown-menu {
+  margin-right: 15px;
+}
+
+.navbar > .container .navbar-brand {
+  margin-left: 0;
+}
+
+.tagsinput {
+  margin-bottom: 0;
+}
+
+.login-form:before {
+  content: none;
+}
+
+.list-group-item {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.navbar-form .btn {
+  height: auto;
+  padding: 7.5px 13px;
+}
+
+.navbar-form .form-group + .btn {
+  font-size: 13px;
+}
