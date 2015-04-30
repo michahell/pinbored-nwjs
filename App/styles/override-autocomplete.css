@@ -1,0 +1,25 @@
+tags-input .autocomplete {
+  background-color: #ECF0F1;
+  border: none;
+  border-radius: 3px;
+}
+
+tags-input .autocomplete .suggestion-item {
+  background-color: #ECF0F1;
+}
+
+tags-input .autocomplete .suggestion-item.selected {
+  background-color: #1ABC9C;
+  color: #FFF;
+}
+
+tags-input .autocomplete .suggestion-item em {
+  background-color: transparent;
+  color: #2C3E50;
+}
+
+tags-input .autocomplete .suggestion-item.selected em {
+  background-color: #2C3E50;
+  color: #FFF;
+  font-style: bold;
+}
