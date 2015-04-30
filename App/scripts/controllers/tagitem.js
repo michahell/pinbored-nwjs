@@ -179,16 +179,6 @@ angular.module('pinboredWebkitApp')
       });
     };
 
-    $scope.applyFold = function() {
-      console.log('TODO applying fold...');
-      // apply
-
-      // remove item (it has folded...)
-
-      // update count of folded into tag
-
-    };
-
     $scope.revertRenameChanges = function(tag) {
       $scope.item.tagname = $scope.original.tagname;
     };
@@ -198,8 +188,8 @@ angular.module('pinboredWebkitApp')
     };
 
     $scope.saveFoldChanges = function(tag) {
-      console.log('save fold changes called!');
-      // $scope.renameTag($scope.original.tagname, tag.tagname);
+      console.log('save fold changes called.');
+      $scope.fold(tag, $scope.status.newFoldTags[0].text);
     };
 
   });

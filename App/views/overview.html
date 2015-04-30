@@ -11,6 +11,10 @@
         <option value="all">retrieve all bookmarks</option>
       </select>
 
+      <!-- Icheck component checks -->
+      <input type="radio" name="iCheck">
+      <input type="radio" name="iCheck" checked>
+
     </div>
 
     <div class="col-xs-1">
@@ -38,8 +42,7 @@
             <div class="collapse navbar-collapse textselectable">
               <form role="search" class="navbar-form navbar-left">
                 <div class="form-group">
-                  <input type="text" ng-model="filter.text" placeholder="full-text search" class="form-control input-sm" 
-                  ng-keydown="updateFiltersPaging()" ng-keyup="updateFiltersPaging()">
+                  <input type="text" ng-model="filter.text" placeholder="full-text search" class="form-control input-sm" ng-keydown="updateFiltersPaging()" ng-keyup="updateFiltersPaging()">
                 </div>
               </form>
             </div>
@@ -69,7 +72,9 @@
       <div class="bar-container" ng-show="config.showTags">
         <div class="col-xs-7">
           <tags-input ng-model="filter.tags" placeholder="search for tag" 
-          on-tag-added="onTagAdded($tag)" on-tag-removed="onTagAdded($tag)"></tags-input>
+          on-tag-added="onTagAdded($tag)" on-tag-removed="onTagAdded($tag)">
+            <auto-complete source="loadTagItems($query)"></auto-complete>
+          </tags-input>
           <!-- ng-keyup="updateFiltersPaging()" ng-click="updateFiltersPaging()" -->
         </div>
         <div class="col-xs-2">

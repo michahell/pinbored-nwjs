@@ -51,6 +51,13 @@ angular.module('pinboredWebkitApp')
       return false;
     };
 
+    // array return format: { text: 'Tag1' }, { text: 'Tag2' }, { text: 'Tag3' }, { text: 'Tag4' }
+    // see: http://mbenford.github.io/ngTagsInput/gettingstarted under 'Autocomplete'
+    // $scope.loadTagItems = function(query) {
+    //   // return filtered parent scope' tagNames with query (which is user input)
+    //   return $filter('filter')($scope.data.tagNames, query) || [];
+    // };
+
     $scope.update = function() {
       Appstatusservice.updateStatus('updating bookmark...');
       // request update

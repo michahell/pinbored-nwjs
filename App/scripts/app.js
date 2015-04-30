@@ -10,16 +10,14 @@
 angular
   .module('pinboredWebkitApp', [
     'ngAnimate',
-    // 'ngCookies',
-    // 'ngResource',
     'ngRoute',
+    'ngResource',
     'ngSanitize',
+    // 'ngCookies',
     // 'ngTouch',
     'ngTagsInput',
     'ui.bootstrap',
     'ui.splash',
-    'angular-bootstrap-select',
-    'angular-bootstrap-select.extra',
     'gridster'
   ])
   .config(function ($routeProvider) {
@@ -40,11 +38,11 @@ angular
         templateUrl: 'views/tags.html',
         controller: 'TagsCtrl'
       })
-      .when('/tools', {
-        // templateUrl: 'views/tools.html',
-        // controller: 'ToolsCtrl'
-        redirectTo: '/'
-      })
+      // .when('/tools', {
+      //   templateUrl: 'views/tools.html',
+      //   controller: 'ToolsCtrl'
+      //   redirectTo: '/'
+      // })
       .when('/settings', {
         templateUrl: 'views/settings.html',
         controller: 'SettingsCtrl'

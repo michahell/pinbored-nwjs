@@ -32,7 +32,8 @@ angular.module('pinboredWebkitApp')
       activePage : 3,
       items: [],
       filteredList : [],
-      selectedItems : []
+      selectedItems : [],
+      tagNames : []
     };
 
     $scope.paging = {
@@ -225,6 +226,27 @@ angular.module('pinboredWebkitApp')
       }
     };
 
+    $scope.reloadTags = function() {
+      // get all tags  
+      Appstatusservice.updateStatus('retrieving all tags...');
+      
+      Pinboardservice.getAllTags()
+      .then(function(result) {
+        // store stripped down version for autocomplete
+        for (var tag in result) {
+          if (result.hasOwnProperty(tag)) {
+            $scope.data.tagNames.push({
+              text : tag
+            });
+          }
+        };
+        // console.log($scope.data.tagNames);
+        Appstatusservice.updateStatus('all tags retrieved.');
+      }, function(failreason) {
+        console.error('Failed: ' + failreason);
+      });
+    };
+
 
 
 
@@ -259,6 +281,13 @@ angular.module('pinboredWebkitApp')
         // remove tag, one too many
         $scope.filter.tags.splice($scope.filter.tags.indexOf($scope.filter.tags[$scope.filter.tags.length-1]), 1);
       }
+    };
+
+    // array return format: { text: 'Tag1' }, { text: 'Tag2' }, { text: 'Tag3' }, { text: 'Tag4' }
+    // see: http://mbenford.github.io/ngTagsInput/gettingstarted under 'Autocomplete'
+    $scope.loadTagItems = function(query) {
+      // return filtered parent scope' tagNames with query (which is user input)
+      return $filter('filter')($scope.data.tagNames, query) || [];
     };
 
     $scope.onTagAdded = function (tag) {
@@ -353,6 +382,9 @@ angular.module('pinboredWebkitApp')
 
     // repopulate bookmark items.
     $scope.repopulateBookmarks();
+
+    // load all tags
+    $scope.reloadTags();
 
     // and filter them, if there is any filterBuffer
     $scope.applyFilterBuffer();

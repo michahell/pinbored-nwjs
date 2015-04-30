@@ -30,7 +30,7 @@ angular.module('pinboredWebkitApp')
 
 
 
-    // bookmark support functions
+    // BOOKMARK SUPPORT FUNCTIONS
 
 
 

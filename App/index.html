@@ -7,15 +7,15 @@
     <link rel="stylesheet" href="bower_components_dist/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components_dist/animate.css/animate.min.css" />
     <link rel="stylesheet" href="bower_components_dist/ng-tags-input/ng-tags-input.min.css">
-    <link rel="stylesheet" href="bower_components_dist/bootstrap-select/dist/css/bootstrap-select.css">
     <link rel="stylesheet" href="bower_components_dist/flat-ui/dist/css/flat-ui.css">
     <link rel="stylesheet" href="bower_components_dist/angular-gridster/dist/angular-gridster.min.css" />
+    <!-- <link rel="stylesheet" href="bower_components_dist/iCheck/skins/flat/green.css" > -->
     <!-- <link rel="stylesheet" href="styles/lumen.css" /> -->
     <!-- <link rel="stylesheet" href="styles/darkly.css" /> -->
-    <!-- <link rel="stylesheet" href="bower_components_dist/stroll/css/stroll.min.css" /> -->
-    <link rel="stylesheet" href="styles/noresponsive.css" />
+    <link rel="stylesheet" href="styles/override-noresponsive.css" />
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/splashmodal.css">
+    <link rel="stylesheet" href="styles/override-autocomplete.css">
+    <link rel="stylesheet" href="styles/override-splashmodal.css">
 
   </head>
   <body ng-app="pinboredWebkitApp">
@@ -40,19 +40,17 @@
     
     <script src="bower_components_dist/angular-bootstrap/ui-bootstrap.js"></script>
     <script src="bower_components_dist/angular-resource/angular-resource.js"></script>
-    <script src="bower_components_dist/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components_dist/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components_dist/angular-animate/angular-animate.js"></script>
-    <script src="bower_components_dist/angular-touch/angular-touch.js"></script>
     <script src="bower_components_dist/angular-route/angular-route.js"></script>
+    <!-- // <script src="bower_components_dist/angular-touch/angular-touch.js"></script> -->
+    <!-- // <script src="bower_components_dist/angular-cookies/angular-cookies.js"></script> -->
 
-    <script src="bower_components_dist/javascript-detect-element-resize/jquery.resize.js"></script>
+    <!-- // <script src="bower_components_dist/javascript-detect-element-resize/jquery.resize.js"></script> -->
     <script src="bower_components_dist/angular-gridster/src/angular-gridster.js"></script>
-    // <!-- <script src="bower_components_dist/ng-tags-input/ng-tags-input.min.js"></script> -->
-    <script src="bower_components/ng-tags-input/ng-tags-input.js"></script>
-    <script src="bower_components_dist/bootstrap-select/dist/js/bootstrap-select.js"></script>
-    <script src="bower_components_dist/angular-bootstrap-select/build/angular-bootstrap-select.js"></script>
+    <script src="bower_components_dist/ng-tags-input/ng-tags-input.js"></script>
     <script src="bower_components_dist/flat-ui/dist/js/flat-ui.js"></script>
+    <!-- // <script src="bower_components_dist/iCheck/icheck.js"></script> -->
     <!-- <script src="bower_components_dist/stroll/js/stroll.min.js"></script> -->
     <!-- endbower -->
     
@@ -87,6 +85,7 @@
         <script src="scripts/directives/flatuicomponentstemplates.js"></script>
         <script src="scripts/directives/stopevent.js"></script>
         <script src="scripts/directives/ngenter.js"></script>
+        <!-- // <script src="scripts/directives/icheck.js"></script> -->
 
         <!-- filters -->
         <script src="scripts/filters/highlightfilter.js"></script>
