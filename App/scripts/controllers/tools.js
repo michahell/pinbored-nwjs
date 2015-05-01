@@ -32,13 +32,13 @@ angular.module('pinboredWebkitApp')
         href : [],
         extended : []
       }
-    }
+    };
 
     $scope.loadCachedBookmarks = function() {
       console.log('checking if stored bookmark set exists...');
       // check if they are cached in service.
       var isEmpty = (Object.keys(Bookmarkservice.storedBookmarkData).length) === 0 ? true : false;
-      console.log("are cached bookmarks empty? " + isEmpty);
+      console.log('are cached bookmarks empty? ' + isEmpty);
 
       if(isEmpty === false) {
         // console.log('cached bookmarks exist.');
@@ -52,7 +52,7 @@ angular.module('pinboredWebkitApp')
         // TODO reload (ALL) bookmarks from (TODO) bookmark singleton service...
         console.log('TODO should load (all) bookmarks from (TODO) bookmark singleton service...');
       }
-    }
+    };
 
     $scope.checkDuplicates = function() {
 
@@ -70,10 +70,10 @@ angular.module('pinboredWebkitApp')
 
         // doubly iterate over given list, execute visitor function
         for(var i=0; i<list.length; i++) {
-          checkedItem = list[i];
+          var checkedItem = list[i];
           for(var j=0; j<list.length; j++) {
             if(i !== j) {
-              duplicateItem = list[j];
+              var duplicateItem = list[j];
               if(visitorFunc(checkedItem, duplicateItem)) {
                 duplicates.push({bookmark:checkedItem, duplicate:duplicateItem});
               }
@@ -118,7 +118,7 @@ angular.module('pinboredWebkitApp')
       console.info($scope.duplicatecheck.duplicates.name);
       console.info($scope.duplicatecheck.duplicates.extended);
 
-    }
+    };
 
     // update current page
     Usersessionservice.setCurrentSection('tools');

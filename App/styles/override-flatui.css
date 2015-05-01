@@ -47,3 +47,10 @@
 .navbar-form .form-group + .btn {
   font-size: 13px;
 }
+
+/* flat ui pagination overrides */
+
+.pagination-plain {
+  margin-bottom: 0;
+  margin-top: 4px;
+}

@@ -1,0 +1,46 @@
+/* TOOLS VIEW */
+
+.tooltitle .btn-sm {
+  padding: 10px 13px;
+  line-height: 1;
+}
+
+.tooltitle {
+  margin: 6px;
+  width: auto;
+  padding: 8px;
+  background-color: #bdc3c7;
+  text-transform: lowercase;
+  line-height: 0;
+  border-radius: 3px;
+}
+
+.tooltitle p.toolsheader {
+  margin: 0;
+  margin-top: 5px;
+  margin-right: 15px;
+  padding: 0;
+  font-weight: bold;
+  color: #34495e;
+  text-transform: lowercase;
+  font-size: 20px;
+  float: left;
+}
+
+#list > .list-duplicates > ul {
+  background-color: #34495E;
+}
+
+#list > .list-duplicates > ul > li {
+  background-color: #34495E;
+  border-bottom: 1px solid #2C3E50;
+}
+
+#list > .list-duplicates p,
+#list > .list-duplicates small {
+  color: red;
+}
+
+#list > .list-duplicates .subheader {
+  color: yellow;
+}

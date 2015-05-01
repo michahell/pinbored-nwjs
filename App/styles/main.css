@@ -20,7 +20,7 @@
 
 /* modal */
 
-h3.modal-title {
+.modal-title {
   font-size: 22px;
   line-height: 1;
 }
@@ -58,13 +58,6 @@ button.selectpicker.dropdown-toggle span.caret,
 .bootstrap-select .btn:focus,
 .btn-group.open .dropdown-toggle {
   outline: none ! important;
-}
-
-/* flat ui pagination overrides */
-
-ul.pagination-plain {
-  margin-bottom: 0;
-  margin-top: 4px;
 }
 
 /* start of kustom CSS */
@@ -118,6 +111,7 @@ small, .small {
 /* custom element styling */
 
 .navbar-brand {
+  box-sizing: border-box;
   height: 53px;
   padding: 0;
   padding-top: 11px;
@@ -147,9 +141,9 @@ small, .small {
   background-color: #2C3E50;
   box-sizing: border-box;
   border-top: 1px solid #34495E;
-  -webkit-transition:all ease-out 0.2s;
-  -o-transition:all ease-out 0.2s;
-  transition:all ease-out 0.2s;
+  -webkit-transition: all ease-out 0.2s;
+  -o-transition: all ease-out 0.2s;
+  transition: all ease-out 0.2s;
 }
 
 .bar.ng-hide {
@@ -158,9 +152,9 @@ small, .small {
 }
 
 .bar-container {
-  -webkit-transition:all ease-out 0.2s;
-  -o-transition:all ease-out 0.2s;
-  transition:all ease-out 0.2s;
+  -webkit-transition: all ease-out 0.2s;
+  -o-transition: all ease-out 0.2s;
+  transition: all ease-out 0.2s;
   transition-delay: 0.2s;
   opacity: 1;
   height: 100%;
@@ -168,6 +162,7 @@ small, .small {
 
 .bar-container.ng-hide {
   -webkit-transition: none;
+  -o-transition: none;
   transition: none;
   transition-delay: 0s;
   opacity: 0;
@@ -179,6 +174,7 @@ small, .small {
 #selection .bar-container form-group button,
 #selection .hider {
   -webkit-transition: opacity ease-out 0.4s;
+  -o-transition: opacity ease-out 0.4s;
   transition: opacity ease-out 0.4s;
   transition-delay: 0.0s;
   opacity: 1;
@@ -305,12 +301,12 @@ small, .small {
   margin: 7px;
 }
 
-.angularjs-bootstrap-tagsinput {
+/*.angularjs-bootstrap-tagsinput {
   width: 100%;
 }
 .angularjs-bootstrap-tagsinput [data-role=tags] {
   height: auto;
-}
+}*/
 
 #pages {
   /*line-height: 0;
@@ -379,6 +375,7 @@ small, .small {
 #overview .navbar-embossed > .navbar-collapse,
 #tags .navbar-embossed > .navbar-collapse {
   -webkit-box-shadow: none;
+  -moz-box-shadow: none;
   box-shadow: none;
 }
 
@@ -446,7 +443,7 @@ small, .small {
   height: 100%;        /* ...as content is added (won't scroll) */
 }
 
-#list div.listBackgroundMessage {
+#list .listBackgroundMessage {
   position: absolute;
   width: 100%;
   height: 100px;
@@ -497,7 +494,7 @@ small, .small {
   border-bottom: 1px solid #2C3E50;
 }
 
-#list > .list-wrapper > ul > li.selected {
+#list > .list-wrapper > ul > .selected {
   background-color: #212F3C;
 }
 
@@ -705,6 +702,7 @@ small, .small {
 }
 
 #stale-indicator {
+  box-sizing: border-box;
   float: right;
   width: 110px;
   min-height: 72px;
@@ -722,53 +720,6 @@ small, .small {
 #stale-indicator.unknown,
 #stale-indicator.checking {
   background: rgba(0, 0, 0, 0.1);
-}
-
-/* TOOLS VIEW */
-
-.tooltitle btn-sm {
-  padding: 10px 13px;
-  line-height: 1;
-}
-
-.tooltitle {
-  margin: 6px;
-  width: auto;
-  padding: 8px;
-  background-color: #bdc3c7;
-  text-transform: lowercase;
-  line-height: 0;
-  border-radius: 3px;
-}
-
-.tooltitle p.toolsheader {
-  margin: 0;
-  margin-top: 5px;
-  margin-right: 15px;
-  padding: 0;
-  font-weight: bold;
-  color: #34495e;
-  text-transform: lowercase;
-  font-size: 20px;
-  float: left;
-}
-
-#list > .list-duplicates > ul {
-  background-color: #34495E;
-}
-
-#list > .list-duplicates > ul > li {
-  background-color: #34495E;
-  border-bottom: 1px solid #2C3E50;
-}
-
-#list > .list-duplicates p,
-#list > .list-duplicates small {
-  color: red;
-}
-
-#list > .list-duplicates h6 {
-  color: yellow;
 }
 
 

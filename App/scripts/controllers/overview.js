@@ -239,7 +239,7 @@ angular.module('pinboredWebkitApp')
               text : tag
             });
           }
-        };
+        }
         // console.log($scope.data.tagNames);
         Appstatusservice.updateStatus('all tags retrieved.');
       }, function(failreason) {
@@ -362,7 +362,7 @@ angular.module('pinboredWebkitApp')
       $scope.multiAction.show = false;
     };
 
-    $scope.$on("$destroy", function() {
+    $scope.$on('$destroy', function() {
       if ($scope.filter.textFilterTimeout !== null) {
         $timeout.cancel($scope.filter.textFilterTimeout);
         $scope.filter.textFilterTimeout = null;
