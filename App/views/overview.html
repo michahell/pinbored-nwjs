@@ -29,7 +29,7 @@
 
   <div class="bar-wrapper clearfix">
 
-    <!-- full text search -->
+    <!-- toolbar full text search -->
     <div class="bar" id="fulltextsearch" ng-show="config.showSearch">
       <div class="bar-container" ng-show="config.showSearch">
         <nav role="navigation" class="navbar navbar-inverse navbar-embossed">
@@ -63,12 +63,12 @@
       </div>
     </div>
 
-    <!-- tags -->
+    <!-- toolbar tag search -->
     <div class="bar clearfix" id="tagsearch" ng-show="config.showTags">
       <div class="bar-container" ng-show="config.showTags">
         <div class="col-xs-7">
           <tags-input ng-model="filter.tags" placeholder="search for tag" 
-          on-tag-added="onTagAdded($tag)" on-tag-removed="onTagAdded($tag)">
+          on-tag-added="onSearchTagChanged()" on-tag-removed="onSearchTagChanged()">
             <auto-complete source="loadTagItems($query)"></auto-complete>
           </tags-input>
           <!-- ng-keyup="updateFiltersPaging()" ng-click="updateFiltersPaging()" -->
@@ -85,7 +85,7 @@
       </div>
     </div>
 
-    <!-- screen pagination -->
+    <!-- toolbar pagination -->
     <div class="bar" id="pages" ng-show="config.showPager">
       <div class="bar-container" ng-show="config.showPager">
         <pagination total-items="paging.total" items-per-page="config.itemsPerPage" 
@@ -95,7 +95,7 @@
       </div>
     </div>
 
-    <!-- multi tag select bar -->
+    <!-- toolbar multi tag select -->
     <div class="bar clearfix" id="selection" ng-show="data.selectedItems.length > 1">
       <div class="bar-container" ng-show="data.selectedItems.length > 1">
         <nav role="navigation" class="navbar navbar-inverse navbar-embossed">
@@ -105,7 +105,7 @@
           </div>
 
           <div class="col-xs-3">
-            <select name="multiAction" class="selectpicker select-block tall"
+            <select name="multiAction" class=""
             ng-model="multiAction.selectedAction" ng-change="changeMultiAction()">
               <option value="">select action</option>
               <option value="addTag">add tag</option>
@@ -123,13 +123,24 @@
                 <form role="search" class="navbar-form navbar-left">
                   <!-- add tag div -->
                   <div class="form-group" ng-show="multiAction.selectedAction === 'addTag'">
-                    <input type="text" ng-model="multiAction.newTagName" placeholder="new tag name" 
-                    class="form-control input-sm">
+                    <tags-input ng-model="multiAction.newTagNames" placeholder="new tag name" 
+                    on-tag-added="onNewTagChanged()" on-tag-removed="onNewTagChanged()">
+                      <auto-complete source="loadTagItems($query)"></auto-complete>
+                    </tags-input>
+                    <!-- <input type="text" ng-model="multiAction.newTagName" placeholder="new tag name" 
+                    class="form-control input-sm"> -->
                   </div>
                   <!-- fold into tag div -->
                   <div class="form-group" ng-show="multiAction.selectedAction === 'foldIntoTag'">
-                    <input type="text" ng-model="multiAction.foldTagName" placeholder="fold tag name" 
-                    class="form-control input-sm">
+
+                    <tags-input ng-model="multiAction.foldTagNames" placeholder="fold tag name" 
+                    on-tag-added="onFoldIntoTagChanged()" on-tag-removed="onFoldIntoTagChanged()">
+                      <auto-complete source="loadTagItems($query)"></auto-complete>
+                    </tags-input>
+
+                    <!-- <input type="text" ng-model="multiAction.foldTagName" placeholder="fold tag name" 
+                    class="form-control input-sm"> -->
+
                   </div>
                   <!-- submit request button -->
                   <button class="btn btn-default btn-sm" type="submit" 

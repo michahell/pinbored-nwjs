@@ -170,21 +170,53 @@ small, .small {
 }
 
 
-#selection .bar-container form-group input, 
-#selection .bar-container form-group button,
+/*#selection .bar-container form-group input, 
+#selection .bar-container form-group button,*/
 #selection .hider {
-  -webkit-transition: opacity ease-out 0.4s;
-  -o-transition: opacity ease-out 0.4s;
-  transition: opacity ease-out 0.4s;
+  -webkit-transition: opacity ease-out 0.3s;
+  -o-transition: opacity ease-out 0.3s;
+  transition: opacity ease-out 0.3s;
   transition-delay: 0.0s;
   opacity: 1;
 }
 
-#selection .bar-container form-group.ng-hide input, 
-#selection .bar-container form-group.ng-hide button,
-#selection .hider {
+#selection .hider.ng-hide {
   opacity: 0;
 }
+
+#selection .hider.ng-hide {
+  opacity: 0;
+}
+
+#selection .hider.ng-hide-remove-active {
+  opacity: 1;
+}
+
+/*#selection .hider.ng-hide-add,
+#selection .hider.ng-hide-remove {
+  -webkit-transition: opacity ease-out 0.4s;
+  -o-transition: opacity ease-out 0.4s;
+  transition: opacity ease-out 0.4s;
+  transition-delay: 0.0s;
+}*/
+
+/*#selection .hider.ng-hide-add {
+  opacity: 1;
+}*/
+
+/*.my-element.ng-hide-add.ng-hide-add-active { ... }*/
+
+/*#selection .hider.ng-hide-remove {
+  opacity: 0;
+}*/
+
+/*.my-element.ng-hide-remove.ng-hide-remove-active { ... }*/
+
+/*#selection .bar-container form-group.ng-hide input, 
+#selection .bar-container form-group.ng-hide button,*/
+/*#selection .hider {
+  opacity: 0;
+}*/
 
 .screentitle {
   margin: 0;
@@ -257,8 +289,8 @@ small, .small {
   position: absolute;
   left: 0;
   top: 0;
-  overflow-y: hidden ! important;
-  overflow-x: hidden ! important;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 #login .tooltip.bottom .tooltip-arrow {
@@ -659,6 +691,7 @@ small, .small {
 .hiddenContent textarea.hiddeninputs {
   box-sizing: border-box;
   padding: 10px;
+  height: 40px;
 }
 
 .hiddeninputs {

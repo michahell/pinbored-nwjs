@@ -54,7 +54,9 @@ angular.module('pinboredWebkitApp')
       selectedAction : '',
       dangerousAction : false,
       newTagName : '',
-      foldTagName : ''
+      newTagNames : [],
+      foldTagName : '',
+      foldTagNames : []
     };
 
     $scope.config = {
@@ -78,6 +80,36 @@ angular.module('pinboredWebkitApp')
 
 
 
+
+    // this method serves to color the selection action button depending on the 'severity'
+    // of the selected action.
+
+    $scope.changeMultiAction = function() {
+      console.log('change multi action called!');
+      console.log('ng model: ' + $scope.multiAction.selectedAction);
+      if($scope.multiAction.selectedAction === '') {
+        $scope.multiAction.show = false;
+      } else {
+        $scope.multiAction.show = true;
+        switch($scope.multiAction.selectedAction) {
+          case 'deleteAllItems':
+          case 'deleteAllTags':
+            $scope.multiAction.dangerousAction = true;
+            break;
+          default:
+            $scope.multiAction.dangerousAction = false;
+        }
+      }
+    };
+
+    $scope.executeMultiAction = function() {
+      console.log('executing action: ' + $scope.multiAction.selectedAction);
+      if(!Utilservice.isEmpty($scope.multiAction.selectedAction)) {
+        // execute the selected multi action method:
+        console.log('method call: ' + 'multi' + Utilservice.capitalize($scope.multiAction.selectedAction));
+        $scope['multi' + Utilservice.capitalize($scope.multiAction.selectedAction)]();
+      }
+    };
 
     $scope.multiDeleteAllItems = function() {
       Modalservice.confirm('', 'Delete selected bookmarks ? <br/>This request can not be cancelled when started!')
@@ -132,34 +164,6 @@ angular.module('pinboredWebkitApp')
         });
       } else {
         Modalservice.alert('', 'no new tag name was given!');
-      }
-    };
-
-    // this method serves to color the selection action button depending on the 'severity'
-    // of the selected action.
-
-    $scope.changeMultiAction = function() {
-      if($scope.multiAction.selectedAction === '') {
-        $scope.multiAction.show = false;
-      } else {
-        $scope.multiAction.show = true;
-        switch($scope.multiAction.selectedAction) {
-        case 'deleteAllItems':
-        case 'deleteAllTags':
-          $scope.multiAction.dangerousAction = true;
-          break;
-        default:
-          $scope.multiAction.dangerousAction = false;
-        }
-      }
-    };
-
-    $scope.executeMultiAction = function() {
-      console.log('executing action: ' + $scope.multiAction.selectedAction);
-      if(!Utilservice.isEmpty($scope.multiAction.selectedAction)) {
-        // execute the selected multi action method:
-        console.log('method call: ' + 'multi' + Utilservice.capitalize($scope.multiAction.selectedAction));
-        $scope['multi' + Utilservice.capitalize($scope.multiAction.selectedAction)]();
       }
     };
 
@@ -276,8 +280,8 @@ angular.module('pinboredWebkitApp')
       }
     };
 
-    $scope.checkMaxTags = function() {
-      if($scope.filter.tags.length > $scope.config.maxTagSearch) {
+    $scope.checkMaxTags = function(amount) {
+      if($scope.filter.tags.length > amount) {
         // remove tag, one too many
         $scope.filter.tags.splice($scope.filter.tags.indexOf($scope.filter.tags[$scope.filter.tags.length-1]), 1);
       }
@@ -290,14 +294,22 @@ angular.module('pinboredWebkitApp')
       return $filter('filter')($scope.data.tagNames, query) || [];
     };
 
-    $scope.onTagAdded = function (tag) {
-      $scope.checkMaxTags(tag);
+    $scope.onSearchTagChanged = function () {
+      $scope.checkMaxTags($scope.config.maxTagSearch);
       $scope.updateFiltersPaging();
     };
 
-    $scope.onTagRemoved = function () {
-      $scope.updateFiltersPaging();
+    $scope.onFoldIntoTagChanged = function () {
+      $scope.checkMaxTags(1);
     };
+
+    $scope.onNewTagChanged = function () {
+      $scope.checkMaxTags(1);
+    };
+
+    // $scope.onTagRemoved = function () {
+    //   $scope.updateFiltersPaging();
+    // };
 
     // this method is essentially a manual debounce for filtering.
     // debounce was apparently added in Angular 1.3 but why change
