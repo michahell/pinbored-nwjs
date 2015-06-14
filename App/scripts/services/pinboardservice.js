@@ -20,9 +20,14 @@ angular.module('pinboredWebkitApp')
 
     try {
       var rest = require('restler');
+    } catch (error) {
+      console.error('error loading restler: ' + error);
+    }
+
+    try {
       var dns = require('dns');
     } catch (error) {
-      console.error('error loading restler / dns: ' + error);
+      console.error('error loading dns: ' + error);
     }
 
     /* ====================== INTERNALS ======================= */

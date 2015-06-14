@@ -15,7 +15,8 @@ angular
     'ngSanitize',
     'ngTagsInput',
     'ui.bootstrap',
-    'ui.splash',
+    // 'ui.splash',
+    'fui',
     'gridster'
   ])
   .config(function ($routeProvider) {
@@ -36,11 +37,6 @@ angular
         templateUrl: 'views/tags.html',
         controller: 'TagsCtrl'
       })
-      // .when('/tools', {
-      //   templateUrl: 'views/tools.html',
-      //   controller: 'ToolsCtrl'
-      //   redirectTo: '/'
-      // })
       .when('/settings', {
         templateUrl: 'views/settings.html',
         controller: 'SettingsCtrl'

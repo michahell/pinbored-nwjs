@@ -60,23 +60,31 @@ angular.module('pinboredWebkitApp')
 
       if(!Utilservice.isEmpty(username) && !Utilservice.isEmpty(password)) {
 
-        $scope.getUserToken(username, password);
+        // $scope.getUserToken(username, password);
 
-        // Pinboardservice.checkConnection()
-        // .then(function(result) {
-        //   console.log(result);
-        //   $scope.getUserToken(username, password);
-        // }, function(failure) {
-        //   console.log(failure);
-        //   Modalservice.confirm('check again?', 'no internet connection!')
-        //   .then(function() {
-        //     $scope.login($scope.username, $scope.password);
-        //   }, function() {
-        //     // cancelled
-        //   });
-        // });
+        if(username !== 'offline' && password !== 'offline') {
+          Pinboardservice.checkConnection()
+          .then(function(result) {
+            console.log(result);
+            $scope.getUserToken(username, password);
+          }, function(failure) {
+            console.log(failure);
+            Modalservice.confirm('No internet connection', 'It seems there is no internet connection. Retry (OK) or go offline (cancel) ?')
+            .then(function() {
+              // retry login
+              $scope.login($scope.username, $scope.password);
+            }, function() {
+              // cancelled
+              $scope.login('offline', 'offline');
+            });
+          });
+        } else {
+          // offline mode!
+          
+        }
       } else {
         // todo error no input
+        Modalservice.alert('Insufficient input', 'Please fill out both username and password.');
       }
 
     };

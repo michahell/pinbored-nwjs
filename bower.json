@@ -3,24 +3,23 @@
   "version": "0.0.3",
   "dependencies": {
     "angular": ">=1.2.16",
-    "angular-resource": ">=1 <1.3.0",
-    "angular-cookies": ">=1 <1.3.0",
-    "angular-sanitize": ">=1 <1.3.0",
-    "angular-animate": ">=1 <1.3.0",
-    "angular-touch": ">=1 <1.3.0",
-    "angular-route": ">=1 <1.3.0",
+    "angular-resource": ">=1.2",
+    "angular-cookies": ">=1.2",
+    "angular-sanitize": ">=1.2",
+    "angular-animate": ">=1.2",
+    "angular-touch": ">=1.2",
+    "angular-route": ">=1.2",
     "angular-bootstrap": ">=0.12.1",
     "angular-gridster": ">=0.13.2",
     "json3": ">=3.3.1",
     "bootstrap": ">=3.1.1",
     "animate.css": ">=3.1.1",
     "ng-tags-input": ">=2.0.1",
-    "flat-ui": ">=2.2.0"
+    "flat-ui": ">=2.2.0",
+    "fui-angular": "~0.1.5",
+    "underscore": "~1.8.3"
   },
   "devDependencies": {
-    "angular-mocks": ">=1 <1.3.0"
-  },
-  "resolutions": {
-    "angular": ">=1 <1.3.0"
+    "angular-mocks": ">=1"
   }
 }

@@ -6,7 +6,7 @@
   },
   "name": "pinbored",
   "description": "a bookmark management app",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "bugs": {
     "url": "https://github.com/michahell/pinbored-webkit/issues",
     "email": "maggelo@gmail.com"
@@ -18,7 +18,7 @@
   "private": true,
   "main": "index.html",
   "dependencies": {
-    "restler": "^3.2.2"
+    "restler": ">=3.2.2"
   },
   "window": {
     "title": "Pinbored",

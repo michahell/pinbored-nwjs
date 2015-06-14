@@ -7,7 +7,7 @@
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('TagsCtrl', function ($scope, Pinboardservice, Appstatusservice, 
+  .controller('TagsCtrl', function ($scope, $filter, Pinboardservice, Appstatusservice, 
     Usersessionservice, $location) {
     
     // if not authenticated, redirect to login page
@@ -80,6 +80,13 @@ angular.module('pinboredWebkitApp')
        // drag: function(event, $element, widget) {}, // optional callback fired when item is moved,
        // stop: function(event, $element, widget) {} // optional callback fired when item is finished dragging
       }
+    };
+
+    // array return format: { text: 'Tag1' }, { text: 'Tag2' }, { text: 'Tag3' }, { text: 'Tag4' }
+    // see: http://mbenford.github.io/ngTagsInput/gettingstarted under 'Autocomplete'
+    $scope.loadTagItems = function(query) {
+      // return filtered parent scope' tagNames with query (which is user input)
+      return $filter('filter')($scope.data.tagNames, query) || [];
     };
 
     $scope.createTags = function(tagdata) {

@@ -10,15 +10,24 @@ angular.module('pinboredWebkitApp')
   .controller('MainNavCtrl', function ($scope, Usersessionservice) {
 
     // page model
-    $scope.showNav = false;
-    $scope.username = 'user';
-    $scope.activePage = '';
+    $scope.data = {
+      showNav : false,
+      activePage : '',
+      username : 'user',
+      navItems : [
+        {name: 'overview' },
+        {name: 'tags' }
+        // {name: 'tools' },
+        // {name: 'statistics' },
+        // {name: 'settings' }
+      ]
+    };
 
     // root scope listeners
     $scope.$on('user:authenticated', function() { // args: event, data
       if(Usersessionservice.authenticated === true) {
         $scope.showNav = true;
-        $scope.username = Usersessionservice.user;
+        $scope.data.username = Usersessionservice.user;
       } else if(Usersessionservice.authenticated === false) {
         $scope.showNav = false;
         return;
@@ -34,6 +43,13 @@ angular.module('pinboredWebkitApp')
       console.log('logging out...');
       Usersessionservice.destroy();
       console.info('logged out.');
+    };
+
+    $scope.quit = function() {
+      // TODO quit
+      console.log('quitting...');
+      $scope.logout();
+      console.info('bye! see you next time.');
     };
 
   });

@@ -7,7 +7,7 @@
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('OverviewCtrl', function ($scope, $location, $filter, $modal, $q, $splash, $timeout,
+  .controller('OverviewCtrl', function ($scope, $location, $filter, $q, $timeout,
     Bookmarkservice, Pinboardservice, Usersessionservice, Appstatusservice, Utilservice, Modalservice,
     fulltextFilter, tagsFilter) {
     
@@ -28,12 +28,14 @@ angular.module('pinboredWebkitApp')
     // page model
     $scope.data = {
       loadType : 'recent',
+      loadTypes : ['recent', 'all'],
       isLoading : true,
       activePage : 3,
       items: [],
       filteredList : [],
       selectedItems : [],
-      tagNames : []
+      tagNames : [],
+      bgMsg : 'NO BOOKMARKS FOUND.'
     };
 
     $scope.paging = {
@@ -64,7 +66,7 @@ angular.module('pinboredWebkitApp')
       tagFilterTypeText : 'inclusive / and',
       searchAllWords : false,
       searchAllWordsText : 'search all words',
-      maxItems : 200,
+      maxRecentItems : 200,
       maxTagSearch : 4,
       itemsPerPage : 25,
       showSearch : false,
@@ -175,6 +177,14 @@ angular.module('pinboredWebkitApp')
 
 
     
+    $scope.setLoadType = function(newLoadType) {
+      if(_.contains($scope.data.loadTypes, newLoadType)) {
+        $scope.data.loadType = newLoadType;
+      } else {
+        console.error('the input loadType is incorrect, must be valid loadType!');
+      }
+    };
+
     $scope.forceReload = function() {
       $scope.reload($scope.data.loadType);
     };
@@ -184,22 +194,25 @@ angular.module('pinboredWebkitApp')
       // set some stupid local state
       $scope.data.isLoading = true;
       $scope.data.items = [];
+      $scope.data.bgMsg = 'LOADING BOOKMARKS...';
       $scope.filteredList = [];
       $scope.paging.current = 1;
       $scope.paging.total = 0;
 
       $scope.cancelCurrentOperations();
 
-      Bookmarkservice.loadBookmarks(loadType, $scope.config.maxItems).then(function(result) {
-          $scope.data.isLoading = false;
-          $scope.data.items = Bookmarkservice.createBookmarkObjects(result);
-          $scope.updateFiltersPaging();
-          Appstatusservice.updateStatus(loadType +' bookmarks loaded.');
-        }, function(reason) {
-          console.error('Failed: ' + reason);
-          Appstatusservice.updateStatus(loadType +' bookmarks failed to load.');
-        });
-
+      Bookmarkservice.loadBookmarks(loadType, $scope.config.maxRecentItems)
+      .then(function(result) {
+        $scope.data.items = Bookmarkservice.createBookmarkObjects(result);
+        $scope.updateFiltersPaging();
+        Appstatusservice.updateStatus(loadType +' bookmarks loaded.');
+        $scope.data.isLoading = false;
+        $scope.data.bgMsg = 'BOOKMARKS LOADED.';
+      }, function(reason) {
+        console.error('Failed: ' + reason);
+        Appstatusservice.updateStatus(loadType +' bookmarks failed to load.');
+        $scope.data.bgMsg = 'BOOKMARKS FAILED TO LOAD...';
+      });
     };
 
 
@@ -220,10 +233,10 @@ angular.module('pinboredWebkitApp')
       if(hasCachedBookmarks) {
         if(Bookmarkservice.storedBookmarkData.length > 0) {
           Appstatusservice.updateStatus('retrieving cached bookmarks...');
-          $scope.data.isLoading = false;
           $scope.data.items = Bookmarkservice.createBookmarkObjects(Bookmarkservice.storedBookmarkData);
           $scope.updateFiltersPaging();
           Appstatusservice.updateStatus('cached bookmarks retrieved.');
+          $scope.data.isLoading = false;
         }
       } else {
         $scope.reload(tempLoadType);

@@ -41,16 +41,13 @@ module.exports = function(grunt) {
           'ng-tags-input/ng-tags-input.min.css': 'ng-tags-input/ng-tags-input.min.css',
           'flat-ui/dist/css/flat-ui.css': 'flat-ui/dist/css/flat-ui.css',
           'angular-gridster/dist/angular-gridster.min.css': 'angular-gridster/dist/angular-gridster.min.css',
-          'iCheck/skins/flat/blue.css': 'iCheck/skins/flat/blue.css',
-
-          // CSS extra files? Hopefully this works..
-          'iCheck/skins/flat/' : 'iCheck/skins/flat/',
 
           // JS
           'jquery/dist/jquery.js': 'jquery/dist/jquery.js',
           'angular/angular.js': 'angular/angular.js',
           'bootstrap/dist/js/bootstrap.js': 'bootstrap/dist/js/bootstrap.js',
-          'json3/lib/json3.min.js': 'json3/lib/json3.min.js',
+          // 'json3/lib/json3.min.js': 'json3/lib/json3.min.js',
+          'underscore/underscore.js' : 'underscore/underscore.js',
 
           'angular-bootstrap/ui-bootstrap.js': 'angular-bootstrap/ui-bootstrap.js',
           'angular-resource/angular-resource.js': 'angular-resource/angular-resource.js',
@@ -61,13 +58,16 @@ module.exports = function(grunt) {
 
           'angular-gridster/src/angular-gridster.js': 'angular-gridster/src/angular-gridster.js',
 
-          'ng-tags-input/ng-tags-input.js': 'ng-tags-input/ng-tags-input.js',
+          // 'ng-tags-input/ng-tags-input.js': 'ng-tags-input/ng-tags-input.js',
           'ng-tags-input/ng-tags-input.min.js': 'ng-tags-input/ng-tags-input.min.js',
           
-          'iCheck/icheck.js': 'iCheck/icheck.js',
-          'iCheck/icheck.min.js': 'iCheck/icheck.min.js',
+          'flat-ui/dist/js/flat-ui.js': 'flat-ui/dist/js/flat-ui.js',
 
-          'flat-ui/dist/js/flat-ui.js': 'flat-ui/dist/js/flat-ui.js'
+          'fui-angular/fui-template.js': 'fui-angular/fui-template.js',
+          'fui-angular/fui-checkbox.js': 'fui-angular/fui-checkbox.js',
+          'fui-angular/fui-radio.js': 'fui-angular/fui-radio.js',
+          'fui-angular/fui-switch.js': 'fui-angular/fui-switch.js',
+          'fui-angular/fui-tpls.js': 'fui-angular/fui-tpls.js'
         }
       }
     },
@@ -107,20 +107,6 @@ module.exports = function(grunt) {
       }
 
     },
-
-    // traceur: {
-    //   options: {
-    //     // traceur options here
-    //   },
-    //   custom: {
-    //     files: [{
-    //       expand: true,
-    //       cwd: 'src/es6',
-    //       src: ['*.js'],
-    //       dest: 'src/es5'
-    //     }]
-    //   },
-    // },
   
     // karma settings, conf.js file
     karma : {
@@ -139,11 +125,13 @@ module.exports = function(grunt) {
 
     // codeclimate coverage lcov.info
     shell: {
-      multiple: {
-        command: [
-          'export CODECLIMATE_REPO_TOKEN=10daff674413d0c7f0a4a4c177db01e8215217c74c23ec408dc4325e7ece27ca',
-          'codeclimate < coverage/lcov.info'
-        ].join('&&')
+      codeclimate: {
+        multiple: {
+          command: [
+            'export CODECLIMATE_REPO_TOKEN=10daff674413d0c7f0a4a4c177db01e8215217c74c23ec408dc4325e7ece27ca',
+            'codeclimate < coverage/lcov.info'
+          ].join('&&')
+        }
       }
     }
     
@@ -162,7 +150,7 @@ module.exports = function(grunt) {
   // testing task(s)
   // grunt.registerTask('test', ['karma', 'open:report']);
   grunt.registerTask('test', 'runs testing, shows report, generates coverage', function () {
-    var tasks = ['karma', 'open:report', 'shell'];
+    var tasks = ['karma', 'open:report', 'shell:codeclimate'];
     // Use the force option for all tasks declared in the previous line
     grunt.option('force', true);
     grunt.task.run(tasks);
