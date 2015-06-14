@@ -116,6 +116,5 @@ the awesome waffle.io version: [awesome waffle.io scrum board](https://waffle.io
 Roadmap
 =======
 
-* [Milestone V 0.0.1](https://github.com/michahell/pinbored-webkit/milestones/0.0.1%20Iron%20Orchid)
-* [Milestone V 0.0.2](https://github.com/michahell/pinbored-webkit/milestones/0.0.2%20Tin%20Thistle)
-* [Milestone V 0.0.3](https://github.com/michahell/pinbored-webkit/milestones/0.0.3%20Gold%20Dahlia)
+* [Milestones](https://github.com/michahell/pinbored-webkit/milestones)
+* [Issues](https://github.com/michahell/pinbored-webkit/issues)
