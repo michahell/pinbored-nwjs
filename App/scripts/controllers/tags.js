@@ -7,8 +7,9 @@
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('TagsCtrl', function ($scope, $filter, Pinboardservice, Appstatusservice, 
-    Usersessionservice, $location) {
+  .controller('TagsCtrl', 
+    ['$scope', '$filter', '$location', 'Pinboardservice', 'Appstatusservice', 'Usersessionservice',
+    function ($scope, $filter, $location, Pinboardservice, Appstatusservice, Usersessionservice) {
     
     // if not authenticated, redirect to login page
     if (Usersessionservice.isAuthenticated() === false) {
@@ -176,4 +177,4 @@ angular.module('pinboredWebkitApp')
     // for debugging reasons
     window.$scope = $scope;
 
-  });
+  }]);

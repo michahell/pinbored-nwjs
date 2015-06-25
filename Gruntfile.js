@@ -16,7 +16,7 @@ module.exports = function(grunt) {
         srcPrefix : 'App/bower_components',
         destPrefix : 'App/bower_components_dist',
         runBower : true,
-        clean : false,
+        clean : true,
         report : true
       },
       bowercomponents: {
@@ -36,17 +36,16 @@ module.exports = function(grunt) {
           'bootstrap/dist/fonts/glyphicons-halflings-regular.woff2': 'bootstrap/dist/fonts/glyphicons-halflings-regular.woff2',
 
           // CSS
-          'bootstrap/dist/css/bootstrap.css': 'bootstrap/dist/css/bootstrap.css',
+          'bootstrap/dist/css/bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css',
           'animate.css/animate.min.css': 'animate.css/animate.min.css',
           'ng-tags-input/ng-tags-input.min.css': 'ng-tags-input/ng-tags-input.min.css',
-          'flat-ui/dist/css/flat-ui.css': 'flat-ui/dist/css/flat-ui.css',
+          'flat-ui/dist/css/flat-ui.min.css': 'flat-ui/dist/css/flat-ui.min.css',
           'angular-gridster/dist/angular-gridster.min.css': 'angular-gridster/dist/angular-gridster.min.css',
 
           // JS
           'jquery/dist/jquery.js': 'jquery/dist/jquery.js',
           'angular/angular.js': 'angular/angular.js',
           'bootstrap/dist/js/bootstrap.js': 'bootstrap/dist/js/bootstrap.js',
-          // 'json3/lib/json3.min.js': 'json3/lib/json3.min.js',
           'underscore/underscore.js' : 'underscore/underscore.js',
 
           'angular-bootstrap/ui-bootstrap.js': 'angular-bootstrap/ui-bootstrap.js',
@@ -58,7 +57,6 @@ module.exports = function(grunt) {
 
           'angular-gridster/src/angular-gridster.js': 'angular-gridster/src/angular-gridster.js',
 
-          // 'ng-tags-input/ng-tags-input.js': 'ng-tags-input/ng-tags-input.js',
           'ng-tags-input/ng-tags-input.min.js': 'ng-tags-input/ng-tags-input.min.js',
           
           'flat-ui/dist/js/flat-ui.js': 'flat-ui/dist/js/flat-ui.js',
@@ -70,6 +68,74 @@ module.exports = function(grunt) {
           'fui-angular/fui-tpls.js': 'fui-angular/fui-tpls.js'
         }
       }
+    },
+
+    // css purify the shit out of all css files
+    purifycss: {
+      options: {},
+      target: {
+        src: [
+        'App/index.html', 'App/views/*.html', 'App/templates/*.html', 'App/template/*.html', 
+        'App/scripts/*.js'
+        ],
+        css: ['App/styles/*.css'],
+        dest: 'Build/css/purified.css'
+      },
+    },
+
+    // then minify those css files
+    cssmin: {
+      options: {
+        shorthandCompacting: false,
+        roundingPrecision: -1
+      },
+      target: {
+        files: [{
+          processImport : true,
+          // src: ['App/styles/*.css', 'App/bower_components_dist/*.css', '!*.min.css'],
+          src:  'Build/css/purified.css',
+          dest: 'Build/css/pinbored-webkit.min.css',
+        }]
+      }
+    },
+
+    // concatenate and mangle javascript files
+    uglify: {
+      options: {
+        mangle: false,
+        compress: {
+          drop_console: true
+        }
+      },
+      everything: {
+        files: [{
+          src: ['App/scripts/app.js', 'App/scripts/**/*.js', '!App/scripts/tests/*.js', '!*.min.js'],
+          dest: 'Build/js/pinbored-webkit.min.js'
+        }]
+      }
+    },
+
+    // copy App folder to App_release
+    copy: {
+      main: {
+        files: [
+          // includes files within path and its sub-directories
+          // src: ['App/bower_components_dist/**'], 
+          {expand: true, cwd: 'App/bower_components_dist/', src: ['**'], dest: 'App_release/bower_components_dist'},
+          {expand: true, cwd: 'App/fonts/', src: ['**'], dest: 'App_release/fonts'},
+          {expand: true, cwd: 'App/images/', src: ['**'], dest: 'App_release/images'},
+          {expand: true, cwd: 'App/node_modules/', src: ['**'], dest: 'App_release/node_modules'},
+          {expand: true, cwd: 'App/template/', src: ['**'], dest: 'App_release/template'},
+          {expand: true, cwd: 'App/templates/', src: ['**'], dest: 'App_release/templates'},
+          {expand: true, cwd: 'App/views/', src: ['**'], dest: 'App_release/views'},
+          // minified and concatenated CSS / JS files:
+          {expand: false, src: 'Build/css/pinbored-webkit.min.css', dest: 'App_release/pinbored-webkit.min.css'},
+          {expand: false, src: 'Build/js/pinbored-webkit.min.js', dest: 'App_release/pinbored-webkit.min.js'},
+          // main app files
+          {expand: false, src: 'App/index.min.html', dest: 'App_release/index.html'},
+          {expand: false, src: 'App/package.json', dest: 'App_release/package.json'}
+        ],
+      },
     },
 
     // building native binaries
@@ -84,7 +150,7 @@ module.exports = function(grunt) {
           // macZip: 'false', // set to false (speedup) by default
           buildDir: './Build', // Where the build version of my node-webkit app is saved
         },
-        src: ['./App/**/*'] // Your node-webkit app
+        src: ['./App_release/**/*'] // Your node-webkit app
       },
 
       buildWin : {
@@ -94,7 +160,7 @@ module.exports = function(grunt) {
           // winIco: 'null',
           buildDir: './Build', // Where the build version of my node-webkit app is saved
         },
-        src: ['./App/**/*'] // Your node-webkit app
+        src: ['./App_release/**/*'] // Your node-webkit app
       },
 
       buildLin : {
@@ -103,7 +169,7 @@ module.exports = function(grunt) {
           buildType: 'versioned', // [appName] -v[appVersion]
           buildDir: './Build', // Where the build version of my node-webkit app is saved
         },
-        src: ['./App/**/*'] // Your node-webkit app
+        src: ['./App_release/**/*'] // Your node-webkit app
       }
 
     },
@@ -137,18 +203,23 @@ module.exports = function(grunt) {
     
   });
 
-  // Load the plugin that provides the "nodewebkit" task.
+  // Load grunt plugins
   grunt.loadNpmTasks('grunt-bowercopy');
-  grunt.loadNpmTasks('grunt-node-webkit-builder');
+  grunt.loadNpmTasks('grunt-purifycss');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-open');
-  // grunt.loadNpmTasks('grunt-traceur');
+  grunt.loadNpmTasks('grunt-node-webkit-builder');
 
   // updating task(s)
   grunt.registerTask('update', ['bowercopy']);
 
+  // build, minify, compression etc. task(s)
+  grunt.registerTask('build', ['bowercopy', 'purifycss', 'cssmin', 'uglify', 'copy']);
+
   // testing task(s)
-  // grunt.registerTask('test', ['karma', 'open:report']);
   grunt.registerTask('test', 'runs testing, shows report, generates coverage', function () {
     var tasks = ['karma', 'open:report', 'shell:codeclimate'];
     // Use the force option for all tasks declared in the previous line
@@ -156,13 +227,14 @@ module.exports = function(grunt) {
     grunt.task.run(tasks);
   });
 
-  // building task(s)
-  grunt.registerTask('build', ['nodewebkit:buildOsx', 'nodewebkit:buildWin', 'nodewebkit:buildLin']);
+  // build release node-webkit task(s)
+  grunt.registerTask('release-all', ['nodewebkit:buildOsx', 'nodewebkit:buildWin', 'nodewebkit:buildLin']);
 
-  grunt.registerTask('osx', ['nodewebkit:buildOsx']);
-  grunt.registerTask('win', ['nodewebkit:buildWin']);
-  grunt.registerTask('lin', ['nodewebkit:buildLin']);
+  grunt.registerTask('release-osx', ['nodewebkit:buildOsx']);
+  grunt.registerTask('release-win', ['nodewebkit:buildWin']);
+  grunt.registerTask('release-lin', ['nodewebkit:buildLin']);
 
-  grunt.registerTask('default', ['test', 'osx']);
+  // grunt.registerTask('default', ['test', 'osx']);
+  grunt.registerTask('default', ['test', 'release-osx']);
 
 };

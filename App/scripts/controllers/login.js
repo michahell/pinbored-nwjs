@@ -7,8 +7,9 @@
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('LoginCtrl', function ($scope, $location, $timeout, 
-    Usersessionservice, Pinboardservice, Modalservice, Utilservice) {
+  .controller('LoginCtrl', 
+    ['$scope', '$location', '$timeout', 'Usersessionservice', 'Pinboardservice', 'Modalservice', 'Utilservice', 
+    function ($scope, $location, $timeout, Usersessionservice, Pinboardservice, Modalservice, Utilservice) {
     
     $scope.busy = false;
     $scope.loginAnimation = null;
@@ -97,4 +98,4 @@ angular.module('pinboredWebkitApp')
     //     Modalservice.alert('oops', 'no internet connection!');
     //   });
 
-  });
+  }]);

@@ -7,8 +7,11 @@
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('TagItemCtrl', function ($scope, $location, $filter,
-    Usersessionservice, Pinboardservice, Appstatusservice, Modalservice, Bookmarkservice) {
+  .controller('TagItemCtrl', 
+    ['$scope', '$location', '$filter','Usersessionservice', 'Pinboardservice', 'Appstatusservice', 
+    'Modalservice', 'Bookmarkservice',
+    function ($scope, $location, $filter, Usersessionservice, Pinboardservice, Appstatusservice, 
+    Modalservice, Bookmarkservice) {
 
     // try {
     //   var gui = require('nw.gui');
@@ -187,4 +190,4 @@ angular.module('pinboredWebkitApp')
       $scope.fold(tag, $scope.status.newFoldTags[0].text);
     };
 
-  });
+  }]);

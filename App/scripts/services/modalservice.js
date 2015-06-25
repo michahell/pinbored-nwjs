@@ -7,7 +7,9 @@
  * Service in the pinboredWebkitApp.
  */
 angular.module('pinboredWebkitApp')
-  .service('Modalservice', function Modalservice($q, Utilservice) { // $splash, 
+  .service('Modalservice', 
+  ['$q', 'Utilservice', 
+  function ($q, Utilservice) { // $splash, 
     // AngularJS will instantiate a singleton by calling 'new' on this function
 
     this.alert = function (windowTitle, messageString) {
@@ -71,4 +73,4 @@ angular.module('pinboredWebkitApp')
       return deferred.promise;
     };
 
-  });
+  }]);

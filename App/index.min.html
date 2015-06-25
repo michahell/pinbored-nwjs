@@ -1,0 +1,47 @@
+<!doctype html>
+<html class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="pinbored-webkit.min.css">
+  </head>
+  <body ng-app="pinboredWebkitApp">
+      
+    <!-- main navigation -->
+    <div ng-include src="'views/mainnav.html'" ng-controller="MainNavCtrl" ng-show="showNav" 
+    class="navbar navbar-default navbar-static-top" role="navigation"></div>
+
+    <!-- Add your site or application content here -->
+    <div class="viewcontainer {{customViewClass}}" ng-view></div>
+
+    <!-- main app status window -->
+    <div ng-controller="AppStatusCtrl" ng-show="visible" class="app-status-indicator" ng-animate="app-status-indicator">
+      <h7><span class="{{status.color}}">{{status.text}}</span></h7>
+    </div>
+
+    <!-- bower:js -->
+    <script src="bower_components_dist/jquery/dist/jquery.js"></script>
+    <script src="bower_components_dist/angular/angular.js"></script>
+    <script src="bower_components_dist/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components_dist/underscore/underscore.js"></script>
+    
+    <script src="bower_components_dist/angular-bootstrap/ui-bootstrap.js"></script>
+    <script src="bower_components_dist/angular-resource/angular-resource.js"></script>
+    <script src="bower_components_dist/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components_dist/angular-animate/angular-animate.js"></script>
+    <script src="bower_components_dist/angular-route/angular-route.js"></script>
+
+    <script src="bower_components_dist/angular-gridster/src/angular-gridster.js"></script>
+    <script src="bower_components_dist/ng-tags-input/ng-tags-input.js"></script>
+    <script src="bower_components_dist/flat-ui/dist/js/flat-ui.js"></script>
+    
+    <script src="bower_components_dist/fui-angular/fui-template.js"></script>
+    <script src="bower_components_dist/fui-angular/fui-checkbox.js"></script>
+    <script src="bower_components_dist/fui-angular/fui-radio.js"></script>
+    <script src="bower_components_dist/fui-angular/fui-switch.js"></script>
+    <script src="bower_components_dist/fui-angular/fui-tpls.js"></script>
+    <!-- endbower -->
+    
+    <script src="pinbored-webkit.min.js"></script>
+        
+</body>
+</html>

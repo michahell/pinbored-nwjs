@@ -7,7 +7,9 @@
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('MainNavCtrl', function ($scope, Usersessionservice) {
+  .controller('MainNavCtrl', 
+    ['$scope', 'Usersessionservice', 
+    function ($scope, Usersessionservice) {
 
     // page model
     $scope.data = {
@@ -52,4 +54,4 @@ angular.module('pinboredWebkitApp')
       console.info('bye! see you next time.');
     };
 
-  });
+  }]);

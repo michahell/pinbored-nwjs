@@ -7,7 +7,9 @@
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('AppStatusCtrl', function ($scope, Usersessionservice) {
+  .controller('AppStatusCtrl', 
+    ['$scope', 'Usersessionservice', 
+    function ($scope, Usersessionservice) {
     
     $scope.status = {
       text : '',
@@ -52,4 +54,4 @@ angular.module('pinboredWebkitApp')
 
     });
 
-  });
+  }]);

@@ -7,7 +7,9 @@
  * Service in the pinboredWebkitApp.
  */
 angular.module('pinboredWebkitApp')
-  .service('Appstatusservice', function Appstatusservice($rootScope) {
+  .service('Appstatusservice', 
+    ['$rootScope',
+    function ($rootScope) {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
     this.process = {
@@ -38,4 +40,4 @@ angular.module('pinboredWebkitApp')
       $rootScope.$broadcast('app:statuschange', this.process);
     };
 
-  });
+  }]);

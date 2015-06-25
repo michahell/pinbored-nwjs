@@ -7,8 +7,9 @@
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('ToolsCtrl', function ($scope, $location, 
-    Usersessionservice, Appstatusservice, Bookmarkservice) {
+  .controller('ToolsCtrl', 
+    ['$scope', '$location', 'Usersessionservice', 'Appstatusservice', 'Bookmarkservice', 
+    function ($scope, $location, Usersessionservice, Appstatusservice, Bookmarkservice) {
     
     // if not authenticated, redirect to login page
     if (Usersessionservice.isAuthenticated() === false) {
@@ -123,4 +124,4 @@ angular.module('pinboredWebkitApp')
     // update current page
     Usersessionservice.setCurrentSection('tools');
 
-  });
+  }]);

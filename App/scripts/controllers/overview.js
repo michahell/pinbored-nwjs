@@ -7,9 +7,12 @@
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('OverviewCtrl', function ($scope, $location, $filter, $q, $timeout,
-    Bookmarkservice, Pinboardservice, Usersessionservice, Appstatusservice, Utilservice, Modalservice,
-    Appconfigservice, fulltextFilter, tagsFilter) {
+  .controller('OverviewCtrl', 
+    ['$scope', '$location', '$filter', '$q', '$timeout',
+    'Bookmarkservice', 'Pinboardservice', 'Usersessionservice', 'Appstatusservice', 
+    'Utilservice', 'Modalservice','Appconfigservice', 'fulltextFilter', 'tagsFilter', 
+    function ($scope, $location, $filter, $q, $timeout, Bookmarkservice, Pinboardservice, Usersessionservice, 
+      Appstatusservice, Utilservice, Modalservice, Appconfigservice, fulltextFilter, tagsFilter) {
     
     // if not authenticated, redirect to login page
     if (Usersessionservice.isAuthenticated() === false) {
@@ -430,4 +433,4 @@ angular.module('pinboredWebkitApp')
     // list effects activate
     // stroll.bind('#list .list-wrapper ul.list-group', { live: true } );
 
-  });
+  }]);

@@ -7,8 +7,9 @@
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('SettingsCtrl', function ($scope, Pinboardservice, Usersessionservice, 
-    Utilservice, Appconfigservice, $location) {
+  .controller('SettingsCtrl', 
+    ['$scope', '$location', 'Pinboardservice', 'Usersessionservice', 'Utilservice', 'Appconfigservice',
+    function ($scope, $location, Pinboardservice, Usersessionservice, Utilservice, Appconfigservice) {
     
     // if not authenticated, redirect to login page
     if (Usersessionservice.isAuthenticated() === false) {
@@ -43,4 +44,4 @@ angular.module('pinboredWebkitApp')
     // force local $scope copy of app config obj.
     $scope.onAppconfigChanged();
 
-  });
+  }]);

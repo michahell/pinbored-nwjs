@@ -7,8 +7,9 @@
  * Controller of the pinboredWebkitApp
  */
 angular.module('pinboredWebkitApp')
-  .controller('BookmarkItemCtrl', function ($scope, 
-    Usersessionservice, Pinboardservice, Appstatusservice, Modalservice, Bookmarkservice) {
+  .controller('BookmarkItemCtrl', 
+    ['$scope', 'Usersessionservice', 'Pinboardservice', 'Appstatusservice', 'Modalservice', 'Bookmarkservice', 
+    function ($scope, Usersessionservice, Pinboardservice, Appstatusservice, Modalservice, Bookmarkservice) {
 
     try {
       var gui = require('nw.gui');
@@ -297,4 +298,4 @@ angular.module('pinboredWebkitApp')
       gui.Shell.openExternal(href);
     };
 
-  });
+  }]);

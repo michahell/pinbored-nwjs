@@ -7,8 +7,9 @@
  * Service in the pinboredWebkitApp.
  */
 angular.module('pinboredWebkitApp')
-  .service('Tagservice', function Tagservice($rootScope, $filter, 
-    Pinboardservice, Appstatusservice, Usersessionservice, Utilservice) {
+  .service('Tagservice', 
+    ['$rootScope', '$filter', 'Pinboardservice', 'Appstatusservice', 'Usersessionservice', 'Utilservice', 
+    function ($rootScope, $filter, Pinboardservice, Appstatusservice, Usersessionservice, Utilservice) {
     // AngularJS will instantiate a singleton by calling 'new' on this function
 
 
@@ -33,4 +34,4 @@ angular.module('pinboredWebkitApp')
       return Pinboardservice.getAllTags();
     };
 
-  });
+  }]);

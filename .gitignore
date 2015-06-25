@@ -1,15 +1,14 @@
 Build
 cache
 coverage
-coverage/*
 inspiration
 node_modules
 
 App/bower_components
-App/bower_components/*
 App/bower_components_dist
-App/bower_components_dist/*
 App/node_modules
+
+App_release/
 
 .tmp
 .sass-cache

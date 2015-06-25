@@ -7,6 +7,7 @@
  * Directive in the pinboredWebkitApp.
  */
 angular.module('pinboredWebkitApp')
+  
   .directive('ngEnter', function () {
     return function (scope, element, attrs) {
       element.bind('keydown keypress', function (event) {

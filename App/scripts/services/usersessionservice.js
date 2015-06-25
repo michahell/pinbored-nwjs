@@ -7,7 +7,9 @@
  * Service in the pinboredWebkitApp.
  */
 angular.module('pinboredWebkitApp')
-  .service('Usersessionservice', function Usersessionservice($rootScope, Utilservice) {
+  .service('Usersessionservice', 
+    ['$rootScope', 'Utilservice', 
+    function ($rootScope, Utilservice) {
 
     // auth related
     this.connection = false;
@@ -84,4 +86,4 @@ angular.module('pinboredWebkitApp')
       $rootScope.$broadcast('user:authenticated', this.authenticated);
     };
 
-  });
+  }]);

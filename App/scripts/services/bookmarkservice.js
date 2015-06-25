@@ -7,8 +7,8 @@
  * Service in the pinboredWebkitApp.
  */
 angular.module('pinboredWebkitApp')
-  .service('Bookmarkservice', function Bookmarkservice($rootScope, $filter, 
-    Pinboardservice, Appstatusservice, Usersessionservice, Utilservice) {
+  .service('Bookmarkservice', ['$rootScope', '$filter', 'Pinboardservice', 'Appstatusservice', 'Usersessionservice', 'Utilservice', 
+    function ($rootScope, $filter, Pinboardservice, Appstatusservice, Usersessionservice, Utilservice) {
     // AngularJS will instantiate a singleton by calling 'new' on this function
 
 
@@ -289,4 +289,4 @@ angular.module('pinboredWebkitApp')
 
     this.recreateFilterBuffer();
 
-  });
+  }]);

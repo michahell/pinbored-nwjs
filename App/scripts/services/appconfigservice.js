@@ -7,7 +7,9 @@
  * Service in the pinboredWebkitApp.
  */
 angular.module('pinboredWebkitApp')
-  .service('Appconfigservice', function Appconfigservice($rootScope) {
+  .service('Appconfigservice', 
+    ['$rootScope', 
+    function ($rootScope) {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
     this.config = {
@@ -41,4 +43,4 @@ angular.module('pinboredWebkitApp')
       }
     };
 
-  });
+  }]);
