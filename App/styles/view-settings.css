@@ -1,0 +1,40 @@
+.screen h7 {
+  color: #FFF;
+}
+
+.screen p {
+  margin: 0;
+  padding: 0;
+  margin-left: 10px;
+  /*font-weight: bold;*/
+  /*color: #BDC3C7;*/
+  /*color: #1A4B6C;*/
+  color: #E4C52B;
+  font-size: 14px;
+}
+
+.settingsHeading {
+  margin: 0;
+  margin-top: 5px;
+  padding: 8px;
+  padding-left: 14px;
+  background-color: #2C3E50;
+  /*background-color: #E4C52B;*/
+  text-transform: lowercase;
+  /*line-height: 0;*/
+}
+
+.settingsHeading > h7 {
+  margin: 0;
+  padding: 0;
+  /*font-weight: bold;*/
+  color: #BDC3C7;
+  /*color: #1A4B6C;*/
+  text-transform: lowercase;
+  font-size: 16px;
+  float: left;
+}
+
+#settings .settingsrow {
+  
+}

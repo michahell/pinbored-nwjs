@@ -1,0 +1,201 @@
+.screentitle {
+  margin: 0;
+  padding: 8px;
+  background-color: #2C3E50;
+  text-transform: lowercase;
+  line-height: 0;
+}
+
+.screentitle > h6 {
+  margin: 0;
+  margin-top: 5px;
+  margin-right: 15px;
+  padding: 0;
+  font-weight: bold;
+  color: #BDC3C7;
+  text-transform: lowercase;
+  font-size: 20px;
+  float: left;
+}
+
+/* screens */
+
+.screen {
+  display: table;
+  height: 100%;
+  width: 100%;
+  background: #34495E;
+}
+
+.section {
+  padding: 10px;
+}
+
+.bar {
+  padding: 7px;
+  height: 50px;
+  background-color: #2C3E50;
+  box-sizing: border-box;
+  border-top: 1px solid #34495E;
+  -webkit-transition: all ease-out 0.2s;
+  -o-transition: all ease-out 0.2s;
+  transition: all ease-out 0.2s;
+}
+
+.bar.ng-hide {
+  height: 0;
+  padding: 0;
+}
+
+.bar-container {
+  -webkit-transition: all ease-out 0.2s;
+  -o-transition: all ease-out 0.2s;
+  transition: all ease-out 0.2s;
+  transition-delay: 0.2s;
+  opacity: 1;
+  height: 100%;
+}
+
+.bar-container.ng-hide {
+  -webkit-transition: none;
+  -o-transition: none;
+  transition: none;
+  transition-delay: 0s;
+  opacity: 0;
+  height: 0;
+}
+
+/* labels, tags and other stuff */
+
+#overview .share-label,
+#tags .share-label {
+  float: right;
+  color: #95A5A6;
+  width: auto;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+#overview label,
+#tags label {
+  margin-bottom: 0;
+}
+
+#overview select,
+#tags select {
+  margin: 4px;
+  margin-right: 10px;
+  height: 30px;
+}
+
+#overview select.tall,
+#tags select.tall {
+  margin: 7px;
+}
+
+/* paging */
+
+#pages {
+  /*line-height: 0;
+  height: auto;
+  padding: 0;*/
+  text-align: center;
+}
+
+/* navbar commonalities */
+
+#overview .navbar-inverse,
+#tags .navbar-inverse {
+  background-color: transparent;
+}
+
+#overview .navbar-inverse p,
+#tags .navbar-inverse p {
+  color: #95A5A6;
+}
+
+#overview .navbar-inverse form,
+#tags .navbar-inverse form {
+  width: 100%;
+}
+
+#overview .navbar-inverse .navbar-form .btn-danger,
+#tags .navbar-inverse .navbar-form .btn-danger {
+  background-color: #e74c3c;
+}
+
+#overview .navbar-inverse .navbar-form .btn-danger:hover,
+#tags .navbar-inverse .navbar-form .btn-danger:hover {
+  background-color: #ec7063;
+}
+
+#overview #fulltextsearch .navbar-inverse form .form-group,
+#tags .navbar-inverse form .form-group {
+  width: calc(100% - 100px);
+}
+
+#overview .navbar-inverse form .form-group input,
+#tags .navbar-inverse form .form-group input {
+  width: 100%;
+}
+
+.navbar-inverse .navbar-form .form-control {
+  border-color: #33495E;
+}
+
+/* navbar commonalities */
+
+#overview .navbar,
+#tags .navbar {
+  margin-bottom: 0;
+  min-height: 35px;
+}
+
+#overview .navbar-collapse,
+#tags .navbar-collapse {
+  padding: 0;
+}
+
+#overview .navbar-collapse .navbar-form,
+#tags .navbar-collapse .navbar-form {
+  padding: 0;
+}
+
+#overview .navbar-embossed > .navbar-collapse,
+#tags .navbar-embossed > .navbar-collapse {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+#overview #fulltextsearch .share-label,
+#tags #fulltextsearch .share-label {
+  padding-top: 5px;
+}
+
+/* tag item commonalities */
+
+.clickabletag {
+  margin-right: 5px;
+  background-color: #27AE60;
+  color: #2C3E50;
+  cursor: pointer;
+  -webkit-transition: 0.2s ease-out all;
+  -moz-transition: 0.2s ease-out all;
+  transition: 0.2s ease-out all;
+}
+
+.clickabletag:hover {
+  background-color: #69CC83;
+  color: #34495E;
+}
+
+.highlightedtag {
+  background-color: #F39C12;
+  color: #2C3E50;
+}
+
+.highlightedtag:hover {
+  background-color: #F1C40F;
+  color: #34495E;
+}

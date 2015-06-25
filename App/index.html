@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="bower_components_dist/angular-gridster/dist/angular-gridster.min.css" />
 
     <!-- component / theme / skin CSS overrides -->
+    <link rel="stylesheet" href="styles/override-browser.css" />
     <link rel="stylesheet" href="styles/override-noresponsive.css" />
     <link rel="stylesheet" href="styles/override-bootstrap.css">
     <link rel="stylesheet" href="styles/override-flatui.css">
@@ -18,10 +19,20 @@
     <link rel="stylesheet" href="styles/override-autocomplete.css">
     <link rel="stylesheet" href="styles/override-splashmodal.css">
 
+    <!-- the css for all application specific stuff -->
+    <link rel="stylesheet" href="styles/app-viewcontainer.css">
+    <link rel="stylesheet" href="styles/app-behaviour.css">
+    <link rel="stylesheet" href="styles/app-styling.css">
+
     <!-- the css for all the views -->
+    <link rel="stylesheet" href="styles/view-common.css">
+    <link rel="stylesheet" href="styles/view-login.css">
     <link rel="stylesheet" href="styles/view-overview.css">
+    <link rel="stylesheet" href="styles/view-bookmarkitem.css">
     <link rel="stylesheet" href="styles/view-tags.css">
     <link rel="stylesheet" href="styles/view-tools.css">
+    <link rel="stylesheet" href="styles/view-settings.css">
+    <link rel="stylesheet" href="styles/view-modal.css">
 
     <!-- CSS to be sorted out -->
     <link rel="stylesheet" href="styles/main.css">
@@ -34,11 +45,10 @@
     class="navbar navbar-default navbar-static-top" role="navigation"></div>
 
     <!-- Add your site or application content here -->
-    <div ng-view="" class="viewcontainer"></div>
+    <div class="viewcontainer {{customViewClass}}" ng-view></div>
 
     <!-- main app status window -->
-    <div ng-controller="AppStatusCtrl" ng-show="visible" class="app-status-indicator" 
-    ng-animate="app-status-indicator">
+    <div ng-controller="AppStatusCtrl" ng-show="visible" class="app-status-indicator" ng-animate="app-status-indicator">
       <h7><span class="{{status.color}}">{{status.text}}</span></h7>
     </div>
 
@@ -87,6 +97,7 @@
         <script src="scripts/services/bookmarkservice.js"></script>
         <script src="scripts/services/utilservice.js"></script>
         <script src="scripts/services/appstatusservice.js"></script>
+        <script src="scripts/services/appconfigservice.js"></script>
         <script src="scripts/services/pinboardservice.js"></script>
         <script src="scripts/services/usersessionservice.js"></script>
         <script src="scripts/services/modalservice.js"></script>

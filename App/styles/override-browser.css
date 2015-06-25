@@ -1,0 +1,9 @@
+/* button outline removal fix */
+
+.btn:focus,
+.btn.active:focus,
+.btn:active:focus,
+.bootstrap-select .btn:focus,
+.btn-group.open .dropdown-toggle {
+  outline: none ! important;
+}

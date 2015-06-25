@@ -3,14 +3,55 @@
   <!-- screen title -->
   <div class="screentitle clearfix">
     <h6>Settings</h6>
+  </div>
 
-    <div class="col-xs-3">
-      <!-- <button class="btn btn-primary btn-xs" type="submit" ng-click="reload()">reload</button> -->
+  <div class="section" id="list">
+    
+    <div class="settingsHeading clearfix">
+      <h7>- overview screen settings</h7>
     </div>
 
-  <div class="bar-wrapper clearfix">
+    <div class="row settingsrow clearfix">
 
-  </div>
+      <div class="col-xs-3 text-left">
+        <p>set load recent bookmarks amount to:</p>
+      </div>
+
+      <div class="col-xs-3 text-left">
+        
+        <!-- Split button load options -->
+        <div class="btn-group" dropdown>
+          <button type="button" class="btn btn-sm btn-primary" ng-click="forceReload()"> load {{appconfig.maxRecentItems}} recent bookmarks</button>
+          <button type="button" class="btn btn-sm btn-primary dropdown-toggle" dropdown-toggle>
+            <span class="caret"></span>
+            <!-- <span class="sr-only">Split button!</span> -->
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="recentAmount in appconfig.maxRecentAmounts">
+              <a ng-click="setLoadType(loadType)">load the <em>{{recentAmount}}</em> most recent</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="col-xs-3 text-left">
+        <p>column 3</p>
+      </div>
+
+      <div class="col-xs-3 text-left">
+        <p>column 4</p>
+      </div>
+
+    </div>
+
+    <div class="settingsHeading clearfix">
+      <h7>- tag screen settings</h7>
+    </div>
+
+    <div class="listBackgroundMessage">
+      <h5>APPLICATION SETTINGS.</h5>
+    </div>
 
   </div>
 

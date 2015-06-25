@@ -9,7 +9,7 @@
 angular.module('pinboredWebkitApp')
   .controller('OverviewCtrl', function ($scope, $location, $filter, $q, $timeout,
     Bookmarkservice, Pinboardservice, Usersessionservice, Appstatusservice, Utilservice, Modalservice,
-    fulltextFilter, tagsFilter) {
+    Appconfigservice, fulltextFilter, tagsFilter) {
     
     // if not authenticated, redirect to login page
     if (Usersessionservice.isAuthenticated() === false) {
@@ -24,6 +24,9 @@ angular.module('pinboredWebkitApp')
         return;
       }
     });
+
+    // customViewClass
+    $scope.customViewClass = 'view-overview';
 
     // page model
     $scope.data = {
@@ -53,7 +56,7 @@ angular.module('pinboredWebkitApp')
 
     $scope.multiAction = {
       show : false,
-      selectedAction : '',
+      selectedAction : 'select action',
       dangerousAction : false,
       newTagName : '',
       newTagNames : [],
@@ -66,14 +69,13 @@ angular.module('pinboredWebkitApp')
       tagFilterTypeText : 'inclusive / and',
       searchAllWords : false,
       searchAllWordsText : 'search all words',
-      maxRecentItems : 200,
-      maxTagSearch : 4,
-      itemsPerPage : 25,
       showSearch : false,
       showTags : false,
       showPager : false,
       showSelection : false
     };
+
+    $scope.appconfig = {}; // gets populated by Appconfigservice !
 
 
 
@@ -85,10 +87,9 @@ angular.module('pinboredWebkitApp')
 
     // this method serves to color the selection action button depending on the 'severity'
     // of the selected action.
-
     $scope.changeMultiAction = function() {
-      console.log('change multi action called!');
-      console.log('ng model: ' + $scope.multiAction.selectedAction);
+      // console.log('change multi action called!');
+      // console.log('ng model: ' + $scope.multiAction.selectedAction);
       if($scope.multiAction.selectedAction === '') {
         $scope.multiAction.show = false;
       } else {
@@ -201,7 +202,7 @@ angular.module('pinboredWebkitApp')
 
       $scope.cancelCurrentOperations();
 
-      Bookmarkservice.loadBookmarks(loadType, $scope.config.maxRecentItems)
+      Bookmarkservice.loadBookmarks(loadType, $scope.appconfig.maxRecentItems)
       .then(function(result) {
         $scope.data.items = Bookmarkservice.createBookmarkObjects(result);
         $scope.updateFiltersPaging();
@@ -280,7 +281,7 @@ angular.module('pinboredWebkitApp')
           $scope.filter.tags.push(filterBufferTag);
         }
         // set tag uniqueness (only those tags and no others)
-        $scope.config.tagFilterType = Bookmarkservice.filterBuffer.tagFilterType;
+        $scope.appconfig.tagFilterType = Bookmarkservice.filterBuffer.tagFilterType;
 
         // add filter buffer text
         $scope.filter.text = Bookmarkservice.filterBuffer.text;
@@ -308,7 +309,7 @@ angular.module('pinboredWebkitApp')
     };
 
     $scope.onSearchTagChanged = function () {
-      $scope.checkMaxTags($scope.config.maxTagSearch);
+      $scope.checkMaxTags($scope.appconfig.maxTagSearch);
       $scope.updateFiltersPaging();
     };
 
@@ -350,7 +351,7 @@ angular.module('pinboredWebkitApp')
       // console.log('applying filters to list...');
       var word = $scope.filter.text;
       var tags = $scope.filter.tags;
-      var logicType = ($scope.config.tagFilterType === true) ? 'AND' : 'OR';
+      var logicType = ($scope.appconfig.tagFilterType === true) ? 'AND' : 'OR';
       $scope.data.filteredList = fulltextFilter($scope.data.items, word);
       $scope.data.filteredList = tagsFilter($scope.data.filteredList, tags, logicType);
     };
@@ -394,6 +395,10 @@ angular.module('pinboredWebkitApp')
       }
     });
 
+    $scope.onAppconfigChanged = function() {
+      $scope.appconfig = Appconfigservice.getConfig();
+    };
+
 
 
 
@@ -404,6 +409,11 @@ angular.module('pinboredWebkitApp')
 
     // update current page
     Usersessionservice.setCurrentSection('overview');
+
+    // set event hooks / listeners
+    $scope.$on('app:configchanged', $scope.onAppconfigChanged);
+    // force local $scope copy of app config obj.
+    $scope.onAppconfigChanged();
 
     // repopulate bookmark items.
     $scope.repopulateBookmarks();

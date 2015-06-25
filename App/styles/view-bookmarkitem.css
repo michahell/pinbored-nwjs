@@ -1,0 +1,182 @@
+/* bookmark item */
+
+.bookmark-item-left {
+  /*height: 50px;
+  margin-right: 200px;
+  margin-left:auto !important;*/
+  /*background-color: #34495E;*/
+  height: 72px;
+  cursor: pointer;
+}
+
+.bookmark-item-left small {
+  margin: 5px;
+}
+
+.bookmark-item-inner {
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 3px;
+}
+
+.bookmark-item-inner small {
+  font-size: 14px;
+}
+
+.bookmark-item-right {
+  position: relative;
+  left: auto;
+  width: 255px;
+  float: right;
+  cursor: pointer;
+}
+
+.bookmark-item-right .label {
+  box-sizing: border-box;
+  color: #2C3E50;
+  width: 25px;
+  height: 25px;
+  display: block;
+  margin: 2px;
+  padding: 6px;
+  float: right;
+}
+
+.bookmark-item-right .btn-inverse {
+  background: none;
+}
+
+.bookmark-item-right .btn-inverse:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.bookmark-item-right .form-group {
+  margin-bottom: 0;
+}
+
+.bookmark-item-right .btn-group {
+  height: 100%;
+}
+
+.bookmark-item-right .btn-group .btn {
+  box-sizing: border-box;
+  border-radius: 0;
+  padding: 26px 15px;
+  height: 100%;
+}
+
+/* hidden content in bookmark item */
+
+.hiddenContent {
+  box-sizing: border-box;
+  padding-top: 5px;
+  padding-bottom: 2px;
+  background: #253443;
+  -webkit-transition: 0.2s ease-out all;
+  -moz-transition: 0.2s ease-out all;
+  transition: 0.2s ease-out all;
+  height: 230px;
+}
+
+.hiddenContent.ng-hide {
+  height: 0;
+}
+
+.hiddenContentContainer {
+  -webkit-transition: 0.2s ease-out all;
+  -moz-transition: 0.2s ease-out all;
+  transition: 0.2s ease-out all;
+  transition-delay: 0.2s;
+  opacity: 1;
+}
+
+.hiddenContentContainer.ng-hide {
+  opacity: 0;
+}
+
+.hiddenContentContainer tags-input .tags {
+  margin-top: 5px;
+  margin-left: 2px;
+  margin-bottom: 5px;
+}
+
+.hiddenContent .btn-toolbar {
+  margin: 2px;
+  padding-right: 5px;
+}
+
+.hiddenContent .form-control {
+  width: calc(100% - 8px);
+}
+
+.hiddenContent .editbuttonbar {
+  margin: 2px;
+  padding-left: 2px;
+  padding: 5px;
+}
+
+.hiddenContent .editbuttonbar a.btn {
+  margin-right: 5px;
+  float: right;
+}
+
+.hiddenContent .editbuttonbar a.btn.btn-sm,
+.hiddenContent .editbuttonbar button.btn.btn-sm,
+.hiddenContent .editbuttonbar label.btn.btn-sm {
+  padding: 10px 13px;
+  line-height: 1;
+}
+
+.hiddenContent .col-xs-12 {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.hiddenContent .input-sm {
+  height: 30px;
+}
+
+.hiddenContent textarea.hiddeninputs {
+  box-sizing: border-box;
+  padding: 10px;
+  height: 40px;
+}
+
+/* hidden inputs */
+
+.hiddeninputs {
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #ddd;
+  border: 0;
+  margin: 2px;
+  margin-left: 3px;
+  padding-left: 8px;
+}
+
+.hiddeninputs:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* stale indicator */
+
+#stale-indicator {
+  box-sizing: border-box;
+  float: right;
+  width: 110px;
+  min-height: 72px;
+  padding: 10px;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.1);
+  transition: background .5s linear;
+}
+
+#stale-indicator .stale-indicator-container {
+  text-align: center;
+  margin-top: 10px;
+}
+
+#stale-indicator.unknown,
+#stale-indicator.checking {
+  background: rgba(0, 0, 0, 0.1);
+}

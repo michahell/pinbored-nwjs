@@ -1,5 +1,9 @@
 /* TAGS VIEW */
 
+#tags {
+  height: calc(100%);
+}
+
 #tags .hiddeninputs {
   margin: 0;
 }

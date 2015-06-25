@@ -16,10 +16,10 @@ angular.module('pinboredWebkitApp')
       username : 'user',
       navItems : [
         {name: 'overview' },
-        {name: 'tags' }
+        {name: 'tags' },
         // {name: 'tools' },
         // {name: 'statistics' },
-        // {name: 'settings' }
+        {name: 'settings' }
       ]
     };
 

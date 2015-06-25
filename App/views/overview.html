@@ -9,10 +9,10 @@
       <!-- Split button load options -->
       <div class="btn-group pull-left" dropdown>
         <button type="button" ng-disabled="data.isLoading" class="btn btn-sm btn-primary" ng-click="forceReload()">
-          load {{data.loadType === "recent" ? config.maxRecentItems + ' ' + data.loadType : data.loadType}} bookmarks</button>
+          load {{data.loadType === "recent" ? appconfig.maxRecentItems + ' ' + data.loadType : data.loadType}} bookmarks</button>
         <button type="button" class="btn btn-sm btn-primary dropdown-toggle" dropdown-toggle>
           <span class="caret"></span>
-          <!-- <span class="sr-only">Split button!</span> -->
+          <span class="sr-only">Split button!</span>
         </button>
         <ul class="dropdown-menu" role="menu">
           <li ng-repeat="loadType in data.loadTypes">
@@ -82,7 +82,7 @@
     <!-- toolbar pagination -->
     <div class="bar" id="pages" ng-show="config.showPager">
       <div class="bar-container" ng-show="config.showPager">
-        <pagination total-items="paging.total" items-per-page="config.itemsPerPage" 
+        <pagination total-items="paging.total" items-per-page="appconfig.itemsPerPage" 
         ng-model="paging.current" max-size="paging.numPageButtons" 
         boundary-links="true"></pagination>
         <!-- pagination-sm -->
@@ -99,6 +99,7 @@
           </div>
 
           <div class="col-xs-3">
+
             <select name="multiAction" class=""
             ng-model="multiAction.selectedAction" ng-change="changeMultiAction()">
               <option value="">select action</option>
@@ -108,6 +109,7 @@
               <option value="deleteAllTags">delete all tags</option>
               <option value="deleteAllItems">delete</option>
             </select>
+
           </div>
 
           <div class="col-xs-4">
@@ -163,7 +165,7 @@
     <div class="list-wrapper" ng-class="{fullheight: data.filteredList.length > 0}">
       <!-- screen list group -->
       <ul class="list-group">
-        <li ng-repeat="item in data.filteredList | offset: (paging.current - 1) * config.itemsPerPage | limitTo: config.itemsPerPage"
+        <li ng-repeat="item in data.filteredList | offset: (paging.current - 1) * appconfig.itemsPerPage | limitTo: appconfig.itemsPerPage"
         class="list-group-item" ng-class="{selected: item.status.selected || item.status.showEdit}" 
         ng-controller="BookmarkItemCtrl" ng-click="selectItem()">
           <div ng-include src="'views/BookmarkItem.html'"></div>

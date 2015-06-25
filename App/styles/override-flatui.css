@@ -9,7 +9,9 @@
   margin-top: 3px;
 }
 
-.screentitle .btn-sm {
+.screentitle .btn-sm,
+.bar .btn-sm,
+.settingsrow .btn-sm {
   padding: 10px 13px;
   line-height: 1;
 }

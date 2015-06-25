@@ -1,0 +1,14 @@
+.modal-tag-highlight {
+  background: #27AE60;
+  color: #2C3E50;
+  padding: 4px 19px;
+  padding-left: 11px;
+  padding-right: 11px;
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1;
+  border: 0;
+  border-radius: 6px;
+  margin: 10px;
+}
