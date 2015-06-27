@@ -4,10 +4,8 @@
   "dependencies": {
     "angular": ">=1.2.16",
     "angular-resource": ">=1.2",
-    "angular-cookies": ">=1.2",
     "angular-sanitize": ">=1.2",
     "angular-animate": ">=1.2",
-    "angular-touch": ">=1.2",
     "angular-route": ">=1.2",
     "angular-bootstrap": ">=0.12.1",
     "angular-gridster": ">=0.13.2",

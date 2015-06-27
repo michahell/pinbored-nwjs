@@ -36,13 +36,6 @@ module.exports = function(grunt) {
           'flat-ui/dist/fonts/': 'flat-ui/dist/fonts/',
           'bootstrap/dist/fonts/': 'bootstrap/dist/fonts/',
 
-          // 'flat-ui/dist/fonts/lato/lato-regular.woff': 'flat-ui/dist/fonts/lato/lato-regular.woff',
-          // 'flat-ui/dist/fonts/lato/lato-light.woff': 'flat-ui/dist/fonts/lato/lato-light.woff',
-          // 'flat-ui/dist/fonts/lato/lato-bold.woff': 'flat-ui/dist/fonts/lato/lato-bold.woff',
-          // 'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.woff': 'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.woff',
-          // 'bootstrap/dist/fonts/glyphicons-halflings-regular.woff': 'bootstrap/dist/fonts/glyphicons-halflings-regular.woff',
-          // 'bootstrap/dist/fonts/glyphicons-halflings-regular.woff2': 'bootstrap/dist/fonts/glyphicons-halflings-regular.woff2',
-
           // CSS
           'bootstrap/dist/css/bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css',
           'animate.css/animate.min.css': 'animate.css/animate.min.css',
@@ -55,6 +48,7 @@ module.exports = function(grunt) {
           'angular/angular.min.js': 'angular/angular.min.js',
           'bootstrap/dist/js/bootstrap.min.js': 'bootstrap/dist/js/bootstrap.min.js',
           'underscore/underscore-min.js' : 'underscore/underscore-min.js',
+          'json3/lib/json3.min.js' : 'json3/lib/json3.min.js',
           'angular-bootstrap/ui-bootstrap.min.js': 'angular-bootstrap/ui-bootstrap.min.js',
           'angular-resource/angular-resource.min.js': 'angular-resource/angular-resource.min.js',
           'angular-route/angular-route.min.js': 'angular-route/angular-route.min.js',

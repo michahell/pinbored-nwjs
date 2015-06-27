@@ -56,3 +56,15 @@
   margin-bottom: 0;
   margin-top: 4px;
 }
+
+/* checkbox text color */
+
+.checkbox span {
+  color: #95A5A6;
+}
+
+/* text size (mostly for bookmarkitem text and tags) */
+
+small, .small {
+  line-height: 1.3;
+}

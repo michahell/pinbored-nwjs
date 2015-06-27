@@ -85,3 +85,9 @@ textarea {
   top: 20%;
   display: block;
 }
+
+/* button overrides */
+
+.btn-group-sm > .btn {
+  padding: 8px 15px;
+}
