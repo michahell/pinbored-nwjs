@@ -67,12 +67,11 @@ $ nw App
 
 release version
 ---------------
-pinbored-webkit source css/js uglified + much less files in App dir.
+pinbored-webkit source css/js uglified + much less files in App_release dir.
 
 ```
 $ grunt build
 $ nw App_release
-
 ```
 
 
