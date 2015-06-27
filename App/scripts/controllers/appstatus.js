@@ -21,14 +21,6 @@ angular.module('pinboredWebkitApp')
     $scope.timeVisible = 5000;
     $scope.visible = false;
 
-    // check if user is authenticated
-    // console.log("testing if authenticated..");
-
-    // check if user is logged in on Pinboard
-    if (Usersessionservice.isAuthenticated() === false) {
-      return;
-    }
-
     // if app status updates in the model reflect these changes
     $scope.$on('app:statuschange', function(event, status) {
       

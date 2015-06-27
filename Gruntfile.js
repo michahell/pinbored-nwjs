@@ -9,9 +9,9 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     
     clean: {
-      bowercopy: { src: 'App/bower_components_dist' },
-      build: { src: 'Build' },
-      release: { src: 'App_release' }
+      all: { 
+        src: ['App/bower_components_dist', 'Build', 'App_release']
+      }
     },
 
     // copy only neccesary files from bower modules
@@ -110,6 +110,29 @@ module.exports = function(grunt) {
       }
     },
 
+    preprocess : {
+      development : {
+        options: {
+          context : {
+            DEBUG: true
+          }
+        },
+        src : 'App/index.template.html',
+        dest : 'App/index.html'
+      },
+      release : {
+        options: {
+          context : {
+            RELEASE : true
+          }
+        },
+        files : [
+          {src : 'App/index.template.html', dest : 'Build/index.min.html' },
+          {expand: true, src : 'App/scripts/**/*.js', dest : 'Build' }
+        ]
+      }
+    },
+
     // concatenate and mangle javascript files
     uglify: {
       options: {
@@ -120,33 +143,45 @@ module.exports = function(grunt) {
       },
       everything: {
         files: [{
-          src: ['App/scripts/app.js', 'App/scripts/**/*.js', '!App/scripts/tests/*.js', '!*.min.js'],
+          // src: ['App/scripts/app.js', 'App/scripts/**/*.js', '!App/scripts/tests/*.js', '!*.min.js'],
+          src: ['Build/App/scripts/app.js', 'Build/App/scripts/**/*.js', '!Build/App/scripts/tests/*.js'],
           dest: 'Build/js/pinbored-webkit.min.js'
         }]
       }
     },
 
-    // copy App folder to App_release
+    htmlclean: {
+      options: {
+      },
+      deploy: {
+        files : [
+          {expand: true, cwd: 'App/templates/', src: ['*.html'], dest: 'Build/templates' },
+          {expand: true, cwd: 'App/template/', src: ['**/*.html'], dest: 'Build/template' },
+          {expand: true, cwd: 'App/views/', src: ['**/*.html'], dest: 'Build/views' }
+        ]
+      }
+    },
+
+    // copy App/Build folders to App_release
     copy: {
-      main: {
+      all: {
         files: [
           // includes files within path and its sub-directories
-          // src: ['App/bower_components_dist/**'], 
           {expand: true, cwd: 'App/bower_components_dist/', src: ['**'], dest: 'App_release/bower_components_dist'},
           {expand: true, cwd: 'App/fonts/', src: ['**'], dest: 'App_release/fonts'},
           {expand: true, cwd: 'App/images/', src: ['**'], dest: 'App_release/images'},
           {expand: true, cwd: 'App/node_modules/', src: ['**'], dest: 'App_release/node_modules'},
-          {expand: true, cwd: 'App/template/', src: ['**'], dest: 'App_release/template'},
-          {expand: true, cwd: 'App/templates/', src: ['**'], dest: 'App_release/templates'},
-          {expand: true, cwd: 'App/views/', src: ['**'], dest: 'App_release/views'},
+          {expand: true, cwd: 'Build/template/', src: ['**'], dest: 'App_release/template'},
+          {expand: true, cwd: 'Build/templates/', src: ['**'], dest: 'App_release/templates'},
+          {expand: true, cwd: 'Build/views/', src: ['**'], dest: 'App_release/views'},
           // minified and concatenated CSS / JS files:
-          {expand: false, src: 'Build/css/pinbored-webkit.min.css', dest: 'App_release/pinbored-webkit.min.css'},
-          {expand: false, src: 'Build/js/pinbored-webkit.min.js', dest: 'App_release/pinbored-webkit.min.js'},
+          {src: 'Build/css/pinbored-webkit.min.css', dest: 'App_release/pinbored-webkit.min.css'},
+          {src: 'Build/js/pinbored-webkit.min.js', dest: 'App_release/pinbored-webkit.min.js'},
           // main app files
-          {expand: false, src: 'App/index.min.html', dest: 'App_release/index.html'},
-          {expand: false, src: 'App/package.json', dest: 'App_release/package.json'}
+          {src: 'Build/index.min.html', dest: 'App_release/index.html'},
+          {src: 'App/package.json', dest: 'App_release/package.json'}
         ],
-      },
+      }
     },
   
     // karma settings, conf.js file
@@ -219,17 +254,18 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-bowercopy');
   grunt.loadNpmTasks('grunt-purifycss');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-preprocess');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-htmlclean');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-node-webkit-builder');
 
-  // updating task(s)
+  // grunt task
   grunt.registerTask('update', ['clean', 'bowercopy']);
-
-  // build, minify, compression etc. task(s)
-  grunt.registerTask('build', ['clean', 'bowercopy', 'cssmin:nopurify', 'uglify', 'copy']);
+  grunt.registerTask('dev', ['update', 'preprocess:development']);
+  grunt.registerTask('build', ['update', 'cssmin:nopurify', 'preprocess:release', 'uglify', 'htmlclean', 'copy']);
 
   // testing task(s)
   grunt.registerTask('test', 'runs testing, shows report, generates coverage', function () {

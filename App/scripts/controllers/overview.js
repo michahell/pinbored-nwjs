@@ -8,17 +8,19 @@
  */
 angular.module('pinboredWebkitApp')
   .controller('OverviewCtrl', 
-    ['$scope', '$location', '$filter', '$q', '$timeout',
+    ['$scope', '$controller', '$location', '$filter', '$q', '$timeout',
     'Bookmarkservice', 'Pinboardservice', 'Usersessionservice', 'Appstatusservice', 
     'Utilservice', 'Modalservice','Appconfigservice', 'fulltextFilter', 'tagsFilter', 
-    function ($scope, $location, $filter, $q, $timeout, Bookmarkservice, Pinboardservice, Usersessionservice, 
-      Appstatusservice, Utilservice, Modalservice, Appconfigservice, fulltextFilter, tagsFilter) {
+    function ($scope, $controller, $location, $filter, $q, $timeout, Bookmarkservice, Pinboardservice, Usersessionservice, Appstatusservice, Utilservice, Modalservice, Appconfigservice, fulltextFilter, tagsFilter) {
     
     // if not authenticated, redirect to login page
     if (Usersessionservice.isAuthenticated() === false) {
       $location.path('/login');
       return;
     }
+
+    // Initialize the super (controller) class and extend it.
+    angular.extend(this, $controller('BaseViewCtrl', {$scope: $scope}));
 
     // if logged off, redirect to login page as well
     $scope.$on('user:authenticated', function() { // args: event, data
@@ -207,11 +209,13 @@ angular.module('pinboredWebkitApp')
 
       Bookmarkservice.loadBookmarks(loadType, $scope.appconfig.maxRecentItems)
       .then(function(result) {
-        $scope.data.items = Bookmarkservice.createBookmarkObjects(result);
-        $scope.updateFiltersPaging();
-        Appstatusservice.updateStatus(loadType +' bookmarks loaded.');
-        $scope.data.isLoading = false;
-        $scope.data.bgMsg = 'BOOKMARKS LOADED.';
+        setTimeout(function() {
+          $scope.data.items = Bookmarkservice.createBookmarkObjects(result);
+          $scope.updateFiltersPaging();
+          Appstatusservice.updateStatus(loadType +' bookmarks loaded.');
+          $scope.data.isLoading = false;
+          $scope.data.bgMsg = 'BOOKMARKS LOADED.';
+        }, 50);
       }, function(reason) {
         console.error('Failed: ' + reason);
         Appstatusservice.updateStatus(loadType +' bookmarks failed to load.');
@@ -391,13 +395,6 @@ angular.module('pinboredWebkitApp')
       $scope.multiAction.show = false;
     };
 
-    $scope.$on('$destroy', function() {
-      if ($scope.filter.textFilterTimeout !== null) {
-        $timeout.cancel($scope.filter.textFilterTimeout);
-        $scope.filter.textFilterTimeout = null;
-      }
-    });
-
     $scope.onAppconfigChanged = function() {
       $scope.appconfig = Appconfigservice.getConfig();
     };
@@ -408,29 +405,35 @@ angular.module('pinboredWebkitApp')
     // SETUP AND INITIALISATION
 
 
-    
+
+
+    $scope.$on('$viewContentLoaded', function() {
+      console.info('overview $viewContentLoaded called');
+
+      // force local $scope copy of app config obj.
+      $scope.onAppconfigChanged();
+
+      // repopulate bookmark items.
+      $scope.repopulateBookmarks();
+
+      // load all tags
+      $scope.reloadTags();
+
+      // and filter them, if there is any filterBuffer
+      $scope.applyFilterBuffer();
+    });
+
+    $scope.$on('$destroy', function() {
+      if ($scope.filter.textFilterTimeout !== null) {
+        $timeout.cancel($scope.filter.textFilterTimeout);
+        $scope.filter.textFilterTimeout = null;
+      }
+    });
 
     // update current page
     Usersessionservice.setCurrentSection('overview');
 
     // set event hooks / listeners
     $scope.$on('app:configchanged', $scope.onAppconfigChanged);
-    // force local $scope copy of app config obj.
-    $scope.onAppconfigChanged();
-
-    // repopulate bookmark items.
-    $scope.repopulateBookmarks();
-
-    // load all tags
-    $scope.reloadTags();
-
-    // and filter them, if there is any filterBuffer
-    $scope.applyFilterBuffer();
-
-    // for debugging reasons
-    window.$scope = $scope;
-
-    // list effects activate
-    // stroll.bind('#list .list-wrapper ul.list-group', { live: true } );
 
   }]);

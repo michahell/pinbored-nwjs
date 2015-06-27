@@ -8,14 +8,17 @@
  */
 angular.module('pinboredWebkitApp')
   .controller('ToolsCtrl', 
-    ['$scope', '$location', 'Usersessionservice', 'Appstatusservice', 'Bookmarkservice', 
-    function ($scope, $location, Usersessionservice, Appstatusservice, Bookmarkservice) {
+    ['$scope', '$controller', '$location', 'Usersessionservice', 'Appstatusservice', 'Bookmarkservice', 
+    function ($scope, $controller, $location, Usersessionservice, Appstatusservice, Bookmarkservice) {
     
     // if not authenticated, redirect to login page
     if (Usersessionservice.isAuthenticated() === false) {
       $location.path('/login');
       return;
     }
+
+    // Initialize the super (controller) class and extend it.
+    angular.extend(this, $controller('BaseViewCtrl', {$scope: $scope}));
 
     // if logged off, redirect to login page as well
     $scope.$on('user:authenticated', function() { // args: event, data

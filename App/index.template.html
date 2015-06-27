@@ -3,7 +3,9 @@
   <head>
     <meta charset="utf-8">
 
+    <!-- @ifdef DEBUG -->
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- @endif -->
     <link rel="stylesheet" href="bower_components_dist/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="bower_components_dist/animate.css/animate.min.css" />
     <link rel="stylesheet" href="bower_components_dist/ng-tags-input/ng-tags-input.min.css">
@@ -11,6 +13,7 @@
     <link rel="stylesheet" href="bower_components_dist/angular-gridster/dist/angular-gridster.min.css" />
     <link rel="stylesheet" href="bower_components_dist/ngprogress/ngProgress.css" />
 
+    <!-- @ifdef DEBUG -->
     <!-- component / theme / skin CSS overrides -->
     <link rel="stylesheet" href="styles/override-browser.css" />
     <link rel="stylesheet" href="styles/override-noresponsive.css" />
@@ -34,16 +37,26 @@
     <link rel="stylesheet" href="styles/view-tools.css">
     <link rel="stylesheet" href="styles/view-settings.css">
     <link rel="stylesheet" href="styles/view-modal.css">
+    <!-- @endif -->
+
+    <!-- @ifdef RELEASE -->
+    <link rel="stylesheet" href="pinbored-webkit.min.css" />
+    <!-- @endif -->
+
   </head>
   <body ng-app="pinboredWebkitApp">
     
+    <!-- @ifdef DEBUG -->
     <!-- main navigation -->
+    <!-- @endif -->
     <div ng-include src="'views/mainnav.html'" ng-controller="MainNavCtrl" ng-show="showNav" 
     class="navbar navbar-default navbar-static-top" role="navigation"></div>
 
     <div class="viewcontainer {{customViewClass}}" ng-view></div>
 
+    <!-- @ifdef DEBUG -->
     <!-- main app status window -->
+    <!-- @endif -->
     <div ng-controller="AppStatusCtrl" ng-show="visible" class="app-status-indicator" ng-animate="app-status-indicator">
       <h7><span class="{{status.color}}">{{status.text}}</span></h7>
     </div>
@@ -71,6 +84,7 @@
     <script src="bower_components_dist/fui-angular/fui-switch.js"></script>
     <script src="bower_components_dist/fui-angular/fui-tpls.js"></script>
 
+    <!-- @ifdef DEBUG -->
     <!-- configuration settings -->
     <script src="scripts/config/config-node-webkit.js"></script>
     <script src="scripts/config/config-app.js"></script>
@@ -111,5 +125,11 @@
     <script src="scripts/filters/tagsfilter.js"></script>
     <script src="scripts/filters/searchcollectionfilter.js"></script>
     <script src="scripts/filters/wordcutfilter.js"></script>
+    <!-- @endif -->
+
+    <!-- @ifdef RELEASE -->
+    <script src="pinbored-webkit.min.js"></script>
+    <!-- @endif -->
+
 </body>
 </html>

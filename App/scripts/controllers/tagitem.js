@@ -13,12 +13,6 @@ angular.module('pinboredWebkitApp')
     function ($scope, $location, $filter, Usersessionservice, Pinboardservice, Appstatusservice, 
     Modalservice, Bookmarkservice) {
 
-    // try {
-    //   var gui = require('nw.gui');
-    // } catch (error) {
-    //   console.error('error loading nw.gui: ' + error);
-    // }
-
     // current item!
     // $scope.item
 
@@ -189,5 +183,13 @@ angular.module('pinboredWebkitApp')
       console.log('save fold changes called.');
       $scope.fold(tag, $scope.status.newFoldTags[0].text);
     };
+
+    $scope.$on('$viewContentLoaded', function() {
+      console.info('tagitem $viewContentLoaded called');
+    });
+
+    $scope.$on('$destroy', function() {
+      console.info('tagitem $destroy called');
+    });
 
   }]);

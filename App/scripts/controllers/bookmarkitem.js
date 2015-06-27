@@ -298,4 +298,12 @@ angular.module('pinboredWebkitApp')
       gui.Shell.openExternal(href);
     };
 
+    $scope.$on('$viewContentLoaded', function() {
+      console.info('bookmarkitem $viewContentLoaded called');
+    });
+
+    $scope.$on('$destroy', function() {
+      console.info('bookmarkitem $destroy called');
+    });
+
   }]);

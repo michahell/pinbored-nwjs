@@ -8,9 +8,14 @@
  */
 angular.module('pinboredWebkitApp')
   .controller('LoginCtrl', 
-    ['$scope', '$location', '$timeout', 'Usersessionservice', 'Pinboardservice', 'Modalservice', 'Utilservice', 
-    function ($scope, $location, $timeout, Usersessionservice, Pinboardservice, Modalservice, Utilservice) {
+    ['$scope', '$controller', '$location', '$timeout', 'Usersessionservice', 'Pinboardservice', 'Modalservice', 
+    'Utilservice', 
+    function ($scope, $controller, $location, $timeout, Usersessionservice, Pinboardservice, Modalservice, 
+      Utilservice) {
     
+    // Initialize the super (controller) class and extend it.
+    angular.extend(this, $controller('BaseViewCtrl', {$scope: $scope}));
+
     $scope.busy = false;
     $scope.loginAnimation = null;
     $scope.connection = false;
@@ -43,7 +48,7 @@ angular.module('pinboredWebkitApp')
               // show loginbox outro anim
               $scope.loginAnimation = true;
               // reroute to main after anim out time
-              $timeout(function(){
+              $timeout(function() {
                 $location.path('/overview');
               }, 1000);
             }
@@ -51,7 +56,7 @@ angular.module('pinboredWebkitApp')
           
           // reset status vars
           $scope.busy = false;
-          $timeout(function(){
+          $timeout(function() {
             $scope.loginAnimation = null;
           }, 1000);
 
@@ -93,5 +98,9 @@ angular.module('pinboredWebkitApp')
       }
 
     };
+
+    $scope.$on("$destroy", function() {
+      console.info('login $destroy called');
+    });
 
   }]);

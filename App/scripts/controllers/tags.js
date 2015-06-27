@@ -8,14 +8,17 @@
  */
 angular.module('pinboredWebkitApp')
   .controller('TagsCtrl', 
-    ['$scope', '$filter', '$location', 'Pinboardservice', 'Appstatusservice', 'Usersessionservice',
-    function ($scope, $filter, $location, Pinboardservice, Appstatusservice, Usersessionservice) {
+    ['$scope', '$controller', '$filter', '$location', 'Pinboardservice', 'Appstatusservice', 'Usersessionservice',
+    function ($scope, $controller, $filter, $location, Pinboardservice, Appstatusservice, Usersessionservice) {
     
     // if not authenticated, redirect to login page
     if (Usersessionservice.isAuthenticated() === false) {
       $location.path('/login');
       return;
     }
+
+    // Initialize the super (controller) class and extend it.
+    angular.extend(this, $controller('BaseViewCtrl', {$scope: $scope}));
 
     // if logged off, redirect to login page as well
     $scope.$on('user:authenticated', function() { // args: event, data
@@ -168,13 +171,20 @@ angular.module('pinboredWebkitApp')
 
     
 
+    $scope.$on('$viewContentLoaded', function() {
+      console.info('bookmarkitem $viewContentLoaded called');
+
+      // repopulate bookmark items.
+      $scope.repopulateTags();
+    });
+
+    $scope.$on('$destroy', function() {
+      console.info('bookmarkitem $destroy called');
+    });
+
     // update current page
     Usersessionservice.setCurrentSection('tags');
 
-    // repopulate bookmark items.
-    $scope.repopulateTags();
-
-    // for debugging reasons
-    window.$scope = $scope;
+    
 
   }]);
