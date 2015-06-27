@@ -21,9 +21,10 @@ angular.module('pinboredWebkitApp')
     var self = this;
 
     try {
-      var rest = require('restler');
+      var request = require('request');
+      var progress = require('request-progress');
     } catch (error) {
-      console.error('error loading restler: ' + error);
+      console.error('error loading request or request-progress: ' + error);
     }
 
     try {
@@ -70,9 +71,9 @@ angular.module('pinboredWebkitApp')
       this.timeout = newMilliSeconds;
     };
 
-    this.handleRestlerComplete = function(result, responsecode, deferred) {
+    this.handleRequestComplete = function(result, responsecode, deferred) {
       if (result instanceof Error) {
-        console.error('Restler: Error: ', result.message);
+        console.error('Require: Error: ', result.message);
         deferred.reject(result.message);
       } else {
         
@@ -104,15 +105,24 @@ angular.module('pinboredWebkitApp')
       }
     };
 
-    this.executeStandardRequest = function(request, deferred) {
-      // node restler handler
-      rest.get(request, {timeout: self.timeout}).on('timeout', function(){ // arg: ms
-        console.error('pinboardservice: request timed out.');
-        // show modal expressing error
-        Modalservice.alert('error', 'request timed out');
-        deferred.reject('pinboardservice: request timed out.');
-      }).on('complete', function(result, response){
-        self.handleRestlerComplete(result, response, deferred);
+    this.executeStandardRequest = function(requestString, deferred, optionalCompleteCallback) {
+      // node require handler
+      var requestOptions = {
+        url : requestString,
+        method : 'GET'
+      };
+      request(requestOptions, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+          if(optionalCompleteCallback === undefined) {
+            self.handleRequestComplete(body, response, deferred);
+          } else {
+            optionalCompleteCallback(body, response, deferred);
+          }
+        } else {
+          var errorMsg = 'pinboardservice: error: '+ response.statusCode;
+          console.log(errorMsg);
+          deferred.reject(errorMsg);
+        }
       });
     };
 
@@ -157,14 +167,12 @@ angular.module('pinboredWebkitApp')
       var request = this.endpoint + 'posts/recent' + this.format + argAmount + argTags + 
       this.token.replace('user', Usersessionservice.user).replace('apikey', Usersessionservice.apikey);
 
-      // node restler handler
-      rest.get(request, {timeout: self.timeout}).on('timeout', function(){ // arg: ms
-        deferred.reject('pinboardservice: request timed out.');
-      }).on('complete', function(result, response){
+      // execute standard request
+      self.executeStandardRequest(request, deferred, function(result, response, deferred) {
         // we only need the posts part. for some reason this is not the same result sent as in
         // get all bookmarks. probably there is metadata.
         var posts = JSON.stringify(JSON.parse(result).posts);
-        self.handleRestlerComplete(posts, response, deferred);
+        self.handleRequestComplete(posts, response, deferred);
       });
       
       return deferred.promise;
@@ -347,7 +355,7 @@ angular.module('pinboredWebkitApp')
       rest.get(url, {timeout: self.timeout}).on('timeout', function(){ // arg: ms
         deferred.reject('pinboardservice: request timed out.');
       }).on('complete', function(result, response){
-        self.handleRestlerComplete(result, response, deferred);
+        self.handleRequestComplete(result, response, deferred);
       });
       
       return deferred.promise;

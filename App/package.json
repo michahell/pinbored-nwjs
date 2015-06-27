@@ -18,6 +18,8 @@
   "private": true,
   "main": "index.html",
   "dependencies": {
+    "request": "^2.58.0",
+    "request-progress": "^0.3.1",
     "restler": ">=3.2.2"
   },
   "window": {
