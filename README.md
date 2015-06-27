@@ -48,35 +48,9 @@ Download binaries
 
 Can be downloaded on the [project page](http://michahell.github.io/pinbored-webkit/#binary-downloads) or from the GH [releases page](https://github.com/michahell/pinbored-webkit/releases).
 
-Running from source
-===================
 
-development version
--------------------
-
-If you have node-webkit installed, you can use the following pseudo command in the root of the project dir to just run the app using the latest version:
-```
-$ <node-webkit executable location> App
-```
-
-Or, if you have the **nw** alias configured:
-
-```
-$ nw App
-```
-
-release version
----------------
-pinbored-webkit source css/js uglified + much less files in App_release dir.
-
-```
-$ grunt build
-$ nw App_release
-```
-
-
-Building from source
-====================
+Building + running from source
+==============================
 
 quirks
 ------
@@ -113,6 +87,30 @@ Caveats
    * removing the core node package using apt-get worked for me to get node and npm working together fine.
    * Also, on Ubuntu version 14.x.x and up there is a [libudev.so.0 issue](https://www.exponential.io/blog/install-node-webkit-on-ubuntu-linux) but following the guide and thus installing node-webkit outside of npm works flawlessly.
    * And finally, for some reason, the grunt-bowercopy task needs npm module 'esprima' on Ubuntu. Since on OSX that module is not needed, just installing it suffices: ```$ npm install esprima ```.
+
+running development version
+---------------------------
+If you have node-webkit installed, you can use the following command in the root of the project dir to run the app:
+```
+$ <node-webkit executable location> App
+```
+
+Or, if you have the **nw** alias configured:
+
+```
+$ nw App
+```
+
+running release version
+-----------------------
+pinbored-webkit source css/js uglified + much less files in App_release dir.
+This is the version that gets packaged into a native application when a version is released.
+
+```
+$ grunt build
+$ nw App_release
+```
+
 
 Disclaimer
 ==========
