@@ -33,22 +33,26 @@ For bookmark creation consider using:
 * Shiori: http://aki-null.net/shiori/ or just: ```brew cask install shiori```
 * browser dependant plugins or widgets.
 
-I could add bookmark creation functionality in a later version, however this was never the intention of this app.
+I WILL add bookmark creation functionality in a later version, however this was never the intention of this app.
 The app is aimed at **managing** one's bookmarks, for example after a switch from < insert browser >
-to Pinboard with some 1000 unmanageable bookmarks.
+to Pinboard with some 1000 unmanageable bookmarks. There appear to be users with 40.000 bookmarks. Yes. 40K bookmarks.
+I wish to create something to allow for managing such a huge amount of bookmarks, even though that is not my own usecase.
 
 Screenshots
 -----------
 
-Can be seen on the project page: http://michahell.github.io/pinbored-webkit/#screenshots
+Can be seen on [the project page](http://michahell.github.io/pinbored-webkit/#screenshots).
 
 Download binaries
 -----------------
 
-Can be downloaded on the project page:  http://michahell.github.io/pinbored-webkit/#binary-downloads
+Can be downloaded on the [project page](http://michahell.github.io/pinbored-webkit/#binary-downloads) or from the GH [releases page](https://github.com/michahell/pinbored-webkit/releases).
 
 Running from source
 ===================
+
+development version
+-------------------
 
 If you have node-webkit installed, you can use the following pseudo command in the root of the project dir to just run the app using the latest version:
 ```
@@ -60,6 +64,16 @@ Or, if you have the **nw** alias configured:
 ```
 $ nw App
 ```
+
+release version (pinbored-webkit source css/js uglified + much less files in App dir)
+---------------
+
+```
+$ grunt build
+$ nw App_release
+
+```
+
 
 Building from source
 ====================
@@ -78,14 +92,14 @@ requirements
 steps
 -----
 
-1. clone project.
-2. run ```npm install``` (installs dev. and app dependancies and bower components)
-3. run ```grunt test``` (optional, tests everything and shows jasmine report in google chrome)
+1. clone or fork project.
+2. run ```npm install``` in root (installs dev. and app dependancies and bower components)
+3. run ```npm install``` in /App (installs app node module dependancies)
 4. run:
-    * ```grunt build``` (build for ALL platforms, **untested**) OR
-    * ```grunt osx``` (for OSX 32 and 64 bits app bundle)
-    * ```grunt win``` (for Windows 32 and 64 bits app exe, **untested**)
-    * ```grunt lin``` (for Linux 32 and 64 bits app binary, **being tested**)
+    * ```grunt build``` (create App_release folder with minified source) OR
+    * ```grunt release-osx``` [```release-win```, ```release-lin```]
+
+note: releasing for Windows + Linux is possible but not (yet) tested by me.
 
 Caveats
 -------
@@ -107,14 +121,18 @@ Additional to the MIT license it is important that you know and understand the f
 
 *all requests performed by the application to the Pinboard API are sequences of consecutive, single operation REST requests and are not transactions with rollback history like in SQL transactions. They are 'destructive operations' by nature (that means no undo). Future versions might support custom undo history and functionality. 
 
-Roadmap
-=======
-
-[Milestones](https://github.com/michahell/pinbored-webkit/milestones) orrrrr
-the awesome waffle.io version: [awesome waffle.io scrum board](https://waffle.io/michahell/pinbored-webkit)
 
 Roadmap
 =======
 
+all milestones and issues:
 * [Milestones](https://github.com/michahell/pinbored-webkit/milestones)
 * [Issues](https://github.com/michahell/pinbored-webkit/issues)
+
+current:
+* [v0.0.4](https://github.com/michahell/pinbored-webkit/milestones/0.0.4%20Yellow%20Mountain)
+
+future:
+* [v0.0.5](https://github.com/michahell/pinbored-webkit/milestones/0.0.5%20Green%20Wrench)
+
+

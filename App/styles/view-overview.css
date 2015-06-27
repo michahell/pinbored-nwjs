@@ -31,7 +31,7 @@
   left:0;
   opacity:0;
 }
-
+/*
 .page-about.ng-leave        {
     -webkit-animation:slideOutLeft 0.5s both ease-in;
   -moz-animation:slideOutLeft 0.5s both ease-in;
@@ -41,7 +41,7 @@
     -webkit-animation:slideInRight 0.5s both ease-in;
   -moz-animation:slideInRight 0.5s both ease-in;
   animation:slideInRight 0.5s both ease-in;    
-}
+}*/
 
 /* view specific styling */
 

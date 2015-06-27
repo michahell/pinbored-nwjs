@@ -7,7 +7,8 @@
  * Service in the pinboredWebkitApp.
  */
 angular.module('pinboredWebkitApp')
-  .service('Pinboardservice', ['$q', '$timeout', 'Usersessionservice', 'Modalservice',
+  .service('Pinboardservice', 
+    ['$q', '$timeout', 'Usersessionservice', 'Modalservice',
     function($q, $timeout, Usersessionservice, Modalservice) {
     // AngularJS will instantiate a singleton by calling 'new' on this function
 

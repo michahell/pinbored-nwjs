@@ -8,6 +8,11 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     
+    clean: {
+      bowercopy: { src: 'App/bower_components_dist' },
+      build: { src: 'Build' },
+      release: { src: 'App_release' }
+    },
 
     // copy only neccesary files from bower modules
     bowercopy: {
@@ -16,7 +21,7 @@ module.exports = function(grunt) {
         srcPrefix : 'App/bower_components',
         destPrefix : 'App/bower_components_dist',
         runBower : true,
-        clean : true,
+        clean : false,
         report : true
       },
       bowercomponents: {
@@ -28,12 +33,15 @@ module.exports = function(grunt) {
           // 'libs/chai.js': 'chai/lib/chai.js'
 
           // FONTS
-          'flat-ui/dist/fonts/lato/lato-regular.woff': 'flat-ui/dist/fonts/lato/lato-regular.woff',
-          'flat-ui/dist/fonts/lato/lato-light.woff': 'flat-ui/dist/fonts/lato/lato-light.woff',
-          'flat-ui/dist/fonts/lato/lato-bold.woff': 'flat-ui/dist/fonts/lato/lato-bold.woff',
-          'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.woff': 'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.woff',
-          'bootstrap/dist/fonts/glyphicons-halflings-regular.woff': 'bootstrap/dist/fonts/glyphicons-halflings-regular.woff',
-          'bootstrap/dist/fonts/glyphicons-halflings-regular.woff2': 'bootstrap/dist/fonts/glyphicons-halflings-regular.woff2',
+          'flat-ui/dist/fonts/': 'flat-ui/dist/fonts/',
+          'bootstrap/dist/fonts/': 'bootstrap/dist/fonts/',
+
+          // 'flat-ui/dist/fonts/lato/lato-regular.woff': 'flat-ui/dist/fonts/lato/lato-regular.woff',
+          // 'flat-ui/dist/fonts/lato/lato-light.woff': 'flat-ui/dist/fonts/lato/lato-light.woff',
+          // 'flat-ui/dist/fonts/lato/lato-bold.woff': 'flat-ui/dist/fonts/lato/lato-bold.woff',
+          // 'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.woff': 'flat-ui/dist/fonts/glyphicons/flat-ui-icons-regular.woff',
+          // 'bootstrap/dist/fonts/glyphicons-halflings-regular.woff': 'bootstrap/dist/fonts/glyphicons-halflings-regular.woff',
+          // 'bootstrap/dist/fonts/glyphicons-halflings-regular.woff2': 'bootstrap/dist/fonts/glyphicons-halflings-regular.woff2',
 
           // CSS
           'bootstrap/dist/css/bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css',
@@ -42,25 +50,22 @@ module.exports = function(grunt) {
           'flat-ui/dist/css/flat-ui.min.css': 'flat-ui/dist/css/flat-ui.min.css',
           'angular-gridster/dist/angular-gridster.min.css': 'angular-gridster/dist/angular-gridster.min.css',
 
-          // JS
-          'jquery/dist/jquery.js': 'jquery/dist/jquery.js',
-          'angular/angular.js': 'angular/angular.js',
-          'bootstrap/dist/js/bootstrap.js': 'bootstrap/dist/js/bootstrap.js',
-          'underscore/underscore.js' : 'underscore/underscore.js',
-
-          'angular-bootstrap/ui-bootstrap.js': 'angular-bootstrap/ui-bootstrap.js',
-          'angular-resource/angular-resource.js': 'angular-resource/angular-resource.js',
-          'angular-route/angular-route.js': 'angular-route/angular-route.js',
-          'angular-sanitize/angular-sanitize.js': 'angular-sanitize/angular-sanitize.js',
-          'angular-animate/angular-animate.js': 'angular-animate/angular-animate.js',
+          // JS already minified
+          'jquery/dist/jquery.min.js': 'jquery/dist/jquery.min.js',
+          'angular/angular.min.js': 'angular/angular.min.js',
+          'bootstrap/dist/js/bootstrap.min.js': 'bootstrap/dist/js/bootstrap.min.js',
+          'underscore/underscore-min.js' : 'underscore/underscore-min.js',
+          'angular-bootstrap/ui-bootstrap.min.js': 'angular-bootstrap/ui-bootstrap.min.js',
+          'angular-resource/angular-resource.min.js': 'angular-resource/angular-resource.min.js',
+          'angular-route/angular-route.min.js': 'angular-route/angular-route.min.js',
+          'angular-sanitize/angular-sanitize.min.js': 'angular-sanitize/angular-sanitize.min.js',
+          'angular-animate/angular-animate.min.js': 'angular-animate/angular-animate.min.js',
           'angular-mocks/angular-mocks.js': 'angular-mocks/angular-mocks.js',
-
-          'angular-gridster/src/angular-gridster.js': 'angular-gridster/src/angular-gridster.js',
-
+          'angular-gridster/dist/angular-gridster.min.js': 'angular-gridster/dist/angular-gridster.min.js',
           'ng-tags-input/ng-tags-input.min.js': 'ng-tags-input/ng-tags-input.min.js',
-          
-          'flat-ui/dist/js/flat-ui.js': 'flat-ui/dist/js/flat-ui.js',
+          'flat-ui/dist/js/flat-ui.min.js': 'flat-ui/dist/js/flat-ui.min.js',
 
+          // JS non-minified
           'fui-angular/fui-template.js': 'fui-angular/fui-template.js',
           'fui-angular/fui-checkbox.js': 'fui-angular/fui-checkbox.js',
           'fui-angular/fui-radio.js': 'fui-angular/fui-radio.js',
@@ -74,12 +79,9 @@ module.exports = function(grunt) {
     purifycss: {
       options: {},
       target: {
-        src: [
-        'App/index.html', 'App/views/*.html', 'App/templates/*.html', 'App/template/*.html', 
-        'App/scripts/*.js'
-        ],
+        src: ['App/index.html', 'App/views/*.html', 'App/templates/*.html', 'App/template/*.html'],
         css: ['App/styles/*.css'],
-        dest: 'Build/css/purified.css'
+        dest: 'Build/css/pinbored-webkit.purified.css'
       },
     },
 
@@ -93,7 +95,7 @@ module.exports = function(grunt) {
         files: [{
           processImport : true,
           // src: ['App/styles/*.css', 'App/bower_components_dist/*.css', '!*.min.css'],
-          src:  'Build/css/purified.css',
+          src:  'Build/css/pinbored-webkit.purified.css',
           dest: 'Build/css/pinbored-webkit.min.css',
         }]
       }
@@ -137,6 +139,33 @@ module.exports = function(grunt) {
         ],
       },
     },
+  
+    // karma settings, conf.js file
+    karma : {
+      unit: {
+        configFile: 'karma.conf.js'
+      }
+    },
+
+    // open karma testing report
+    open : {
+      report : {
+        path : 'karma.report.html',
+        app: 'Google Chrome'
+      }
+    },
+
+    // codeclimate coverage lcov.info
+    shell: {
+      codeclimate: {
+        multiple: {
+          command: [
+            'export CODECLIMATE_REPO_TOKEN=10daff674413d0c7f0a4a4c177db01e8215217c74c23ec408dc4325e7ece27ca',
+            'codeclimate < coverage/lcov.info'
+          ].join('&&')
+        }
+      }
+    },
 
     // building native binaries
     nodewebkit: {
@@ -172,38 +201,12 @@ module.exports = function(grunt) {
         src: ['./App_release/**/*'] // Your node-webkit app
       }
 
-    },
-  
-    // karma settings, conf.js file
-    karma : {
-      unit: {
-        configFile: 'karma.conf.js'
-      }
-    },
-
-    // open karma testing report
-    open : {
-      report : {
-        path : 'karma.report.html',
-        app: 'Google Chrome'
-      }
-    },
-
-    // codeclimate coverage lcov.info
-    shell: {
-      codeclimate: {
-        multiple: {
-          command: [
-            'export CODECLIMATE_REPO_TOKEN=10daff674413d0c7f0a4a4c177db01e8215217c74c23ec408dc4325e7ece27ca',
-            'codeclimate < coverage/lcov.info'
-          ].join('&&')
-        }
-      }
     }
     
   });
 
   // Load grunt plugins
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-bowercopy');
   grunt.loadNpmTasks('grunt-purifycss');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
@@ -214,10 +217,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-node-webkit-builder');
 
   // updating task(s)
-  grunt.registerTask('update', ['bowercopy']);
+  grunt.registerTask('update', ['clean', 'bowercopy']);
 
   // build, minify, compression etc. task(s)
-  grunt.registerTask('build', ['bowercopy', 'purifycss', 'cssmin', 'uglify', 'copy']);
+  grunt.registerTask('build', ['clean', 'bowercopy', 'purifycss', 'cssmin', 'uglify', 'copy']);
 
   // testing task(s)
   grunt.registerTask('test', 'runs testing, shows report, generates coverage', function () {

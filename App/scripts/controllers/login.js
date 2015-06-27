@@ -27,10 +27,16 @@ angular.module('pinboredWebkitApp')
       Pinboardservice.getUserToken(username, password)
       .then(function(result) {
           if (result) {
-            if(result === '401' || result === 401) {
+            console.log('result: ', result);
+            // Unauthorized
+            if(Number(result) === 401) {   // a number indicates we failed, no login...
               console.info('not logged in: ' + result);
               $scope.loginAnimation = false;
-            } else {
+            // Service Unavailable
+            } else if(Number(result) >= 500 && Number(result) <= 510) {
+              console.log('service unavailable.');
+            // Authorized (request success)
+            } else if(result != {} && result.result.length === 20) { // now we get a string token back, OMGtyping.
               console.info('logged in.');
               // set some stuff in Usersessionservice
               Usersessionservice.setAuthenticated($scope.username, result.result);
@@ -38,7 +44,7 @@ angular.module('pinboredWebkitApp')
               $scope.loginAnimation = true;
               // reroute to main after anim out time
               $timeout(function(){
-                $location.path('/main');
+                $location.path('/overview');
               }, 1000);
             }
           }
@@ -60,8 +66,6 @@ angular.module('pinboredWebkitApp')
       $scope.busy = true;
 
       if(!Utilservice.isEmpty(username) && !Utilservice.isEmpty(password)) {
-
-        // $scope.getUserToken(username, password);
 
         if(username !== 'offline' && password !== 'offline') {
           Pinboardservice.checkConnection()
@@ -89,13 +93,5 @@ angular.module('pinboredWebkitApp')
       }
 
     };
-
-    // Pinboardservice.checkConnection()
-    //   .then(function() {
-    //     // internet connection, do nothing
-    //   }, function() {
-    //     // NO internet connection. alert user
-    //     Modalservice.alert('oops', 'no internet connection!');
-    //   });
 
   }]);

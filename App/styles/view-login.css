@@ -19,3 +19,7 @@
   background: #34495E;
   color: #ECF0F1;
 }
+
+#login .vertical-offset-170 {
+    padding-top:170px;
+}
