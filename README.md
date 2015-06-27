@@ -65,8 +65,9 @@ Or, if you have the **nw** alias configured:
 $ nw App
 ```
 
-release version (pinbored-webkit source css/js uglified + much less files in App dir)
+release version
 ---------------
+pinbored-webkit source css/js uglified + much less files in App dir.
 
 ```
 $ grunt build
@@ -129,10 +130,8 @@ all milestones and issues:
 * [Milestones](https://github.com/michahell/pinbored-webkit/milestones)
 * [Issues](https://github.com/michahell/pinbored-webkit/issues)
 
-current:
-* [v0.0.4](https://github.com/michahell/pinbored-webkit/milestones/0.0.4%20Yellow%20Mountain)
-
-future:
-* [v0.0.5](https://github.com/michahell/pinbored-webkit/milestones/0.0.5%20Green%20Wrench)
+milestones list:
+* [current v0.0.4](https://github.com/michahell/pinbored-webkit/milestones/0.0.4%20Yellow%20Mountain)
+* [next    v0.0.5](https://github.com/michahell/pinbored-webkit/milestones/0.0.5%20Green%20Wrench)
 
 
