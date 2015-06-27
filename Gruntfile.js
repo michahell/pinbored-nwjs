@@ -43,6 +43,7 @@ module.exports = function(grunt) {
           'flat-ui/dist/css/flat-ui.min.css': 'flat-ui/dist/css/flat-ui.min.css',
           'angular-gridster/dist/angular-gridster.min.css': 'angular-gridster/dist/angular-gridster.min.css',
           'ngprogress/ngProgress.css': 'ngprogress/ngProgress.css',
+          'nya-bootstrap-select/dist/css/nya-bs-select.min.css': 'nya-bootstrap-select/dist/css/nya-bs-select.min.css',
 
           // JS already minified
           'jquery/dist/jquery.min.js': 'jquery/dist/jquery.min.js',
@@ -60,6 +61,7 @@ module.exports = function(grunt) {
           'ng-tags-input/ng-tags-input.min.js': 'ng-tags-input/ng-tags-input.min.js',
           'flat-ui/dist/js/flat-ui.min.js': 'flat-ui/dist/js/flat-ui.min.js',
           'ngprogress/build/ngProgress.min.js': 'ngprogress/build/ngProgress.min.js',
+          'nya-bootstrap-select/dist/js/nya-bs-select.min.js': 'nya-bootstrap-select/dist/js/nya-bs-select.min.js',
 
           // JS non-minified
           'fui-angular/fui-template.js': 'fui-angular/fui-template.js',

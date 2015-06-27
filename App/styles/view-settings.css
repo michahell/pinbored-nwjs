@@ -36,5 +36,10 @@
 }
 
 #settings .settingsrow {
-  
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+#settings .settingsrow label {
+  color: #E4C52B;
 }

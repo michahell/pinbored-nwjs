@@ -15,10 +15,10 @@ angular
     'ngSanitize',
     'ngTagsInput',
     'ui.bootstrap',
-    // 'ui.splash',
     'fui',
     'gridster',
-    'ngProgress'
+    'ngProgress',
+    'nya.bootstrap.select'
   ])
   .config(function ($routeProvider) {
     $routeProvider
