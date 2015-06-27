@@ -17,7 +17,8 @@ angular
     'ui.bootstrap',
     // 'ui.splash',
     'fui',
-    'gridster'
+    'gridster',
+    'ngProgress'
   ])
   .config(function ($routeProvider) {
     $routeProvider

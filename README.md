@@ -105,6 +105,8 @@ running release version
 -----------------------
 pinbored-webkit source css/js uglified + much less files in App_release dir.
 This is the version that gets packaged into a native application when a version is released.
+Do note that if you change the source code, and refresh inside node-webkit, it does not reflect changes as 
+opposed to running the development version.
 
 ```
 $ grunt build

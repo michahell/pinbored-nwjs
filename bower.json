@@ -15,7 +15,8 @@
     "ng-tags-input": ">=2.0.1",
     "flat-ui": ">=2.2.0",
     "fui-angular": "~0.1.5",
-    "underscore": "~1.8.3"
+    "underscore": "~1.8.3",
+    "ngprogress": "~1.0.7"
   },
   "devDependencies": {
     "angular-mocks": ">=1"

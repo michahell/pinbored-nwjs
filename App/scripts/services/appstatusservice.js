@@ -8,8 +8,8 @@
  */
 angular.module('pinboredWebkitApp')
   .service('Appstatusservice', 
-    ['$rootScope',
-    function ($rootScope) {
+    ['$rootScope', 'ngProgress', 
+    function ($rootScope, ngProgress) {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
     this.process = {
@@ -19,6 +19,10 @@ angular.module('pinboredWebkitApp')
       color : ''
     };
 
+    // configure ngProgress
+    ngProgress.height('3px');
+    ngProgress.color('#f1c40f');
+
     this.updateStatus = function(text, progress, total, color) {
       
       // console.info('$scope.updateStatus: ' + message);
@@ -27,6 +31,7 @@ angular.module('pinboredWebkitApp')
         progress = 0;
         total = 0;
       }
+
       if(color === undefined || color === null) {
         color = 'info';
       }
@@ -35,6 +40,16 @@ angular.module('pinboredWebkitApp')
       this.process.progress = progress;
       this.process.total = total;
       this.process.color = color;
+
+      // update ngProgress bar
+      if(progress !== 0 && total !== 0) {
+        ngProgress.start();
+        if(progress !== total) {
+          ngProgress.set(progress/total);
+        } else if(progress === total) {
+          ngProgress.complete();
+        }
+      }
 
       // notify listeners and provide the current status
       $rootScope.$broadcast('app:statuschange', this.process);

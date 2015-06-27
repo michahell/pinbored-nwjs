@@ -42,6 +42,7 @@ module.exports = function(grunt) {
           'ng-tags-input/ng-tags-input.min.css': 'ng-tags-input/ng-tags-input.min.css',
           'flat-ui/dist/css/flat-ui.min.css': 'flat-ui/dist/css/flat-ui.min.css',
           'angular-gridster/dist/angular-gridster.min.css': 'angular-gridster/dist/angular-gridster.min.css',
+          'ngprogress/ngProgress.css': 'ngprogress/ngProgress.css',
 
           // JS already minified
           'jquery/dist/jquery.min.js': 'jquery/dist/jquery.min.js',
@@ -58,6 +59,7 @@ module.exports = function(grunt) {
           'angular-gridster/dist/angular-gridster.min.js': 'angular-gridster/dist/angular-gridster.min.js',
           'ng-tags-input/ng-tags-input.min.js': 'ng-tags-input/ng-tags-input.min.js',
           'flat-ui/dist/js/flat-ui.min.js': 'flat-ui/dist/js/flat-ui.min.js',
+          'ngprogress/build/ngProgress.min.js': 'ngprogress/build/ngProgress.min.js',
 
           // JS non-minified
           'fui-angular/fui-template.js': 'fui-angular/fui-template.js',
@@ -71,9 +73,15 @@ module.exports = function(grunt) {
 
     // css purify the shit out of all css files
     purifycss: {
-      options: {},
+      options: {
+        info : true,
+        rejected : true
+      },
       target: {
-        src: ['App/index.html', 'App/views/*.html', 'App/templates/*.html', 'App/template/*.html'],
+        src: [
+          'App/index.html', 'App/views/*.html', 'App/templates/*.html', 'App/template/*.html',
+          'App/scripts/*.js'
+        ],
         css: ['App/styles/*.css'],
         dest: 'Build/css/pinbored-webkit.purified.css'
       },
@@ -85,11 +93,18 @@ module.exports = function(grunt) {
         shorthandCompacting: false,
         roundingPrecision: -1
       },
-      target: {
+      purify : {
         files: [{
           processImport : true,
           // src: ['App/styles/*.css', 'App/bower_components_dist/*.css', '!*.min.css'],
           src:  'Build/css/pinbored-webkit.purified.css',
+          dest: 'Build/css/pinbored-webkit.min.css',
+        }]
+      },
+      nopurify: {
+        files: [{
+          processImport : true,
+          src: ['App/styles/*.css'],
           dest: 'Build/css/pinbored-webkit.min.css',
         }]
       }
@@ -214,7 +229,7 @@ module.exports = function(grunt) {
   grunt.registerTask('update', ['clean', 'bowercopy']);
 
   // build, minify, compression etc. task(s)
-  grunt.registerTask('build', ['clean', 'bowercopy', 'purifycss', 'cssmin', 'uglify', 'copy']);
+  grunt.registerTask('build', ['clean', 'bowercopy', 'cssmin:nopurify', 'uglify', 'copy']);
 
   // testing task(s)
   grunt.registerTask('test', 'runs testing, shows report, generates coverage', function () {

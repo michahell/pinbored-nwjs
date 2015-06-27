@@ -14,7 +14,7 @@ angular.module('pinboredWebkitApp')
 
     this.config = {
       maxRecentItems : 50,
-      maxRecentAmounts : [10, 15, 20, 25, 30, 40, 50, 75, 100],
+      maxRecentAmounts : [10, 25, 50, 100],
       maxTagSearch : 4,
       itemsPerPage : 10,
       itemsPerPageAmounts : [10, 15, 20, 25, 30, 40, 50]
