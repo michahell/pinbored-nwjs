@@ -18,8 +18,8 @@
         <div class="form-group">
           <label for="recentAmountOptions" class="col-sm-4 control-label">set load recent bookmarks amount to: </label>
           <div class="col-sm-8">
-            <ol id="recentAmountOptions" class="nya-bs-select btn btn-lg btn-primary" 
-            ng-model="appconfig.maxRecentItems">
+            <ol id="recentAmountOptions" class="nya-bs-select btn btn-md btn-primary" 
+            ng-model="newappconfig.maxRecentItems">
               <li nya-bs-option="recentAmount in appconfig.maxRecentAmounts">
                 <a>load <strong>{{recentAmount}}</strong> most recent bookmarks</a>
               </li>
@@ -27,12 +27,20 @@
           </div>
         </div>
 
-        <!-- <div class="form-group">
-          <label for="someButton" class="col-sm-4 control-label">some button: </label>
+      </form>
+
+    </div>
+
+    <div class="row settingsrow clearfix" ng-show="model.changes">
+
+      <form class="form-horizontal">
+        
+        <div class="form-group">
           <div class="col-sm-7">
-            <button btn-loading="busy" data-loading-text="logging in to pinboard..." type="button" class="btn btn-lg btn-success">login to pinbored</button>
+            <button btn-loading="busy" data-loading-text="saving changes..." type="button" 
+            class="btn btn-md btn-success" ng-click="saveChanges()">save changes to settings</button>
           </div>
-        </div> -->
+        </div>
 
       </form>
 

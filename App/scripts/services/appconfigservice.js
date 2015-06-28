@@ -26,9 +26,31 @@ angular.module('pinboredWebkitApp')
       if(configName !== undefined && configName !== null && configValue !== undefined && configValue !== null) {
         console.info('setting config name: ' + configName, configValue);
         self.config[configName] = configValue;
+        // notify listeners and provide the current config
+        $rootScope.$broadcast('app:configchange', self.config);
       }
-      // notify listeners and provide the current config
-      $rootScope.$broadcast('app:configchange', this.config);
+    };
+
+    this.setConfigObject = function(configObject) {
+      var self = this;
+      var valueChanged = false;
+      // set config object
+      console.log('appconfigservice: setting new configobject.');
+      _.each(configObject, function(value, key) {
+        if(_.contains(Object.keys(self.config), key)) {
+          // console.info(key, 'exists in: ', Object.keys(self.config));        
+          if(self.config[key] !== configObject[key]) {
+            console.info('setting config name: ' + key, value);
+            valueChanged = true;
+            self.config[key] = configObject[key];
+          }
+        }
+      });
+      if(valueChanged) {
+        console.log('sending broadcast update...');
+        // notify listeners and provide the current config
+        $rootScope.$broadcast('app:configchange', self.config);
+      }
     };
 
     this.getConfig = function(configName) {

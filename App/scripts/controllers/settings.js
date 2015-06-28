@@ -30,18 +30,40 @@ angular.module('pinboredWebkitApp')
     
     // page model
     $scope.model = {
-      test : false
+      changes : false,
+      appConfigWatcher : null
     };
 
     $scope.appconfig = {} // gets populated by Appconfigservice !
+    $scope.newappconfig = {} // copy of above
 
     $scope.onAppconfigChanged = function() {
+      console.log('onAppconfigChanged');
       $scope.appconfig = Appconfigservice.getConfig();
+      // copy appconfig
+      console.log('received new appconfig: ', Appconfigservice.getConfig());
+      angular.copy($scope.appconfig, $scope.newappconfig);
+      // remove watcher if there is any
+      if($scope.model.appConfigWatcher !== null) $scope.model.appConfigWatcher();
+      // watch appconfig
+      $scope.model.appConfigWatcher = $scope.$watchCollection('newappconfig', function(newVal, oldVal) {
+        // console.log('old, new: ', newVal, $scope.appconfig);
+        if(angular.equals(newVal, $scope.appconfig)) {
+          $scope.model.changes = false;
+        } else {
+          $scope.model.changes = true;
+        }
+      }, true);
+    };
+
+    $scope.saveChanges = function() {
+      Appconfigservice.setConfigObject($scope.newappconfig);  // triggers onAppconfigChanged through broadcast
+      // reset changes
+      $scope.model.changes = false;
     };
 
     $scope.$on('$viewContentLoaded', function() {
       console.info('settings $viewContentLoaded called');
-
       // force local $scope copy of app config obj.
       $scope.onAppconfigChanged();
     });
