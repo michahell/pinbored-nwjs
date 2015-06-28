@@ -17,7 +17,7 @@ angular.module('pinboredWebkitApp')
       if(searchTags.length > 0) {
 
         if(logicType === 'OR') {
-
+          // console.log('filtering tags using logical OR..');
           for(var i=0; i<bookmarkCollection.length; i++) {
             var item = bookmarkCollection[i];
             var matches = false;
@@ -39,7 +39,7 @@ angular.module('pinboredWebkitApp')
           }
 
         } else if(logicType === 'AND') {
-
+          // console.log('filtering tags using logical AND..');
           for(var l=0; l<bookmarkCollection.length; l++) {
             var item2 = bookmarkCollection[l];
             var numMatched = 0;

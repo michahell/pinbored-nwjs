@@ -355,7 +355,7 @@ angular.module('pinboredWebkitApp')
     };
 
     $scope.applyFilters = function() {
-      // console.log('applying filters to list...');
+      console.log('applying filters to list...');
       var word = $scope.filter.text;
       var tags = $scope.filter.tags;
       var logicType = ($scope.appconfig.tagFilterType === true) ? 'AND' : 'OR';
