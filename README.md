@@ -21,17 +21,17 @@ features / functionality
 ========================
 
 * **Bookmark support**
-  *currently*: update, delete, (full-text) search, stale checking.
-  *planned:* create.
+  * *currently* update, delete, (full-text) search, stale checking.
+  * *planned:* create.
 * **Tag support**
-  *currently*: rename, fold, delete, search.
-  *planned:* create.
+  * *currently*: rename, fold, delete, search.
+  * *planned:* create.
 * **search**
-  *currently*: full-text, tagname, switch between OR/AND search.
-  *planned*: fake tag hierarchy
+  * *currently*: full-text, tagname, switch between OR/AND search.
+  * *planned*: fake tag hierarchy
 * **batch editing**
-  *currently*: selection add tag, selection fold all tags, selection remove all tags, selection stale checking, delete selection.
-  *planned*: selection delete all tags, make selection public/private, share selection.
+  * *currently*: selection add tag, selection fold all tags, selection remove all tags, selection stale checking, delete selection.
+  * *planned*: selection delete all tags, make selection public/private, share selection.
 
 
 Why
