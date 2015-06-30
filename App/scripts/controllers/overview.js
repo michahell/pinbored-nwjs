@@ -328,10 +328,6 @@ angular.module('pinboredWebkitApp')
       $scope.checkMaxTags(1);
     };
 
-    // $scope.onTagRemoved = function () {
-    //   $scope.updateFiltersPaging();
-    // };
-
     // this method is essentially a manual debounce for filtering.
     // debounce was apparently added in Angular 1.3 but why change
     // a winning team? naively thinking, most likely, Angular itself 

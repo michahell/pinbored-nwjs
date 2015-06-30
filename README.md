@@ -17,6 +17,23 @@ pinbored-webkit
 
 [Pinbored](http://michahell.github.io/pinbored-webkit) is a 'native' [Pinboard](https://pinboard.in/) client application built with Node-webkit and AngularJS. Currently only OSX binaries are offered, but that is only because I use OSX myself and have not yet started building on other OSes. See the [abandoned AS3 client version](https://github.com/michahell/pinbored) for more info on the history of this project.
 
+features / functionality
+========================
+
+* **Bookmark support**
+  *currently*: update, delete, (full-text) search, stale checking.
+  *planned:* create.
+* **Tag support**
+  *currently*: rename, fold, delete, search.
+  *planned:* create.
+* **search**
+  *currently*: full-text, tagname, switch between OR/AND search.
+  *planned*: fake tag hierarchy
+* **batch editing**
+  *currently*: selection add tag, selection fold all tags, selection remove all tags, selection stale checking, delete selection.
+  *planned*: selection delete all tags, make selection public/private, share selection.
+
+
 Why
 ---
 
@@ -132,5 +149,9 @@ all milestones and issues:
 milestones list:
 * [current v0.0.4](https://github.com/michahell/pinbored-webkit/milestones/0.0.4%20Yellow%20Mountain)
 * [next    v0.0.5](https://github.com/michahell/pinbored-webkit/milestones/0.0.5%20Green%20Wrench)
+* [next    v0.0.6](https://github.com/michahell/pinbored-webkit/milestones/0.0.6%20Rebel%20Dagger)
+
+name generator used for milestone names:
+[Project Name Generator](http://online-generator.com/name-generator/project-name-generator.php)
 
 
