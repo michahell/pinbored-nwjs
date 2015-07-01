@@ -7,8 +7,8 @@
  * Service in the pinboredWebkitApp.
  */
 angular.module('pinboredWebkitApp')
-  .service('Bookmarkservice', ['$rootScope', '$filter', 'Pinboardservice', 'Appstatusservice', 'Usersessionservice', 'Utilservice', 
-    function ($rootScope, $filter, Pinboardservice, Appstatusservice, Usersessionservice, Utilservice) {
+  .service('Bookmarkservice', ['$rootScope', '$filter', 'Pinboardservice', 'Appstatusservice', 'Usersessionservice', 'Utilservice', 'Constants', 
+    function ($rootScope, $filter, Pinboardservice, Appstatusservice, Usersessionservice, Utilservice, Constants) {
     // AngularJS will instantiate a singleton by calling 'new' on this function
 
 
@@ -120,6 +120,7 @@ angular.module('pinboredWebkitApp')
               updated++;
               if(result.result_code === 'done') {
                 Appstatusservice.updateStatus('updated bookmark: ' + updatedBmHash + '.', updated, total);
+                $rootScope.$broadcast(Constants.events.batch.tagadded, selection[i]);
               } else {
                 Appstatusservice.updateStatus('Failed: ' + result.result_code + '.', updated, total, 'danger');
               }
@@ -147,6 +148,7 @@ angular.module('pinboredWebkitApp')
               var updatedBmHash = selection[i].data.hash;
               updated++;
               Appstatusservice.updateStatus('updated bookmark: ' + updatedBmHash + '.', updated, total);
+              $rootScope.$broadcast(Constants.events.batch.alltagsremoved, selection[i]);
               // recursively delete all tags on next bookmark
               if(selection.length > 0 && updated !== total) {
                 deleteTagsFromNextBookmark(i+1);
@@ -211,13 +213,13 @@ angular.module('pinboredWebkitApp')
           Pinboardservice.deleteBookmark(selection[0].data.href)
             .then(function(result) {
               if(result.result_code === 'done') {
-                // var deletionBmHash = selection[0]['data']['hash'];
                 var deletionBmHash = selection[0].data.hash;
                 deleted++;
                 Appstatusservice.updateStatus('deleted bookmark, hash: ' + deletionBmHash + '.', deleted, total);
                 // remove from scope list
                 Utilservice.removeItemFromCollection('hash', deletionBmHash, selection);
                 Utilservice.removeItemFromCollection('hash', deletionBmHash, allBookmarks);
+                $rootScope.$broadcast(Constants.events.batch.delete, selection[0]);
                 // recursively delete next bookmark
                 if(selection.length > 0 && deleted !== total) {
                   deleteNextBookmark();
@@ -254,6 +256,7 @@ angular.module('pinboredWebkitApp')
             console.log('delete request completed.');
             Utilservice.removeItemFromCollection('hash', bookmarkItem.data.hash, collection);
             Appstatusservice.updateStatus('deleted bookmark, hash: ' + bookmarkItem.data.hash + '.');
+            $rootScope.$broadcast(Constants.events.bm.delete, bookmarkItem);
           } else {
             responseFailed(result);
           }

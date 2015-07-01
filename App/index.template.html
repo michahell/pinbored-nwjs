@@ -88,12 +88,15 @@
     <script src="bower_components_dist/fui-angular/fui-tpls.js"></script>
 
     <!-- @ifdef DEBUG -->
-    <!-- configuration settings -->
+    <!-- node-js / nwjs stuff -->
     <script src="scripts/config/config-node-webkit.js"></script>
-    <script src="scripts/config/config-app.js"></script>
 
     <!-- main angular entry point -->
     <script src="scripts/app.js"></script>
+
+    <!-- constants (need to be declared after app.js) -->
+    <script src="scripts/config/constants.js"></script>
+    <script src="scripts/config/config.js"></script>
 
     <!-- controllers -->
     <script src="scripts/controllers/baseview.js"></script>

@@ -8,8 +8,8 @@
  */
 angular.module('pinboredWebkitApp')
   .controller('AppStatusCtrl', 
-    ['$scope', 'Usersessionservice', 
-    function ($scope, Usersessionservice) {
+    ['$scope', 'Usersessionservice', 'Constants', 
+    function ($scope, Usersessionservice, Constants) {
     
     $scope.status = {
       text : '',
@@ -22,7 +22,7 @@ angular.module('pinboredWebkitApp')
     $scope.visible = false;
 
     // if app status updates in the model reflect these changes
-    $scope.$on('app:statuschange', function(event, status) {
+    $scope.$on(Constants.events.app.statusupdate, function(event, status) {
       
       $scope.visible = true;
       $scope.status = status;

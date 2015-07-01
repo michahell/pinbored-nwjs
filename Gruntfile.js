@@ -265,8 +265,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-node-webkit-builder');
 
   // grunt task
-  grunt.registerTask('update', ['clean', 'bowercopy']);
-  grunt.registerTask('dev', ['update', 'preprocess:development']);
+  grunt.registerTask('update', ['clean', 'bowercopy', 'preprocess:development']);
   grunt.registerTask('build', ['update', 'cssmin:nopurify', 'preprocess:release', 'uglify', 'htmlclean', 'copy']);
 
   // testing task(s)

@@ -1,14 +1,16 @@
 
 // catch node-webkit errors globally
-process.on('uncaughtException', function(e) {
-  console.info('NODE WEBKIT ERROR!');
-  console.info(e);
-});
+// process.on('uncaughtException', function(e) {
+//   console.info('NODE WEBKIT ERROR!', e);
+// });
 
 
 $(function() {
+  
   function Menu(cutLabel, copyLabel, pasteLabel) {
-    var gui = require('nw.gui'), menu = new gui.Menu();
+    
+    var gui = require('nw.gui'),
+        menu = new gui.Menu();
 
     var cut = new gui.MenuItem({label: cutLabel || 'Cut', click: function() {
         document.execCommand('cut');
@@ -40,4 +42,5 @@ $(function() {
     e.preventDefault();
     menu.popup(e.originalEvent.x, e.originalEvent.y);
   });
+  
 });

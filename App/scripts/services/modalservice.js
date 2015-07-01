@@ -48,10 +48,10 @@ angular.module('pinboredWebkitApp')
       var isConfirmed = confirm(messageString);
 
       if(isConfirmed) { 
-        console.log('yes!');
+        console.log('modal confirmed!');
         deferred.resolve();
       } else {
-        console.log('no!');
+        console.log('modal declined!');
         deferred.reject();
       }
 
