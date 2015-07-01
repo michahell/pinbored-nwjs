@@ -46,9 +46,8 @@ features / functionality
   * *planned:* stale check your whole bookmark collection!
 
 
-### fake-tag-hierarchy
-------------------------------
-<a name="fake-tag-hierarchy"></a>
+### Fake tag hierarchy
+----------
 In most (bookmarking) applications, a collection of items is either a flat list or a hierarchical structure (usually a tree, like in your operating systems file browser). However, we can stick to a naming convention for naming tags such that we are able to parse that structure and construct a hierarchy from it. Say we would like the following hierarchy:
 
 * programming (main tag)
