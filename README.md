@@ -1,6 +1,3 @@
-pinbored-webkit
-===============
-
 ![Pinbored](http://powergeek.nl/static-imgs/pinbored-logo-github.png)
 
 [![David](https://img.shields.io/david/michahell/pinbored-webkit.svg)]()
@@ -27,11 +24,11 @@ features / functionality
   * *planned:* create.
 * **Tags**
   * *currently*: update, delete, browse, fold.
-  * *planned:* create, search, [fake tag hierarchy]().
+  * *planned:* create, search, fake tag hierarchy.
 
 * **Search**
   * *currently*: full-text, tagname, switch between OR/AND search.
-  * *planned*: [fake tag hierarchy](#Fake-tag-hierarchy)
+  * *planned*: fake tag hierarchy.
 * **Batch editing**
   * *currently*: selection add tag, selection fold all tags, selection remove all tags, selection stale checking, delete selection.
   * *planned*: selection delete all tags, make selection public/private, share selection.
@@ -46,8 +43,8 @@ features / functionality
   * *planned:* stale check your whole bookmark collection!
 
 
-Fake tag hierarchy
-------------------
+Fake tag hierarchy explanation
+------------------------------
 
 In most (bookmarking) applications, a collection of items is either a flat list or a hierarchical structure (usually a tree, like in your operating systems file browser). However, we can stick to a naming convention for naming tags such that we are able to parse that structure and construct a hierarchy from it. Say we would like the following hierarchy:
 
