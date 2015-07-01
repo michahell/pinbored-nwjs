@@ -18,21 +18,44 @@ pinbored-webkit
 [Pinbored](http://michahell.github.io/pinbored-webkit) is a 'native' [Pinboard](https://pinboard.in/) client application built with Node-webkit and AngularJS. Currently only OSX binaries are offered, but that is only because I use OSX myself and have not yet started building on other OSes. See the [abandoned AS3 client version](https://github.com/michahell/pinbored) for more info on the history of this project.
 
 features / functionality
-========================
+------------------------
 
-* **Bookmark support**
-  * *currently* update, delete, (full-text) search, stale checking.
+**SUPPORTED**
+
+* **Bookmarks**
+  * *currently* update, delete, browse, (full-text) search, stale checking.
   * *planned:* create.
-* **Tag support**
-  * *currently*: rename, fold, delete, search.
-  * *planned:* create.
-* **search**
+* **Tags**
+  * *currently*: update, delete, browse, fold.
+  * *planned:* create, search, [fake tag hierarchy]().
+
+* **Search**
   * *currently*: full-text, tagname, switch between OR/AND search.
-  * *planned*: fake tag hierarchy
-* **batch editing**
+  * *planned*: [fake tag hierarchy](#Fake-tag-hierarchy)
+* **Batch editing**
   * *currently*: selection add tag, selection fold all tags, selection remove all tags, selection stale checking, delete selection.
   * *planned*: selection delete all tags, make selection public/private, share selection.
 
+**NOT YET SUPPORTED**
+
+* **Note(s)**
+  * *currently*: NONE.
+  * *planned:* create, update, delete, search.
+* **Full collection stale checking**
+  * *currently*: NONE.
+  * *planned:* stale check your whole bookmark collection!
+
+
+Fake tag hierarchy explanation
+------------------------------
+<a name="Fake tag hierarchy"></a>
+In most (bookmarking) applications, a collection of items is either a flat list or a hierarchical structure (usually a tree, like in your operating systems file browser). However, we can stick to a naming convention for naming tags such that we are able to parse that structure and construct a hierarchy from it. Say we would like the following hierarchy:
+
+* programming (main tag)
+  * tooling
+  * talks
+
+We could then name our tags like so: *programming*, *programming.tooling* and *programming.talks*. Similarly we could use **/**, **>**, **-**, **_** or some other **hierarchy denotation symbol**.
 
 Why
 ---
@@ -60,10 +83,10 @@ Screenshots
 
 Can be seen on [the project page](http://michahell.github.io/pinbored-webkit/#screenshots).
 
-Download binaries
------------------
+Download
+--------
 
-Can be downloaded on the [project page](http://michahell.github.io/pinbored-webkit/#binary-downloads) or from the GH [releases page](https://github.com/michahell/pinbored-webkit/releases).
+Downloads are available on the [project page](http://michahell.github.io/pinbored-webkit/#binary-downloads) or from the GH [releases page](https://github.com/michahell/pinbored-webkit/releases).
 
 
 Building + running from source
