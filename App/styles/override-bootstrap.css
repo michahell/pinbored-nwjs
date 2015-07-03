@@ -91,3 +91,9 @@ textarea {
 .btn-group-sm > .btn {
   padding: 8px 15px;
 }
+
+/* checkbox, radio overrides */
+
+.checkbox, .radio {
+  margin-top: 6px;
+}

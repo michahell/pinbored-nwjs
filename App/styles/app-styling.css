@@ -11,6 +11,8 @@ body, html {
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
+  /*background-color: #34495E;*/
+  background-color: #2C3E50;
 }
 
 /* pinbored logo */
@@ -76,12 +78,4 @@ body, html {
 .app-status-indicator h7 .info {
   color: #16A085;
   font-weight: bold;
-}
-
-/* miscellaneous */
-
-.highlight-search {
-  color: #2C3E50;
-  font-weight: bold;
-  background-color: #F1C40F;
 }

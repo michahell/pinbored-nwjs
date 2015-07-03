@@ -1,31 +1,36 @@
-<div class="container draggable">
-  <div class="navbar-header">
-    <a class="navbar-brand" href="#">
-      <img src="images/pinbored/icons/pinbored-icon-48.png">
-    </a> 
-  </div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <img src="images/pinbored/icons/pinbored-icon-48.png">
+      </a> 
+    </div>
 
-  <div class="navbar-collapse collapse">
-    <ul class="nav navbar-nav">
-      <li ng-repeat="navItem in data.navItems" ng-class="{active: activePage == navItem.name}">
-        <a href="#/{{navItem.name}}">{{navItem.name}}</a>
-      </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li ng-repeat="navItem in data.navItems" ng-class="{active: data.activeSection == navItem.name}">
+          <a href="#/{{navItem.name}}">{{navItem.name}}</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+        <!-- Single button -->
+        <div class="btn-group user-menu-dropdown" dropdown is-open="status.isopen">
+          <button type="button" class="btn btn-sm btn-default dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+            {{data.username}}<span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="userMenuItem in data.userMenuItems">
+              <a ng-click="doAction(userMenuItem.action)">{{userMenuItem.name}}</a>
+            </li>
+            <li class="divider"></li>
+            <li><a ng-click="quit()">quit</a></li>
+          </ul>
+        </div>
 
-      <li class="dropdown">
-        <a href="" class="dropdown-toggle" data-toggle="dropdown">{{data.username}}<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="#/settings">Settings</a></li>
-          <li class="divider"></li>
-          <!-- <li class="dropdown-header">Nav header</li> -->
-          <li><a href="javascript: void(0)" ng-click="logout()" href="">Logout</a></li>
-          <li><a href="javascript: void(0)" ng-click="quit()">Quit</a></li>
-        </ul>
-      </li>
-
-      <!-- <li class="active"><a href="#">something</a></li>
-      <li><a href="#">also</a></li> -->
-    </ul>
-  </div><!--/.nav-collapse -->
-</div>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

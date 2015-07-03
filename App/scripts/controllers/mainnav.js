@@ -8,21 +8,26 @@
  */
 angular.module('pinboredWebkitApp')
   .controller('MainNavCtrl', 
-    ['$scope', 'Usersessionservice', 
-    function ($scope, Usersessionservice) {
+    ['$scope', 'ngDialog', 'Usersessionservice', 
+    function ($scope, ngDialog, Usersessionservice) {
 
     // page model
     $scope.data = {
       showNav : false,
-      activePage : '',
+      activeSection : '',
       username : 'user',
       navItems : [
-        {name: 'overview' },
-        {name: 'tags' },
-        // {name: 'tools' },
-        // {name: 'statistics' },
-        {name: 'settings' }
-      ]
+        { name: 'overview' },
+        { name: 'tags' },
+        // { name: 'tools' },
+        // { name: 'statistics' },
+        { name: 'settings' }
+      ],
+      userMenuItems : [
+        { name : 'about', action : 'about' },
+        { name : 'log out', action : 'logout' }
+      ],
+      selectedUserMenuItem : null
     };
 
     // root scope listeners
@@ -37,8 +42,21 @@ angular.module('pinboredWebkitApp')
     });
 
     $scope.$on('user:pagechange', function() { // args: event, currentPage
-      $scope.activePage = Usersessionservice.currentPage;
+      $scope.data.activeSection = Usersessionservice.currentSection;
     });
+
+    $scope.doAction = function(action) {
+      switch (action) {
+        case 'about':   $scope.about();   break;
+        case 'logout':  $scope.logout();  break;
+        break;
+      };
+    };
+
+    $scope.about = function() {
+      console.log('about clicked...');
+      ngDialog.open({ template: 'templates/aboutTemplate.html' });
+    };
 
     $scope.logout = function() {
       // TODO logout

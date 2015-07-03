@@ -18,6 +18,7 @@ angular
     'fui',
     'gridster',
     'ngProgress',
+    'ngDialog',
     'nya.bootstrap.select'
   ])
   .config(function ($routeProvider) {
@@ -41,9 +42,6 @@ angular
       .when('/settings', {
         templateUrl: 'views/settings.html',
         controller: 'SettingsCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
       });
 
   });

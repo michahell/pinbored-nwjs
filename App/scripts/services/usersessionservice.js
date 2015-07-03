@@ -19,12 +19,6 @@ angular.module('pinboredWebkitApp')
 
     // app session related
     this.currentSection = '';
-    this.pageHistory = {
-      overview : {},
-      tags : {
-        currentPage : null
-      }
-    };
 
     // temp ref
     var self = this;

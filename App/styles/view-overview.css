@@ -207,9 +207,21 @@
   color: white;
 }
 
-/* full text search highlight */
+/* highlight for amount of bookmarks */
 
 .highlight {
   color: #1ABC9C;
   font-weight: bold;
+}
+
+/* full text search highlight */
+
+.highlight-search {
+  color: #2C3E50;
+  font-weight: bold;
+  background-color: #F1C40F;
+  border-radius: 3px;
+  padding: 4px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }

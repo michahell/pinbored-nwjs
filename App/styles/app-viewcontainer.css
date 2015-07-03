@@ -1,6 +1,7 @@
 
 .viewcontainer {
   height: calc(100% - 53px);
+  /*background: #34495E;*/
 }
 
 /* ng-animate DEFAULT transitions */

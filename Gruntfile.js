@@ -33,8 +33,8 @@ module.exports = function(grunt) {
           // 'libs/chai.js': 'chai/lib/chai.js'
 
           // FONTS
-          'flat-ui/dist/fonts/': 'flat-ui/dist/fonts/',
           'bootstrap/dist/fonts/': 'bootstrap/dist/fonts/',
+          'flat-ui/dist/fonts/': 'flat-ui/dist/fonts/',
 
           // CSS
           'bootstrap/dist/css/bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css',
@@ -44,6 +44,9 @@ module.exports = function(grunt) {
           'angular-gridster/dist/angular-gridster.min.css': 'angular-gridster/dist/angular-gridster.min.css',
           'ngprogress/ngProgress.css': 'ngprogress/ngProgress.css',
           'nya-bootstrap-select/dist/css/nya-bs-select.min.css': 'nya-bootstrap-select/dist/css/nya-bs-select.min.css',
+          'ngDialog/css/ngDialog.min.css': 'ngDialog/css/ngDialog.min.css',
+          'ngDialog/css/ngDialog-theme-default.min.css': 'ngDialog/css/ngDialog-theme-default.min.css',
+          'ngDialog/css/ngDialog-theme-plain.min.css': 'ngDialog/css/ngDialog-theme-plain.min.css',
 
           // JS already minified
           'jquery/dist/jquery.min.js': 'jquery/dist/jquery.min.js',
@@ -62,6 +65,7 @@ module.exports = function(grunt) {
           'flat-ui/dist/js/flat-ui.min.js': 'flat-ui/dist/js/flat-ui.min.js',
           'ngprogress/build/ngProgress.min.js': 'ngprogress/build/ngProgress.min.js',
           'nya-bootstrap-select/dist/js/nya-bs-select.min.js': 'nya-bootstrap-select/dist/js/nya-bs-select.min.js',
+          'ngDialog/js/ngDialog.min.js': 'ngDialog/js/ngDialog.min.js',
 
           // JS non-minified
           'fui-angular/fui-template.js': 'fui-angular/fui-template.js',
