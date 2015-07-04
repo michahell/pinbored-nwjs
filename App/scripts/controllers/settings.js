@@ -58,8 +58,15 @@ angular.module('pinboredWebkitApp')
 
     $scope.saveChanges = function() {
       Appconfigservice.setConfigObject($scope.newappconfig);  // triggers onAppconfigChanged through broadcast
-      // reset changes
-      $scope.model.changes = false;
+      $scope.model.changes = false; // reset changes
+    };
+
+    $scope.setRecentAmount = function(amount) {
+      $scope.newappconfig.maxRecentItems = amount;
+    };
+
+    $scope.setStaleCheckTimeout = function(amount) {
+      $scope.newappconfig.staleCheckTimeout = amount * 1000;
     };
 
     $scope.$on('$viewContentLoaded', function() {

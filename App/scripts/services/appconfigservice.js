@@ -13,11 +13,16 @@ angular.module('pinboredWebkitApp')
     // AngularJS will instantiate a singleton by calling "new" on this function
 
     this.config = {
-      maxRecentItems : 50,
-      maxRecentAmounts : [10, 25, 50, 100],
       maxTagSearch : 4,
+      // default values
+      maxRecentItems : 50,
       itemsPerPage : 10,
-      itemsPerPageAmounts : [10, 15, 20, 25, 30, 40, 50]
+      staleCheckTimeout : 5000,  // in ms
+      defaultTimeout : 15000, // in ms
+      // choosable amounts of defaults
+      maxRecentAmounts : [10, 25, 50, 100],
+      itemsPerPageAmounts : [10, 15, 20, 25, 30, 40, 50],
+      staleCheckTimeoutAmounts : [2, 3, 4, 5, 10, 15, 20]
     };
 
     this.setConfig = function(configName, configValue) {
@@ -38,7 +43,7 @@ angular.module('pinboredWebkitApp')
       console.log('appconfigservice: setting new configobject.');
       _.each(configObject, function(value, key) {
         if(_.contains(Object.keys(self.config), key)) {
-          // console.info(key, 'exists in: ', Object.keys(self.config));        
+          // console.info(key, 'exists in: ', Object.keys(self.config));
           if(self.config[key] !== configObject[key]) {
             console.info('setting config name: ' + key, value);
             valueChanged = true;

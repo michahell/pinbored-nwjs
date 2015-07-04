@@ -8,8 +8,8 @@
  */
 angular.module('pinboredWebkitApp')
   .service('Pinboardservice', 
-    ['$q', '$timeout', 'Usersessionservice', 'Modalservice', 'Appstatusservice',
-    function($q, $timeout, Usersessionservice, Modalservice, Appstatusservice) {
+    ['$q', '$timeout', 'Usersessionservice', 'Modalservice', 'Appstatusservice', 'Appconfigservice',
+    function($q, $timeout, Usersessionservice, Modalservice, Appstatusservice, Appconfigservice) {
     // AngularJS will instantiate a singleton by calling 'new' on this function
 
     this.authstring = 'https://user:password@api.pinboard.in/v1/';
@@ -106,25 +106,32 @@ angular.module('pinboredWebkitApp')
       }
     };
 
-    this.executeStandardRequest = function(requestString, deferred, isDownload, optionalCompleteCallback) {
+    this.executeStandardRequest = function(requestString, deferred, additionalOpts, optionalCompleteCallback) {
       
       var requestOptions = {
         url : requestString,
-        method : 'GET'
-      };
-      
-      var progressOptions = {
-        throttle: 5,    // Throttle the progress event to 2000ms, defaults to 1000ms
-        delay: -50        // Only start to emit after 1000ms delay, defaults to 0ms
+        method : 'GET',
+        timeout : Appconfigservice.config.defaultTimeout
       };
 
-      // set isDownload to false if it's not defined
-      isDownload = (isDownload === undefined) ? false : isDownload;
+      var specificOptions = {
+        isDownload: false,
+      };
+      
+      if(!_.isEmpty(additionalOpts)) {
+        requestOptions.timeout      = (!_.isEmpty(additionalOpts)) ? additionalOpts.timeout     : requestOptions.timeout;
+        specificOptions.isDownload  = (!_.isEmpty(additionalOpts)) ? additionalOpts.isDownload  : requestOptions.isDownload;
+      }
+      
+      var progressOptions = {
+        throttle: 50,    // Throttle the progress event to x ms, defaults to 1000ms
+        delay: 0         // Only start to emit after x delay, defaults to 0ms
+      };
 
       // start progress bar anyway!
       Appstatusservice.startProgress();
 
-      if(isDownload === true) {
+      if(specificOptions.isDownload === true) {
         console.log('using native https module for download...');
         // use node's native https module instead of request and request-progress
         var req = https.get(requestString).on('response', function(res) {
@@ -176,6 +183,7 @@ angular.module('pinboredWebkitApp')
       } else {
         // use request
         console.log('using request module for download...');
+        // console.log('request timeout: ', requestOptions.timeout);
         progress(request(requestOptions, function (error, response, body) {
           if (!error && response.statusCode == 200) {
             if(optionalCompleteCallback === undefined) {
@@ -185,8 +193,8 @@ angular.module('pinboredWebkitApp')
             }
             Appstatusservice.completeProgress();
           } else {
-            var errorMsg = 'pinboardservice: error: '+ response.statusCode;
-            console.log(errorMsg);
+            var errorMsg = 'pinboardservice: error: '+ error;
+            console.warn(errorMsg);
             deferred.reject(errorMsg);
             Appstatusservice.resetProgress();
           }
@@ -250,7 +258,7 @@ angular.module('pinboredWebkitApp')
       this.token.replace('user', Usersessionservice.user).replace('apikey', Usersessionservice.apikey);
 
       // execute standard request
-      self.executeStandardRequest(request, deferred, true, function(result, response, deferred) {
+      self.executeStandardRequest(request, deferred, {isDownload:true}, function(result, response, deferred) {
         // we only need the posts part. for some reason this is not the same result sent as in
         // get all bookmarks. probably there is metadata.
         var posts = JSON.stringify(JSON.parse(result).posts);
@@ -274,7 +282,7 @@ angular.module('pinboredWebkitApp')
       this.token.replace('user', Usersessionservice.user).replace('apikey', Usersessionservice.apikey);
 
       // execute standard request
-      self.executeStandardRequest(request, deferred, true);
+      self.executeStandardRequest(request, deferred, {isDownload:true});
       
       return deferred.promise;
     };
@@ -370,7 +378,7 @@ angular.module('pinboredWebkitApp')
       this.token.replace('user', Usersessionservice.user).replace('apikey', Usersessionservice.apikey);
 
       // execute standard request
-      self.executeStandardRequest(request, deferred, true);
+      self.executeStandardRequest(request, deferred, {isDownload:true});
       
       return deferred.promise;
     };
@@ -434,7 +442,7 @@ angular.module('pinboredWebkitApp')
       console.log('pinboardservice: performing stale request...');
 
       // execute standard request
-      self.executeStandardRequest(url, deferred);
+      self.executeStandardRequest(url, deferred, {timeout: Appconfigservice.config.staleCheckTimeout});
       
       return deferred.promise;
     };

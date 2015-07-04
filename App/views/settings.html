@@ -15,15 +15,33 @@
 
       <form class="form-horizontal">
         
+        <!-- Single button -->
         <div class="form-group">
           <label for="recentAmountOptions" class="col-sm-4 control-label">set load recent bookmarks amount to: </label>
-          <div class="col-sm-8">
-            <ol id="recentAmountOptions" class="nya-bs-select btn btn-md btn-primary" 
-            ng-model="newappconfig.maxRecentItems">
-              <li nya-bs-option="recentAmount in appconfig.maxRecentAmounts">
-                <a>load <strong>{{recentAmount}}</strong> most recent bookmarks</a>
+          <div class="btn-group" dropdown>
+            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+              load <strong>{{newappconfig.maxRecentItems}}</strong> most recent bookmarks <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li ng-repeat="recentAmount in appconfig.maxRecentAmounts">
+                <a ng-click="setRecentAmount(recentAmount)">load <strong>{{recentAmount}}</strong> most recent bookmarks</a>
               </li>
-            </ol>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Single button -->
+        <div class="form-group">
+          <label for="recentAmountOptions" class="col-sm-4 control-label">set stale check timeout: </label>
+          <div class="btn-group" dropdown>
+            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+              wait <strong>{{newappconfig.staleCheckTimeout / 1000}}</strong> seconds <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li ng-repeat="staleCheckTimeoutAmount in appconfig.staleCheckTimeoutAmounts">
+                <a ng-click="setStaleCheckTimeout(staleCheckTimeoutAmount)">wait {{staleCheckTimeoutAmount}} seconds</a>
+              </li>
+            </ul>
           </div>
         </div>
 
