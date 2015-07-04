@@ -8,8 +8,8 @@
  */
 angular.module('pinboredWebkitApp')
   .controller('MainNavCtrl', 
-    ['$scope', 'ngDialog', 'Usersessionservice', 
-    function ($scope, ngDialog, Usersessionservice) {
+    ['$scope', 'ngDialog', 'Usersessionservice', 'Appstatusservice', 
+    function ($scope, ngDialog, Usersessionservice, Appstatusservice) {
 
     // page model
     $scope.data = {
@@ -29,6 +29,9 @@ angular.module('pinboredWebkitApp')
       ],
       selectedUserMenuItem : null
     };
+
+    // Load native UI library
+    var gui = require('nw.gui');
 
     // root scope listeners
     $scope.$on('user:authenticated', function() { // args: event, data
@@ -68,8 +71,12 @@ angular.module('pinboredWebkitApp')
     $scope.quit = function() {
       // TODO quit
       console.log('quitting...');
-      $scope.logout();
-      console.info('bye! see you next time.');
+      if(Appstatusservice.hasPendingOperations() === false) {
+        $scope.logout();
+        console.info('bye! see you next time.');
+        // Quit current app
+        gui.App.quit();
+      }
     };
 
   }]);

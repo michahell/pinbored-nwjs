@@ -12,6 +12,11 @@ angular.module('pinboredWebkitApp')
     function ($rootScope, ngProgress, Constants, Config) {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
+    this.state = {
+      hasPendingOperations: false,
+      numPendingOperations: 0
+    };
+
     this.process = {
       text : '',
       progress : 0,
@@ -45,6 +50,8 @@ angular.module('pinboredWebkitApp')
 
     this.startProgress = function() {
       ngProgress.start();
+      this.state.hasPendingOperations = true;
+      this.state.numPendingOperations++;
     };
 
     this.updateProgress = function(progress, total) {
@@ -63,10 +70,23 @@ angular.module('pinboredWebkitApp')
 
     this.resetProgress = function() {
       ngProgress.reset();
+      if (this.state.numPendingOperations > 0)  this.state.numPendingOperations--;
+    };
+
+    this.hasNoPendingOperationsIfZero = function() {
+      if (this.state.numPendingOperations === 0) {
+        this.state.hasPendingOperations = false;
+      }
     };
 
     this.completeProgress = function() {
       ngProgress.complete();
+      if (this.state.numPendingOperations > 0)  this.state.numPendingOperations--;
+      this.hasNoPendingOperationsIfZero();
+    };
+
+    this.hasPendingOperations = function () {
+      return (this.state.hasPendingOperations) ? this.state.pendingOperations : false;
     };
 
   }]);
