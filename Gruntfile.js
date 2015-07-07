@@ -67,6 +67,10 @@ module.exports = function(grunt) {
           'nya-bootstrap-select/dist/js/nya-bs-select.min.js': 'nya-bootstrap-select/dist/js/nya-bs-select.min.js',
           'ngDialog/js/ngDialog.min.js': 'ngDialog/js/ngDialog.min.js',
 
+          // 'ladda/js/ladda.js' : 'ladda/js/ladda.js',
+          // 'spin.js/spin.js' : 'spin.js/spin.js',
+          // 'ladda-angular/dist/ladda-angular.js' : 'ladda-angular/dist/ladda-angular.js',
+
           // JS non-minified
           'fui-angular/fui-template.js': 'fui-angular/fui-template.js',
           'fui-angular/fui-checkbox.js': 'fui-angular/fui-checkbox.js',

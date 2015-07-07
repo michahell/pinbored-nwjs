@@ -8,9 +8,9 @@
  */
 angular.module('pinboredWebkitApp')
   .controller('TagItemCtrl', 
-    ['$scope', '$location', '$filter','Usersessionservice', 'Pinboardservice', 'Appstatusservice', 
+    ['$q', '$scope', '$location', '$filter','Usersessionservice', 'Pinboardservice', 'Appstatusservice', 
     'Modalservice', 'Bookmarkservice',
-    function ($scope, $location, $filter, Usersessionservice, Pinboardservice, Appstatusservice, 
+    function ($q, $scope, $location, $filter, Usersessionservice, Pinboardservice, Appstatusservice, 
     Modalservice, Bookmarkservice) {
 
     // current item!
@@ -33,7 +33,11 @@ angular.module('pinboredWebkitApp')
     $scope.spliceMaxTags = function() {
       // remove last tag from array
       if($scope.status.newFoldTags.length > 1) {
-        $scope.status.newFoldTags.splice($scope.status.newFoldTags.indexOf($scope.status.newFoldTags[$scope.status.newFoldTags.length - 1]), 1);
+        $scope.status.newFoldTags.splice(
+          $scope.status.newFoldTags.indexOf(
+            $scope.status.newFoldTags[$scope.status.newFoldTags.length - 1]
+          ), 
+        1);
       }
     };
 
@@ -110,34 +114,60 @@ angular.module('pinboredWebkitApp')
     };
 
     $scope.renameTag = function(oldTagName, newTagName, type) {
+      var deferred = $q.defer();
+      var pastTense = (type === 'rename') ? 'renamed' : 'folded';
+      var currentTense = (type === 'rename') ? 'renaming' : 'folding';
+      console.log(currentTense, oldTagName, ' into: ' + newTagName + '...');
+
       Pinboardservice.renameTag(oldTagName, newTagName)
-        .then(function(result){
-          console.log(result);
-          if(result.result === 'done'){
-            var str = (type === 'rename') ? 'renamed' : 'folded';
-            // status update
-            Appstatusservice.updateStatus('tag ' + str);
-            // close tag options (also removes watcher)
-            $scope.closeTagOptions();
+      .then(function(result) {
+        console.log(currentTense + ' tag successfull: ', result);
+        if(result.result === 'done') {
+          // status update
+          Appstatusservice.updateStatus('tag ' + pastTense);
+          // close tag options (also removes watcher)
+          $scope.closeTagOptions();
+          if(type === 'rename') {
             // make new original copy
             $scope.original = angular.copy($scope.item);
           }
-        }, function(reason) {
-          var str = (type === 'rename') ? 'renaming' : 'folding';
-          Appstatusservice.updateStatus(str + ' tag failed: ' + reason + '.');
-        });
+          deferred.resolve();
+        }
+      })
+      .catch(function(reason) {
+        Appstatusservice.updateStatus(pastTense + ' tag failed: ' + reason + '.');
+        deferred.reject();
+      });
+      return deferred.promise;
     };
 
     $scope.foldTag = function(tag, intoTagName) {
-      $scope.renameTag(tag.tagname, intoTagName, 'fold');
+      $scope.renameTag(tag.tagname, intoTagName, 'fold')
+      .then(function() {
+        // remove tag visibly
+        var obsoleteTag = $scope.$parent.getTagByName(tag.tagname);
+        var foldedIntoTag = $scope.$parent.getTagByName(intoTagName);
+        console.log('trying to get tag: ', tag.tagname, obsoleteTag);
+        if(obsoleteTag !== undefined && !obsoleteTag !== null) {
+          $scope.$parent.removeTag(obsoleteTag);
+          // increase selected tag count
+          $scope.$parent.increaseTagOccurenceCount(foldedIntoTag);
+        }
+      })
+      .catch(function(error) {
+
+      });
     };
 
     $scope.deleteTag = function(tag) {
-      // call method in parent scope
-      Pinboardservice.deleteTag(tag.tagname)
-      .then(function(result){
+      Modalservice.confirm('', 'Delete this tag ?')
+      .then(function() {
+        // call method in parent scope
+        return Pinboardservice.deleteTag(tag.tagname)
+      })
+      .then(function(result) {
         // console.log(result);
-        if(result.result === 'done'){
+        if(result.result === 'done') {
           // status update!
           Appstatusservice.updateStatus('tag deleted.');
           // close tag options (also removes watcher)
@@ -145,43 +175,26 @@ angular.module('pinboredWebkitApp')
           // delete tag item
           $scope.$parent.removeTag(tag);
         }
-      }, function(reason) {
-        console.error('deleting tag failed: ' + reason);
+      })
+      .catch(function(reason) {
+        console.error('delete tag failed: ' + reason);
         Appstatusservice.updateStatus('deleting tag failed: ' + reason + '.');
       });
     };
 
-    $scope.rename = function(tag) {
-      var originalTagName = $scope.original.tagname;
-      console.log('Renaming from: ' + originalTagName + ' to: ' + tag.tagname + '...');
-      $scope.renameTag(originalTagName, tag.tagname, 'rename');
-    };
-
-    $scope.fold = function(tag, intoTagName) {
-      console.log('folding: ' + tag.tagname + ' into: ' + intoTagName + '...');
-      $scope.foldTag(tag, intoTagName);
-    };
-
-    $scope.delete = function(tag) {
-      Modalservice.confirm('', 'Delete this tag ?')
-      .then(function() {
-        $scope.deleteTag(tag);
-      }, function() {
-        console.log('modal cancelled.');
-      });
-    };
-
     $scope.revertRenameChanges = function() {
+      // console.log('revert rename changes called.');
       $scope.item.tagname = $scope.original.tagname;
     };
 
     $scope.saveRenameChanges = function(tag) {
-      $scope.renameTag($scope.original.tagname, tag.tagname);
+      // console.log('save rename changes called.');
+      $scope.renameTag($scope.original.tagname, tag.tagname, 'rename');
     };
 
     $scope.saveFoldChanges = function(tag) {
-      console.log('save fold changes called.');
-      $scope.fold(tag, $scope.status.newFoldTags[0].text);
+      // console.log('save fold changes called.');
+      $scope.foldTag(tag, $scope.status.newFoldTags[0].text);
     };
 
     $scope.$on('$viewContentLoaded', function() {

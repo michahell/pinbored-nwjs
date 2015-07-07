@@ -20,6 +20,7 @@ angular
     'ngProgress',
     'ngDialog',
     'nya.bootstrap.select'
+    // 'ladda'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -43,5 +44,4 @@ angular
         templateUrl: 'views/settings.html',
         controller: 'SettingsCtrl'
       });
-
   });

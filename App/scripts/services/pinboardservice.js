@@ -53,15 +53,17 @@ angular.module('pinboredWebkitApp')
 
       var deferred = $q.defer();
 
-      dns.resolve('www.google.com', function(err) {
+      dns.resolve('www.google.com', function(err, addresses) {
         if (err) {
           // no connection
+          console.log('we are not connected...', err);
           Usersessionservice.connection = false;
           deferred.reject(err);
-        } else {
+        } else if (addresses) {
           // connection
+          console.log('we are connected, addresses: ', addresses);
           Usersessionservice.connection = true;
-          deferred.resolve();
+          deferred.resolve(addresses);
         }
       });
 
@@ -128,6 +130,12 @@ angular.module('pinboredWebkitApp')
         delay: 0         // Only start to emit after x delay, defaults to 0ms
       };
 
+      var errorHandler = function (error) {
+        Appstatusservice.resetProgress();
+        console.warn(error);
+        deferred.reject(error);
+      };
+
       // start progress bar anyway!
       Appstatusservice.startProgress();
 
@@ -172,10 +180,7 @@ angular.module('pinboredWebkitApp')
 
           // when errored
           res.on('error', function (err) {
-            var errorMsg = 'pinboardservice: error: '+ res.statusCode;
-            console.log(errorMsg);
-            deferred.reject(errorMsg);
-            Appstatusservice.resetProgress();
+            errorHandler('pinboardservice: error: '+ res.statusCode);
             req.end();
           });          
         });
@@ -183,7 +188,7 @@ angular.module('pinboredWebkitApp')
       } else {
         // use request
         console.log('using request module for download...');
-        // console.log('request timeout: ', requestOptions.timeout);
+        // console.log('request options: ', requestOptions);
         progress(request(requestOptions, function (error, response, body) {
           if (!error && response.statusCode == 200) {
             if(optionalCompleteCallback === undefined) {
@@ -193,10 +198,7 @@ angular.module('pinboredWebkitApp')
             }
             Appstatusservice.completeProgress();
           } else {
-            var errorMsg = 'pinboardservice: error: '+ error;
-            console.warn(errorMsg);
-            deferred.reject(errorMsg);
-            Appstatusservice.resetProgress();
+            errorHandler('pinboardservice: error: '+ error);
           }
         }), progressOptions)
         .on('progress', function (state) {
@@ -208,12 +210,10 @@ angular.module('pinboredWebkitApp')
           // update progressbar
           Appstatusservice.updateProgress(state.received, state.total);
         })
-        .on('error', function (err) {
-            // Do something with err
+        .on('error', function (error) {
+          errorHandler('pinboardservice: error: '+ error);
         })
-
       }
-
     };
 
     /* ==================== AUTHENTICATION ==================== */
