@@ -154,9 +154,9 @@ $ nw App_release
 Disclaimer
 ==========
 
-Additional to the MIT license it is important that you know and understand the following:
+Additional to the WTFPL license it is important that you know and understand the following:
 
-*all requests performed by the application to the Pinboard API are sequences of consecutive, single operation REST requests and are not transactions with rollback history like in SQL transactions. They are 'destructive operations' by nature (that means no undo). Future versions might support custom undo history and functionality. 
+*all requests performed by the application to the Pinboard API are sequences of consecutive, single operation REST requests and are not transactions with rollback history like in SQL transactions. They are 'destructive operations' by nature (that means no undo). Future versions might support custom undo history and functionality.
 
 
 Roadmap
@@ -175,3 +175,6 @@ name generator used for milestone names:
 [Project Name Generator](http://online-generator.com/name-generator/project-name-generator.php)
 
 
+Shit used, Acknowledgements etc.
+==============================
+![WTFPL](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl.svg)

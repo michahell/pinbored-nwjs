@@ -1,6 +1,6 @@
 
 .viewcontainer {
-  height: calc(100% - 53px);
+  height : calc(100% - 53px);
   /*background: #34495E;*/
 }
 
@@ -10,18 +10,18 @@
 
 .viewcontainer.ng-enter,
 .viewcontainer.ng-leave {
-  transition: all 0.5s ease;
+  transition : all 0.5s ease;
 }
 
 .viewcontainer.ng-enter {
-  opacity: 0;
+  opacity : 0;
 }
 .viewcontainer.ng-enter-active {
-  opacity: 0;
+  opacity : 0;
 }
 .viewcontainer.ng-leave {
-  opacity: 0;
+  opacity : 0;
 }
 .viewcontainer.leave-active {
-  opacity: 0;
+  opacity : 0;
 }

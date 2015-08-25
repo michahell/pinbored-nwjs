@@ -1,99 +1,100 @@
 /* Bootstrap overrides */
 
 .container {
-  padding-left: 0;
-  padding-right: 0;
-  width: auto;
+  width : auto;
+  padding-right : 0;
+  padding-left : 0;
 }
 
 .navbar {
-  min-height: 0;
-  margin-bottom: 0;
+  min-height : 0;
+  margin-bottom : 0;
 }
 
 .navbar > .container {
-  width: auto;
-  display: block;
+  display : block;
+  width : auto;
 }
 
 .navbar-nav.navbar-right:last-child {
-  margin-right: 0;
+  margin-right : 0;
 }
 
 .navbar-nav li.active:after {
-  content: ' ';
-  position: absolute;
-  border: solid 10px transparent;
-  border-top: solid 0 transparent;
-  border-width: 10px;
-  left: 50%;
-  margin-left: -10px;
-  margin-top: -20px;
-  border-color: transparent transparent #2C3E50 transparent;
+  position : absolute;
+  left : 50%;
+  margin-top : -20px;
+  margin-left : -10px;
+  content : ' ';
+  border : solid 10px transparent;
+  border-width : 10px;
+  border-color : transparent transparent #2C3E50 transparent;
+  border-top : solid 0 transparent;
 }
 
-textarea { 
-  resize:none; 
+textarea {
+  resize : none;
 }
 
 .row {
-  margin: 0;
+  margin : 0;
 }
 
-.col-xs-1, 
+.col-xs-1,
 .col-xs-2,
-.col-xs-3, 
+.col-xs-3,
 .col-xs-4,
-.col-xs-5, 
+.col-xs-5,
 .col-xs-6,
-.col-xs-7, 
+.col-xs-7,
 .col-xs-8,
-.col-xs-9, 
+.col-xs-9,
 .col-xs-10,
-.col-xs-11, 
+.col-xs-11,
 .col-xs-12 {
-  padding: 0;
+  padding : 0;
 }
 
 /* upgrade to tooltip */
 
 .tooltip.left .tooltip-arrow {
-  border-left-color: #ECF0F1;
+  border-left-color : #ECF0F1;
 }
 
 .tooltip.bottom .tooltip-arrow {
- border-bottom-color: #ECF0F1; 
+  border-bottom-color : #ECF0F1;
 }
 
 .tooltip.top .tooltip-arrow {
- border-top-color: #ECF0F1; 
+  border-top-color : #ECF0F1;
 }
 
 .tooltip-inner {
-  background: #ECF0F1;
-  color: #2C3E50;
+  color : #2C3E50;
+  background : #ECF0F1;
 }
 
 /* modal */
 
 .modal-title {
-  font-size: 22px;
-  line-height: 1;
+  font-size : 22px;
+  line-height : 1;
 }
 
 .modal {
-  top: 20%;
-  display: block;
+  top : 20%;
+  display : block;
 }
 
 /* button overrides */
 
 .btn-group-sm > .btn {
-  padding: 8px 15px;
+  padding : 8px 15px;
 }
 
 /* checkbox, radio overrides */
 
-.checkbox, .radio {
-  margin-top: 6px;
+.checkbox,
+.radio {
+  margin-top : 6px;
 }

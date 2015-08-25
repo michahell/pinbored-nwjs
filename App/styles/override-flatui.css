@@ -1,70 +1,71 @@
 /* following is specifically for flat-ui */
 
 .navbar .container {
-  padding-left: 0;
-  padding-right: 0;
+  padding-left : 0;
+  padding-right : 0;
 }
 
 .screentitle .btn-xs {
-  margin-top: 3px;
+  margin-top : 3px;
 }
 
 .screentitle .btn-sm,
 .bar .btn-sm,
 .settingsrow .btn-sm {
-  padding: 10px 13px;
-  line-height: 1;
+  padding : 10px 13px;
+  line-height : 1;
 }
 
-.navbar >.container .navbar-collapse .navbar-nav.navbar-right:last-child {
-  margin-right: 0;
+.navbar > .container .navbar-collapse .navbar-nav.navbar-right:last-child {
+  margin-right : 0;
 }
 
 .navbar-nav > li > .dropdown-menu {
-  margin-right: 15px;
+  margin-right : 15px;
 }
 
 .navbar > .container .navbar-brand {
-  margin-left: 0;
+  margin-left : 0;
 }
 
 .tagsinput {
-  margin-bottom: 0;
+  margin-bottom : 0;
 }
 
 .login-form:before {
-  content: none;
+  content : none;
 }
 
 .list-group-item {
-  padding: 0;
-  margin-bottom: 0;
+  padding : 0;
+  margin-bottom : 0;
 }
 
 .navbar-form .btn {
-  height: auto;
-  padding: 7.5px 13px;
+  height : auto;
+  padding : 7.5px 13px;
 }
 
 .navbar-form .form-group + .btn {
-  font-size: 13px;
+  font-size : 13px;
 }
 
 /* flat ui pagination overrides */
 
 .pagination-plain {
-  margin-bottom: 0;
-  margin-top: 4px;
+  margin-bottom : 0;
+  margin-top : 4px;
 }
 
 /* checkbox text color */
 
 .checkbox span {
-  color: #95A5A6;
+  color : #95A5A6;
 }
 
 /* text size (mostly for bookmarkitem text and tags) */
 
-small, .small {
-  line-height: 1.3;
+small,
+.small {
+  line-height : 1.3;
 }

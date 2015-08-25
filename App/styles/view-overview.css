@@ -5,223 +5,222 @@
 /* view specific styling */
 
 #overview .screentitle .bootstrap-switch-square {
-  margin-top: 2px;
+  margin-top : 2px;
 }
 
 #overview .clickabletag {
-  margin-right: 5px;
-  background-color: #27AE60;
-  color: #2C3E50;
-  cursor: pointer;
-  -webkit-transition: 0.2s ease-out all;
-  -moz-transition: 0.2s ease-out all;
-  transition: 0.2s ease-out all;
+  margin-right : 5px;
+  background-color : #27AE60;
+  color : #2C3E50;
+  cursor : pointer;
+  -webkit-transition : 0.2s ease-out all;
+     -moz-transition : 0.2s ease-out all;
+          transition : 0.2s ease-out all;
 }
 
 #overview .clickabletag:hover {
-  background-color: #69CC83;
-  color: #34495E;
+  background-color : #69CC83;
+  color : #34495E;
 }
 
 #overview .highlightedtag {
-  background-color: #F39C12;
-  color: #2C3E50;
+  background-color : #F39C12;
+  color : #2C3E50;
 }
 
 #overview .highlightedtag:hover {
-  background-color: #F1C40F;
-  color: #34495E;
+  background-color : #F1C40F;
+  color : #34495E;
 }
 
 #overview .tagsinput {
-  background: transparent;
-  border: none;
-  padding: 0;
+  background : transparent;
+  border : none;
+  padding : 0;
 }
 
 #overview .tagsinput .tag {
-  margin-bottom: 0;
-  vertical-align: middle;
+  margin-bottom : 0;
+  vertical-align : middle;
 }
 
 #overview .tagsinput input {
-  vertical-align: middle;
-  margin: 0;
+  vertical-align : middle;
+  margin : 0;
 }
 
 #overview .tagsinput-add {
-  background-color: transparent;
-  margin-bottom: 0;
-  vertical-align: middle;
+  background-color : transparent;
+  margin-bottom : 0;
+  vertical-align : middle;
 }
 
 #overview .tagContainer {
-  height: 20px;
+  height : 20px;
 }
 
 /*#selection .bar-container form-group input, 
 #selection .bar-container form-group button,*/
 #selection .hider {
-  -webkit-transition: opacity ease-out 0.3s;
-  -o-transition: opacity ease-out 0.3s;
-  transition: opacity ease-out 0.3s;
-  transition-delay: 0.0s;
-  opacity: 1;
+  -webkit-transition : opacity ease-out 0.3s;
+       -o-transition : opacity ease-out 0.3s;
+          transition : opacity ease-out 0.3s;
+  transition-delay : 0.0s;
+  opacity : 1;
 }
 
 #selection .hider.ng-hide {
-  opacity: 0;
+  opacity : 0;
 }
 
 #selection .hider.ng-hide {
-  opacity: 0;
+  opacity : 0;
 }
 
 #selection .hider.ng-hide-remove-active {
-  opacity: 1;
+  opacity : 1;
 }
 
 /* list specific */
 
 .list-group-item {
-  -webkit-transition:0.1s ease-out all;
-  -moz-transition:0.1s ease-out all;
-  -o-transition:0.1s ease-out all;
-  transition:0.1s ease-out all;
+  -webkit-transition : 0.1s ease-out all;
+     -moz-transition : 0.1s ease-out all;
+       -o-transition : 0.1s ease-out all;
+          transition : 0.1s ease-out all;
 }
 
 .list-group-item.ng-move,
 .list-group-item.ng-enter {
-  opacity:0;
+  opacity : 0;
 }
 
 .list-group-item.ng-enter-stagger,
 .list-group-item.ng-leave-stagger,
 .list-group-item.ng-move-stagger {
   /* 50ms between each item being animated after the other */
-  -webkit-transition-delay: 50ms;
-  -moz-transition-delay: 50ms;
-  transition-delay: 50ms;
+  -webkit-transition-delay : 50ms;
+     -moz-transition-delay : 50ms;
+          transition-delay : 50ms;
 
   /* this is required here to prevent any CSS inheritance issues */
-  -webkit-transition-duration: 0;
-  -o-transition-duration: 0;
-  transition-duration: 0;
+  -webkit-transition-duration : 0;
+       -o-transition-duration : 0;
+          transition-duration : 0;
 }
 
 .list-group-item.ng-move.ng-move-active,
 .list-group-item.ng-enter.ng-enter-active {
-  opacity:1;
+  opacity : 1;
 }
 
 .list-group-item.ng-leave.ng-leave-active {
-  -webkit-transition-duration: 0;
-  -o-transition-duration: 0;
-  transition-duration: 0;
-  -webkit-transform: scale(0, 0);
-  -o-transform: scale(0, 0);
-  transform: scale(0, 0);
-  height: 0;
+  -webkit-transition-duration : 0;
+       -o-transition-duration : 0;
+          transition-duration : 0;
+  -webkit-transform : scale(0, 0);
+       -o-transform : scale(0, 0);
+          transform : scale(0, 0);
+  height : 0;
 }
 
 .list-group-item.ng-leave {
-  -webkit-transition-duration: 0;
-  -o-transition-duration: 0;
-  transition-duration: 0;
-  -webkit-transform: scale(1, 1);
-  -moz-transform: scale(1, 1);
-  transform: scale(1, 1);
-  height: 73px;
+  -webkit-transition-duration : 0;
+       -o-transition-duration : 0;
+          transition-duration : 0;
+  -webkit-transform : scale(1, 1);
+     -moz-transform : scale(1, 1);
+          transform : scale(1, 1);
+  height : 73px;
 }
 
 #list {
-  padding: 0;
-  display: table-row;  /* height is dynamic, and will expand... */
-  height: 100%;        /* ...as content is added (won't scroll) */
+  padding : 0;
+  display : table-row;  /* height is dynamic, and will expand... */
+  height : 100%;        /* ...as content is added (won't scroll) */
 }
 
 #list .listBackgroundMessage {
-  position: absolute;
-  width: 100%;
-  height: 100px;
-  line-height: 2;
-  z-index: 3;
-  color: #2C3E50;
-  border: none;
-  border-radius: 0;
-  text-align:  center;
-  vertical-align: middle;
-  margin-top: 20%;
+  position : absolute;
+  width : 100%;
+  height : 100px;
+  line-height : 2;
+  z-index : 3;
+  color : #2C3E50;
+  border : none;
+  border-radius : 0;
+  text-align : center;
+  vertical-align : middle;
+  margin-top : 20%;
 }
 
 #list > .list-wrapper {
-  overflow-x: hidden;
-  overflow-y: scroll;
-  z-index: 5;
-  position: relative;
+  overflow-x : hidden;
+  overflow-y : scroll;
+  z-index : 5;
+  position : relative;
 }
 
 #list > .fullheight {
-  height: 100%;
+  height : 100%;
 }
 
 #list > .list-wrapper > ul {
-  background-color: #34495E;
-  line-height: 1;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-  border-radius: 0;
-  z-index: 9;
-
-  -webkit-perspective: 400px;
-     -moz-perspective: 400px;
-      -ms-perspective: 400px;
-       -o-perspective: 400px;
-          perspective: 400px;
+  background-color : #34495E;
+  line-height : 1;
+  margin : 0;
+  width : 100%;
+  height : 100%;
+  border : none;
+  border-radius : 0;
+  z-index : 9;
+  -webkit-perspective : 400px;
+     -moz-perspective : 400px;
+      -ms-perspective : 400px;
+       -o-perspective : 400px;
+          perspective : 400px;
 }
 
 #list > .list-wrapper > ul > li {
-  line-height: 1;
-  z-index: 15;
-  background-color: #34495E;
-  border: none;
-  border-radius: 0;
-  border-bottom: 1px solid #2C3E50;
+  line-height : 1;
+  z-index : 15;
+  background-color : #34495E;
+  border : none;
+  border-radius : 0;
+  border-bottom : 1px solid #2C3E50;
 }
 
 #list > .list-wrapper > ul > .selected {
-  background-color: #212F3C;
+  background-color : #212F3C;
 }
 
 #list > .list-wrapper > ul > li .link-item-toolbar .btn-toolbar {
-  float: right;
+  float : right;
 }
 
-#list > .list-wrapper > ul >li .list-group-item-heading {
-  color: white;
+#list > .list-wrapper > ul > li .list-group-item-heading {
+  color : white;
 }
 
 #list > .list-wrapper > ul > li .list-group-item-text {
-  color: white;
+  color : white;
 }
 
 /* highlight for amount of bookmarks */
 
 .highlight {
-  color: #1ABC9C;
-  font-weight: bold;
+  color : #1ABC9C;
+  font-weight : bold;
 }
 
 /* full text search highlight */
 
 .highlight-search {
-  color: #2C3E50;
-  font-weight: bold;
-  background-color: #F1C40F;
-  border-radius: 3px;
-  padding: 4px;
-  padding-top: 2px;
-  padding-bottom: 2px;
+  color : #2C3E50;
+  font-weight : bold;
+  background-color : #F1C40F;
+  border-radius : 3px;
+  padding : 4px;
+  padding-top : 2px;
+  padding-bottom : 2px;
 }

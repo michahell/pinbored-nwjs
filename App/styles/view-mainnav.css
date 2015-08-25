@@ -1,17 +1,17 @@
 
 .user-menu-dropdown {
-  margin-top: 8px;
-  margin-right: 8px;
+  margin-top : 8px;
+  margin-right : 8px;
 }
 
-.user-menu-dropdown>button {
-  padding: 9px 13px;
-  font-size: 13px;
-  line-height: 1.385;
-  border-radius: 4px;
+.user-menu-dropdown > button {
+  padding : 9px 13px;
+  font-size : 13px;
+  line-height : 1.385;
+  border-radius : 4px;
 }
 
-.user-menu-dropdown>ul {
-  margin-top: 17px;
+.user-menu-dropdown > ul {
+  margin-top : 17px;
   /*margin-right: 10px;*/
 }

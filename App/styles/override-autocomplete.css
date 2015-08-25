@@ -1,25 +1,25 @@
 tags-input .autocomplete {
-  background-color: #ECF0F1;
-  border: none;
-  border-radius: 3px;
+  border : none;
+  border-radius : 3px;
+  background-color : #ECF0F1;
 }
 
 tags-input .autocomplete .suggestion-item {
-  background-color: #ECF0F1;
+  background-color : #ECF0F1;
 }
 
 tags-input .autocomplete .suggestion-item.selected {
-  background-color: #1ABC9C;
-  color: #FFF;
+  color : #FFF;
+  background-color : #1ABC9C;
 }
 
 tags-input .autocomplete .suggestion-item em {
-  background-color: transparent;
-  color: #2C3E50;
+  color : #2C3E50;
+  background-color : transparent;
 }
 
 tags-input .autocomplete .suggestion-item.selected em {
-  background-color: #2C3E50;
-  color: #FFF;
-  font-style: oblique;
+  font-style : oblique;
+  color : #FFF;
+  background-color : #2C3E50;
 }

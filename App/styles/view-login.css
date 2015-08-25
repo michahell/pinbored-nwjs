@@ -1,25 +1,25 @@
 #login {
-  background-color: #2C3E50;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  left: 0;
-  top: 0;
-  overflow-y: hidden;
-  overflow-x: hidden;
+  background-color : #2C3E50;
+  width : 100%;
+  height : 100%;
+  margin : 0;
+  padding : 0;
+  position : absolute;
+  left : 0;
+  top : 0;
+  overflow-y : hidden;
+  overflow-x : hidden;
 }
 
 #login .tooltip.bottom .tooltip-arrow {
- border-bottom-color: #34495E; 
+  border-bottom-color : #34495E;
 }
 
 #login .tooltip-inner {
-  background: #34495E;
-  color: #ECF0F1;
+  background : #34495E;
+  color : #ECF0F1;
 }
 
 #login .vertical-offset-170 {
-    padding-top:170px;
+  padding-top : 170px;
 }

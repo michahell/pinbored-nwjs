@@ -1,6 +1,6 @@
 /* Account for fixed navbar */
 body {
-  min-width: 1024px;
+  min-width : 1024px;
 }
 
 /* Non-responsive overrides
@@ -11,49 +11,49 @@ body {
 
 /* Reset the container */
 .container {
-  width: 970px;
-  max-width: none !important;
+  width : 970px;
+  max-width : none !important;
 }
 
 .container .navbar-header,
 .container .navbar-collapse {
-  margin-right: 0;
-  margin-left: 0;
+  margin-right : 0;
+  margin-left : 0;
 }
 
 /* Always float the navbar header */
 .navbar-header {
-  float: left;
+  float : left;
 }
 
 /* Undo the collapsing navbar */
 .navbar-collapse {
-  display: block !important;
-  height: auto !important;
-  padding-bottom: 0;
-  overflow: visible !important;
+  display : block !important;
+  height : auto !important;
+  padding-bottom : 0;
+  overflow : visible !important;
 }
 
 .navbar-toggle {
-  display: none;
+  display : none;
 }
 .navbar-collapse {
-  border-top: 0;
+  border-top : 0;
 }
 
 /* Always apply the floated nav */
 .navbar-nav {
-  float: left;
-  margin: 0;
+  float : left;
+  margin : 0;
 }
 .navbar-nav > li {
-  float: left;
+  float : left;
 }
 .navbar-nav > li > a {
-  padding: 15px;
+  padding : 15px;
 }
 
 /* Redeclare since we override the float above */
 .navbar-nav.navbar-right {
-  float: right;
+  float : right;
 }
