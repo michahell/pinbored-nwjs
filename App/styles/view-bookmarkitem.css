@@ -140,6 +140,7 @@
   box-sizing : border-box;
   padding : 10px;
   height : 40px;
+  resize: vertical;
 }
 
 /* hidden inputs */

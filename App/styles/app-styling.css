@@ -46,6 +46,15 @@ html {
   background-color : rgba(255, 255, 255, 0.4);
 }
 
+/* resize webkit element */
+
+::-webkit-resizer {
+    border: 2px solid black;
+    background: red;
+    box-shadow: 0 0 5px 5px blue;
+    outline: 2px solid yellow;
+}
+
 /* app-status-indicator */
 
 .app-status-indicator {

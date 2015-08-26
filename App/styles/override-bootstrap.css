@@ -23,7 +23,7 @@
 .navbar-nav li.active:after {
   position : absolute;
   left : 50%;
-  margin-top : -20px;
+  margin-top : -10px;
   margin-left : -10px;
   content : ' ';
   border : solid 10px transparent;
