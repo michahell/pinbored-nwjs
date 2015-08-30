@@ -70,19 +70,4 @@ angular.module('pinboredWebkitApp')
       }
     };
 
-    this.fixBackspace = function () {
-      $(document).on('keydown', function (e) {
-        if (e.which === 8 && !$(e.target).is("input, textarea")) {
-          e.preventDefault();
-        }
-      });
-    };
-
-    this.fixQuirks = function() {
-      this.fixBackspace();
-      console.info('app config :: quirks fixed!');
-    };
-
-    this.fixQuirks();
-
   }]);

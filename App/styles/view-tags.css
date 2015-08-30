@@ -16,6 +16,18 @@
 
 #tags .tag-options {
   margin-top : 5px;
+  -webkit-transition : 0.3s ease-out all;
+     -moz-transition : 0.3s ease-out all;
+          transition : 0.3s ease-out all;
+  transition-delay : 0.3s;
+  -webkit-transition-delay : 0.3s;
+  opacity : 1;
+}
+
+#tags .tag-options.ng-hide {
+  opacity : 0;
+          transition-delay : 0;
+  -webkit-transition-delay : 0;
 }
 
 #tags .info {

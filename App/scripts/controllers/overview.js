@@ -8,10 +8,12 @@
  */
 angular.module('pinboredWebkitApp')
   .controller('OverviewCtrl', 
-    ['$scope', '$controller', '$location', '$filter', '$q', '$timeout',
+    ['$scope', '$controller', '$location', '$filter', '$q', 
     'Bookmarkservice', 'Pinboardservice', 'Usersessionservice', 'Appstatusservice', 
-    'Utilservice', 'Modalservice','Appconfigservice', 'fulltextFilter', 'tagsFilter', 
-    function ($scope, $controller, $location, $filter, $q, $timeout, Bookmarkservice, Pinboardservice, Usersessionservice, Appstatusservice, Utilservice, Modalservice, Appconfigservice, fulltextFilter, tagsFilter) {
+    'Utilservice', 'Modalservice',
+    function ($scope, $controller, $location, $filter, $q,
+      Bookmarkservice, Pinboardservice, Usersessionservice, Appstatusservice, 
+      Utilservice, Modalservice) {
     
     // if not authenticated, redirect to login page
     if (Usersessionservice.isAuthenticated() === false) {
@@ -21,6 +23,9 @@ angular.module('pinboredWebkitApp')
 
     // Initialize the super (controller) class and extend it.
     angular.extend(this, $controller('BaseViewCtrl', {$scope: $scope}));
+
+    // Search functionality
+    angular.extend(this, $controller('SearchableViewCtrl', {$scope: $scope}));
 
     // if logged off, redirect to login page as well
     $scope.$on('user:authenticated', function() { // args: event, data
@@ -46,19 +51,6 @@ angular.module('pinboredWebkitApp')
       bgMsg : 'NO BOOKMARKS FOUND.'
     };
 
-    $scope.paging = {
-      numPageButtons : 10,
-      current : 1,
-      total : 0
-    };
-
-    $scope.filter = {
-      filterDelay : 750,
-      textFilterTimeout : null,
-      text : '',
-      tags : []
-    };
-
     $scope.multiAction = {
       show : false,
       selectedAction : 'select action',
@@ -69,18 +61,9 @@ angular.module('pinboredWebkitApp')
       foldTagNames : []
     };
 
-    $scope.config = {
-      tagFilterType : false,
-      tagFilterTypeText : 'inclusive / and',
-      searchAllWords : false,
-      searchAllWordsText : 'search all words',
-      showSearch : false,
-      showTags : false,
-      showPager : false,
+    angular.extend($scope.config, {
       showSelection : false
-    };
-
-    $scope.appconfig = {}; // gets populated by Appconfigservice !
+    });
 
 
 
@@ -280,6 +263,18 @@ angular.module('pinboredWebkitApp')
 
 
 
+    $scope.hotkeySearch = function() {
+      $scope.config.showSearch = ($scope.config.showSearch === false) ? true : false;
+      // console.log('search called! ', $scope.config.showSearch);
+      $scope.$apply();
+    };
+
+    $scope.hotkeySearchTag = function() {
+      $scope.config.showTags = ($scope.config.showTags === false) ? true : false;
+      // console.log('search called! ', $scope.config.showTags);
+      $scope.$apply();
+    };
+
     $scope.applyFilterBuffer = function() {
       if(Bookmarkservice.hasFilterBuffer()) {
         // add filter buffer tags
@@ -299,64 +294,6 @@ angular.module('pinboredWebkitApp')
         // and update filters!
         $scope.updateFiltersPaging();
       }
-    };
-
-    $scope.checkMaxTags = function(amount) {
-      if($scope.filter.tags.length > amount) {
-        // remove tag, one too many
-        $scope.filter.tags.splice($scope.filter.tags.indexOf($scope.filter.tags[$scope.filter.tags.length-1]), 1);
-      }
-    };
-
-    // array return format: { text: 'Tag1' }, { text: 'Tag2' }, { text: 'Tag3' }, { text: 'Tag4' }
-    // see: http://mbenford.github.io/ngTagsInput/gettingstarted under 'Autocomplete'
-    $scope.loadTagItems = function(query) {
-      // return filtered parent scope' tagNames with query (which is user input)
-      return $filter('filter')($scope.data.tagNames, query) || [];
-    };
-
-    $scope.onSearchTagChanged = function () {
-      $scope.checkMaxTags($scope.appconfig.maxTagSearch);
-      $scope.updateFiltersPaging();
-    };
-
-    $scope.onFoldIntoTagChanged = function () {
-      $scope.checkMaxTags(1);
-    };
-
-    $scope.onNewTagChanged = function () {
-      $scope.checkMaxTags(1);
-    };
-
-    // this method is essentially a manual debounce for filtering.
-    // debounce was apparently added in Angular 1.3 but why change
-    // a winning team? naively thinking, most likely, Angular itself 
-    // will use a similar approach anyway.
-
-    $scope.updateFiltersPaging = function() {
-      // if the textFilterPromise exists, cancel it:
-      if($scope.filter.textFilterTimeout !== null) {
-        $timeout.cancel($scope.filter.textFilterTimeout);
-      }
-      // create new $timeout promise to apply filters and update the paging
-      $scope.filter.textFilterTimeout = $timeout(function() {
-        $scope.applyFilters();
-        $scope.updatePaging();
-      }, $scope.filter.filterDelay);
-    };
-
-    $scope.updatePaging = function() {
-      $scope.paging.total = Math.min($scope.data.items.length, $scope.data.filteredList.length);
-      console.log('paging total: ' + $scope.paging.total);
-    };
-
-    $scope.applyFilters = function() {
-      console.log('applying filters to list...');
-      var word = $scope.filter.text;
-      var tags = $scope.filter.tags;
-      var logicType = ($scope.appconfig.tagFilterType === true) ? 'AND' : 'OR';
-      $scope.data.filteredList = fulltextFilter($scope.data.items, word);
-      $scope.data.filteredList = tagsFilter($scope.data.filteredList, tags, logicType);
     };
 
     $scope.clearSelectedItems = function() {
@@ -391,10 +328,6 @@ angular.module('pinboredWebkitApp')
       $scope.multiAction.show = false;
     };
 
-    $scope.onAppconfigChanged = function() {
-      $scope.appconfig = Appconfigservice.getConfig();
-    };
-
 
 
 
@@ -405,9 +338,6 @@ angular.module('pinboredWebkitApp')
 
     $scope.$on('$viewContentLoaded', function() {
       console.info('overview $viewContentLoaded called');
-
-      // force local $scope copy of app config obj.
-      $scope.onAppconfigChanged();
 
       // repopulate bookmark items.
       $scope.repopulateBookmarks();
@@ -420,16 +350,10 @@ angular.module('pinboredWebkitApp')
     });
 
     $scope.$on('$destroy', function() {
-      if ($scope.filter.textFilterTimeout !== null) {
-        $timeout.cancel($scope.filter.textFilterTimeout);
-        $scope.filter.textFilterTimeout = null;
-      }
+      
     });
 
     // update current page
     Usersessionservice.setCurrentSection('overview');
-
-    // set event hooks / listeners
-    $scope.$on('app:configchanged', $scope.onAppconfigChanged);
 
   }]);

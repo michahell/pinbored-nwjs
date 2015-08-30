@@ -20,7 +20,7 @@ angular
     'ngProgress',             // angular animated progress bar
     'ngDialog',               // angular dialog popup
     'nya.bootstrap.select',   // better select
-    'ramdangular',            // use functional - reactive pipelines!
+    // 'ramdangular',            // use functional - reactive pipelines!
     'monospaced.elastic'      // elastic textarea
   ])
   .config(function ($routeProvider) {

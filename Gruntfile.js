@@ -67,8 +67,9 @@ module.exports = function(grunt) {
           'nya-bootstrap-select/dist/js/nya-bs-select.min.js': 'nya-bootstrap-select/dist/js/nya-bs-select.min.js',
           'ngDialog/js/ngDialog.min.js': 'ngDialog/js/ngDialog.min.js',
           'ramda/dist/ramda.min.js': 'ramda/dist/ramda.min.js',
-          'ramdangular/ramdangular.js': 'ramdangular/ramdangular.js',
+          // 'ramdangular/ramdangular.js': 'ramdangular/ramdangular.js',
           'angular-elastic/elastic.js': 'angular-elastic/elastic.js',
+          'mousetrap/mousetrap.min.js': 'mousetrap/mousetrap.min.js',
 
           // JS non-minified
           'fui-angular/fui-template.js': 'fui-angular/fui-template.js',

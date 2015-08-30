@@ -15,6 +15,7 @@
     "flat-ui": ">=2.2.0",
     "fui-angular": "~0.1.5",
     "json3": ">=3.3.1",
+    "mousetrap": "~1.5.3",
     "ng-tags-input": ">=2.0.1",
     "ngDialog": "~0.4.0",
     "ngprogress": "~1.0.7",

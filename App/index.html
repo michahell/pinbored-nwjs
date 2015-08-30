@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="styles/override-autocomplete.css">
     <link rel="stylesheet" href="styles/override-splashmodal.css">
     <link rel="stylesheet" href="styles/override-nyaselect.css">
+    <link rel="stylesheet" href="styles/override-gridster.css">
 
     <!-- the css for all application specific stuff -->
     <link rel="stylesheet" href="styles/app-viewcontainer.css">
@@ -74,8 +75,9 @@
     <script src="bower_components_dist/flat-ui/dist/js/flat-ui.min.js"></script>
     <script src="bower_components_dist/ngprogress/build/ngProgress.min.js"></script>
     <script src="bower_components_dist/ngDialog/js/ngDialog.min.js"></script>
-    <script src="bower_components_dist/ramdangular/ramdangular.js"></script>
+    <!-- <script src="bower_components_dist/ramdangular/ramdangular.js"></script> -->
     <script src="bower_components_dist/angular-elastic/elastic.js"></script>
+    <script src="bower_components_dist/mousetrap/mousetrap.min.js"></script>
         
     <script src="bower_components_dist/fui-angular/fui-template.js"></script>
     <script src="bower_components_dist/fui-angular/fui-checkbox.js"></script>
@@ -94,7 +96,9 @@
     <script src="scripts/config/config.js"></script>
 
     <!-- controllers -->
-    <script src="scripts/controllers/baseview.js"></script>
+    <script src="scripts/controllers/behaviours/baseview.js"></script>
+    <script src="scripts/controllers/behaviours/searchableview.js"></script>
+
     <script src="scripts/controllers/mainnav.js"></script>
     <script src="scripts/controllers/appstatus.js"></script>
     <script src="scripts/controllers/overview.js"></script>
@@ -118,7 +122,6 @@
     <script src="scripts/directives/btnloading.js"></script>
     <script src="scripts/directives/stopevent.js"></script>
     <script src="scripts/directives/ngenter.js"></script>
-    <script src="scripts/directives/growingelement.js"></script>
 
     <!-- filters -->
     <script src="scripts/filters/highlightfilter.js"></script>

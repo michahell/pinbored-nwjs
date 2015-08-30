@@ -70,9 +70,9 @@
 .hiddenContent {
   box-sizing : border-box;
   background : #253443;
-  -webkit-transition : 3.2s ease-out all;
-     -moz-transition : 3.2s ease-out all;
-          transition : 3.2s ease-out all;
+  -webkit-transition : 0.5s ease-out all;
+     -moz-transition : 0.5s ease-out all;
+          transition : 0.5s ease-out all;
   -webkit-transition : max-height 1.0s cubic-bezier(0.19, 1, 0.22, 1);
      -moz-transition : max-height 1.0s cubic-bezier(0.19, 1, 0.22, 1);
           transition : max-height 1.0s cubic-bezier(0.19, 1, 0.22, 1);

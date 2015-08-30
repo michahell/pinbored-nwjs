@@ -35,9 +35,26 @@ $(function() {
     menu.append(paste);
 
     return menu;
-  }
+  };
+
+  function fixQuirks() {
+    
+    var fixBackspace = function () {
+      $(document).on('keydown', function (e) {
+        if (e.which === 8 && !$(e.target).is("input, textarea")) {
+          e.preventDefault();
+        }
+      });
+    };
+
+    fixBackspace();
+  };
 
   var menu = new Menu(/* pass cut, copy, paste labels if you need i18n*/);
+
+  fixQuirks();
+  console.info('app config :: quirks fixed!');
+
   $(document).on('contextmenu', function(e) {
     e.preventDefault();
     menu.popup(e.originalEvent.x, e.originalEvent.y);

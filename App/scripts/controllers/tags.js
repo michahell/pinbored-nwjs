@@ -20,6 +20,9 @@ angular.module('pinboredWebkitApp')
     // Initialize the super (controller) class and extend it.
     angular.extend(this, $controller('BaseViewCtrl', {$scope: $scope}));
 
+    // Search functionality
+    angular.extend(this, $controller('SearchableViewCtrl', {$scope: $scope}));
+
     // if logged off, redirect to login page as well
     $scope.$on('user:authenticated', function() { // args: event, data
       if(Usersessionservice.authenticated === false) {
@@ -28,13 +31,6 @@ angular.module('pinboredWebkitApp')
       }
     });
 
-    // page model
-    $scope.paging = {
-      numPageButtons : 10,
-      current : 1,
-      total : 0
-    };
-
     $scope.data = {
       isLoading : true,
       tagNames : [],
@@ -42,10 +38,9 @@ angular.module('pinboredWebkitApp')
       numTags : 0
     };
 
-    $scope.config = {
-      showPager : false,
+    angular.extend($scope.config, {
       itemsPerPage : 39      // 39 = 13 rows * 3 cols
-    };
+    });
 
     $scope.gridsterOpts = {
       columns: 6, // the width of the grid, in columns
@@ -145,8 +140,6 @@ angular.module('pinboredWebkitApp')
       })
       .then(function() {
         $scope.data.isLoading = false;
-        // 'insta' show paging bar
-        $scope.config.showPager = true;
         Appstatusservice.updateStatus('all tags retrieved.');
       })
       .catch(function(failreason) {
@@ -169,9 +162,32 @@ angular.module('pinboredWebkitApp')
     };
 
     $scope.increaseTagOccurenceCount = function(tag) {
+      console.log('increaseTagOccurenceCount called!');
       var index = $scope.data.wrappedTags.indexOf(tag);
       console.log('found index: ' + index, $scope.data.wrappedTags[index]);
-      // $scope.data.wrappedTags[index].occurrences = $scope.data.wrappedTags[index].occurrences + 1;
+      console.log('occurrences before: ', $scope.data.wrappedTags[index].occurrences);
+      $scope.data.wrappedTags[index].occurrences = $scope.data.wrappedTags[index].occurrences + 1;
+      console.log('occurrences after: ', $scope.data.wrappedTags[index].occurrences);
+    };
+
+
+
+
+    // PAGING AND FILTERS
+
+
+
+
+    $scope.hotkeySearch = function() {
+      $scope.config.showSearch = ($scope.config.showSearch === false) ? true : false;
+      // console.log('search called! ', $scope.config.showSearch);
+      $scope.$apply();
+    };
+
+    $scope.hotkeySearchTag = function() {
+      $scope.config.showTags = ($scope.config.showTags === false) ? true : false;
+      // console.log('search called! ', $scope.config.showTags);
+      $scope.$apply();
     };
 
 
