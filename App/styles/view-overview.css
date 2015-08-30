@@ -175,11 +175,6 @@
   border : none;
   border-radius : 0;
   z-index : 9;
-  /*-webkit-perspective : 400px;
-     -moz-perspective : 400px;
-      -ms-perspective : 400px;
-       -o-perspective : 400px;
-          perspective : 400px;*/
 }
 
 #list > .list-wrapper > ul > li {
