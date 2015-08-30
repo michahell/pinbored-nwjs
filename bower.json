@@ -3,27 +3,30 @@
   "version": "0.0.3",
   "dependencies": {
     "angular": ">=1.2.16",
-    "angular-resource": ">=1.2",
-    "angular-sanitize": ">=1.2",
     "angular-animate": ">=1.2",
-    "angular-route": ">=1.2",
     "angular-bootstrap": ">=0.12.1",
+    "angular-elastic": "~2.5.0",
     "angular-gridster": ">=0.13.2",
-    "json3": ">=3.3.1",
-    "bootstrap": ">=3.1.1",
+    "angular-resource": ">=1.2",
+    "angular-route": ">=1.2",
+    "angular-sanitize": ">=1.2",
     "animate.css": ">=3.1.1",
-    "ng-tags-input": ">=2.0.1",
+    "bootstrap": ">=3.1.1",
     "flat-ui": ">=2.2.0",
     "fui-angular": "~0.1.5",
-    "underscore": "~1.8.3",
+    "json3": ">=3.3.1",
+    "ng-tags-input": ">=2.0.1",
+    "ngDialog": "~0.4.0",
     "ngprogress": "~1.0.7",
     "nya-bootstrap-select": "~2.0.10",
-    "ngDialog": "~0.4.0"
+    "ramda": "~0.17.1",
+    "ramdangular": "*",
+    "underscore": "~1.8.3"
   },
   "devDependencies": {
     "angular-mocks": ">=1"
   },
   "resolutions": {
-    "angular": "1.4.2"
+    "angular": "1.4.5"
   }
 }

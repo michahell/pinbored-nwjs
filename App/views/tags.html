@@ -33,8 +33,7 @@
   <!-- bookmark items list -->
   <div class="section" id="list">
     
-    <div class="list-wrapper" ng-class="{fullheight: data.tags.length > 0}">
-
+    <div class="list-wrapper" ng-class="{fullheight: data.tags.length > 0}">      
       <div gridster="gridsterOpts">
         <ul>
             <!-- tagItem{{ 300 - (5 + item.row * 10 + item.col) }} !-->
@@ -44,7 +43,6 @@
             ng-style="{ 'z-index' : 300 - (5 + item.row * 10 + item.col) }"></li>
         </ul>
       </div>
-
     </div>
 
     <div class="listBackgroundMessage">

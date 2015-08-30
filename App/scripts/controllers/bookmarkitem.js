@@ -34,6 +34,9 @@ angular.module('pinboredWebkitApp')
       shared : false
     };
 
+    // hiddenContent height
+    $scope.hiddenContentHeight = 0;
+
     $scope.showItemproxyTags = function() {
       // console.log($scope.itemproxy.tags);
     };

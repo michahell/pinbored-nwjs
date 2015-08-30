@@ -44,7 +44,7 @@ angular.module('pinboredWebkitApp')
 
     $scope.config = {
       showPager : false,
-      itemsPerPage : 21      // 39 = 13 rows * 3 cols
+      itemsPerPage : 39      // 39 = 13 rows * 3 cols
     };
 
     $scope.gridsterOpts = {

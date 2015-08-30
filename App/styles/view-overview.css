@@ -84,10 +84,10 @@
 /* list specific */
 
 .list-group-item {
-  -webkit-transition : 0.1s ease-out all;
-     -moz-transition : 0.1s ease-out all;
-       -o-transition : 0.1s ease-out all;
-          transition : 0.1s ease-out all;
+  -webkit-transition : 0.2s ease-out all;
+     -moz-transition : 0.2s ease-out all;
+       -o-transition : 0.2s ease-out all;
+          transition : 0.2s ease-out all;
 }
 
 .list-group-item.ng-move,
@@ -159,6 +159,7 @@
   overflow-y : scroll;
   z-index : 5;
   position : relative;
+  height : 100%;
 }
 
 #list > .fullheight {
@@ -174,11 +175,11 @@
   border : none;
   border-radius : 0;
   z-index : 9;
-  -webkit-perspective : 400px;
+  /*-webkit-perspective : 400px;
      -moz-perspective : 400px;
       -ms-perspective : 400px;
        -o-perspective : 400px;
-          perspective : 400px;
+          perspective : 400px;*/
 }
 
 #list > .list-wrapper > ul > li {

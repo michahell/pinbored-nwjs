@@ -13,14 +13,15 @@ angular
     'ngRoute',
     'ngResource',
     'ngSanitize',
-    'ngTagsInput',
-    'ui.bootstrap',
-    'fui',
-    'gridster',
-    'ngProgress',
-    'ngDialog',
-    'nya.bootstrap.select'
-    // 'ladda'
+    'ngTagsInput',            // angular tags component
+    'ui.bootstrap',           // angular ui bootstrap
+    'fui',                    // flat ui bootstrap
+    'gridster',               // gridster grid for tags screen
+    'ngProgress',             // angular animated progress bar
+    'ngDialog',               // angular dialog popup
+    'nya.bootstrap.select',   // better select
+    'ramdangular',            // use functional - reactive pipelines!
+    'monospaced.elastic'      // elastic textarea
   ])
   .config(function ($routeProvider) {
     $routeProvider
