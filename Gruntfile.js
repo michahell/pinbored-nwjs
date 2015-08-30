@@ -10,7 +10,7 @@ module.exports = function(grunt) {
     
     clean: {
       all: { 
-        src: ['App/bower_components_dist', 'Build', 'App_release']
+        src: ['App/bower_components_dist', 'Build', 'App_release', 'Release']
       }
     },
 
@@ -226,31 +226,34 @@ module.exports = function(grunt) {
       
       buildOsx : {
         options: {
+          version: 'v0.12.2',
           platforms: ['osx32', 'osx64'],
           buildType: 'versioned', // [appName] -v[appVersion]
           macCredits: './Resources/pinbored-credits.html',
           macIcns: './Resources/pinbored-icon.icns',
           // macZip: 'false', // set to false (speedup) by default
-          buildDir: './Build', // Where the build version of my node-webkit app is saved
+          buildDir: './Release', // Where the build version of my node-webkit app is saved
         },
         src: ['./App_release/**/*'] // Your node-webkit app
       },
 
       buildWin : {
         options: {
+          version: 'v0.12.2',
           platforms: ['win32', 'win64'],
           buildType: 'versioned', // [appName] -v[appVersion]
           // winIco: 'null',
-          buildDir: './Build', // Where the build version of my node-webkit app is saved
+          buildDir: './Release', // Where the build version of my node-webkit app is saved
         },
         src: ['./App_release/**/*'] // Your node-webkit app
       },
 
       buildLin : {
         options: {
+          version: 'v0.12.2',
           platforms: ['linux32', 'linux64'],
           buildType: 'versioned', // [appName] -v[appVersion]
-          buildDir: './Build', // Where the build version of my node-webkit app is saved
+          buildDir: './Release', // Where the build version of my node-webkit app is saved
         },
         src: ['./App_release/**/*'] // Your node-webkit app
       }

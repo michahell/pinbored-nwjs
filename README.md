@@ -20,24 +20,27 @@ features / functionality
 **SUPPORTED**
 
 * **Bookmarks**
-  * *currently* update, delete, browse, (full-text) search, stale checking.
+  * *currently:* update, delete, browse, (full-text) search, stale checking.
   * *planned:* create.
+  
 * **Tags**
-  * *currently*: update, delete, browse, fold.
+  * *currently:* update, delete, browse, fold.
   * *planned:* create, search, fake tag hierarchy.
 
 * **Search**
-  * *currently*: full-text, tagname, switch between OR/AND search.
-  * *planned*: fake tag hierarchy.
+  * *currently:* full-text, tagname, switch between OR/AND search.
+  * *planned:* fake tag hierarchy.
+
 * **Batch editing**
-  * *currently*: selection add tag, selection fold all tags, selection remove all tags, selection stale checking, delete selection.
-  * *planned*: selection delete all tags, make selection public/private, share selection.
+  * *currently:* selection add tag, selection fold all tags, selection remove all tags, selection stale checking, delete selection.
+  * *planned:* selection delete all tags, make selection public/private, share selection.
 
 **NOT YET SUPPORTED**
 
 * **Note(s)**
   * *currently*: NONE.
   * *planned:* create, update, delete, search.
+
 * **Full collection stale checking**
   * *currently*: NONE.
   * *planned:* stale check your whole bookmark collection!

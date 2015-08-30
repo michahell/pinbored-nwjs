@@ -9,6 +9,7 @@ App/bower_components_dist
 App/node_modules
 
 App_release/
+Release/
 
 .tmp
 .sass-cache
