@@ -52,7 +52,7 @@ angular.module('pinboredWebkitApp')
       })
       .catch(function(reason) {
         console.warn('Failed, not logged in. ', reason);
-        $scope.loginAnimation = false;
+        $scope.model.loginAnimation = false;
         deferred.reject('Failed, not logged in. ', reason);
       });
 
@@ -72,14 +72,15 @@ angular.module('pinboredWebkitApp')
           // set some stuff in Usersessionservice
           Usersessionservice.setAuthenticated($scope.model.username, userTokenID);
           // show loginbox outro anim
-          $scope.loginAnimation = true;
+          $scope.model.loginAnimation = true;
+          console.log('getting here...');
           // reroute to main after anim out time
           $timeout(function() {
             $location.path('/overview');
           }, 1000);
         })
         .catch(function(failure) {
-          $scope.loginAnimation = false;
+          $scope.model.loginAnimation = false;
           $scope.model.busy = false;
           console.warn(failure);
           if(failure === '') {
