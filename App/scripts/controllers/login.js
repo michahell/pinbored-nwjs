@@ -81,6 +81,9 @@ angular.module('pinboredWebkitApp')
         .catch(function(failure) {
           $scope.model.loginAnimation = false;
           $scope.model.busy = false;
+          $timeout(function() {
+            $scope.model.loginAnimation = null;
+          }, 1000);
           console.warn(failure);
           if(failure === '') {
             Modalservice.confirm('No internet connection', 'It seems there is no internet connection. Retry (OK) or go offline (cancel) ?')
