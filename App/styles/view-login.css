@@ -9,11 +9,11 @@
   top : 0;
   overflow-y : hidden;
   overflow-x : hidden;
-  opacity: 1;
-  -webkit-transition : 0.3s ease-out all;
-     -moz-transition : 0.3s ease-out all;
-          transition : 0.3s ease-out all;
 }
+
+/*#login .animated {
+  -webkit-animation-duration: 1.5s;
+}*/
 
 #login .tooltip.bottom .tooltip-arrow {
   border-bottom-color : #34495E;

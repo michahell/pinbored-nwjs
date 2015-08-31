@@ -73,7 +73,6 @@ angular.module('pinboredWebkitApp')
           Usersessionservice.setAuthenticated($scope.model.username, userTokenID);
           // show loginbox outro anim
           $scope.model.loginAnimation = true;
-          console.log('getting here...');
           // reroute to main after anim out time
           $timeout(function() {
             $location.path('/overview');
@@ -97,6 +96,18 @@ angular.module('pinboredWebkitApp')
         Modalservice.alert('Insufficient input', 'Please fill out both username and password.');
       }
     };
+
+    $scope.$on('$viewContentLoaded', function() {
+      console.info('login $viewContentLoaded called');
+
+      // add entrance classes.
+      $timeout(function() {
+        $scope.model.loginAnimation = 'login';
+        $timeout(function() {
+          $scope.model.loginAnimation = null;
+        }, 1500);
+      }, 750);
+    });
 
     $scope.$on("$destroy", function() {
       console.info('login $destroy called');
