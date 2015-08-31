@@ -11,10 +11,6 @@
   overflow-x : hidden;
 }
 
-/*#login .animated {
-  -webkit-animation-duration: 1.5s;
-}*/
-
 #login .tooltip.bottom .tooltip-arrow {
   border-bottom-color : #34495E;
 }

@@ -4,6 +4,8 @@
   background-color : #2C3E50;
   text-transform : lowercase;
   line-height : 0;
+  -webkit-animation-delay: 1s;
+  /*-webkit-animation-duration: 2s;*/
 }
 
 .screentitle > h6 {
