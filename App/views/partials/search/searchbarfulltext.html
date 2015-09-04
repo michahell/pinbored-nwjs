@@ -1,0 +1,22 @@
+<!-- toolbar full text search -->
+<div class="bar" id="fulltextsearch" ng-show="config.showSearch">
+  <div class="bar-container" ng-show="config.showSearch">
+    <nav role="navigation" class="navbar navbar-inverse navbar-embossed">
+      
+      <div class="col-xs-7">
+        <div class="collapse navbar-collapse textselectable">
+          <form role="search" class="navbar-form navbar-left">
+            <div class="form-group">
+              <input type="text" ng-model="filter.text" placeholder="full-text search" class="form-control input-sm" ng-keydown="updateFiltersPaging()" ng-keyup="updateFiltersPaging()">
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-xs-2">
+        <fui-checkbox ng-model="config.searchAllWords" id="searchAllWords">{{config.searchAllWordsText}}</fui-checkbox>
+      </div>
+
+    </nav>
+  </div>
+</div>

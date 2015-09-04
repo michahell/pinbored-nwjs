@@ -1,8 +1,9 @@
 <div class="screen" id="tools">
 
   <!-- screen title -->
-  <div class="screentitle animated fadeIn clearfix">
-    <p class="toolsheader">Additional tools!</p>
+  <div class="screentitle clearfix"> <!-- animated fadeIn -->
+    <!-- <p class="toolsheader">Additional tools!</p> -->
+    <h6>Tools</h6>
 
   </div>
 
@@ -32,7 +33,7 @@
         <li ng-repeat="item in duplicatecheck.duplicates.name track by $index"
         class="list-group-item"
         ng-controller="BookmarkItemCtrl">
-          <div ng-include src="'views/BookmarkItem.html'"></div>
+          <div ng-include src="'views/partials/items/BookmarkItem.html'"></div>
         </li>
       </ul>
 

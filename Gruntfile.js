@@ -58,6 +58,8 @@ module.exports = function(grunt) {
           'angular-resource/angular-resource.min.js': 'angular-resource/angular-resource.min.js',
           // 'angular-route/angular-route.min.js': 'angular-route/angular-route.min.js',
           'angular-ui-router/release/angular-ui-router.min.js' : 'angular-ui-router/release/angular-ui-router.min.js',
+          'ui-router-extras/release/modular/ct-ui-router-extras.core.min.js' : 'ui-router-extras/release/modular/ct-ui-router-extras.core.min.js',
+          'ui-router-extras/release/modular/ct-ui-router-extras.sticky.min.js' : 'ui-router-extras/release/modular/ct-ui-router-extras.sticky.min.js',
           'angular-sanitize/angular-sanitize.min.js': 'angular-sanitize/angular-sanitize.min.js',
           'angular-animate/angular-animate.min.js': 'angular-animate/angular-animate.min.js',
           'angular-mocks/angular-mocks.js': 'angular-mocks/angular-mocks.js',

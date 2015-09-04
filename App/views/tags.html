@@ -1,51 +1,29 @@
 <div class="screen" id="tags">
 
   <!-- screen title -->
-  <div class="screentitle animated fadeIn clearfix">
+  <div class="screentitle clearfix"> <!-- animated fadeIn -->
     <h6>Tags</h6>
 
     <div class="col-xs-3">
       <button class="btn btn-primary btn-sm" type="submit" ng-click="repopulateTags()">reload</button>
     </div>
 
-    <div class="col-xs-6 pull-right text-right">
-      <div class="btn-group">
-        <label class="btn btn-primary btn-sm" ng-model="config.showPager" btn-checkbox>paging</label>
-        <label class="btn btn-primary btn-sm" ng-model="config.showTags" btn-checkbox>tag filter</label>
-        <label class="btn btn-primary btn-sm" ng-model="config.showSearch" btn-checkbox>text filter</label>
-      </div>
-    </div>
+    <!-- search functionality buttons -->
+    <div ng-include src="'views/partials/search/searchbarbuttons.html'"></div>
 
   </div>
 
   <div class="bar-wrapper clearfix">
 
-    <!-- screen pagination -->
-    <div class="bar" id="pages" ng-show="config.showPager">
-      <div class="bar-container" ng-show="config.showPager">
-        <pagination total-items="paging.total" items-per-page="config.itemsPerPage" 
-        ng-model="paging.current" max-size="paging.numPageButtons" 
-        boundary-links="true"></pagination>
-        <!-- pagination-sm -->
-      </div>
-    </div>
-
-    <!-- toolbar tag search -->
-    <div class="bar clearfix" id="tagsearch" ng-show="config.showTags">
-      <div class="bar-container" ng-show="config.showTags">
-        <div class="col-xs-7">
-          <tags-input ng-model="filter.tags" placeholder="search for tag" 
-          on-tag-added="onSearchTagChanged()" on-tag-removed="onSearchTagChanged()">
-            <auto-complete source="loadTagItems($query)"></auto-complete>
-          </tags-input>
-          <!-- ng-keyup="updateFiltersPaging()" ng-click="updateFiltersPaging()" -->
-        </div>
-        <div class="col-xs-2">
-          <fui-checkbox ng-click="updateFiltersPaging()" ng-model="appconfig.tagFilterType" id="tagFilterType">{{config.tagFilterTypeText}}</fui-checkbox>
-        </div>
-      </div>
-    </div>
+    <!-- toolbar full text search -->
+    <div ng-include src="'views/partials/search/searchbarfulltext.html'"></div>
     
+    <!-- toolbar tag search -->
+    <div ng-include src="'views/partials/search/searchbartags.html'"></div>
+
+    <!-- toolbar pagination -->
+    <div ng-include src="'views/partials/search/searchbarpaging.html'"></div>
+
   </div>
 
   <!-- bookmark items list -->
@@ -57,7 +35,7 @@
             <!-- tagItem{{ 300 - (5 + item.row * 10 + item.col) }} !-->
             <li gridster-item="item" id="tagItem{{item.id}}"
             ng-repeat="item in data.filteredList | orderBy:['occurrences', 'tagname'] | offset: (paging.current - 1) * config.itemsPerPage | limitTo: config.itemsPerPage" 
-            ng-controller="TagItemCtrl" ng-include src="'views/tagitem.html'"
+            ng-controller="TagItemCtrl" ng-include src="'views/partials/items/tagitem.html'"
             ng-style="{ 'z-index' : 300 - (5 + item.row * 10 + item.col) }"></li>
         </ul>
       </div>

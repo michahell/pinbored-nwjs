@@ -10,8 +10,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="main-nav-bar">
       <ul class="nav navbar-nav">
-        <li ng-repeat="navItem in data.navItems" ng-class="{active: data.activeSection == navItem.name}">
-          <a href="#/{{navItem.name}}">{{navItem.name}}</a>
+        <li ng-repeat="navItem in data.navItems" ui-sref-active="active" 
+        ng-class="{active: data.activeSection == navItem.name}">
+          <a ui-sref="{{navItem.name}}" href="#/{{navItem.name}}">{{navItem.name}}</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

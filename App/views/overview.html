@@ -1,7 +1,7 @@
 <div class="screen" id="overview">
 
   <!-- screen title -->
-  <div class="screentitle animated fadeIn clearfix">
+  <div class="screentitle clearfix"> <!-- animated fadeIn  -->
     <h6>Overview</h6>
 
     <div class="col-xs-3">
@@ -29,65 +29,22 @@
       </label>
     </div>
 
-    <div class="col-xs-4 pull-right text-right">
-      <div class="btn-group">
-        <label class="btn btn-primary btn-sm" ng-model="config.showPager" btn-checkbox>paging</label>
-        <label class="btn btn-primary btn-sm" ng-model="config.showTags" btn-checkbox>tag filter</label>
-        <label class="btn btn-primary btn-sm" ng-model="config.showSearch" btn-checkbox>text filter</label>
-      </div>
-    </div>
+    <!-- search functionality buttons -->
+    <div ng-include src="'views/partials/search/searchbarbuttons.html'"></div>
+    
   </div>
 
   <div class="bar-wrapper clearfix">
-
+    
     <!-- toolbar full text search -->
-    <div class="bar" id="fulltextsearch" ng-show="config.showSearch">
-      <div class="bar-container" ng-show="config.showSearch">
-        <nav role="navigation" class="navbar navbar-inverse navbar-embossed">
-          
-          <div class="col-xs-7">
-            <div class="collapse navbar-collapse textselectable">
-              <form role="search" class="navbar-form navbar-left">
-                <div class="form-group">
-                  <input type="text" ng-model="filter.text" placeholder="full-text search" class="form-control input-sm" ng-keydown="updateFiltersPaging()" ng-keyup="updateFiltersPaging()">
-                </div>
-              </form>
-            </div>
-          </div>
-
-          <div class="col-xs-2">
-            <fui-checkbox ng-model="config.searchAllWords" id="searchAllWords">{{config.searchAllWordsText}}</fui-checkbox>
-          </div>
-
-        </nav>
-      </div>
-    </div>
-
+    <div ng-include src="'views/partials/search/searchbarfulltext.html'"></div>
+    
     <!-- toolbar tag search -->
-    <div class="bar clearfix" id="tagsearch" ng-show="config.showTags">
-      <div class="bar-container" ng-show="config.showTags">
-        <div class="col-xs-7">
-          <tags-input ng-model="filter.tags" placeholder="search for tag" 
-          on-tag-added="onSearchTagChanged()" on-tag-removed="onSearchTagChanged()">
-            <auto-complete source="loadTagItems($query)"></auto-complete>
-          </tags-input>
-          <!-- ng-keyup="updateFiltersPaging()" ng-click="updateFiltersPaging()" -->
-        </div>
-        <div class="col-xs-2">
-          <fui-checkbox ng-click="updateFiltersPaging()" ng-model="appconfig.tagFilterType" id="tagFilterType">{{config.tagFilterTypeText}}</fui-checkbox>
-        </div>
-      </div>
-    </div>
+    <div ng-include src="'views/partials/search/searchbartags.html'"></div>
 
     <!-- toolbar pagination -->
-    <div class="bar" id="pages" ng-show="config.showPager">
-      <div class="bar-container" ng-show="config.showPager">
-        <pagination total-items="paging.total" items-per-page="appconfig.itemsPerPage" 
-        ng-model="paging.current" max-size="paging.numPageButtons" 
-        boundary-links="true"></pagination>
-        <!-- pagination-sm -->
-      </div>
-    </div>
+    <div ng-include src="'views/partials/search/searchbarpaging.html'"></div>
+    
 
     <!-- toolbar multi tag select -->
     <div class="bar clearfix" id="selection" ng-show="data.selectedItems.length > 1">
@@ -168,7 +125,7 @@
         <li ng-repeat="item in data.filteredList | offset: (paging.current - 1) * appconfig.itemsPerPage | limitTo: appconfig.itemsPerPage"
         class="list-group-item" ng-class="{selected: item.status.selected || item.status.showEdit}" 
         ng-controller="BookmarkItemCtrl" ng-click="selectItem()">
-          <div ng-include src="'views/BookmarkItem.html'"></div>
+          <div ng-include src="'views/partials/items/BookmarkItem.html'"></div>
         </li>
       </ul>
     </div>

@@ -47,10 +47,14 @@
     
     <!-- main navigation -->
 
-    <div ng-include src="'views/mainnav.html'" ng-controller="MainNavCtrl" ng-show="showNav" 
+    <div ng-include src="'views/partials/mainnav.html'" ng-controller="MainNavCtrl" ng-show="showNav" 
     class="navbar navbar-default navbar-static-top" role="navigation"></div>
 
-    <div class="viewcontainer {{customViewClass}}" ui-view></div>
+    <div class="viewcontainer" ui-view="login" ng-show="$state.includes('login')"></div>
+    <div class="viewcontainer" ui-view="overview" ng-show="$state.includes('overview')"></div>
+    <div class="viewcontainer" ui-view="tags" ng-show="$state.includes('tags')"></div>
+    <div class="viewcontainer" ui-view="tools" ng-show="$state.includes('tools')"></div>
+    <div class="viewcontainer" ui-view="settings" ng-show="$state.includes('settings')"></div>
 
     <!-- main app status window -->
 
@@ -72,6 +76,8 @@
     <script src="bower_components_dist/angular-animate/angular-animate.min.js"></script>
     <!-- <script src="bower_components_dist/angular-route/angular-route.min.js"></script> -->
     <script src="bower_components_dist/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="bower_components_dist/ui-router-extras/release/modular/ct-ui-router-extras.core.min.js"></script>
+    <script src="bower_components_dist/ui-router-extras/release/modular/ct-ui-router-extras.sticky.min.js"></script>
 
     <script src="bower_components_dist/angular-gridster/dist/angular-gridster.min.js"></script>
     <script src="bower_components_dist/ng-tags-input/ng-tags-input.min.js"></script>
