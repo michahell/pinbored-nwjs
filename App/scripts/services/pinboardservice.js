@@ -190,7 +190,7 @@ angular.module('pinboredWebkitApp')
         console.log('using request module for download...');
         // console.log('request options: ', requestOptions);
         progress(request(requestOptions, function (error, response, body) {
-          if (!error && response.statusCode == 200) {
+          if (!error && response.statusCode === 200) {
             if(optionalCompleteCallback === undefined) {
               self.handleRequestComplete(body, response, deferred);
             } else {

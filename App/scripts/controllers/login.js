@@ -44,7 +44,7 @@ angular.module('pinboredWebkitApp')
             console.warn('service unavailable.');
             deferred.reject(Number(result));
           // Authorized (request success)
-          } else if(result != {} && result.result.length === 20) { // now we get a string token back, OMGtyping.
+          } else if(result !== {} && result.result.length === 20) { // now we get a string token back, OMGtyping.
             console.info('logged in.');
             deferred.resolve(result.result);
           }
@@ -64,8 +64,8 @@ angular.module('pinboredWebkitApp')
 
       if(!Utilservice.isEmpty(username) && !Utilservice.isEmpty(password)) {
         Pinboardservice.checkConnection()
-        .then(function(adresses) {
-          // console.log(adresses);
+        .then(function() { // urlAdresses
+          // console.log(urlAdresses);
           return $scope.getUserToken(username, password);
         })
         .then(function(userTokenID) {

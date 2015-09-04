@@ -12,6 +12,7 @@
   padding : 5px;
   background : #2C3E50;
   height : 100%;
+  box-sizing: border-box;
 }
 
 #tags .tag-options {

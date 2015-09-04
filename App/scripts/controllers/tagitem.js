@@ -41,14 +41,14 @@ angular.module('pinboredWebkitApp')
       }
     };
 
-    $scope.onTagAdded = function(tag) {
+    $scope.onTagAdded = function() { // @param tag
       // enable savechanges
       $scope.status.hasFoldChanged = true;
       // remove extra added tags (custom max tags..)
       $scope.spliceMaxTags();
     };
 
-    $scope.onTagRemoved = function(tag) {
+    $scope.onTagRemoved = function() {  // @param tag
       // enable savechanges
       $scope.status.hasFoldChanged = false;
     };
@@ -71,9 +71,17 @@ angular.module('pinboredWebkitApp')
 
     $scope.toggleTagOptions = function(option) {
       if(option === 'fold') {
-        ($scope.status.hidden.fold === true) ? $scope.openTagOptions('fold') : $scope.closeTagOptions();
+        if($scope.status.hidden.fold === true) {
+          $scope.openTagOptions('fold') 
+        } else {
+          $scope.closeTagOptions();
+        }
       } else if(option === 'rename') {
-        ($scope.status.hidden.rename === true) ? $scope.openTagOptions('rename') : $scope.closeTagOptions();
+        if($scope.status.hidden.rename === true) { 
+          $scope.openTagOptions('rename') 
+        } else {
+          $scope.closeTagOptions();
+        }
       }
     };
 
@@ -155,7 +163,7 @@ angular.module('pinboredWebkitApp')
         }
       })
       .catch(function(error) {
-
+        console.error(error);
       });
     };
 
