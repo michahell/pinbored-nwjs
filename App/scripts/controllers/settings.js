@@ -44,7 +44,9 @@ angular.module('pinboredWebkitApp')
       console.log('received new appconfig: ', Appconfigservice.getConfig());
       angular.copy($scope.appconfig, $scope.newappconfig);
       // remove watcher if there is any
-      if($scope.model.appConfigWatcher !== null) $scope.model.appConfigWatcher();
+      if($scope.model.appConfigWatcher !== null) {
+        $scope.model.appConfigWatcher();
+      }
       // watch appconfig
       $scope.model.appConfigWatcher = $scope.$watchCollection('newappconfig', function(newVal, oldVal) {
         // console.log('old, new: ', newVal, $scope.appconfig);

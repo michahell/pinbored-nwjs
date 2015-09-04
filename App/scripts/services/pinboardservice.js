@@ -241,7 +241,9 @@ angular.module('pinboredWebkitApp')
       var deferred = $q.defer();
 
       // check if authenticated
-      if(this.authCheck(deferred)) return deferred.promise;
+      if(this.authCheck(deferred)) {
+        return deferred.promise;
+      }
 
       console.log('pinboardservice: getting  ' + amount + ' recent bookmarks...');
       
@@ -273,7 +275,9 @@ angular.module('pinboredWebkitApp')
       var deferred = $q.defer();
 
       // check if authenticated
-      if(this.authCheck(deferred)) return deferred.promise;
+      if(this.authCheck(deferred)) {
+        return deferred.promise;
+      };
 
       console.log('pinboardservice: getting all bookmarks...');
 
@@ -292,7 +296,9 @@ angular.module('pinboredWebkitApp')
       var deferred = $q.defer();
 
       // check if authenticated
-      if(this.authCheck(deferred)) return deferred.promise;
+      if(this.authCheck(deferred)) {
+        return deferred.promise;
+      }
 
       console.log('pinboardservice: getting bookmark...');
 
@@ -308,7 +314,9 @@ angular.module('pinboredWebkitApp')
       var deferred = $q.defer();
 
       // check if authenticated
-      if(this.authCheck(deferred)) return deferred.promise;
+      if(this.authCheck(deferred)) {
+        return deferred.promise;
+      }
 
       console.log('pinboardservice: deleting bookmark...');
 
@@ -334,7 +342,9 @@ angular.module('pinboredWebkitApp')
       var deferred = $q.defer();
 
       // check if authenticated
-      if(this.authCheck(deferred)) return deferred.promise;
+      if(this.authCheck(deferred)) {
+        return deferred.promise;
+      }
 
       if(replace === 'yes') {
         console.log('pinboardservice: updating bookmark...');
@@ -369,7 +379,9 @@ angular.module('pinboredWebkitApp')
       var deferred = $q.defer();
 
       // check if authenticated
-      if(this.authCheck(deferred)) return deferred.promise;
+      if(this.authCheck(deferred)) {
+        return deferred.promise;
+      }
 
       console.log('pinboardservice: getting all tags...');
 
@@ -388,7 +400,9 @@ angular.module('pinboredWebkitApp')
       var deferred = $q.defer();
 
       // check if authenticated
-      if(this.authCheck(deferred)) return deferred.promise;
+      if(this.authCheck(deferred)) {
+        return deferred.promise;
+      }
 
       console.log('pinboardservice: deleting tag...');
 
@@ -409,7 +423,9 @@ angular.module('pinboredWebkitApp')
       var deferred = $q.defer();
 
       // check if authenticated
-      if(this.authCheck(deferred)) return deferred.promise;
+      if(this.authCheck(deferred)) {
+        return deferred.promise;
+      }
 
       console.log('pinboardservice: renaming tag...');
 
@@ -437,7 +453,9 @@ angular.module('pinboredWebkitApp')
       var deferred = $q.defer();
 
       // check if authenticated
-      if(this.authCheck(deferred)) return deferred.promise;
+      if(this.authCheck(deferred)) {
+        return deferred.promise;
+      }
 
       console.log('pinboardservice: performing stale request...');
 

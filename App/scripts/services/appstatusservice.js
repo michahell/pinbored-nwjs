@@ -70,7 +70,9 @@ angular.module('pinboredWebkitApp')
 
     this.resetProgress = function() {
       ngProgress.reset();
-      if (this.state.numPendingOperations > 0)  this.state.numPendingOperations--;
+      if (this.state.numPendingOperations > 0) {
+        this.state.numPendingOperations--;
+      }
     };
 
     this.hasNoPendingOperationsIfZero = function() {
@@ -81,7 +83,9 @@ angular.module('pinboredWebkitApp')
 
     this.completeProgress = function() {
       ngProgress.complete();
-      if (this.state.numPendingOperations > 0)  this.state.numPendingOperations--;
+      if (this.state.numPendingOperations > 0) {
+        this.state.numPendingOperations--;
+      }
       this.hasNoPendingOperationsIfZero();
     };
 

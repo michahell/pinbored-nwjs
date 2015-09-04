@@ -38,7 +38,8 @@ angular.module('pinboredWebkitApp')
     this.recreateFilterBuffer = function() {
       console.log('recreating filter buffer...');
       // temp self reference
-      self = this;
+      var self = this;
+      
       // declare filter buffer
       this.filterBuffer = {
         hasBuffer : false,
