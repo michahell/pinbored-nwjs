@@ -46,12 +46,14 @@
   <body ng-app="pinboredWebkitApp">
     
     <!-- main navigation -->
-    <div ng-include src="'views/mainnav.html'" ng-controller="MainNavCtrl" ng-show="showNav" 
-    class="navbar animated slideInDown navbar-default navbar-static-top" role="navigation"></div>
 
-    <div class="viewcontainer {{customViewClass}}" ng-view></div>
+    <div ng-include src="'views/mainnav.html'" ng-controller="MainNavCtrl" ng-show="showNav" 
+    class="navbar navbar-default navbar-static-top" role="navigation"></div>
+
+    <div class="viewcontainer {{customViewClass}}" ui-view></div>
 
     <!-- main app status window -->
+
     <div ng-controller="AppStatusCtrl" ng-show="visible" class="app-status-indicator" ng-animate="app-status-indicator">
       <h7><span class="{{status.color}}">{{status.text}}</span></h7>
     </div>
@@ -68,7 +70,8 @@
     <script src="bower_components_dist/angular-resource/angular-resource.min.js"></script>
     <script src="bower_components_dist/angular-sanitize/angular-sanitize.min.js"></script>
     <script src="bower_components_dist/angular-animate/angular-animate.min.js"></script>
-    <script src="bower_components_dist/angular-route/angular-route.min.js"></script>
+    <!-- <script src="bower_components_dist/angular-route/angular-route.min.js"></script> -->
+    <script src="bower_components_dist/angular-ui-router/release/angular-ui-router.min.js"></script>
 
     <script src="bower_components_dist/angular-gridster/dist/angular-gridster.min.js"></script>
     <script src="bower_components_dist/ng-tags-input/ng-tags-input.min.js"></script>
@@ -124,10 +127,11 @@
     <script src="scripts/directives/ngenter.js"></script>
 
     <!-- filters -->
+    <script src="scripts/filters/bmfulltextfilter.js"></script>
+    <script src="scripts/filters/bmtagsfilter.js"></script>
+
     <script src="scripts/filters/highlightfilter.js"></script>
     <script src="scripts/filters/offsetfilter.js"></script>
-    <script src="scripts/filters/fulltextfilter.js"></script>
-    <script src="scripts/filters/tagsfilter.js"></script>
     <script src="scripts/filters/searchcollectionfilter.js"></script>
     <script src="scripts/filters/wordcutfilter.js"></script>
 

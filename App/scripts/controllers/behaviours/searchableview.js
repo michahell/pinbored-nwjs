@@ -8,8 +8,10 @@
  */
 angular.module('pinboredWebkitApp')
   .controller('SearchableViewCtrl', 
-    ['$scope', '$timeout', '$filter', 'Usersessionservice', 'Utilservice', 'Appconfigservice', 'fulltextFilter', 'tagsFilter', 
-    function ($scope, $timeout, $filter, Usersessionservice, Utilservice, Appconfigservice, fulltextFilter, tagsFilter) {
+    ['$scope', '$timeout', '$filter', 'Usersessionservice', 'Utilservice', 'Appconfigservice', 
+    'bmFulltextFilter', 'bmTagsFilter', 
+    function ($scope, $timeout, $filter, Usersessionservice, Utilservice, Appconfigservice, 
+      bmFulltextFilter, bmTagsFilter) {
     
     // shared searchable view model
     $scope.filter = {
@@ -19,6 +21,14 @@ angular.module('pinboredWebkitApp')
       tags : []
     };
 
+    // page model
+    $scope.data = {
+      isLoading : true,
+      tagNames : [],
+      items: [],
+      filteredList : []
+    };
+
     $scope.paging = {
       numPageButtons : 10,
       current : 1,
@@ -26,6 +36,7 @@ angular.module('pinboredWebkitApp')
     };
 
     $scope.config = {
+      collectionType : '',
       tagFilterType : false,
       tagFilterTypeText : 'inclusive / and',
       searchAllWords : false,
@@ -89,8 +100,17 @@ angular.module('pinboredWebkitApp')
       var word = $scope.filter.text;
       var tags = $scope.filter.tags;
       var logicType = ($scope.appconfig.tagFilterType === true) ? 'AND' : 'OR';
-      $scope.data.filteredList = fulltextFilter($scope.data.items, word);
-      $scope.data.filteredList = tagsFilter($scope.data.filteredList, tags, logicType);
+      switch($scope.config.collectionType) {
+        case 'bookmarks':
+          $scope.data.filteredList = bmFulltextFilter($scope.data.items, word);
+          $scope.data.filteredList = bmTagsFilter($scope.data.filteredList, tags, logicType);
+          break;
+        case 'tags':
+          // $scope.data.filteredList = fulltextFilter($scope.data.items, word);
+          // $scope.data.filteredList = tagsFilter($scope.data.filteredList, tags, logicType);
+          $scope.data.filteredList = $scope.data.items;
+          break;
+      }
     };
 
     $scope.$on('$viewContentLoaded', function() {

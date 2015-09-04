@@ -35,22 +35,6 @@ angular.module('pinboredWebkitApp')
       }
     });
 
-    // customViewClass
-    $scope.customViewClass = 'view-overview';
-
-    // page model
-    $scope.data = {
-      loadType : 'recent',
-      loadTypes : ['recent', 'all'],
-      isLoading : true,
-      activePage : 3,
-      items: [],
-      filteredList : [],
-      selectedItems : [],
-      tagNames : [],
-      bgMsg : 'NO BOOKMARKS FOUND.'
-    };
-
     $scope.multiAction = {
       show : false,
       selectedAction : 'select action',
@@ -60,6 +44,15 @@ angular.module('pinboredWebkitApp')
       foldTagName : '',
       foldTagNames : []
     };
+
+    // page model
+    angular.extend($scope.data, {
+      loadType : 'recent',
+      loadTypes : ['recent', 'all'],
+      activePage : 3,
+      selectedItems : [],
+      bgMsg : 'NO BOOKMARKS FOUND.'
+    });
 
     angular.extend($scope.config, {
       showSelection : false
@@ -339,6 +332,8 @@ angular.module('pinboredWebkitApp')
     $scope.$on('$viewContentLoaded', function() {
       console.info('overview $viewContentLoaded called');
 
+      $scope.config.collectionType = 'bookmarks';
+      
       // repopulate bookmark items.
       $scope.repopulateBookmarks();
 

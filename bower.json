@@ -10,6 +10,7 @@
     "angular-resource": ">=1.2",
     "angular-route": ">=1.2",
     "angular-sanitize": ">=1.2",
+    "angular-ui-router": "~0.2.15",
     "animate.css": ">=3.1.1",
     "bootstrap": ">=3.1.1",
     "flat-ui": ">=2.2.0",

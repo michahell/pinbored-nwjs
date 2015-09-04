@@ -31,12 +31,9 @@ angular.module('pinboredWebkitApp')
       }
     });
 
-    $scope.data = {
-      isLoading : true,
-      tagNames : [],
-      wrappedTags : [],
+    angular.extend($scope.data, {
       numTags : 0
-    };
+    });
 
     angular.extend($scope.config, {
       itemsPerPage : 39      // 39 = 13 rows * 3 cols
@@ -89,7 +86,7 @@ angular.module('pinboredWebkitApp')
 
     $scope.resetTags = function() {
       $scope.data.tagNames = [];
-      $scope.data.wrappedTags = [];
+      $scope.data.items = [];
     };
 
     $scope.createTags = function(tagdata) {
@@ -103,7 +100,7 @@ angular.module('pinboredWebkitApp')
             text : tag
           });
           // wrapped tags (for angular-gridster)
-          $scope.data.wrappedTags.push({
+          $scope.data.items.push({
             id : tagID,
             tagname : tag,
             occurrences : parseInt(tagdata[tag]),
@@ -114,7 +111,7 @@ angular.module('pinboredWebkitApp')
         }
       }
       
-      $scope.data.numTags = $scope.paging.total = $scope.data.wrappedTags.length;
+      $scope.data.numTags = $scope.paging.total = $scope.data.items.length;
 
       if($scope.data.numTags > 0) {
         console.log($scope.data.numTags + ' tags retrieved.');
@@ -141,6 +138,7 @@ angular.module('pinboredWebkitApp')
       .then(function() {
         $scope.data.isLoading = false;
         Appstatusservice.updateStatus('all tags retrieved.');
+        $scope.updateFiltersPaging();
       })
       .catch(function(failreason) {
         console.error('Failed: ' + failreason);
@@ -149,11 +147,11 @@ angular.module('pinboredWebkitApp')
 
     $scope.removeTag = function(tag) {
       console.log('removetag called...');
-      $scope.data.wrappedTags.splice($scope.data.wrappedTags.indexOf(tag), 1);
+      $scope.data.items.splice($scope.data.items.indexOf(tag), 1);
     };
 
     $scope.getTagByName = function(tagName) {
-      var foundTag = _.find($scope.data.wrappedTags, function(tag) {
+      var foundTag = _.find($scope.data.items, function(tag) {
         // console.log('tag.tagname === tagName? ', tag.tagname, tagName, tag.tagname === tagName);
         return tag.tagname === tagName;
       });
@@ -163,11 +161,11 @@ angular.module('pinboredWebkitApp')
 
     $scope.increaseTagOccurenceCount = function(tag) {
       console.log('increaseTagOccurenceCount called!');
-      var index = $scope.data.wrappedTags.indexOf(tag);
-      console.log('found index: ' + index, $scope.data.wrappedTags[index]);
-      console.log('occurrences before: ', $scope.data.wrappedTags[index].occurrences);
-      $scope.data.wrappedTags[index].occurrences = $scope.data.wrappedTags[index].occurrences + 1;
-      console.log('occurrences after: ', $scope.data.wrappedTags[index].occurrences);
+      var index = $scope.data.items.indexOf(tag);
+      console.log('found index: ' + index, $scope.data.items[index]);
+      console.log('occurrences before: ', $scope.data.items[index].occurrences);
+      $scope.data.items[index].occurrences = $scope.data.items[index].occurrences + 1;
+      console.log('occurrences after: ', $scope.data.items[index].occurrences);
     };
 
 
@@ -200,6 +198,8 @@ angular.module('pinboredWebkitApp')
 
     $scope.$on('$viewContentLoaded', function() {
       console.info('bookmarkitem $viewContentLoaded called');
+
+      $scope.config.collectionType = 'tags';
 
       // repopulate bookmark items.
       $scope.repopulateTags();

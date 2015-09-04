@@ -3,12 +3,12 @@
  * @ngdoc filter
  * @name pinboredWebkitApp.tags
  * @description
- * # tags filter
+ * # tags filter for BOOKMARKS
  * Filter in the pinboredWebkitApp.
  */
 angular.module('pinboredWebkitApp')
 
-  .filter('tags', function() {
+  .filter('bmTags', function() {
     return function(bookmarkCollection, searchTags, logicType) {
 
       // console.log('tags filter invoked.');

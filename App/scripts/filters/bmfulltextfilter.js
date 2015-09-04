@@ -3,12 +3,12 @@
  * @ngdoc filter
  * @name pinboredWebkitApp.fulltext
  * @description
- * # fulltext filter
+ * # fulltext filter for BOOKMARKS
  * Filter in the pinboredWebkitApp.
  */
 angular.module('pinboredWebkitApp')
 
-  .filter('fulltext', function() {
+  .filter('bmFulltext', function() {
     return function(bookmarkCollection, word) {
 
       // console.log('full text filter invoked.');

@@ -47,7 +47,16 @@ $(function() {
       });
     };
 
+    var fixCopyPaste = function () {
+      var gui = window.require('nw.gui');
+
+      var mb = new gui.Menu({type: 'menubar'});
+      mb.createMacBuiltin('pinbored');
+      gui.Window.get().menu = mb;
+    };
+
     fixBackspace();
+    fixCopyPaste();
   };
 
   var menu = new Menu(/* pass cut, copy, paste labels if you need i18n*/);

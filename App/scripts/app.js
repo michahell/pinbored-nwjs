@@ -10,12 +10,13 @@
 angular
   .module('pinboredWebkitApp', [
     'ngAnimate',
-    'ngRoute',
+    // 'ngRoute',
     'ngResource',
     'ngSanitize',
-    'ngTagsInput',            // angular tags component
+    'ui.router',              // angular ui router
     'ui.bootstrap',           // angular ui bootstrap
     'fui',                    // flat ui bootstrap
+    'ngTagsInput',            // angular tags component
     'gridster',               // gridster grid for tags screen
     'ngProgress',             // angular animated progress bar
     'ngDialog',               // angular dialog popup
@@ -23,26 +24,31 @@ angular
     // 'ramdangular',            // use functional - reactive pipelines!
     'monospaced.elastic'      // elastic textarea
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/overview.html',
+  .config(function($stateProvider, $urlRouterProvider) {
+
+    // For any unmatched url, redirect to /state1
+    $urlRouterProvider.otherwise("/overview");
+
+    // Now set up the states
+    $stateProvider
+      .state('overview', {
+        url: "/overview",
+        templateUrl: "views/overview.html",
         controller: 'OverviewCtrl'
       })
-      .when('/login', {
-        templateUrl: 'views/login.html',
+      .state('login', {
+        url: "/login",
+        templateUrl: "views/login.html",
         controller: 'LoginCtrl'
       })
-      .when('/overview', {
-        templateUrl: 'views/overview.html',
-        controller: 'OverviewCtrl'
-      })
-      .when('/tags', {
-        templateUrl: 'views/tags.html',
+      .state('tags', {
+        url: "/tags",
+        templateUrl: "views/tags.html",
         controller: 'TagsCtrl'
       })
-      .when('/settings', {
-        templateUrl: 'views/settings.html',
+      .state('settings', {
+        url: "/settings",
+        templateUrl: "views/settings.html",
         controller: 'SettingsCtrl'
       });
   });

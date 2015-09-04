@@ -57,6 +57,8 @@
 
 #overview .tagContainer {
   height : 20px;
+  max-width: calc(100% - 350px);
+  overflow: hidden;
 }
 
 /*#selection .bar-container form-group input, 
