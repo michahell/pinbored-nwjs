@@ -20,7 +20,7 @@
   margin-right : 0;
 }
 
-.navbar-nav li.active:after {
+.navbar-nav li:after {
   position : absolute;
   left : 50%;
   margin-top : -10px;
@@ -28,8 +28,13 @@
   content : ' ';
   border : solid 10px transparent;
   border-width : 10px;
-  border-color : transparent transparent #2C3E50 transparent;
+  border-color : transparent;
   border-top : solid 0 transparent;
+  transition: 0.3s all ease-out;
+}
+
+.navbar-nav li.active:after {
+  border-color : transparent transparent #2C3E50 transparent;
 }
 
 textarea {

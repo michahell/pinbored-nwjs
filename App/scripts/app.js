@@ -31,24 +31,28 @@ angular
 
     // Now set up the states
     $stateProvider
-      .state('overview', {
-        url: "/overview",
-        templateUrl: "views/overview.html",
-        controller: 'OverviewCtrl'
-      })
       .state('login', {
         url: "/login",
         templateUrl: "views/login.html",
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl',
+        sticky: false
+      })
+      .state('overview', {
+        url: "/overview",
+        templateUrl: "views/overview.html",
+        controller: 'OverviewCtrl',
+        sticky: true
       })
       .state('tags', {
         url: "/tags",
         templateUrl: "views/tags.html",
-        controller: 'TagsCtrl'
+        controller: 'TagsCtrl',
+        sticky: true
       })
       .state('settings', {
         url: "/settings",
         templateUrl: "views/settings.html",
-        controller: 'SettingsCtrl'
+        controller: 'SettingsCtrl',
+        sticky: true
       });
   });

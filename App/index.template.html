@@ -59,7 +59,10 @@
     <div ng-include src="'views/mainnav.html'" ng-controller="MainNavCtrl" ng-show="showNav" 
     class="navbar navbar-default navbar-static-top" role="navigation"></div>
 
-    <div class="viewcontainer {{customViewClass}}" ui-view></div>
+    <div class="viewcontainer {{customViewClass}}" ui-view="login"></div>
+    <div class="viewcontainer {{customViewClass}}" ui-view="overview"></div>
+    <div class="viewcontainer {{customViewClass}}" ui-view="tags"></div>
+    <div class="viewcontainer {{customViewClass}}" ui-view="settings"></div>
 
     <!-- @ifdef DEBUG -->
     <!-- main app status window -->
