@@ -115,6 +115,20 @@ steps
 
 note: releasing for Windows + Linux is possible but not (yet) tested by me.
 
+warnings & errors
+-----------------
+
+Depending on your node version, you may see some of the following npm warnings:
+
+* npm WARN engine xmlbuilder@2.2.1: wanted: {"node":"0.8.x || 0.10.x"} (current: {"node":"4.0.0","npm":"3.3.3"})
+* npm WARN engine xmlbuilder@2.4.4: wanted: {"node":"0.8.x || 0.10.x || 0.11.x"} (current: {"node":"4.0.0","npm":"3.3.3"})
+
+And errors:
+
+* node-gyp rebuild errors for certain npm modules.
+
+
+
 Caveats
 -------
 *  OSX
