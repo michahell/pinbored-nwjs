@@ -1,13 +1,13 @@
 
 /**
  * @ngdoc service
- * @name pinboredWebkitApp.Pinboardservice
+ * @name pinboredWebkitApp.Backendpinboard
  * @description
- * # Pinboardservice
+ * # Backendpinboard
  * Service in the pinboredWebkitApp.
  */
 angular.module('pinboredWebkitApp')
-  .service('Pinboardservice', 
+  .service('Backendpinboard', 
     ['$q', '$timeout', 'Usersessionservice', 'Modalservice', 'Appstatusservice', 'Appconfigservice',
     function($q, $timeout, Usersessionservice, Modalservice, Appstatusservice, Appconfigservice) {
     // AngularJS will instantiate a singleton by calling 'new' on this function
@@ -18,14 +18,14 @@ angular.module('pinboredWebkitApp')
     this.token = '&auth_token=user:apikey';
     this.timeout = 5000;
 
-    var self = this;
+    var _this = this;
 
     try {
       var request = require('request');
       var progress = require('request-progress');
       var https = require('https');
     } catch (error) {
-      console.error('error loading request or request-progress: ' + error);
+      console.error('error loading request, request-progress or https: ' + error);
     }
 
     try {
@@ -36,10 +36,10 @@ angular.module('pinboredWebkitApp')
 
     /* ====================== INTERNALS ======================= */
 
-    this.authCheck = function(deferred) {
+    this.authFailed = function(deferred) {
       if(!Usersessionservice.isAuthenticated()) {
         $timeout(function() {
-          deferred.reject('pinboardservice: user not authenticated.');
+          deferred.reject('backendpinboard: user not authenticated.');
         }, 100);
         return true;
       } else {
@@ -49,7 +49,7 @@ angular.module('pinboredWebkitApp')
 
     this.checkConnection = function() {
 
-      console.log('pinboardservice: checking connection...');
+      console.log('backendpinboard: checking connection...');
 
       var deferred = $q.defer();
 
@@ -87,7 +87,7 @@ angular.module('pinboredWebkitApp')
           deferred.resolve(parsedresult);
 
         } catch (exception) {
-          // console.error('Pinboardservice: failed to parse request result json: ' + exception);
+          // console.error('backendPinboard: failed to parse request result json: ' + exception);
           // console.error(exception);
           // console.info('failed to JSON parse result.');
           if(result.length > 0) {
@@ -170,7 +170,7 @@ angular.module('pinboredWebkitApp')
             // JSON parse and stringify object
             var json = JSON.stringify(JSON.parse(data));
             if(optionalCompleteCallback === undefined) {
-              self.handleRequestComplete(json, res, deferred);
+              _this.handleRequestComplete(json, res, deferred);
             } else {
               optionalCompleteCallback(json, res, deferred);
             }
@@ -180,7 +180,7 @@ angular.module('pinboredWebkitApp')
 
           // when errored
           res.on('error', function (err) {
-            errorHandler('pinboardservice: error: '+ res.statusCode);
+            errorHandler('backendpinboard: error: '+ res.statusCode);
             req.end();
           });          
         });
@@ -192,13 +192,13 @@ angular.module('pinboredWebkitApp')
         progress(request(requestOptions, function (error, response, body) {
           if (!error && response.statusCode === 200) {
             if(optionalCompleteCallback === undefined) {
-              self.handleRequestComplete(body, response, deferred);
+              _this.handleRequestComplete(body, response, deferred);
             } else {
               optionalCompleteCallback(body, response, deferred);
             }
             Appstatusservice.completeProgress();
           } else {
-            errorHandler('pinboardservice: error: '+ error);
+            errorHandler('backendpinboard: error: '+ error);
           }
         }), progressOptions)
         .on('progress', function (state) {
@@ -211,7 +211,7 @@ angular.module('pinboredWebkitApp')
           Appstatusservice.updateProgress(state.received, state.total);
         })
         .on('error', function (error) {
-          errorHandler('pinboardservice: error: '+ error);
+          errorHandler('backendpinboard: error: '+ error);
         })
       }
     };
@@ -220,7 +220,7 @@ angular.module('pinboredWebkitApp')
 
     this.getUserToken = function(username, password) {
       
-      console.log('pinboardservice: getting user token...');
+      console.log('backendpinboard: getting user token...');
 
       var deferred = $q.defer();
       // modify url to include username + password,  user:password. See https://pinboard.in/api/ under authentication
@@ -229,7 +229,7 @@ angular.module('pinboredWebkitApp')
       var request = authstringReplaced + 'user/api_token' + this.format;
 
       // execute standard request
-      self.executeStandardRequest(request, deferred);
+      _this.executeStandardRequest(request, deferred);
 
       return deferred.promise;
     };
@@ -240,12 +240,12 @@ angular.module('pinboredWebkitApp')
 
       var deferred = $q.defer();
 
-      // check if authenticated
-      if(this.authCheck(deferred)) {
+      // check if authenticated. if not, immediately RETURN and fail after 100ms.
+      if(this.authFailed(deferred)) {
         return deferred.promise;
       }
 
-      console.log('pinboardservice: getting  ' + amount + ' recent bookmarks...');
+      console.log('backendpinboard: getting  ' + amount + ' recent bookmarks...');
       
       var argAmount, argTags;
 
@@ -260,11 +260,11 @@ angular.module('pinboredWebkitApp')
       this.token.replace('user', Usersessionservice.user).replace('apikey', Usersessionservice.apikey);
 
       // execute standard request
-      self.executeStandardRequest(request, deferred, {isDownload:true}, function(result, response, deferred) {
+      _this.executeStandardRequest(request, deferred, {isDownload:true}, function(result, response, deferred) {
         // we only need the posts part. for some reason this is not the same result sent as in
         // get all bookmarks. probably there is metadata.
         var posts = JSON.stringify(JSON.parse(result).posts);
-        self.handleRequestComplete(posts, response, deferred);
+        _this.handleRequestComplete(posts, response, deferred);
       });
       
       return deferred.promise;
@@ -274,19 +274,19 @@ angular.module('pinboredWebkitApp')
 
       var deferred = $q.defer();
 
-      // check if authenticated
-      if(this.authCheck(deferred)) {
+      // check if authenticated. if not, immediately RETURN and fail after 100ms.
+      if(this.authFailed(deferred)) {
         return deferred.promise;
       };
 
-      console.log('pinboardservice: getting all bookmarks...');
+      console.log('backendpinboard: getting all bookmarks...');
 
       // create request
       var request = this.endpoint + 'posts/all' + this.format + 
       this.token.replace('user', Usersessionservice.user).replace('apikey', Usersessionservice.apikey);
 
       // execute standard request
-      self.executeStandardRequest(request, deferred, {isDownload:true});
+      _this.executeStandardRequest(request, deferred, {isDownload:true});
       
       return deferred.promise;
     };
@@ -295,12 +295,12 @@ angular.module('pinboredWebkitApp')
 
       var deferred = $q.defer();
 
-      // check if authenticated
-      if(this.authCheck(deferred)) {
+      // check if authenticated. if not, immediately RETURN and fail after 100ms.
+      if(this.authFailed(deferred)) {
         return deferred.promise;
       }
 
-      console.log('pinboardservice: getting bookmark...');
+      console.log('backendpinboard: getting bookmark...');
 
       // 'posts/get'
 
@@ -313,12 +313,12 @@ angular.module('pinboredWebkitApp')
 
       var deferred = $q.defer();
 
-      // check if authenticated
-      if(this.authCheck(deferred)) {
+      // check if authenticated. if not, immediately RETURN and fail after 100ms.
+      if(this.authFailed(deferred)) {
         return deferred.promise;
       }
 
-      console.log('pinboardservice: deleting bookmark...');
+      console.log('backendpinboard: deleting bookmark...');
 
       // create request
       var url = '&url=' + encodeURIComponent(bookmarkUrl);
@@ -326,7 +326,7 @@ angular.module('pinboredWebkitApp')
       this.token.replace('user', Usersessionservice.user).replace('apikey', Usersessionservice.apikey);
 
       // execute standard request
-      self.executeStandardRequest(request, deferred);
+      _this.executeStandardRequest(request, deferred);
 
       return deferred.promise;
 
@@ -341,15 +341,15 @@ angular.module('pinboredWebkitApp')
       
       var deferred = $q.defer();
 
-      // check if authenticated
-      if(this.authCheck(deferred)) {
+      // check if authenticated. if not, immediately RETURN and fail after 100ms.
+      if(this.authFailed(deferred)) {
         return deferred.promise;
       }
 
       if(replace === 'yes') {
-        console.log('pinboardservice: updating bookmark...');
+        console.log('backendpinboard: updating bookmark...');
       } else {
-        console.log('pinboardservice: adding bookmark...');
+        console.log('backendpinboard: adding bookmark...');
         replace = 'no';
       } 
       
@@ -367,7 +367,7 @@ angular.module('pinboredWebkitApp')
       this.token.replace('user', Usersessionservice.user).replace('apikey', Usersessionservice.apikey);
 
       // execute standard request
-      self.executeStandardRequest(request, deferred);
+      _this.executeStandardRequest(request, deferred);
 
       return deferred.promise;
     };
@@ -378,19 +378,19 @@ angular.module('pinboredWebkitApp')
 
       var deferred = $q.defer();
 
-      // check if authenticated
-      if(this.authCheck(deferred)) {
+      // check if authenticated. if not, immediately RETURN and fail after 100ms.
+      if(this.authFailed(deferred)) {
         return deferred.promise;
       }
 
-      console.log('pinboardservice: getting all tags...');
+      console.log('backendpinboard: getting all tags...');
 
       // create request
       var request = this.endpoint + 'tags/get' + this.format + 
       this.token.replace('user', Usersessionservice.user).replace('apikey', Usersessionservice.apikey);
 
       // execute standard request
-      self.executeStandardRequest(request, deferred, {isDownload:true});
+      _this.executeStandardRequest(request, deferred, {isDownload:true});
       
       return deferred.promise;
     };
@@ -399,12 +399,12 @@ angular.module('pinboredWebkitApp')
       
       var deferred = $q.defer();
 
-      // check if authenticated
-      if(this.authCheck(deferred)) {
+      // check if authenticated. if not, immediately RETURN and fail after 100ms.
+      if(this.authFailed(deferred)) {
         return deferred.promise;
       }
 
-      console.log('pinboardservice: deleting tag...');
+      console.log('backendpinboard: deleting tag...');
 
       // create request
       var tag = '&tag=' + encodeURIComponent(tagname);
@@ -412,7 +412,7 @@ angular.module('pinboredWebkitApp')
       this.token.replace('user', Usersessionservice.user).replace('apikey', Usersessionservice.apikey);
 
       // execute standard request
-      self.executeStandardRequest(request, deferred);
+      _this.executeStandardRequest(request, deferred);
 
       return deferred.promise;
 
@@ -422,12 +422,12 @@ angular.module('pinboredWebkitApp')
       
       var deferred = $q.defer();
 
-      // check if authenticated
-      if(this.authCheck(deferred)) {
+      // check if authenticated. if not, immediately RETURN and fail after 100ms.
+      if(this.authFailed(deferred)) {
         return deferred.promise;
       }
 
-      console.log('pinboardservice: renaming tag...');
+      console.log('backendpinboard: renaming tag...');
 
       // create request
       var old = '&old=' + encodeURIComponent(oldTagName);
@@ -436,7 +436,7 @@ angular.module('pinboredWebkitApp')
       this.token.replace('user', Usersessionservice.user).replace('apikey', Usersessionservice.apikey);
 
       // execute standard request
-      self.executeStandardRequest(request, deferred);
+      _this.executeStandardRequest(request, deferred);
 
       return deferred.promise;
 
@@ -452,15 +452,15 @@ angular.module('pinboredWebkitApp')
 
       var deferred = $q.defer();
 
-      // check if authenticated
-      if(this.authCheck(deferred)) {
+      // check if authenticated. if not, immediately RETURN and fail after 100ms.
+      if(this.authFailed(deferred)) {
         return deferred.promise;
       }
 
-      console.log('pinboardservice: performing stale request...');
+      console.log('backendpinboard: performing stale request...');
 
       // execute standard request
-      self.executeStandardRequest(url, deferred, {timeout: Appconfigservice.config.staleCheckTimeout});
+      _this.executeStandardRequest(url, deferred, {timeout: Appconfigservice.config.staleCheckTimeout});
       
       return deferred.promise;
     };

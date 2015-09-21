@@ -7,8 +7,12 @@
  * Service in the pinboredWebkitApp.
  */
 angular.module('pinboredWebkitApp')
-  .service('Bookmarkservice', ['$rootScope', '$filter', 'Pinboardservice', 'Appstatusservice', 'Usersessionservice', 'Utilservice', 'Constants', 
-    function ($rootScope, $filter, Pinboardservice, Appstatusservice, Usersessionservice, Utilservice, Constants) {
+  .service('Bookmarkservice', ['$rootScope', '$filter', 'Appstatusservice', 
+    'Usersessionservice', 'Utilservice', 'Constants', 'Backendtranscluder', 
+    'Backendpinboard', 'Backendharddrive', 
+    function ($rootScope, $filter, Appstatusservice, 
+      Usersessionservice, Utilservice, Constants, Backendtranscluder,
+      Backendpinboard, Backendharddrive) {
     // AngularJS will instantiate a singleton by calling 'new' on this function
 
 
@@ -19,6 +23,9 @@ angular.module('pinboredWebkitApp')
 
     // filter buffer watcher
     this.filterBufferWatcher;
+
+    // bookmark backends
+    this.bookmarkBackends = ['Backendpinboard', 'Backendharddrive'];
 
     // in memory cached bookmarks
     this.storedBookmarkData = {};
@@ -60,14 +67,37 @@ angular.module('pinboredWebkitApp')
       this.recreateFilterBuffer();
     };
 
+
+
+
+    // LOADING AND RETRIEVAL OF BOOKMARKS
+
+
+
+
     this.loadBookmarks = function(loadType, amount) {
+      var _this = this;
+      var aggregatedBookmarks = [];
+
       if(loadType === 'recent') {
-        // get (amount of) recent bookmarks
-        return Pinboardservice.getRecentBookmarks(amount);
+        // get (an amount of) recent bookmarks for each bookmark backend
+        _.each(_this.bookmarkBackends, function(backend) {
+          //TODO get service by name?
+          var raw = backend.getRecentBookmarks(amount);
+          var transcluded = Backendtranscluder.transclude(backend, raw);
+          aggregatedBookmarks.concat(transcluded);
+        });
+        return aggregatedBookmarks; //Backendpinboard.getRecentBookmarks(amount);
       }
+
       if(loadType === 'all' || loadType === 'filtered') {
         // get all bookmarks
-        return Pinboardservice.getAllBookmarks();
+        _.each(_this.bookmarkBackends, function(backend) {
+          var raw = backend.getAllBookmarks();
+          var transcluded = Backendtranscluder.transclude(backend, raw);
+          aggregatedBookmarks.concat(transcluded);
+        });
+        return aggregatedBookmarks; //Backendpinboard.getAllBookmarks();
       }
     };
 
@@ -115,7 +145,7 @@ angular.module('pinboredWebkitApp')
             // set initial status to checking
             selection[i].data.tags += ' ' + newTagName;
             // update bookmark
-            Pinboardservice.updateBookmark(selection[i])
+            Backendpinboard.updateBookmark(selection[i])
             .then(function(result) {
               var updatedBmHash = selection[i].data.hash;
               updated++;
@@ -143,7 +173,7 @@ angular.module('pinboredWebkitApp')
         if(selection.length > 0 && updated !== total) {
           // remove all tags from bookmark
           selection[i].data.tags = '';
-          Pinboardservice.updateBookmark(selection[i])
+          Backendpinboard.updateBookmark(selection[i])
           .then(function(result) {
             if(result.result_code === 'done') {
               var updatedBmHash = selection[i].data.hash;
@@ -180,7 +210,7 @@ angular.module('pinboredWebkitApp')
             // set initial status to checking
             selection[i].status.staleness = 'checking';
             // perform the check url request
-            Pinboardservice.checkUrl(selection[i].data.href)
+            Backendpinboard.checkUrl(selection[i].data.href)
             .then(function(result) {
               var checkedBmHash = selection[i].data.hash;
               checked++;
@@ -211,7 +241,7 @@ angular.module('pinboredWebkitApp')
       // RECURSIVE delete single bookmark function.
       var deleteNextBookmark = function() {
         if(selection.length > 0 && deleted !== total) {
-          Pinboardservice.deleteBookmark(selection[0].data.href)
+          Backendpinboard.deleteBookmark(selection[0].data.href)
             .then(function(result) {
               if(result.result_code === 'done') {
                 var deletionBmHash = selection[0].data.hash;
@@ -251,7 +281,7 @@ angular.module('pinboredWebkitApp')
         Appstatusservice.updateStatus('Failed to delete bookmark: ' + message + '.', 0, 0, 'danger');
       };
 
-      Pinboardservice.deleteBookmark(bookmarkItem.data.href)
+      Backendpinboard.deleteBookmark(bookmarkItem.data.href)
         .then(function(result) {
           if(result.result_code === 'done') {
             console.log('delete request completed.');
@@ -268,7 +298,7 @@ angular.module('pinboredWebkitApp')
 
     this.staleCheckBookmark = function(bookmark) {
       bookmark.status.staleness = 'checking';
-      Pinboardservice.checkUrl(bookmark.data.href)
+      Backendpinboard.checkUrl(bookmark.data.href)
       .then(function(result) {
         if(result === 200) {
           console.info('bookmarkitem healthy! ' + result);
