@@ -24,7 +24,6 @@
     "grunt-contrib-copy": "^0.8.1",
     "grunt-contrib-cssmin": "^0.14.0",
     "grunt-contrib-uglify": "^0.9.2",
-    "grunt-flow": "^1.0.0",
     "grunt-htmlclean": "^2.6.4",
     "grunt-karma": "^0.12.1",
     "grunt-nw-builder": "^2.0.0",
