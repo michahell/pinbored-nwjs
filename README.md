@@ -102,7 +102,24 @@ requirements
 ------------
 
 * [Node.js and NPM](http://nodejs.org/)
-* Global install of [Grunt](http://gruntjs.com/), [Bower](http://bower.io/).
+* Global npm installs of: 
+  * [Grunt](http://gruntjs.com/) : ```npm install -g grunt-cli```, 
+  * [Bower](http://bower.io/) : ```npm install -g bower```,
+  * [Jasmine](http://jasmine.github.io/) : ```npm install -g jasmine```
+* Node-webkit:
+  * **OSX users**: ```brew cask install nwjs```. or [manually](https://github.com/nwjs/nw.js).
+    optionally add an alias to your .bashrc, .bash_profile or .aliases file:
+
+```bash
+# alias to nw
+alias nw="/Applications/nwjs.app/Contents/MacOS/nwjs"
+```
+
+  * **Windows users**: install manually: [manually](https://github.com/nwjs/nw.js).
+    I've found that it is easiest to put the extracted nwjs folder next to the pinbored dir, and
+    running nwjs from there like so: ```./nw ../pinbored-webkit/App```.
+  * **Linux users**: install manually: [manually](https://github.com/nwjs/nw.js). 
+    Optionally add an alias [like is done here](http://exponential.io/blog/install-node-webkit-on-ubuntu-linux/).
 * Some patience! the ```npm install``` command can take quite a while to finish. Among others this is due to the nodewebkit module being downloaded by [karma-nodewebkit-launcher](https://www.npmjs.org/package/karma-nodewebkit-launcher) which needs it to be able to test using node webkit.
 
 steps
@@ -111,11 +128,27 @@ steps
 1. clone or fork project.
 2. run ```npm install``` in root (installs dev. and app dependancies and bower components)
 3. run ```npm install``` in /App (installs app node module dependancies)
-4. run:
-    * ```grunt build``` (create App_release folder with minified source) OR
-    * ```grunt release-osx``` [```release-win```, ```release-lin```]
+4. run either:
+    * ```grunt update``` for running with nwjs.
+      **Windows / Linux users**: if you get missing package errors, you should manually install the following npm packages:
 
-note: releasing for Windows + Linux is possible but not (yet) tested by me.
+```bash
+npm install grunt
+npm install grunt-purifycss
+npm install grunt-contrib-cssmin
+npm install grunt-preprocess
+npm install grunt-contrib-uglify
+npm install grunt-contrib-copy
+npm install grunt-htmlclean
+npm install grunt-karma
+npm install grunt-open
+npm install grunt-nw-builder
+```
+
+    * ```grunt build``` (create App_release folder with minified source) AND THEN
+    * ```grunt release-osx``` or [```grunt release-win```, ```grunt elease-lin```]
+
+note: releasing (building binaries) for Windows + Linux is being tested atm.
 
 warnings & errors
 -----------------
@@ -124,15 +157,18 @@ Depending on your OS and node version, you may see some of the following npm war
 
 * npm WARN engine xmlbuilder@2.2.1: wanted: {"node":"0.8.x || 0.10.x"} (current: {"node":"4.0.0","npm":"3.3.3"})
 * npm WARN engine xmlbuilder@2.4.4: wanted: {"node":"0.8.x || 0.10.x || 0.11.x"} (current: {"node":"4.0.0","npm":"3.3.3"})
+* node-gyp rebuild errors for certain npm modules.
+
+I've seen the following extra warning on Windows 8.1, git bash, nodejs v4.0.0:
+
 * npm WARN peerDependencies The peer dependency jasmine-core@* included from karma-jasmine will no
   npm WARN peerDependencies longer be automatically installed to fulfill the peerDependency
   npm WARN peerDependencies in npm 3+. Your application will need to depend on it explicitly.
 
-And errors:
+...and errors:
 
-* node-gyp rebuild errors for certain npm modules.
-
-
+* Loading "grunt-karma.js" tasks...ERROR
+  >> Error: Cannot find module './lib'
 
 Caveats
 -------
