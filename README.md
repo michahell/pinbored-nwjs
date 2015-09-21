@@ -126,12 +126,12 @@ steps
 -----
 
 1. clone or fork project.
-2. run ```npm install``` in root (installs dev. and app dependancies and bower components)
-3. run ```npm install``` in /App (installs app node module dependancies)
+2. run **```npm install```** in root (installs dev. and app dependancies and bower components)
+3. run **```npm install```** in /App (installs app node module dependancies)
 4. run either:
     * **```grunt update```**
       
-      **Windows / Linux users**: if you get missing package errors, you should manually install the following npm packages:
+      - **Windows / Linux users**: if you get missing package errors, you should probably manually install the following npm packages:
     
       ```bash
       npm install grunt
@@ -148,9 +148,9 @@ steps
 
       and then: ```nw App``` for running with nwjs.
 
-    **Windows users**: ```./nw ../pinbored-webkit/App``` if your extracted nwjs folder lives next to the project folder.
+      - **Windows users**: ```./nw ../pinbored-webkit/App``` if your extracted nwjs folder lives next to the project folder.
 
-    * or: ```grunt build``` and then: ```grunt release-osx``` or [```grunt release-win```, ```grunt elease-lin```].
+    * or: **```grunt build```** and then: **```grunt release-osx```** or [```grunt release-win```, ```grunt elease-lin```].
 
 note: releasing (building binaries) for Windows + Linux is being tested atm.
 
