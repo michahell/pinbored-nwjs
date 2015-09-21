@@ -107,18 +107,18 @@ requirements
   * [Bower](http://bower.io/) : ```npm install -g bower```,
   * [Jasmine](http://jasmine.github.io/) : ```npm install -g jasmine```
 * Node-webkit:
-  * **OSX users**: ```brew cask install nwjs```. or [manually](https://github.com/nwjs/nw.js).
+  * **OSX users**: ```brew cask install nwjs```. or install [manually](https://github.com/nwjs/nw.js).
     optionally add an alias to your .bashrc, .bash_profile or .aliases file:
 
-```bash
-# alias to nw
-alias nw="/Applications/nwjs.app/Contents/MacOS/nwjs"
-```
+    ```bash
+    # alias to nw
+    alias nw="/Applications/nwjs.app/Contents/MacOS/nwjs"
+    ```
 
-  * **Windows users**: install manually: [manually](https://github.com/nwjs/nw.js).
+  * **Windows users**: install [manually](https://github.com/nwjs/nw.js).
     I've found that it is easiest to put the extracted nwjs folder next to the pinbored dir, and
     running nwjs from there like so: ```./nw ../pinbored-webkit/App```.
-  * **Linux users**: install manually: [manually](https://github.com/nwjs/nw.js). 
+  * **Linux users**: install [manually](https://github.com/nwjs/nw.js) as well.
     Optionally add an alias [like is done here](http://exponential.io/blog/install-node-webkit-on-ubuntu-linux/).
 * Some patience! the ```npm install``` command can take quite a while to finish. Among others this is due to the nodewebkit module being downloaded by [karma-nodewebkit-launcher](https://www.npmjs.org/package/karma-nodewebkit-launcher) which needs it to be able to test using node webkit.
 
@@ -150,42 +150,46 @@ steps
 
       **- Windows users**: ```./nw ../pinbored-webkit/App``` if your extracted nwjs folder lives next to the project folder.
 
-    * or: **```grunt build```** and then: **```grunt release-osx```** or [```grunt release-win```, ```grunt elease-lin```].
+    * or: **```grunt build```** and then: **```grunt release-osx```** or [```grunt release-win```, ```grunt release-lin```].
 
-note: releasing (building binaries) for Windows + Linux is being tested atm.
+note: Windows and Linux binaries will be built every new release from now on !
 
 warnings & errors
 -----------------
 
 Depending on your OS and node version, you may see some of the following npm warnings:
 
-* npm WARN engine xmlbuilder@2.2.1: wanted: {"node":"0.8.x || 0.10.x"} (current: {"node":"4.0.0","npm":"3.3.3"})
-* npm WARN engine xmlbuilder@2.4.4: wanted: {"node":"0.8.x || 0.10.x || 0.11.x"} (current: {"node":"4.0.0","npm":"3.3.3"})
+* ```npm WARN engine xmlbuilder@2.2.1: wanted: {"node":"0.8.x || 0.10.x"} (current: {"node":"4.0.0","npm":"3.3.3"})```
+* ```npm WARN engine xmlbuilder@2.4.4: wanted: {"node":"0.8.x || 0.10.x || 0.11.x"} (current: {"node":"4.0.0","npm":"3.3.3"})```
 * node-gyp rebuild errors for certain npm modules.
 
 I've seen the following extra warning on Windows 8.1, git bash, nodejs v4.0.0:
 
-* npm WARN peerDependencies The peer dependency jasmine-core@* included from karma-jasmine will no
+* ```bash
+  npm WARN peerDependencies The peer dependency jasmine-core@* included from karma-jasmine will no
   npm WARN peerDependencies longer be automatically installed to fulfill the peerDependency
   npm WARN peerDependencies in npm 3+. Your application will need to depend on it explicitly.
+  ```
 
 ...and errors:
 
-* Loading "grunt-karma.js" tasks...ERROR
+* ```bash
+  Loading "grunt-karma.js" tasks...ERROR
   >> Error: Cannot find module './lib'
+  ```
 
 Caveats
 -------
 *  OSX
    * None!
 *  Windows
-   * Unknown. Help me build on windows!
+   * Need to manually install missing npm dependancies.
 *  Linux
-   * On Ubuntu Linux, which I used to test & build for linux, there can be some hassle getting the 'node' command to work:
-   see: https://stackoverflow.com/questions/18130164/nodejs-vs-node-on-ubuntu-12-04/18130296#18130296
-   * removing the core node package using apt-get worked for me to get node and npm working together fine.
-   * Also, on Ubuntu version 14.x.x and up there is a [libudev.so.0 issue](https://www.exponential.io/blog/install-node-webkit-on-ubuntu-linux) but following the guide and thus installing node-webkit outside of npm works flawlessly.
-   * And finally, for some reason, the grunt-bowercopy task needs npm module 'esprima' on Ubuntu. Since on OSX that module is not needed, just installing it suffices: ```$ npm install esprima ```.
+   ~~* On Ubuntu Linux, which I used to test & build for linux, there can be some hassle getting the 'node' command to work:
+   see: https://stackoverflow.com/questions/18130164/nodejs-vs-node-on-ubuntu-12-04/18130296#18130296~~
+   ~~* removing the core node package using apt-get worked for me to get node and npm working together fine.~~
+   ~~* Also, on Ubuntu version 14.x.x and up there is a [libudev.so.0 issue](https://www.exponential.io/blog/install-node-webkit-on-ubuntu-linux) but following the guide and thus installing node-webkit outside of npm works flawlessly.~~
+   ~~* And finally, for some reason, the grunt-bowercopy task needs npm module 'esprima' on Ubuntu. Since on OSX that module is not needed, just installing it suffices: ```$ npm install esprima ```.~~
 
 running development version
 ---------------------------
