@@ -132,18 +132,18 @@ steps
     * ```grunt update``` for running with nwjs.
       **Windows / Linux users**: if you get missing package errors, you should manually install the following npm packages:
 
-```bash
-npm install grunt
-npm install grunt-purifycss
-npm install grunt-contrib-cssmin
-npm install grunt-preprocess
-npm install grunt-contrib-uglify
-npm install grunt-contrib-copy
-npm install grunt-htmlclean
-npm install grunt-karma
-npm install grunt-open
-npm install grunt-nw-builder
-```
+    ```bash
+    npm install grunt
+    npm install grunt-purifycss
+    npm install grunt-contrib-cssmin
+    npm install grunt-preprocess
+    npm install grunt-contrib-uglify
+    npm install grunt-contrib-copy
+    npm install grunt-htmlclean
+    npm install grunt-karma
+    npm install grunt-open
+    npm install grunt-nw-builder
+    ```
 
     * ```grunt build``` (create App_release folder with minified source) AND THEN
     * ```grunt release-osx``` or [```grunt release-win```, ```grunt elease-lin```]
