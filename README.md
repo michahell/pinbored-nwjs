@@ -98,32 +98,35 @@ requirements
 ------------
 
 * [Node.js and NPM](http://nodejs.org/)
+
 * Global npm installs of: 
   * [Grunt](http://gruntjs.com/) : ```npm install -g grunt-cli```, 
   * [Bower](http://bower.io/) : ```npm install -g bower```,
   * [Jasmine](http://jasmine.github.io/) : ```npm install -g jasmine```
+
 * Node-webkit:
-  * **OSX users**: ```brew cask install nwjs```. or install [manually](https://github.com/nwjs/nw.js).
-    optionally add an alias to your .bashrc, .bash_profile or .aliases file:
+  **- OSX users**: ```brew cask install nwjs```. or install [manually](https://github.com/nwjs/nw.js).
+  optionally add an alias to your .bashrc, .bash_profile or .aliases file:
 
-    ```bash
-    # alias to nw
-    alias nw="/Applications/nwjs.app/Contents/MacOS/nwjs"
-    ```
+  ```bash
+  # alias to nw
+  alias nw="/Applications/nwjs.app/Contents/MacOS/nwjs"
+  ```
 
-  * **Windows users**: install [manually](https://github.com/nwjs/nw.js).
-    I've found that it is easiest to put the extracted nwjs folder next to the pinbored dir, and
-    running nwjs from there like so: ```./nw ../pinbored-webkit/App```.
-  * **Linux users**: install [manually](https://github.com/nwjs/nw.js) as well.
-    Optionally add an alias [like is done here](http://exponential.io/blog/install-node-webkit-on-ubuntu-linux/).
+  **- Windows users**: install [manually](https://github.com/nwjs/nw.js).
+  I've found that it is easiest to put the extracted nwjs folder next to the pinbored dir, and
+  running nwjs from there like so: ```./nw ../pinbored-webkit/App```.
+  **- Linux users**: install [manually](https://github.com/nwjs/nw.js) as well.
+  Optionally add an alias [like is done here](http://exponential.io/blog/install-node-webkit-on-ubuntu-linux/).
+
 * Some patience! the ```npm install``` command can take quite a while to finish. Among others this is due to the nodewebkit module being downloaded by [karma-nodewebkit-launcher](https://www.npmjs.org/package/karma-nodewebkit-launcher) which needs it to be able to test using node webkit.
 
 steps
 -----
 
 1. clone or fork project.
-2. run **```npm install```** in root (installs dev. and app dependancies and bower components)
-3. run **```npm install```** in /App (installs app node module dependancies)
+2. run **```npm install```** in the project root (installs development environment dependancies)
+3. run **```npm install```** in /App (installs app dependancies)
 4. run either:
     * **```grunt update```**
       
@@ -152,9 +155,9 @@ steps
         Do note that if you change the source code, and refresh inside node-webkit, it does not reflect changes as 
         opposed to running the debug version. you need to re-run ```grunt build``` each time!
       * **```grunt release-osx```** or [```grunt release-win```, ```grunt release-lin```]. This will output binaries
-        (both 32 bits and 64 bits by default)for the platform you are on in App/Release.
+        (both 32 bits and 64 bits by default) for the platform you are on in App/Release.
 
-note: Windows and Linux binaries will be built every new release from now on !
+*note: Windows and Linux binaries will be built every new release from now on !*
 
 warnings & errors
 -----------------
