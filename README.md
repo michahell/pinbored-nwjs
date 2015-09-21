@@ -120,10 +120,13 @@ note: releasing for Windows + Linux is possible but not (yet) tested by me.
 warnings & errors
 -----------------
 
-Depending on your node version, you may see some of the following npm warnings:
+Depending on your OS and node version, you may see some of the following npm warnings:
 
 * npm WARN engine xmlbuilder@2.2.1: wanted: {"node":"0.8.x || 0.10.x"} (current: {"node":"4.0.0","npm":"3.3.3"})
 * npm WARN engine xmlbuilder@2.4.4: wanted: {"node":"0.8.x || 0.10.x || 0.11.x"} (current: {"node":"4.0.0","npm":"3.3.3"})
+* npm WARN peerDependencies The peer dependency jasmine-core@* included from karma-jasmine will no
+  npm WARN peerDependencies longer be automatically installed to fulfill the peerDependency
+  npm WARN peerDependencies in npm 3+. Your application will need to depend on it explicitly.
 
 And errors:
 
