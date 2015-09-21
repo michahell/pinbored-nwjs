@@ -131,7 +131,7 @@ steps
 4. run either:
     * **```grunt update```**
       
-      - **Windows / Linux users**: if you get missing package errors, you should probably manually install the following npm packages:
+      **- Windows / Linux users**: if you get missing package errors, you should probably manually install the following npm packages:
     
       ```bash
       npm install grunt
@@ -148,7 +148,7 @@ steps
 
       and then: ```nw App``` for running with nwjs.
 
-      - **Windows users**: ```./nw ../pinbored-webkit/App``` if your extracted nwjs folder lives next to the project folder.
+      **- Windows users**: ```./nw ../pinbored-webkit/App``` if your extracted nwjs folder lives next to the project folder.
 
     * or: **```grunt build```** and then: **```grunt release-osx```** or [```grunt release-win```, ```grunt elease-lin```].
 
