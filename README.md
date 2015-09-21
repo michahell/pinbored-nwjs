@@ -117,7 +117,7 @@ requirements
   **- Windows users**: install [manually](https://github.com/nwjs/nw.js).
   I've found that it is easiest to put the extracted nwjs folder next to the pinbored dir, and
   running nwjs from there like so: ```./nw ../pinbored-webkit/App```.
-  
+
   **- Linux users**: install [manually](https://github.com/nwjs/nw.js) as well.
   Optionally add an alias [like is done here](http://exponential.io/blog/install-node-webkit-on-ubuntu-linux/).
 
@@ -152,7 +152,7 @@ steps
       **- Windows users**: ```./nw ../pinbored-webkit/App``` if your extracted nwjs folder lives next to the project folder.
 
     * or: **```grunt build```** and then either: 
-      * ```nw App_release```. This is the pinbored-webkit source css/js uglified + compacted files in the App_release dir.
+      * **```nw App_release```**. This is the pinbored-webkit source css/js uglified + compacted files in the App_release dir.
         This is the version that gets packaged into a native application when a version is released.
         Do note that if you change the source code, and refresh inside node-webkit, it does not reflect changes as 
         opposed to running the debug version. you need to re-run ```grunt build``` each time!
@@ -165,6 +165,7 @@ warnings & errors
 -----------------
 
 Depending on your OS and node version, you may see some of the following npm warnings.
+
 **Ignore these warnings. They are all required npm submodule dependancies.**
 
 * ```npm WARN engine xmlbuilder@2.2.1: wanted: {"node":"0.8.x || 0.10.x"} (current: {"node":"4.0.0","npm":"3.3.3"})```
@@ -180,6 +181,7 @@ npm WARN peerDependencies in npm 3+. Your application will need to depend on it 
 ```
 
 Also these errors.
+
 **Ignore the following specific errors.**
 
 ```bash
