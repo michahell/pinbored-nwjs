@@ -142,11 +142,17 @@ steps
       npm install grunt-nw-builder
       ```
 
-      and then: ```nw App``` for running with nwjs.
+      and then: ```nw App``` for running the debug version in nwjs.
 
       **- Windows users**: ```./nw ../pinbored-webkit/App``` if your extracted nwjs folder lives next to the project folder.
 
-    * or: **```grunt build```** and then: **```grunt release-osx```** or [```grunt release-win```, ```grunt release-lin```].
+    * or: **```grunt build```** and then either: 
+      * ```nw App_release```. This is the pinbored-webkit source css/js uglified + compacted files in the App_release dir.
+        This is the version that gets packaged into a native application when a version is released.
+        Do note that if you change the source code, and refresh inside node-webkit, it does not reflect changes as 
+        opposed to running the debug version. you need to re-run ```grunt build``` each time!
+      * **```grunt release-osx```** or [```grunt release-win```, ```grunt release-lin```]. This will output binaries
+        (both 32 bits and 64 bits by default)for the platform you are on in App/Release.
 
 note: Windows and Linux binaries will be built every new release from now on !
 
@@ -184,36 +190,11 @@ Caveats and quirks
 *  Windows
    * Need to manually install missing npm dependancies, see above.
 *  Linux
-   ~~* On Ubuntu Linux, which I used to test & build for linux, there can be some hassle getting the 'node' command to work:
+   * ~~On Ubuntu Linux, which I used to test & build for linux, there can be some hassle getting the 'node' command to work:
    see: https://stackoverflow.com/questions/18130164/nodejs-vs-node-on-ubuntu-12-04/18130296#18130296~~
-   ~~* removing the core node package using apt-get worked for me to get node and npm working together fine.~~
-   ~~* Also, on Ubuntu version 14.x.x and up there is a [libudev.so.0 issue](https://www.exponential.io/blog/install-node-webkit-on-ubuntu-linux) but following the guide and thus installing node-webkit outside of npm works flawlessly.~~
-   ~~* And finally, for some reason, the grunt-bowercopy task needs npm module 'esprima' on Ubuntu. Since on OSX that module is not needed, just installing it suffices: ```$ npm install esprima ```.~~
-
-running development version
----------------------------
-If you have node-webkit installed, you can use the following command in the root of the project dir to run the app:
-```
-$ <node-webkit executable location> App
-```
-
-Or, if you have the **nw** alias configured:
-
-```
-$ nw App
-```
-
-running release version
------------------------
-pinbored-webkit source css/js uglified + much less files in App_release dir.
-This is the version that gets packaged into a native application when a version is released.
-Do note that if you change the source code, and refresh inside node-webkit, it does not reflect changes as 
-opposed to running the development version.
-
-```
-$ grunt build
-$ nw App_release
-```
+   * ~~removing the core node package using apt-get worked for me to get node and npm working together fine.~~
+   * ~~Also, on Ubuntu version 14.x.x and up there is a [libudev.so.0 issue](https://www.exponential.io/blog/install-node-webkit-on-ubuntu-linux) but following the guide and thus installing node-webkit outside of npm works flawlessly.~~
+   * ~~And finally, for some reason, the grunt-bowercopy task needs npm module 'esprima' on Ubuntu. Since on OSX that module is not needed, just installing it suffices: ```$ npm install esprima ```.~~
 
 
 Disclaimer
