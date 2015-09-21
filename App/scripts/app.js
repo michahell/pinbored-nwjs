@@ -26,7 +26,7 @@ angular
   ])
   .config(function($stateProvider, $stickyStateProvider, $urlRouterProvider) {
 
-    $stickyStateProvider.enableDebug(true);
+    // $stickyStateProvider.enableDebug(true);
 
     // For any unmatched url, redirect to /overview
     $urlRouterProvider.otherwise("/overview");
