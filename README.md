@@ -129,25 +129,24 @@ steps
 2. run ```npm install``` in root (installs dev. and app dependancies and bower components)
 3. run ```npm install``` in /App (installs app node module dependancies)
 4. run either:
-    * ```grunt update```
+    * **```grunt update```**
       
       **Windows / Linux users**: if you get missing package errors, you should manually install the following npm packages:
-
     
-    ```bash
-    npm install grunt
-    npm install grunt-purifycss
-    npm install grunt-contrib-cssmin
-    npm install grunt-preprocess
-    npm install grunt-contrib-uglify
-    npm install grunt-contrib-copy
-    npm install grunt-htmlclean
-    npm install grunt-karma
-    npm install grunt-open
-    npm install grunt-nw-builder
-    ```
+      ```bash
+      npm install grunt
+      npm install grunt-purifycss
+      npm install grunt-contrib-cssmin
+      npm install grunt-preprocess
+      npm install grunt-contrib-uglify
+      npm install grunt-contrib-copy
+      npm install grunt-htmlclean
+      npm install grunt-karma
+      npm install grunt-open
+      npm install grunt-nw-builder
+      ```
 
-    and then: ```nw App``` for running with nwjs.
+      and then: ```nw App``` for running with nwjs.
 
     **Windows users**: ```./nw ../pinbored-webkit/App``` if your extracted nwjs folder lives next to the project folder.
 
