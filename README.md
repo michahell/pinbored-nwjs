@@ -105,6 +105,7 @@ requirements
   * [Jasmine](http://jasmine.github.io/) : ```npm install -g jasmine```
 
 * Node-webkit:
+  
   **- OSX users**: ```brew cask install nwjs```. or install [manually](https://github.com/nwjs/nw.js).
   optionally add an alias to your .bashrc, .bash_profile or .aliases file:
 
@@ -116,6 +117,7 @@ requirements
   **- Windows users**: install [manually](https://github.com/nwjs/nw.js).
   I've found that it is easiest to put the extracted nwjs folder next to the pinbored dir, and
   running nwjs from there like so: ```./nw ../pinbored-webkit/App```.
+  
   **- Linux users**: install [manually](https://github.com/nwjs/nw.js) as well.
   Optionally add an alias [like is done here](http://exponential.io/blog/install-node-webkit-on-ubuntu-linux/).
 
