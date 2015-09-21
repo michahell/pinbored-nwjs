@@ -94,10 +94,6 @@ Downloads are available on the [project page](http://michahell.github.io/pinbore
 Building + running from source
 ==============================
 
-quirks
-------
-~~On OSX ```ulimit -S -n 4096``` no longer neccesary due to the  [grunt-bowercopy](https://www.npmjs.org/package/grunt-bowercopy) task.~~
-
 requirements
 ------------
 
@@ -165,25 +161,28 @@ Depending on your OS and node version, you may see some of the following npm war
 
 I've seen the following extra warning on Windows 8.1, git bash, nodejs v4.0.0:
 
-* ```bash
-  npm WARN peerDependencies The peer dependency jasmine-core@* included from karma-jasmine will no
-  npm WARN peerDependencies longer be automatically installed to fulfill the peerDependency
-  npm WARN peerDependencies in npm 3+. Your application will need to depend on it explicitly.
-  ```
+```bash
+npm WARN peerDependencies The peer dependency jasmine-core@* included from karma-jasmine will no
+npm WARN peerDependencies longer be automatically installed to fulfill the peerDependency
+npm WARN peerDependencies in npm 3+. Your application will need to depend on it explicitly.
+```
 
 ...and errors:
 
-* ```bash
-  Loading "grunt-karma.js" tasks...ERROR
-  >> Error: Cannot find module './lib'
-  ```
+```bash
+Loading "grunt-karma.js" tasks...ERROR
+\>\> Error: Cannot find module './lib'
+```
 
-Caveats
--------
+Ignore all of these, they are all required npm submodule dependancies.
+
+
+Caveats and quirks
+------------------
 *  OSX
-   * None!
+   * ~~On OSX ```ulimit -S -n 4096``` no longer neccesary due to the  [grunt-bowercopy](https://www.npmjs.org/package/grunt-bowercopy) task.~~
 *  Windows
-   * Need to manually install missing npm dependancies.
+   * Need to manually install missing npm dependancies, see above.
 *  Linux
    ~~* On Ubuntu Linux, which I used to test & build for linux, there can be some hassle getting the 'node' command to work:
    see: https://stackoverflow.com/questions/18130164/nodejs-vs-node-on-ubuntu-12-04/18130296#18130296~~
