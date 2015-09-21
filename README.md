@@ -153,7 +153,8 @@ note: Windows and Linux binaries will be built every new release from now on !
 warnings & errors
 -----------------
 
-Depending on your OS and node version, you may see some of the following npm warnings:
+Depending on your OS and node version, you may see some of the following npm warnings.
+**Ignore these warnings. They are all required npm submodule dependancies.**
 
 * ```npm WARN engine xmlbuilder@2.2.1: wanted: {"node":"0.8.x || 0.10.x"} (current: {"node":"4.0.0","npm":"3.3.3"})```
 * ```npm WARN engine xmlbuilder@2.4.4: wanted: {"node":"0.8.x || 0.10.x || 0.11.x"} (current: {"node":"4.0.0","npm":"3.3.3"})```
@@ -167,14 +168,13 @@ npm WARN peerDependencies longer be automatically installed to fulfill the peerD
 npm WARN peerDependencies in npm 3+. Your application will need to depend on it explicitly.
 ```
 
-...and errors:
+Also these errors.
+**Ignore the following specific errors.**
 
 ```bash
 Loading "grunt-karma.js" tasks...ERROR
-\>\> Error: Cannot find module './lib'
+>> Error: Cannot find module './lib'
 ```
-
-Ignore all of these, they are all required npm submodule dependancies.
 
 
 Caveats and quirks
