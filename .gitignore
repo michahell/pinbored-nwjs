@@ -11,6 +11,7 @@ App/node_modules
 App_release/
 Release/
 
+scrabblepad.txt
 .tmp
 .sass-cache
 project.sublime-project

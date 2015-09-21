@@ -225,7 +225,7 @@ module.exports = function(grunt) {
     },
 
     // building native binaries
-    nodewebkit: {
+    nwjs: {
       
       buildOsx : {
         options: {
@@ -276,7 +276,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-htmlclean');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-open');
-  grunt.loadNpmTasks('grunt-node-webkit-builder');
+  grunt.loadNpmTasks('grunt-nw-builder');
+  // grunt.loadNpmTasks('grunt-node-webkit-builder');
 
   // grunt task
   grunt.registerTask('update', ['clean', 'bowercopy', 'preprocess:development']);
@@ -291,11 +292,11 @@ module.exports = function(grunt) {
   });
 
   // build release node-webkit task(s)
-  grunt.registerTask('release-all', ['nodewebkit:buildOsx', 'nodewebkit:buildWin', 'nodewebkit:buildLin']);
+  grunt.registerTask('release-all', ['nwjs:buildOsx', 'nwjs:buildWin', 'nwjs:buildLin']);
 
-  grunt.registerTask('release-osx', ['nodewebkit:buildOsx']);
-  grunt.registerTask('release-win', ['nodewebkit:buildWin']);
-  grunt.registerTask('release-lin', ['nodewebkit:buildLin']);
+  grunt.registerTask('release-osx', ['nwjs:buildOsx']);
+  grunt.registerTask('release-win', ['nwjs:buildWin']);
+  grunt.registerTask('release-lin', ['nwjs:buildLin']);
 
   // grunt.registerTask('default', ['test', 'osx']);
   grunt.registerTask('default', ['test', 'release-osx']);
