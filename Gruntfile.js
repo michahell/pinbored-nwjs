@@ -293,9 +293,9 @@ module.exports = function(grunt) {
   // build release node-webkit task(s)
   grunt.registerTask('release-all', ['nwjs:buildOsx', 'nwjs:buildWin', 'nwjs:buildLin']);
 
-  grunt.registerTask('release-osx', ['nwjs:buildOsx']);
-  grunt.registerTask('release-win', ['nwjs:buildWin']);
-  grunt.registerTask('release-lin', ['nwjs:buildLin']);
+  grunt.registerTask('release-osx', ['build', 'nwjs:buildOsx']);
+  grunt.registerTask('release-win', ['build', 'nwjs:buildWin']);
+  grunt.registerTask('release-lin', ['build', 'nwjs:buildLin']);
 
   // grunt.registerTask('default', ['test', 'osx']);
   grunt.registerTask('default', ['test', 'release-osx']);

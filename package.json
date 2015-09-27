@@ -5,8 +5,8 @@
     "url": "http://www.powergeek.nl/"
   },
   "name": "pinbored",
-  "description": "a bookmark management app",
-  "version": "0.0.3",
+  "description": "a bookmark management app built around the Pinboard.in REST service.",
+  "version": "0.3.3",
   "bugs": {
     "url": "https://github.com/michahell/pinbored-webkit/issues",
     "email": "maggelo@gmail.com"
