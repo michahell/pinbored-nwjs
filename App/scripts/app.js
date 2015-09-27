@@ -29,7 +29,7 @@ angular
     // $stickyStateProvider.enableDebug(true);
 
     // For any unmatched url, redirect to /overview
-    $urlRouterProvider.otherwise("/overview");
+    $urlRouterProvider.otherwise("/login");
 
     // Now set up the states
     $stateProvider

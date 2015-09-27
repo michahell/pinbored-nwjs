@@ -197,7 +197,7 @@ angular.module('pinboredWebkitApp')
 
 
     $scope.$on('$viewContentLoaded', function() {
-      console.info('bookmarkitem $viewContentLoaded called');
+      console.info('tags $viewContentLoaded called');
 
       $scope.config.collectionType = 'tags';
 
@@ -206,7 +206,7 @@ angular.module('pinboredWebkitApp')
     });
 
     $scope.$on('$destroy', function() {
-      console.info('bookmarkitem $destroy called');
+      console.info('tags $destroy called');
     });
 
     // update current page
