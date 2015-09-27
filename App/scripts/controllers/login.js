@@ -20,7 +20,8 @@ angular.module('pinboredWebkitApp')
       busy : false,
       loginAnimation : null,
       username : '',
-      password : ''
+      password : '',
+      forwardState : '/overview'
     };
 
     $scope.loginEnter = function(keyEvent) {
@@ -75,7 +76,7 @@ angular.module('pinboredWebkitApp')
           $scope.model.loginAnimation = true;
           // reroute to main after anim out time
           $timeout(function() {
-            $location.path('/overview');
+            $location.path($scope.model.forwardState);
           }, 1000);
         })
         .catch(function(failure) {

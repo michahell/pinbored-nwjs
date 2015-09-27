@@ -277,7 +277,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-nw-builder');
-  // grunt.loadNpmTasks('grunt-node-webkit-builder');
 
   // grunt task
   grunt.registerTask('update', ['clean', 'bowercopy', 'preprocess:development']);
