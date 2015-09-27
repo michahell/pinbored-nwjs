@@ -121,7 +121,7 @@ requirements
   **- Linux users**: install [manually](https://github.com/nwjs/nw.js) as well.
   Optionally add an alias [like is done here](http://exponential.io/blog/install-node-webkit-on-ubuntu-linux/).
 
-* Some patience! the ```npm install``` command can take quite a while to finish. Among others this is due to the nodewebkit module being downloaded by [karma-nodewebkit-launcher](https://www.npmjs.org/package/karma-nodewebkit-launcher) which needs it to be able to test using node webkit.
+* Some patience! (the ```npm install``` command in the steps below can take quite a while to finish. Among others this is due to the nodewebkit module being downloaded by [karma-nodewebkit-launcher](https://www.npmjs.org/package/karma-nodewebkit-launcher) which needs it to be able to test using node webkit).
 
 steps
 -----
