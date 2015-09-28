@@ -19,7 +19,7 @@ angular.module('pinboredWebkitApp')
       navItems : [
         { name: 'overview' },
         { name: 'tags' },
-        { name: 'tools' },
+        // { name: 'tools' },
         // { name: 'statistics' },
         { name: 'settings' }
       ],
