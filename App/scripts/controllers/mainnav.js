@@ -19,8 +19,8 @@ angular.module('pinboredWebkitApp')
       navItems : [
         { name: 'overview' },
         { name: 'tags' },
-        // { name: 'tools' },
-        // { name: 'statistics' },
+        { name: 'tools' },
+        { name: 'statistics' },
         { name: 'settings' }
       ],
       userMenuItems : [
