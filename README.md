@@ -1,7 +1,6 @@
-![Pinbored](http://powergeek.nl/static-imgs/pinbored-logo-github.png)
-
+<!-- ![Pinbored](http://powergeek.nl/static-imgs/pinbored-logo-github.png) -->
+<a href='https://ind.ie/ethical-design'><img style='margin-left: auto; margin-right: auto;' alt='We practice Ethical Design' src='https://img.shields.io/badge/Ethical_Design-_▲_❤_-blue.svg'></a>
 [![volkswagen status](https://auchenberg.github.io/volkswagen/volkswargen_ci.svg?v=1)](https://github.com/auchenberg/volkswagen)
-
 <!-- [![David](https://img.shields.io/david/michahell/pinbored-webkit.svg)]() -->
 [![devDependency Status](https://david-dm.org/michahell/pinbored-webkit/dev-status.svg)](https://david-dm.org/michahell/pinbored-webkit/#info=devDependencies)
 [![Code Climate](https://codeclimate.com/github/michahell/pinbored-webkit/badges/gpa.svg)](https://codeclimate.com/github/michahell/pinbored-webkit)
@@ -9,8 +8,8 @@
 [![Test Coverage](https://codeclimate.com/github/michahell/pinbored-webkit/badges/coverage.svg)](https://codeclimate.com/github/michahell/pinbored-webkit)
 [![GitHub issues](https://img.shields.io/github/issues/michahell/pinbored-webkit.svg)]()
 
-[![GitHub release](https://img.shields.io/github/release/michahell/pinbored-webkit.svg)]()
-[![GitHub license](https://img.shields.io/github/license/michahell/pinbored-webkit.svg)]()
+<!-- [![GitHub release](https://img.shields.io/github/release/michahell/pinbored-webkit.svg)]()
+[![GitHub license](https://img.shields.io/github/license/michahell/pinbored-webkit.svg)]() -->
 
 [![Stories in Ready](https://badge.waffle.io/michahell/pinbored-webkit.png?label=In%20Progress&title=In%20Progress)](https://waffle.io/michahell/pinbored-webkit)
 [![Gitter](https://badges.gitter.im/JoinChat.svg)](https://gitter.im/michahell/pinbored-webkit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
