@@ -58,7 +58,7 @@ angular.module('pinboredWebkitApp')
 
     $scope.about = function() {
       console.log('about clicked...');
-      ngDialog.open({ template: 'templates/aboutTemplate.html' });
+      ngDialog.open({ template: 'templates/modal-about-template.html' });
     };
 
     $scope.logout = function() {

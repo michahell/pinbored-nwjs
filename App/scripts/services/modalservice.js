@@ -9,7 +9,7 @@
 angular.module('pinboredWebkitApp')
   .service('Modalservice', 
   ['$q', 'Utilservice', 
-  function ($q, Utilservice) { // $splash, 
+  function ($q, Utilservice) {
     // AngularJS will instantiate a singleton by calling 'new' on this function
 
     this.alert = function (windowTitle, messageString) {
@@ -23,21 +23,6 @@ angular.module('pinboredWebkitApp')
       setTimeout(function(){
         deferred.resolve();
       }, 250);
-
-      // var modalInstance = $splash.open({
-      //   title: windowTitle || 'alert',
-      //   message: messageString
-      // }, {
-      //   templateUrl: 'templates/modal-alert-content.html',
-      //   windowTemplateUrl: 'templates/modal-alert-index.html'
-      // });
-
-      // modalInstance.result
-      //   .then(function() {
-      //     deferred.resolve();
-      //   }, function() {
-      //     deferred.reject();
-      //   });
 
       return deferred.promise;
     };
@@ -54,21 +39,6 @@ angular.module('pinboredWebkitApp')
         console.log('modal declined!');
         deferred.reject();
       }
-
-      // var modalInstance = $splash.open({
-      //   title: !Utilservice.isEmpty(windowTitle) ? windowTitle : 'Are you sure',
-      //   message: messageString
-      // }, {
-      //   templateUrl: 'templates/modal-confirm-content.html',
-      //   windowTemplateUrl: 'templates/modal-confirm-index.html'
-      // });
-
-      // modalInstance.result
-      //   .then(function() {
-      //     deferred.resolve();
-      //   }, function() {
-      //     deferred.reject();
-      //   });
 
       return deferred.promise;
     };
