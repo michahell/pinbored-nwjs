@@ -1,25 +1,24 @@
-<!-- ![Pinbored](http://powergeek.nl/static-imgs/pinbored-logo-github.png) -->
-<!-- <a href='https://ind.ie/ethical-design'><img style='margin-left: auto; margin-right: auto;' alt='We practice Ethical Design' src='https://img.shields.io/badge/Ethical_Design-_▲_❤_-blue.svg'></a> -->
-<!-- [![David](https://img.shields.io/david/michahell/pinbored-webkit.svg)]() -->
-<!-- [![GitHub issues](https://img.shields.io/github/issues/michahell/pinbored-webkit.svg)]() -->
-<!-- [![GitHub release](https://img.shields.io/github/release/michahell/pinbored-webkit.svg)]()
-[![GitHub license](https://img.shields.io/github/license/michahell/pinbored-webkit.svg)]() -->
+<!-- [![David](https://img.shields.io/david/michahell/pinbored-nwjs.svg)]() -->
+<!-- [![GitHub issues](https://img.shields.io/github/issues/michahell/pinbored-nwjs.svg)]() -->
+<!-- [![GitHub release](https://img.shields.io/github/release/michahell/pinbored-nwjs.svg)]()
+[![GitHub license](https://img.shields.io/github/license/michahell/pinbored-nwjs.svg)]() -->
 
 [![volkswagen status](https://auchenberg.github.io/volkswagen/volkswargen_ci.svg?v=1)](https://github.com/auchenberg/volkswagen)
-[![devDependency Status](https://david-dm.org/michahell/pinbored-webkit/dev-status.svg)](https://david-dm.org/michahell/pinbored-webkit/#info=devDependencies)
-[![Code Climate](https://codeclimate.com/github/michahell/pinbored-webkit/badges/gpa.svg)](https://codeclimate.com/github/michahell/pinbored-webkit)
-[![Codacy Badge](https://www.codacy.com/project/badge/8c9342d436414724bee17f6ab6f5076f)](https://www.codacy.com/app/maggelo/pinbored-webkit)
-[![Test Coverage](https://codeclimate.com/github/michahell/pinbored-webkit/badges/coverage.svg)](https://codeclimate.com/github/michahell/pinbored-webkit)
-[![Stories in Ready](https://badge.waffle.io/michahell/pinbored-webkit.png?label=In%20Progress&title=In%20Progress)](https://waffle.io/michahell/pinbored-webkit)
-[![Gitter](https://badges.gitter.im/JoinChat.svg)](https://gitter.im/michahell/pinbored-webkit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-[![Flattr me](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=michahell&url=https://github.com/michahell/pinbored-webkit&title=pinbored-webkit&language=english&tags=github&category=software)
+[![Codeship Status for michahell/pinbored-nwjs](https://codeship.com/projects/8d6b0c90-2168-0132-5fae-5ac01ae581ac/status?branch=master)](https://codeship.com/projects/36225)
+[![devDependency Status](https://david-dm.org/michahell/pinbored-nwjs/dev-status.svg)](https://david-dm.org/michahell/pinbored-nwjs/#info=devDependencies)
+[![Code Climate](https://codeclimate.com/github/michahell/pinbored-nwjs/badges/gpa.svg)](https://codeclimate.com/github/michahell/pinbored-nwjs)
+[![Codacy Badge](https://www.codacy.com/project/badge/8c9342d436414724bee17f6ab6f5076f)](https://www.codacy.com/app/maggelo/pinbored-nwjs)
+[![Test Coverage](https://codeclimate.com/github/michahell/pinbored-nwjs/badges/coverage.svg)](https://codeclimate.com/github/michahell/pinbored-nwjs)
+[![Stories in Ready](https://badge.waffle.io/michahell/pinbored-nwjs.png?label=In%20Progress&title=In%20Progress)](https://waffle.io/michahell/pinbored-nwjs)
+[![Gitter](https://badges.gitter.im/JoinChat.svg)](https://gitter.im/michahell/pinbored-nwjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Flattr me](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=michahell&url=https://github.com/michahell/pinbored-nwjs&title=pinbored-nwjs&language=english&tags=github&category=software)
 
-[Pinbored](http://michahell.github.io/pinbored-webkit) is a 'native' [Pinboard](https://pinboard.in/) 
-client application built with Node-webkit and AngularJS. Currently only OSX binaries are offered, 
+[Pinbored](http://michahell.github.io/pinbored-nwjs) is a 'native' [Pinboard](https://pinboard.in/) 
+client application built with nwjs and AngularJS. Currently only OSX binaries are offered, 
 but that is only because I use OSX myself and have not yet started building on other OSes. 
 See the [abandoned AS3 client version](https://github.com/michahell/pinbored) for more info on the history of this project.
 
-[Latest releases.](https://github.com/michahell/pinbored-webkit/releases)
+[Latest releases.](https://github.com/michahell/pinbored-nwjs/releases)
 
 features / functionality
 ------------------------
@@ -88,12 +87,12 @@ I wish to create something to allow for managing such a huge amount of bookmarks
 Screenshots
 -----------
 
-Can be seen on [the project page](http://michahell.github.io/pinbored-webkit/#screenshots).
+Can be seen on [the project page](http://michahell.github.io/pinbored-nwjs/#screenshots).
 
 Download
 --------
 
-Downloads are available on the [project page](http://michahell.github.io/pinbored-webkit/#binary-downloads) or from the GH [releases page](https://github.com/michahell/pinbored-webkit/releases).
+Downloads are available on the [project page](http://michahell.github.io/pinbored-nwjs/#binary-downloads) or from the GH [releases page](https://github.com/michahell/pinbored-nwjs/releases).
 
 
 Building + running from source
@@ -109,7 +108,7 @@ requirements
   * [Bower](http://bower.io/) : ```npm install -g bower```,
   * [Jasmine](http://jasmine.github.io/) : ```npm install -g jasmine```
 
-* Node-webkit:
+* NWJS:
   
   **- OSX users**: ```brew cask install nwjs```. or install [manually](https://github.com/nwjs/nw.js).
   optionally add an alias to your .bashrc, .bash_profile or .aliases file:
@@ -121,12 +120,12 @@ requirements
 
   **- Windows users**: install [manually](https://github.com/nwjs/nw.js).
   I've found that it is easiest to put the extracted nwjs folder next to the pinbored dir, and
-  running nwjs from there like so: ```./nw ../pinbored-webkit/App```.
+  running nwjs from there like so: ```./nw ../pinbored-nwjs/App```.
 
   **- Linux users**: install [manually](https://github.com/nwjs/nw.js) as well.
   Optionally add an alias [like is done here](http://exponential.io/blog/install-node-webkit-on-ubuntu-linux/).
 
-* Some patience! ( *the* ```npm install``` *command in the steps below can take quite a while to finish. Among others this is due to the nodewebkit module being downloaded by* [karma-nodewebkit-launcher](https://www.npmjs.org/package/karma-nodewebkit-launcher) *which needs it to be able to test using node webkit* ).
+* Some patience! ( *the* ```npm install``` *command in the steps below can take quite a while to finish. Among others this is due to the NWJS module being downloaded by* [karma-nodewebkit-launcher](https://www.npmjs.org/package/karma-nodewebkit-launcher) *which needs it to be able to test using node webkit* ).
 
 steps
 -----
@@ -154,12 +153,12 @@ steps
 
       and then: ```nw App``` for running the debug version in nwjs.
 
-      **- Windows users**: ```./nw ../pinbored-webkit/App``` if your extracted nwjs folder lives next to the project folder.
+      **- Windows users**: ```./nw ../pinbored-nwjs/App``` if your extracted nwjs folder lives next to the project folder.
 
     * or: **```grunt build```** and then either: 
-      * **```nw App_release```**. This is the pinbored-webkit source css/js uglified + compacted files in the App_release dir.
+      * **```nw App_release```**. This is the pinbored-nwjs source css/js uglified + compacted files in the App_release dir.
         This is the version that gets packaged into a native application when a version is released.
-        Do note that if you change the source code, and refresh inside node-webkit, it does not reflect changes as 
+        Do note that if you change the source code, and refresh inside node-nwjs, it does not reflect changes as 
         opposed to running the debug version. you need to re-run ```grunt build``` each time!
       * **```grunt release-osx```** or [```grunt release-win```, ```grunt release-lin```]. This will output binaries
         (both 32 bits and 64 bits by default) for the platform you are on in App/Release.
@@ -205,7 +204,7 @@ Caveats and quirks
    * ~~On Ubuntu Linux, which I used to test & build for linux, there can be some hassle getting the 'node' command to work:
    see: https://stackoverflow.com/questions/18130164/nodejs-vs-node-on-ubuntu-12-04/18130296#18130296~~
    * ~~removing the core node package using apt-get worked for me to get node and npm working together fine.~~
-   * ~~Also, on Ubuntu version 14.x.x and up there is a [libudev.so.0 issue](https://www.exponential.io/blog/install-node-webkit-on-ubuntu-linux) but following the guide and thus installing node-webkit outside of npm works flawlessly.~~
+   * ~~Also, on Ubuntu version 14.x.x and up there is a [libudev.so.0 issue](https://www.exponential.io/blog/install-node-webkit-on-ubuntu-linux) but following the guide and thus installing NWJS outside of npm works flawlessly.~~
    * ~~And finally, for some reason, the grunt-bowercopy task needs npm module 'esprima' on Ubuntu. Since on OSX that module is not needed, just installing it suffices: ```$ npm install esprima ```.~~
 
 
@@ -221,13 +220,13 @@ Roadmap
 =======
 
 all milestones and issues:
-* [Milestones](https://github.com/michahell/pinbored-webkit/milestones)
-* [Issues](https://github.com/michahell/pinbored-webkit/issues)
+* [Milestones](https://github.com/michahell/pinbored-nwjs/milestones)
+* [Issues](https://github.com/michahell/pinbored-nwjs/issues)
 
 milestones list:
-* [current v0.0.4](https://github.com/michahell/pinbored-webkit/milestones/0.0.4%20Yellow%20Mountain)
-* [next    v0.0.5](https://github.com/michahell/pinbored-webkit/milestones/0.0.5%20Green%20Wrench)
-* [next    v0.0.6](https://github.com/michahell/pinbored-webkit/milestones/0.0.6%20Rebel%20Dagger)
+* [current v0.0.4](https://github.com/michahell/pinbored-nwjs/milestones/0.0.4%20Yellow%20Mountain)
+* [next    v0.0.5](https://github.com/michahell/pinbored-nwjs/milestones/0.0.5%20Green%20Wrench)
+* [next    v0.0.6](https://github.com/michahell/pinbored-nwjs/milestones/0.0.6%20Rebel%20Dagger)
 
 name generator used for milestone names:
 [Project Name Generator](http://online-generator.com/name-generator/project-name-generator.php)

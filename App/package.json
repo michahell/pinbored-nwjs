@@ -8,12 +8,12 @@
   "description": "a bookmark management app built around the Pinboard.in REST service.",
   "version": "0.3.3",
   "bugs": {
-    "url": "https://github.com/michahell/pinbored-webkit/issues",
+    "url": "https://github.com/michahell/pinbored-nwjs/issues",
     "email": "maggelo@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/michahell/pinbored-webkit.git"
+    "url": "https://github.com/michahell/pinbored-nwjs.git"
   },
   "private": true,
   "main": "index.html",
