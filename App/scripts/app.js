@@ -21,7 +21,6 @@ angular
     'gridster',                   // gridster grid for tags screen
     'ngProgress',                 // angular animated progress bar
     'ngDialog',                   // angular dialog popup
-    'nya.bootstrap.select',       // better select
     'monospaced.elastic'          // elastic textarea
   ])
   .config(function($stateProvider, $stickyStateProvider, $urlRouterProvider) {

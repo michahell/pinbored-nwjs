@@ -10,7 +10,7 @@ module.exports = function(grunt) {
     
     clean: {
       all: { 
-        src: ['App/bower_components_dist', 'Build', 'App_release', 'Release']
+        src: ['App/bower_components_dist', 'App_release', 'Build', 'Release']
       }
     },
 
@@ -43,7 +43,6 @@ module.exports = function(grunt) {
           'flat-ui/dist/css/flat-ui.min.css': 'flat-ui/dist/css/flat-ui.min.css',
           'angular-gridster/dist/angular-gridster.min.css': 'angular-gridster/dist/angular-gridster.min.css',
           'ngprogress/ngProgress.css': 'ngprogress/ngProgress.css',
-          'nya-bootstrap-select/dist/css/nya-bs-select.min.css': 'nya-bootstrap-select/dist/css/nya-bs-select.min.css',
           'ngDialog/css/ngDialog.min.css': 'ngDialog/css/ngDialog.min.css',
           'ngDialog/css/ngDialog-theme-default.min.css': 'ngDialog/css/ngDialog-theme-default.min.css',
           'ngDialog/css/ngDialog-theme-plain.min.css': 'ngDialog/css/ngDialog-theme-plain.min.css',
@@ -56,7 +55,6 @@ module.exports = function(grunt) {
           'json3/lib/json3.min.js' : 'json3/lib/json3.min.js',
           'angular-bootstrap/ui-bootstrap.min.js': 'angular-bootstrap/ui-bootstrap.min.js',
           'angular-resource/angular-resource.min.js': 'angular-resource/angular-resource.min.js',
-          // 'angular-route/angular-route.min.js': 'angular-route/angular-route.min.js',
           'angular-ui-router/release/angular-ui-router.min.js' : 'angular-ui-router/release/angular-ui-router.min.js',
           'ui-router-extras/release/modular/ct-ui-router-extras.core.min.js' : 'ui-router-extras/release/modular/ct-ui-router-extras.core.min.js',
           'ui-router-extras/release/modular/ct-ui-router-extras.sticky.min.js' : 'ui-router-extras/release/modular/ct-ui-router-extras.sticky.min.js',
@@ -67,10 +65,8 @@ module.exports = function(grunt) {
           'ng-tags-input/ng-tags-input.min.js': 'ng-tags-input/ng-tags-input.min.js',
           'flat-ui/dist/js/flat-ui.min.js': 'flat-ui/dist/js/flat-ui.min.js',
           'ngprogress/build/ngProgress.min.js': 'ngprogress/build/ngProgress.min.js',
-          'nya-bootstrap-select/dist/js/nya-bs-select.min.js': 'nya-bootstrap-select/dist/js/nya-bs-select.min.js',
           'ngDialog/js/ngDialog.min.js': 'ngDialog/js/ngDialog.min.js',
           'ramda/dist/ramda.min.js': 'ramda/dist/ramda.min.js',
-          // 'ramdangular/ramdangular.js': 'ramdangular/ramdangular.js',
           'angular-elastic/elastic.js': 'angular-elastic/elastic.js',
           'mousetrap/mousetrap.min.js': 'mousetrap/mousetrap.min.js',
 
@@ -290,14 +286,12 @@ module.exports = function(grunt) {
     grunt.task.run(tasks);
   });
 
-  // build release node-webkit task(s)
-  grunt.registerTask('release-all', ['nwjs:buildOsx', 'nwjs:buildWin', 'nwjs:buildLin']);
-
+  // release node-webkit tasks
   grunt.registerTask('release-osx', ['build', 'nwjs:buildOsx']);
   grunt.registerTask('release-win', ['build', 'nwjs:buildWin']);
   grunt.registerTask('release-lin', ['build', 'nwjs:buildLin']);
 
   // grunt.registerTask('default', ['test', 'osx']);
-  grunt.registerTask('default', ['test', 'release-osx']);
+  grunt.registerTask('default', ['build']);
 
 };

@@ -18,8 +18,8 @@
         <!-- Single button -->
         <div class="form-group">
           <label for="recentAmountOptions" class="col-sm-4 control-label">set load recent bookmarks amount to: </label>
-          <div class="btn-group" dropdown>
-            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+          <div class="btn-group" uib-dropdown>
+            <button type="button" class="btn btn-primary dropdown-toggle" uib-dropdown-toggle ng-disabled="disabled">
               load <strong>{{newappconfig.maxRecentItems}}</strong> most recent bookmarks <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
@@ -33,8 +33,8 @@
         <!-- Single button -->
         <div class="form-group">
           <label for="recentAmountOptions" class="col-sm-4 control-label">set stale check timeout: </label>
-          <div class="btn-group" dropdown>
-            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+          <div class="btn-group" uib-dropdown>
+            <button type="button" class="btn btn-primary dropdown-toggle" uib-dropdown-toggle ng-disabled="disabled">
               wait <strong>{{newappconfig.staleCheckTimeout / 1000}}</strong> seconds <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">

@@ -19,28 +19,28 @@
         <small>
           <!-- STALE ICON STATES -->
           <span class="label label-info" ng-show="item.status.staleness === 'unknown'"
-          tooltip-placement="{{$first && ('left') || ('top')}}" tooltip="bookmark health unknown">
+          tooltip-placement="{{$first && ('left') || ('top')}}" uib-tooltip="bookmark health unknown">
             <span class="glyphicon glyphicon glyphicon-question-sign"></span>
           </span>
           <span class="label label-info" ng-show="item.status.staleness === 'checking'"
-          tooltip-placement="{{$first && ('left') || ('top')}}" tooltip="bookmark is being checked...">
+          tooltip-placement="{{$first && ('left') || ('top')}}" uib-tooltip="bookmark is being checked...">
             <span class="glyphicon glyphicon glyphicon-refresh"></span>
           </span>
           <span class="label label-success" ng-show="item.status.staleness === 'healthy'"
-          tooltip-placement="{{$first && ('left') || ('top')}}" tooltip="bookmark is healthy!">
+          tooltip-placement="{{$first && ('left') || ('top')}}" uib-tooltip="bookmark is healthy!">
             <span class="glyphicon glyphicon glyphicon-ok-sign"></span>
           </span>
           <span class="label label-danger" ng-show="item.status.staleness === 'dead'"
-          tooltip-placement="{{$first && ('left') || ('top')}}" tooltip="bookmark is (probably) stale">
+          tooltip-placement="{{$first && ('left') || ('top')}}" uib-tooltip="bookmark is (probably) stale">
             <span class="glyphicon glyphicon-exclamation-sign"></span>
           </span>
           <!-- STALE ICON STATES -->
           <span class="label label-success" ng-show="item.data.toread === 'yes'"
-          tooltip-placement="{{$first && ('left') || ('top')}}" tooltip="bookmark is 'to read'">
+          tooltip-placement="{{$first && ('left') || ('top')}}" uib-tooltip="bookmark is 'to read'">
             <span class="glyphicon glyphicon-book"></span>
           </span>
           <span class="label" ng-class="{'label-success': item.data.shared === 'no', 'label-danger': item.data.shared === 'yes'}"
-          tooltip-placement="{{$first && ('left') || ('top')}}" tooltip="{{getSharedDescription()}}">
+          tooltip-placement="{{$first && ('left') || ('top')}}" uib-tooltip="{{getSharedDescription()}}">
             <span class="glyphicon glyphicon-lock"></span>
           </span>
         </small>
@@ -113,10 +113,10 @@
         <div class="col-xs-4">
 
           <div class="btn-group">
-            <button class="btn btn-primary btn-wide btn-sm" ng-model="itemproxy.shared" btn-checkbox>
+            <button class="btn btn-primary btn-wide btn-sm" ng-model="itemproxy.shared" uib-btn-checkbox>
               shared <span class="btn-tip">{{itemproxy.shared === true ? 'YES' : 'NO'}}</span>
             </button>
-            <button class="btn btn-primary btn-wide btn-sm" ng-model="itemproxy.toread" btn-checkbox>
+            <button class="btn btn-primary btn-wide btn-sm" ng-model="itemproxy.toread" uib-btn-checkbox>
               to read <span class="btn-tip">{{itemproxy.toread === true ? 'YES' : 'NO'}}</span>
             </button>
           </div>

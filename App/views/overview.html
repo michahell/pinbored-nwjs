@@ -7,10 +7,10 @@
     <div class="col-xs-3">
 
       <!-- Split button load options -->
-      <div class="btn-group pull-left" dropdown>
+      <div class="btn-group pull-left" uib-dropdown>
         <button type="button" ng-disabled="data.isLoading" class="btn btn-sm btn-primary" ng-click="forceReload()">
           load {{data.loadType === "recent" ? appconfig.maxRecentItems + ' ' + data.loadType : data.loadType}} bookmarks</button>
-        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" dropdown-toggle>
+        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" uib-dropdown-toggle>
           <span class="caret"></span>
           <span class="sr-only">Split button!</span>
         </button>

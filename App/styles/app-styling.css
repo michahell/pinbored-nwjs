@@ -17,16 +17,6 @@ html {
        -o-user-select : none;
 }
 
-/* pinbored logo */
-
-.navbar-brand {
-  box-sizing : border-box;
-  height : 53px;
-  margin-top : -7px;
-  padding : 0;
-  padding-top : 11px;
-}
-
 /* scrollbar */
 
 ::-webkit-scrollbar {
@@ -53,6 +43,16 @@ html {
     background: red;
     box-shadow: 0 0 5px 5px blue;
     outline: 2px solid yellow;
+}
+
+/* pinbored logo */
+
+.navbar-brand {
+  box-sizing : border-box;
+  height : 53px;
+  margin-top : -7px;
+  padding : 0;
+  padding-top : 11px;
 }
 
 /* app-status-indicator */
