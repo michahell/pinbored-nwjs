@@ -96,7 +96,7 @@ module.exports = function(grunt) {
           'App/scripts/*.js'
         ],
         css: ['App/styles/*.css'],
-        dest: 'Build/css/pinbored-webkit.purified.css'
+        dest: 'Build/css/pinbored-nwjs.purified.css'
       },
     },
 
@@ -110,15 +110,15 @@ module.exports = function(grunt) {
         files: [{
           processImport : true,
           // src: ['App/styles/*.css', 'App/bower_components_dist/*.css', '!*.min.css'],
-          src:  'Build/css/pinbored-webkit.purified.css',
-          dest: 'Build/css/pinbored-webkit.min.css',
+          src:  'Build/css/pinbored-nwjs.purified.css',
+          dest: 'Build/css/pinbored-nwjs.min.css',
         }]
       },
       nopurify: {
         files: [{
           processImport : true,
           src: ['App/styles/*.css'],
-          dest: 'Build/css/pinbored-webkit.min.css',
+          dest: 'Build/css/pinbored-nwjs.min.css',
         }]
       }
     },
@@ -158,7 +158,7 @@ module.exports = function(grunt) {
         files: [{
           // src: ['App/scripts/app.js', 'App/scripts/**/*.js', '!App/scripts/tests/*.js', '!*.min.js'],
           src: ['Build/App/scripts/app.js', 'Build/App/scripts/**/*.js', '!Build/App/scripts/tests/*.js'],
-          dest: 'Build/js/pinbored-webkit.min.js'
+          dest: 'Build/js/pinbored-nwjs.min.js'
         }]
       }
     },
@@ -188,8 +188,8 @@ module.exports = function(grunt) {
           {expand: true, cwd: 'Build/templates/', src: ['**'], dest: 'App_release/templates'},
           {expand: true, cwd: 'Build/views/', src: ['**'], dest: 'App_release/views'},
           // minified and concatenated CSS / JS files:
-          {src: 'Build/css/pinbored-webkit.min.css', dest: 'App_release/pinbored-webkit.min.css'},
-          {src: 'Build/js/pinbored-webkit.min.js', dest: 'App_release/pinbored-webkit.min.js'},
+          {src: 'Build/css/pinbored-nwjs.min.css', dest: 'App_release/pinbored-nwjs.min.css'},
+          {src: 'Build/js/pinbored-nwjs.min.js', dest: 'App_release/pinbored-nwjs.min.js'},
           // main app files
           {src: 'Build/index.min.html', dest: 'App_release/index.html'},
           {src: 'App/package.json', dest: 'App_release/package.json'}
@@ -295,7 +295,6 @@ module.exports = function(grunt) {
   grunt.registerTask('release-win', ['build', 'nwjs:buildWin']);
   grunt.registerTask('release-lin', ['build', 'nwjs:buildLin']);
 
-  // grunt.registerTask('default', ['test', 'osx']);
   grunt.registerTask('default', ['build']);
 
 };

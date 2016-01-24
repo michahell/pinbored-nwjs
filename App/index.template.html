@@ -3,9 +3,6 @@
   <head>
     <meta charset="utf-8">
 
-    <!-- @ifdef DEBUG -->
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- @endif -->
     <link rel="stylesheet" href="bower_components_dist/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="bower_components_dist/animate.css/animate.min.css" />
     <link rel="stylesheet" href="bower_components_dist/ng-tags-input/ng-tags-input.min.css">
@@ -44,7 +41,7 @@
     <!-- @endif -->
 
     <!-- @ifdef RELEASE -->
-    <link rel="stylesheet" href="pinbored-webkit.min.css" />
+    <link rel="stylesheet" href="pinbored-nwjs.min.css" />
     <!-- @endif -->
 
   </head>
@@ -103,7 +100,7 @@
     
     <!-- @ifdef DEBUG -->
     <!-- node-js / nwjs stuff -->
-    <script src="scripts/config/config-node-webkit.js"></script>
+    <script src="scripts/config/config-node-nwjs.js"></script>
 
     <!-- main angular entry point -->
     <script src="scripts/app.js"></script>
@@ -151,7 +148,7 @@
     <!-- @endif -->
 
     <!-- @ifdef RELEASE -->
-    <script src="pinbored-webkit.min.js"></script>
+    <script src="pinbored-nwjs.min.js"></script>
     <!-- @endif -->
 
 </body>
