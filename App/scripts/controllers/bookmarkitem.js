@@ -209,7 +209,7 @@ angular.module('pinboredWebkitApp')
         return 'bookmark is public';
       } else {
         return 'bookmark is private';
-      }      
+      }
     };
 
     $scope.tagsToArray = function() {
@@ -231,7 +231,7 @@ angular.module('pinboredWebkitApp')
     $scope.tagObjectsToBookmark = function() {
       var tagsList = [];
       // create object for each tag in the list
-      for (var i=0; i<$scope.itemproxy.tags.length; i++) { 
+      for (var i=0; i<$scope.itemproxy.tags.length; i++) {
         tagsList.push($scope.itemproxy.tags[i].text);
       }
       return tagsList.join(' ');
@@ -249,7 +249,7 @@ angular.module('pinboredWebkitApp')
           // console.log($scope.filter.tags[i].text);
           if($scope.filter.tags[i].text === tag) {
             exists = true;
-            break;            
+            break;
           }
         }
         // it is not, so add it and update

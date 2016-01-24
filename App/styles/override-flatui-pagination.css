@@ -1,0 +1,59 @@
+/* 
+flat-ui pagination overrides. 
+Copied over pagination-plain classes and renamed to pagination, 
+because of angular-ui/bootstrap change of classname...
+*/
+
+.pagination {
+  margin-bottom : 0;
+  margin-top : 0;
+}
+
+.pagination li>a,
+.pagination li>span {
+  min-height: 0;
+  min-width: 0;
+  border: 0;
+  background: 0;
+  color: #16a085;
+  padding: 9px;
+}
+
+.pagination li.active>a,
+.pagination li.active>span {
+  background: 0;
+}
+
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover {
+  background: 0;
+  border: 0; 
+}
+
+.pagination li > a:hover,
+.pagination li > span:hover,
+.pagination li > a:focus,
+.pagination li > span:focus {
+  background: 0;
+  color: #ffffff;
+}
+
+.pagination li.disabled>a, 
+.pagination li.disabled>span {
+  color: #c0392b;
+  background: 0;
+}
+
+.pagination li.disabled>a:hover,
+.pagination li.disabled>span:hover,
+.pagination li.disabled>a:focus,
+.pagination li.disabled>span:focus,
+.pagination li.disabled>a:active,
+.pagination li.disabled>span:active {
+  color: #d9534f;
+  background: 0;
+}

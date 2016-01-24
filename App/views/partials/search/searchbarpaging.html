@@ -1,8 +1,7 @@
 <div class="bar" id="pages" ng-show="config.showPager">
   <div class="bar-container" ng-show="config.showPager">
-    <pagination total-items="paging.total" items-per-page="appconfig.itemsPerPage" 
+    <uib-pagination total-items="paging.total" items-per-page="appconfig.itemsPerPage"
     ng-model="paging.current" max-size="paging.numPageButtons" 
-    boundary-links="true"></pagination>
-    <!-- pagination-sm -->
+    boundary-links="true"></uib-pagination>
   </div>
 </div>
