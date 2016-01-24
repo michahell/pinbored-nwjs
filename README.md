@@ -2,9 +2,9 @@
 <!-- [![GitHub issues](https://img.shields.io/github/issues/michahell/pinbored-nwjs.svg)]() -->
 <!-- [![GitHub release](https://img.shields.io/github/release/michahell/pinbored-nwjs.svg)]()
 [![GitHub license](https://img.shields.io/github/license/michahell/pinbored-nwjs.svg)]() -->
+<!-- [![Codeship Status for michahell/pinbored-nwjs](https://codeship.com/projects/8d6b0c90-2168-0132-5fae-5ac01ae581ac/status?branch=master)](https://codeship.com/projects/36225) -->
 
 [![volkswagen status](https://auchenberg.github.io/volkswagen/volkswargen_ci.svg?v=1)](https://github.com/auchenberg/volkswagen)
-[![Codeship Status for michahell/pinbored-nwjs](https://codeship.com/projects/8d6b0c90-2168-0132-5fae-5ac01ae581ac/status?branch=master)](https://codeship.com/projects/36225)
 [![devDependency Status](https://david-dm.org/michahell/pinbored-nwjs/dev-status.svg)](https://david-dm.org/michahell/pinbored-nwjs/#info=devDependencies)
 [![Code Climate](https://codeclimate.com/github/michahell/pinbored-nwjs/badges/gpa.svg)](https://codeclimate.com/github/michahell/pinbored-nwjs)
 [![Codacy Badge](https://www.codacy.com/project/badge/8c9342d436414724bee17f6ab6f5076f)](https://www.codacy.com/app/maggelo/pinbored-nwjs)

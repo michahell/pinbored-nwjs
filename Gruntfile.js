@@ -10,7 +10,7 @@ module.exports = function(grunt) {
     
     clean: {
       all: { 
-        src: ['App/bower_components_dist', 'Build', 'App_release', 'Release']
+        src: ['App/bower_components_dist', 'App_release', 'Build', 'Release']
       }
     },
 
@@ -290,14 +290,12 @@ module.exports = function(grunt) {
     grunt.task.run(tasks);
   });
 
-  // build release node-webkit task(s)
-  grunt.registerTask('release-all', ['nwjs:buildOsx', 'nwjs:buildWin', 'nwjs:buildLin']);
-
+  // release node-webkit tasks
   grunt.registerTask('release-osx', ['build', 'nwjs:buildOsx']);
   grunt.registerTask('release-win', ['build', 'nwjs:buildWin']);
   grunt.registerTask('release-lin', ['build', 'nwjs:buildLin']);
 
   // grunt.registerTask('default', ['test', 'osx']);
-  grunt.registerTask('default', ['test', 'release-osx']);
+  grunt.registerTask('default', ['build']);
 
 };
