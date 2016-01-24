@@ -47,20 +47,24 @@ module.exports = function(grunt) {
           'ngDialog/css/ngDialog-theme-default.min.css': 'ngDialog/css/ngDialog-theme-default.min.css',
           'ngDialog/css/ngDialog-theme-plain.min.css': 'ngDialog/css/ngDialog-theme-plain.min.css',
 
-          // JS already minified
+          // JS common libs
           'jquery/dist/jquery.min.js': 'jquery/dist/jquery.min.js',
-          'angular/angular.min.js': 'angular/angular.min.js',
           'bootstrap/dist/js/bootstrap.min.js': 'bootstrap/dist/js/bootstrap.min.js',
           'underscore/underscore-min.js' : 'underscore/underscore-min.js',
           'json3/lib/json3.min.js' : 'json3/lib/json3.min.js',
-          'angular-bootstrap/ui-bootstrap.min.js': 'angular-bootstrap/ui-bootstrap.min.js',
+
+          // JS angular core
+          'angular/angular.min.js': 'angular/angular.min.js',
           'angular-resource/angular-resource.min.js': 'angular-resource/angular-resource.min.js',
-          'angular-ui-router/release/angular-ui-router.min.js' : 'angular-ui-router/release/angular-ui-router.min.js',
-          'ui-router-extras/release/modular/ct-ui-router-extras.core.min.js' : 'ui-router-extras/release/modular/ct-ui-router-extras.core.min.js',
-          'ui-router-extras/release/modular/ct-ui-router-extras.sticky.min.js' : 'ui-router-extras/release/modular/ct-ui-router-extras.sticky.min.js',
           'angular-sanitize/angular-sanitize.min.js': 'angular-sanitize/angular-sanitize.min.js',
           'angular-animate/angular-animate.min.js': 'angular-animate/angular-animate.min.js',
           'angular-mocks/angular-mocks.js': 'angular-mocks/angular-mocks.js',
+          'angular-ui-router/release/angular-ui-router.min.js' : 'angular-ui-router/release/angular-ui-router.min.js',
+          'ui-router-extras/release/modular/ct-ui-router-extras.core.min.js' : 'ui-router-extras/release/modular/ct-ui-router-extras.core.min.js',
+          'ui-router-extras/release/modular/ct-ui-router-extras.sticky.min.js' : 'ui-router-extras/release/modular/ct-ui-router-extras.sticky.min.js',
+
+          // JS angular additional
+          'angular-bootstrap/ui-bootstrap.min.js': 'angular-bootstrap/ui-bootstrap.min.js',
           'angular-gridster/dist/angular-gridster.min.js': 'angular-gridster/dist/angular-gridster.min.js',
           'ng-tags-input/ng-tags-input.min.js': 'ng-tags-input/ng-tags-input.min.js',
           'flat-ui/dist/js/flat-ui.min.js': 'flat-ui/dist/js/flat-ui.min.js',
