@@ -8,9 +8,23 @@
  */
 angular.module('pinboredWebkitApp')
   .controller('BaseViewCtrl', 
-    ['$scope', 'Appconfigservice', 
-    function ($scope, Appconfigservice) {
+    ['$scope', '$location', 'Appconfigservice', 'Usersessionservice',
+    function ($scope, $location, Appconfigservice, Usersessionservice) {
     
+    // if not authenticated, redirect to login page
+    if (Usersessionservice.isAuthenticated() === false) {
+      $location.path('/login');
+      return;
+    }
+
+    // if logged off, redirect to login page as well
+    $scope.$on('user:authenticated', function() { // args: event, data
+      if(Usersessionservice.authenticated === false) {
+        $location.path('/login');
+        return;
+      }
+    });
+
     $scope.appconfig = {}; // gets populated by Appconfigservice !
 
     $scope.onAppconfigChanged = function() {

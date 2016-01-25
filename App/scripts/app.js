@@ -38,7 +38,7 @@ angular
         views: {
           'login': {
             templateUrl: 'views/login.html',
-            controller: 'LoginCtrl',
+            controller: 'LoginCtrl'
           }
         }
       })
@@ -49,7 +49,7 @@ angular
         views: {
           'overview': {
             templateUrl: 'views/overview.html',
-            controller: 'OverviewCtrl',
+            controller: 'OverviewCtrl'
           }
         }
       })
@@ -60,7 +60,7 @@ angular
         views: {
           'tags': {
             templateUrl: 'views/tags.html',
-            controller: 'TagsCtrl',
+            controller: 'TagsCtrl'
           }
         }
       })
@@ -71,7 +71,7 @@ angular
         views: {
           'tools': {
             templateUrl: 'views/tools.html',
-            controller: 'ToolsCtrl',
+            controller: 'ToolsCtrl'
           }
         }
       })
@@ -82,7 +82,7 @@ angular
         views: {
           'settings': {
             templateUrl: 'views/settings.html',
-            controller: 'SettingsCtrl',
+            controller: 'SettingsCtrl'
           }
         }
       });

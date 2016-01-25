@@ -52,8 +52,7 @@ angular.module('pinboredWebkitApp')
       switch (action) {
         case 'about':   $scope.about();   break;
         case 'logout':  $scope.logout();  break;
-        break;
-      };
+      }
     };
 
     $scope.about = function() {

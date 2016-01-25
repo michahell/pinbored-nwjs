@@ -5,5 +5,5 @@
 .btn:active:focus,
 .bootstrap-select .btn:focus,
 .btn-group.open .dropdown-toggle {
-  outline : none ! important;
+  outline : none;
 }

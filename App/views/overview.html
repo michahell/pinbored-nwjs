@@ -30,21 +30,23 @@
     </div>
 
     <!-- search functionality buttons -->
-    <div ng-include src="'views/partials/search/searchbarbuttons.html'"></div>
+    <div ng-include src="'views/partials/search/searchbar-buttons.html'"></div>
     
   </div>
 
   <div class="bar-wrapper clearfix">
     
-    <!-- toolbar full text search -->
-    <div ng-include src="'views/partials/search/searchbarfulltext.html'"></div>
-    
     <!-- toolbar tag search -->
-    <div ng-include src="'views/partials/search/searchbartags.html'"></div>
+    <div ng-include src="'views/partials/search/searchbar-tags.html'"></div>
+
+    <!-- toolbar full text search -->
+    <div ng-include src="'views/partials/search/searchbar-fulltext.html'"></div>
+
+    <!-- extra overview filter toolbar -->
+    <div ng-include src="'views/partials/search/searchbar-extra-bookmarks.html'"></div>
 
     <!-- toolbar pagination -->
-    <div ng-include src="'views/partials/search/searchbarpaging.html'"></div>
-    
+    <div ng-include src="'views/partials/search/searchbar-paging.html'"></div>
 
     <!-- toolbar multi tag select -->
     <div class="bar clearfix" id="selection" ng-show="data.selectedItems.length > 1">
@@ -122,7 +124,7 @@
     <div class="list-wrapper" ng-class="{fullheight: data.filteredList.length > 0}">
       <!-- screen list group -->
       <ul class="list-group">
-        <li ng-repeat="item in data.filteredList | offset: (paging.current - 1) * appconfig.itemsPerPage | limitTo: appconfig.itemsPerPage"
+        <li ng-repeat="item in data.filteredList | offset: (paging.current - 1) * config.itemsPerPage | limitTo: config.itemsPerPage"
         class="list-group-item" ng-class="{selected: item.status.selected || item.status.showEdit}" 
         ng-controller="BookmarkItemCtrl" ng-click="selectItem()">
           <div ng-include src="'views/partials/items/BookmarkItem.html'"></div>

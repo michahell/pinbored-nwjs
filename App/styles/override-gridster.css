@@ -1,13 +1,13 @@
 .gridster-loaded {
-  -webkit-transition : 0.3s ease-out all !important;
-     -moz-transition : 0.3s ease-out all !important;
-          transition : 0.3s ease-out all !important;
-  transition-delay : 0.3s !important;
+  -webkit-transition : 0.3s ease-out all;
+     -moz-transition : 0.3s ease-out all;
+          transition : 0.3s ease-out all;
+  transition-delay : 0.3s;
 }
 
 .gridster-loaded.gridster-item {
-  -webkit-transition : 0.3s ease-out all !important;
-     -moz-transition : 0.3s ease-out all !important;
-          transition : 0.3s ease-out all !important;
-  transition-delay : 0 !important;
+  -webkit-transition : 0.3s ease-out all;
+     -moz-transition : 0.3s ease-out all;
+          transition : 0.3s ease-out all;
+  transition-delay : 0;
 }

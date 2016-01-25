@@ -33,7 +33,7 @@
   transition: 0.3s all ease-out;
 }
 
-.navbar-nav li.active:after {
+.navbar-nav .active:after {
   border-color : transparent transparent #2C3E50 transparent;
 }
 

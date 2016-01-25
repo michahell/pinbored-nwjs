@@ -105,7 +105,7 @@ module.exports = function(grunt) {
         ],
         css: ['App/styles/*.css'],
         dest: 'Build/css/pinbored-nwjs.purified.css'
-      },
+      }
     },
 
     // then minify those css files
@@ -119,14 +119,14 @@ module.exports = function(grunt) {
           processImport : true,
           // src: ['App/styles/*.css', 'App/bower_components_dist/*.css', '!*.min.css'],
           src:  'Build/css/pinbored-nwjs.purified.css',
-          dest: 'Build/css/pinbored-nwjs.min.css',
+          dest: 'Build/css/pinbored-nwjs.min.css'
         }]
       },
       nopurify: {
         files: [{
           processImport : true,
           src: ['App/styles/*.css'],
-          dest: 'Build/css/pinbored-nwjs.min.css',
+          dest: 'Build/css/pinbored-nwjs.min.css'
         }]
       }
     },
@@ -201,34 +201,7 @@ module.exports = function(grunt) {
           // main app files
           {src: 'Build/index.min.html', dest: 'App_release/index.html'},
           {src: 'App/package.json', dest: 'App_release/package.json'}
-        ],
-      }
-    },
-  
-    // karma settings, conf.js file
-    karma : {
-      unit: {
-        configFile: 'karma.conf.js'
-      }
-    },
-
-    // open karma testing report
-    open : {
-      report : {
-        path : 'karma.report.html',
-        app: 'Google Chrome'
-      }
-    },
-
-    // codeclimate coverage lcov.info
-    shell: {
-      codeclimate: {
-        multiple: {
-          command: [
-            'export CODECLIMATE_REPO_TOKEN=10daff674413d0c7f0a4a4c177db01e8215217c74c23ec408dc4325e7ece27ca',
-            'codeclimate < coverage/lcov.info'
-          ].join('&&')
-        }
+        ]
       }
     },
 
@@ -243,7 +216,7 @@ module.exports = function(grunt) {
           macCredits: './Resources/pinbored-credits.html',
           macIcns: './Resources/pinbored-icon.icns',
           // macZip: 'false', // set to false (speedup) by default
-          buildDir: './Release', // Where the build version of my node-webkit app is saved
+          buildDir: './Release' // Where the build version of my node-webkit app is saved
         },
         src: ['./App_release/**/*'] // Your node-webkit app
       },
@@ -254,7 +227,7 @@ module.exports = function(grunt) {
           platforms: ['win32', 'win64'],
           buildType: 'versioned', // [appName] -v[appVersion]
           // winIco: 'null',
-          buildDir: './Release', // Where the build version of my node-webkit app is saved
+          buildDir: './Release' // Where the build version of my node-webkit app is saved
         },
         src: ['./App_release/**/*'] // Your node-webkit app
       },
@@ -282,21 +255,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-htmlclean');
-  grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-nw-builder');
 
   // grunt task
   grunt.registerTask('update', ['clean', 'bowercopy', 'preprocess:development']);
   grunt.registerTask('build', ['update', 'cssmin:nopurify', 'preprocess:release', 'uglify', 'htmlclean', 'copy']);
-
-  // testing task(s)
-  grunt.registerTask('test', 'runs testing, shows report, generates coverage', function () {
-    var tasks = ['karma', 'open:report', 'shell:codeclimate'];
-    // Use the force option for all tasks declared in the previous line
-    grunt.option('force', true);
-    grunt.task.run(tasks);
-  });
 
   // release node-webkit tasks
   grunt.registerTask('release-osx', ['build', 'nwjs:buildOsx']);

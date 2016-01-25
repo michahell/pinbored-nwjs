@@ -9,14 +9,13 @@
 angular.module('pinboredWebkitApp')
   .controller('SearchableViewCtrl', 
     ['$scope', '$timeout', '$filter', 'Usersessionservice', 'Utilservice', 'Appconfigservice', 
-    'bmFulltextFilter', 'bmTagsFilter', 
+    'bookmarkFulltextFilter', 'bookmarkTagsFilter', 'tagFulltextFilter', 
     function ($scope, $timeout, $filter, Usersessionservice, Utilservice, Appconfigservice, 
-      bmFulltextFilter, bmTagsFilter) {
+      bookmarkFulltextFilter, bookmarkTagsFilter, tagFulltextFilter) {
     
     // shared searchable view model
     $scope.filter = {
-      filterDelay : 750,
-      textFilterTimeout : null,
+      filterDelay : 500,
       text : '',
       tags : []
     };
@@ -29,21 +28,55 @@ angular.module('pinboredWebkitApp')
       filteredList : []
     };
 
+    // paging
     $scope.paging = {
       numPageButtons : 10,
       current : 1,
-      total : 0
+      totalItems : 0
     };
 
+    // page config
     $scope.config = {
       collectionType : '',
+      itemsPerPage : 0,
       tagFilterType : false,
       tagFilterTypeText : 'inclusive / and',
       searchAllWords : false,
       searchAllWordsText : 'search all words',
+      hasButtonPaging : true,
+      hasButtonTagFilter : true,
+      hasButtonTextFilter : true,
+      hasButtonMorefilters : false,
       showSearch : false,
       showTags : false,
-      showPager : false
+      showPager : false,
+      showExtra : false,
+      showExtraBookmarkFilters : false,
+      showExtraTagFilters : false
+    }
+
+    // setup watchers for debouncing the function that they should call
+    $scope.$watch('filter.text', function(newValue, oldValue) {
+      $scope.updateFiltersPaging();
+    });
+
+    $scope.$watch('config.showExtra', function(newValue, oldValue) {
+      if(newValue === true) {
+        switch($scope.config.collectionType) {
+          case 'bookmarks': $scope.config.showExtraBookmarkFilters = true; break;
+          case 'tags': $scope.config.showExtraTagFilters = true; break;
+        }
+      } else {
+        $scope.config.showExtraBookmarkFilters = $scope.config.showExtraTagFilters = false;
+      }
+    });
+
+    $scope.setLoadingState = function() {
+      // reset state vars to initial state
+      $scope.data.isLoading = true;
+      $scope.data.items = [];
+      $scope.paging.current = 1;
+      $scope.paging.totalItems = 0;
     }
 
     $scope.checkMaxTags = function(amount) {
@@ -73,26 +106,14 @@ angular.module('pinboredWebkitApp')
       $scope.checkMaxTags(1);
     };
 
-    // this method is essentially a manual debounce for filtering.
-    // debounce was apparently added in Angular 1.3 but why change
-    // a winning team? naively thinking, most likely, Angular itself 
-    // will use a similar approach anyway.
-
     $scope.updateFiltersPaging = function() {
-      // if the textFilterPromise exists, cancel it:
-      if($scope.filter.textFilterTimeout !== null) {
-        $timeout.cancel($scope.filter.textFilterTimeout);
-      }
-      // create new $timeout promise to apply filters and update the paging
-      $scope.filter.textFilterTimeout = $timeout(function() {
-        $scope.applyFilters();
-        $scope.updatePaging();
-      }, $scope.filter.filterDelay);
+      $scope.applyFilters();
+      $scope.updatePaging();
     };
 
     $scope.updatePaging = function() {
-      $scope.paging.total = Math.min($scope.data.items.length, $scope.data.filteredList.length);
-      console.log('paging total: ' + $scope.paging.total);
+      $scope.paging.totalItems = Math.min($scope.data.items.length, $scope.data.filteredList.length);
+      console.log('paging total items: ' + $scope.paging.totalItems);
     };
 
     $scope.applyFilters = function() {
@@ -102,13 +123,11 @@ angular.module('pinboredWebkitApp')
       var logicType = ($scope.appconfig.tagFilterType === true) ? 'AND' : 'OR';
       switch($scope.config.collectionType) {
         case 'bookmarks':
-          $scope.data.filteredList = bmFulltextFilter($scope.data.items, word);
-          $scope.data.filteredList = bmTagsFilter($scope.data.filteredList, tags, logicType);
+          $scope.data.filteredList = bookmarkFulltextFilter($scope.data.items, word);
+          $scope.data.filteredList = bookmarkTagsFilter($scope.data.filteredList, tags, logicType);
           break;
         case 'tags':
-          // $scope.data.filteredList = fulltextFilter($scope.data.items, word);
-          // $scope.data.filteredList = tagsFilter($scope.data.filteredList, tags, logicType);
-          $scope.data.filteredList = $scope.data.items;
+          $scope.data.filteredList = tagFulltextFilter($scope.data.items, word);
           break;
       }
     };
@@ -123,12 +142,6 @@ angular.module('pinboredWebkitApp')
 
     $scope.$on('$destroy', function() {
       console.info('searchable view controller $destroy called');
-
-      // remove textFilterTimeout
-      if ($scope.filter.textFilterTimeout !== null) {
-        $timeout.cancel($scope.filter.textFilterTimeout);
-        $scope.filter.textFilterTimeout = null;
-      }
 
       // unbind mousetraps
       Mousetrap.unbind('mod+f');

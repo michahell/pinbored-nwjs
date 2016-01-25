@@ -22,7 +22,7 @@ angular.module('pinboredWebkitApp')
     this.filterBuffer = {};
 
     // filter buffer watcher
-    this.filterBufferWatcher;
+    // this.filterBufferWatcher;
 
     // bookmark backends
     this.bookmarkBackends = ['Backendpinboard', 'Backendharddrive'];

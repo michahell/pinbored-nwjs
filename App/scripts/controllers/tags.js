@@ -10,26 +10,12 @@ angular.module('pinboredWebkitApp')
   .controller('TagsCtrl', 
     ['$q', '$scope', '$controller', '$filter', '$location', 'Pinboardservice', 'Appstatusservice', 'Usersessionservice',
     function ($q, $scope, $controller, $filter, $location, Pinboardservice, Appstatusservice, Usersessionservice) {
-    
-    // if not authenticated, redirect to login page
-    if (Usersessionservice.isAuthenticated() === false) {
-      $location.path('/login');
-      return;
-    }
 
     // Initialize the super (controller) class and extend it.
     angular.extend(this, $controller('BaseViewCtrl', {$scope: $scope}));
 
     // Search functionality
     angular.extend(this, $controller('SearchableViewCtrl', {$scope: $scope}));
-
-    // if logged off, redirect to login page as well
-    $scope.$on('user:authenticated', function() { // args: event, data
-      if(Usersessionservice.authenticated === false) {
-        $location.path('/login');
-        return;
-      }
-    });
 
     angular.extend($scope.data, {
       numTags : 0
@@ -103,7 +89,7 @@ angular.module('pinboredWebkitApp')
           $scope.data.items.push({
             id : tagID,
             tagname : tag,
-            occurrences : parseInt(tagdata[tag]),
+            occurrences : parseInt(tagdata[tag], 10),
             sizeX: 2,
             sizeY: 1
           });
@@ -111,7 +97,7 @@ angular.module('pinboredWebkitApp')
         }
       }
       
-      $scope.data.numTags = $scope.paging.total = $scope.data.items.length;
+      $scope.data.numTags = $scope.paging.totalItems = $scope.data.items.length;
 
       if($scope.data.numTags > 0) {
         console.log($scope.data.numTags + ' tags retrieved.');
@@ -212,6 +198,7 @@ angular.module('pinboredWebkitApp')
     // update current page
     Usersessionservice.setCurrentSection('tags');
 
-    
+    // tag screen does not need a tag filter
+    $scope.config.hasButtonTagFilter = false;
 
   }]);

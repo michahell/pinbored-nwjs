@@ -1,6 +1,6 @@
 ecmaFeatures:
   modules: true
-  jsx: true
+  jsx: false
 
 env:
   amd: true

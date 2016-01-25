@@ -2,26 +2,27 @@
 engines:
   csslint:
     enabled: true
+    checks:
+      compatible-vendor-prefixes:
+        enabled: false
+      box-sizing:
+        enabled: false
   duplication:
     enabled: true
     config:
       languages:
-      - ruby
       - javascript
-      - python
-      - php
   eslint:
     enabled: true
+    exclude_fingerprints:
+    - d71c866dcb8d670c5e540a820329340c
+    checks:
+      no-alert:
+        enabled: false
   fixme:
     enabled: true
 ratings:
   paths:
   - "**.css"
-  - "**.inc"
   - "**.js"
-  - "**.jsx"
-  - "**.module"
-  - "**.php"
-  - "**.py"
-  - "**.rb"
-exclude_paths: []
+exclude_paths: ['App/scripts/tests']

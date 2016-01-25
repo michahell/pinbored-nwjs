@@ -15,24 +15,24 @@ angular.module('pinboredWebkitApp')
       Bookmarkservice, Pinboardservice, Usersessionservice, Appstatusservice, 
       Utilservice, Modalservice) {
     
-    // if not authenticated, redirect to login page
-    if (Usersessionservice.isAuthenticated() === false) {
-      $location.path('/login');
-      return;
-    }
-
     // Initialize the super (controller) class and extend it.
     angular.extend(this, $controller('BaseViewCtrl', {$scope: $scope}));
 
     // Search functionality
     angular.extend(this, $controller('SearchableViewCtrl', {$scope: $scope}));
 
-    // if logged off, redirect to login page as well
-    $scope.$on('user:authenticated', function() { // args: event, data
-      if(Usersessionservice.authenticated === false) {
-        $location.path('/login');
-        return;
-      }
+    // page model
+    angular.extend($scope.data, {
+      loadType : 'recent',
+      loadTypes : ['recent', 'all'],
+      activePage : 3,
+      selectedItems : [],
+      bgMsg : 'NO BOOKMARKS FOUND.'
+    });
+
+    // page config
+    angular.extend($scope.config, {
+      showSelection : false
     });
 
     $scope.multiAction = {
@@ -45,17 +45,8 @@ angular.module('pinboredWebkitApp')
       foldTagNames : []
     };
 
-    // page model
-    angular.extend($scope.data, {
-      loadType : 'recent',
-      loadTypes : ['recent', 'all'],
-      activePage : 3,
-      selectedItems : [],
-      bgMsg : 'NO BOOKMARKS FOUND.'
-    });
-
     angular.extend($scope.config, {
-      showSelection : false
+      itemsPerPage : 10
     });
 
 
@@ -90,7 +81,7 @@ angular.module('pinboredWebkitApp')
       console.log('executing action: ' + $scope.multiAction.selectedAction);
       if(!Utilservice.isEmpty($scope.multiAction.selectedAction)) {
         // execute the selected multi action method:
-        console.log('method call: ' + 'multi' + Utilservice.capitalize($scope.multiAction.selectedAction));
+        console.log('method call: multi' + Utilservice.capitalize($scope.multiAction.selectedAction));
         $scope['multi' + Utilservice.capitalize($scope.multiAction.selectedAction)]();
       }
     };
@@ -173,13 +164,10 @@ angular.module('pinboredWebkitApp')
 
     $scope.reload = function(loadType) {
       
-      // set some stupid local state
-      $scope.data.isLoading = true;
-      $scope.data.items = [];
+      $scope.setLoadingState();
+
       $scope.data.bgMsg = 'LOADING BOOKMARKS...';
       $scope.filteredList = [];
-      $scope.paging.current = 1;
-      $scope.paging.total = 0;
 
       $scope.cancelCurrentOperations();
 
