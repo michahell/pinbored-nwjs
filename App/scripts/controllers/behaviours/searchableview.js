@@ -15,8 +15,7 @@ angular.module('pinboredWebkitApp')
     
     // shared searchable view model
     $scope.filter = {
-      filterDelay : 750,
-      textFilterTimeout : null,
+      filterDelay : 500,
       text : '',
       tags : []
     };
@@ -46,6 +45,12 @@ angular.module('pinboredWebkitApp')
       showPager : false
     }
 
+    // setup watchers for debouncing the function that they should call
+    $scope.$watch('filter.text', function(newValue, oldValue) {
+      $scope.updateFiltersPaging();
+      console.log('model debounce kicking in');
+    });
+
     $scope.checkMaxTags = function(amount) {
       if($scope.filter.tags.length > amount) {
         // remove tag, one too many
@@ -73,21 +78,9 @@ angular.module('pinboredWebkitApp')
       $scope.checkMaxTags(1);
     };
 
-    // this method is essentially a manual debounce for filtering.
-    // debounce was apparently added in Angular 1.3 but why change
-    // a winning team? naively thinking, most likely, Angular itself 
-    // will use a similar approach anyway.
-
     $scope.updateFiltersPaging = function() {
-      // if the textFilterPromise exists, cancel it:
-      if($scope.filter.textFilterTimeout !== null) {
-        $timeout.cancel($scope.filter.textFilterTimeout);
-      }
-      // create new $timeout promise to apply filters and update the paging
-      $scope.filter.textFilterTimeout = $timeout(function() {
-        $scope.applyFilters();
-        $scope.updatePaging();
-      }, $scope.filter.filterDelay);
+      $scope.applyFilters();
+      $scope.updatePaging();
     };
 
     $scope.updatePaging = function() {
@@ -123,12 +116,6 @@ angular.module('pinboredWebkitApp')
 
     $scope.$on('$destroy', function() {
       console.info('searchable view controller $destroy called');
-
-      // remove textFilterTimeout
-      if ($scope.filter.textFilterTimeout !== null) {
-        $timeout.cancel($scope.filter.textFilterTimeout);
-        $scope.filter.textFilterTimeout = null;
-      }
 
       // unbind mousetraps
       Mousetrap.unbind('mod+f');
