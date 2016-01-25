@@ -52,13 +52,12 @@ module.exports = function(grunt) {
           'bootstrap/dist/js/bootstrap.min.js': 'bootstrap/dist/js/bootstrap.min.js',
           'underscore/underscore-min.js' : 'underscore/underscore-min.js',
           'json3/lib/json3.min.js' : 'json3/lib/json3.min.js',
+          'ramda/dist/ramda.min.js': 'ramda/dist/ramda.min.js',
 
           // JS angular core
           'angular/angular.min.js': 'angular/angular.min.js',
-          'angular-resource/angular-resource.min.js': 'angular-resource/angular-resource.min.js',
           'angular-sanitize/angular-sanitize.min.js': 'angular-sanitize/angular-sanitize.min.js',
           'angular-animate/angular-animate.min.js': 'angular-animate/angular-animate.min.js',
-          'angular-mocks/angular-mocks.js': 'angular-mocks/angular-mocks.js',
           'angular-ui-router/release/angular-ui-router.min.js' : 'angular-ui-router/release/angular-ui-router.min.js',
           'ui-router-extras/release/modular/ct-ui-router-extras.core.min.js' : 'ui-router-extras/release/modular/ct-ui-router-extras.core.min.js',
           'ui-router-extras/release/modular/ct-ui-router-extras.sticky.min.js' : 'ui-router-extras/release/modular/ct-ui-router-extras.sticky.min.js',
@@ -70,16 +69,25 @@ module.exports = function(grunt) {
           'flat-ui/dist/js/flat-ui.min.js': 'flat-ui/dist/js/flat-ui.min.js',
           'ngprogress/build/ngProgress.min.js': 'ngprogress/build/ngProgress.min.js',
           'ngDialog/js/ngDialog.min.js': 'ngDialog/js/ngDialog.min.js',
-          'ramda/dist/ramda.min.js': 'ramda/dist/ramda.min.js',
           'angular-elastic/elastic.js': 'angular-elastic/elastic.js',
           'mousetrap/mousetrap.min.js': 'mousetrap/mousetrap.min.js',
+
+          // JS angular testing
+          'angular-mocks/angular-mocks.js': 'angular-mocks/angular-mocks.js',
 
           // JS non-minified
           'fui-angular/fui-template.js': 'fui-angular/fui-template.js',
           'fui-angular/fui-checkbox.js': 'fui-angular/fui-checkbox.js',
           'fui-angular/fui-radio.js': 'fui-angular/fui-radio.js',
           'fui-angular/fui-switch.js': 'fui-angular/fui-switch.js',
-          'fui-angular/fui-tpls.js': 'fui-angular/fui-tpls.js'
+          'fui-angular/fui-tpls.js': 'fui-angular/fui-tpls.js',
+
+          // JS mappings to minified sourcefiles
+          'angular/angular.min.js.map': 'angular/angular.min.js.map',
+          'underscore/underscore-min.map' : 'underscore/underscore-min.map',
+          'angular-animate/angular-animate.min.js.map': 'angular-animate/angular-animate.min.js.map',
+          'angular-sanitize/angular-sanitize.min.js.map': 'angular-sanitize/angular-sanitize.min.js.map',
+          'bootstrap/dist/css/bootstrap.min.css.map': 'bootstrap/dist/css/bootstrap.min.css.map'
         }
       }
     },
@@ -96,7 +104,7 @@ module.exports = function(grunt) {
           'App/scripts/*.js'
         ],
         css: ['App/styles/*.css'],
-        dest: 'Build/css/pinbored-webkit.purified.css'
+        dest: 'Build/css/pinbored-nwjs.purified.css'
       },
     },
 
@@ -110,15 +118,15 @@ module.exports = function(grunt) {
         files: [{
           processImport : true,
           // src: ['App/styles/*.css', 'App/bower_components_dist/*.css', '!*.min.css'],
-          src:  'Build/css/pinbored-webkit.purified.css',
-          dest: 'Build/css/pinbored-webkit.min.css',
+          src:  'Build/css/pinbored-nwjs.purified.css',
+          dest: 'Build/css/pinbored-nwjs.min.css',
         }]
       },
       nopurify: {
         files: [{
           processImport : true,
           src: ['App/styles/*.css'],
-          dest: 'Build/css/pinbored-webkit.min.css',
+          dest: 'Build/css/pinbored-nwjs.min.css',
         }]
       }
     },
@@ -158,7 +166,7 @@ module.exports = function(grunt) {
         files: [{
           // src: ['App/scripts/app.js', 'App/scripts/**/*.js', '!App/scripts/tests/*.js', '!*.min.js'],
           src: ['Build/App/scripts/app.js', 'Build/App/scripts/**/*.js', '!Build/App/scripts/tests/*.js'],
-          dest: 'Build/js/pinbored-webkit.min.js'
+          dest: 'Build/js/pinbored-nwjs.min.js'
         }]
       }
     },
@@ -188,8 +196,8 @@ module.exports = function(grunt) {
           {expand: true, cwd: 'Build/templates/', src: ['**'], dest: 'App_release/templates'},
           {expand: true, cwd: 'Build/views/', src: ['**'], dest: 'App_release/views'},
           // minified and concatenated CSS / JS files:
-          {src: 'Build/css/pinbored-webkit.min.css', dest: 'App_release/pinbored-webkit.min.css'},
-          {src: 'Build/js/pinbored-webkit.min.js', dest: 'App_release/pinbored-webkit.min.js'},
+          {src: 'Build/css/pinbored-nwjs.min.css', dest: 'App_release/pinbored-nwjs.min.css'},
+          {src: 'Build/js/pinbored-nwjs.min.js', dest: 'App_release/pinbored-nwjs.min.js'},
           // main app files
           {src: 'Build/index.min.html', dest: 'App_release/index.html'},
           {src: 'App/package.json', dest: 'App_release/package.json'}
@@ -295,7 +303,6 @@ module.exports = function(grunt) {
   grunt.registerTask('release-win', ['build', 'nwjs:buildWin']);
   grunt.registerTask('release-lin', ['build', 'nwjs:buildLin']);
 
-  // grunt.registerTask('default', ['test', 'osx']);
   grunt.registerTask('default', ['build']);
 
 };

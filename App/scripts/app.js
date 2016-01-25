@@ -10,7 +10,6 @@
 angular
   .module('pinboredWebkitApp', [
     'ngAnimate',
-    'ngResource',
     'ngSanitize',
     'ui.router',                  // angular ui router
     'ui.bootstrap',               // angular ui bootstrap
