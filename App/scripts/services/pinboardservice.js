@@ -117,7 +117,7 @@ angular.module('pinboredWebkitApp')
       };
 
       var specificOptions = {
-        isDownload: false,
+        isDownload: false
       };
       
       if(!_.isEmpty(additionalOpts)) {
@@ -277,7 +277,7 @@ angular.module('pinboredWebkitApp')
       // check if authenticated
       if(this.authCheck(deferred)) {
         return deferred.promise;
-      };
+      }
 
       console.log('pinboardservice: getting all bookmarks...');
 

@@ -35,7 +35,7 @@ $(function() {
     menu.append(paste);
 
     return menu;
-  };
+  }
 
   function fixQuirks() {
     
@@ -57,7 +57,7 @@ $(function() {
 
     fixBackspace();
     fixCopyPaste();
-  };
+  }
 
   var menu = new Menu(/* pass cut, copy, paste labels if you need i18n*/);
 

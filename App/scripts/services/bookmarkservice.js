@@ -18,7 +18,7 @@ angular.module('pinboredWebkitApp')
     this.filterBuffer = {};
 
     // filter buffer watcher
-    this.filterBufferWatcher;
+    // this.filterBufferWatcher;
 
     // in memory cached bookmarks
     this.storedBookmarkData = {};

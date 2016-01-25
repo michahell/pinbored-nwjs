@@ -2,6 +2,11 @@
 engines:
   csslint:
     enabled: true
+    checks:
+      compatible-vendor-prefixes:
+        enabled: false
+      box-sizing:
+        enabled: false
   duplication:
     enabled: true
     config:
@@ -9,6 +14,11 @@ engines:
       - javascript
   eslint:
     enabled: true
+    exclude_fingerprints:
+    - d71c866dcb8d670c5e540a820329340c
+    checks:
+      no-alert:
+        enabled: false
   fixme:
     enabled: true
 ratings:

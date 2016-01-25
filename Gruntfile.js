@@ -105,7 +105,7 @@ module.exports = function(grunt) {
         ],
         css: ['App/styles/*.css'],
         dest: 'Build/css/pinbored-nwjs.purified.css'
-      },
+      }
     },
 
     // then minify those css files
@@ -119,14 +119,14 @@ module.exports = function(grunt) {
           processImport : true,
           // src: ['App/styles/*.css', 'App/bower_components_dist/*.css', '!*.min.css'],
           src:  'Build/css/pinbored-nwjs.purified.css',
-          dest: 'Build/css/pinbored-nwjs.min.css',
+          dest: 'Build/css/pinbored-nwjs.min.css'
         }]
       },
       nopurify: {
         files: [{
           processImport : true,
           src: ['App/styles/*.css'],
-          dest: 'Build/css/pinbored-nwjs.min.css',
+          dest: 'Build/css/pinbored-nwjs.min.css'
         }]
       }
     },
@@ -201,7 +201,7 @@ module.exports = function(grunt) {
           // main app files
           {src: 'Build/index.min.html', dest: 'App_release/index.html'},
           {src: 'App/package.json', dest: 'App_release/package.json'}
-        ],
+        ]
       }
     },
   
@@ -243,7 +243,7 @@ module.exports = function(grunt) {
           macCredits: './Resources/pinbored-credits.html',
           macIcns: './Resources/pinbored-icon.icns',
           // macZip: 'false', // set to false (speedup) by default
-          buildDir: './Release', // Where the build version of my node-webkit app is saved
+          buildDir: './Release' // Where the build version of my node-webkit app is saved
         },
         src: ['./App_release/**/*'] // Your node-webkit app
       },
@@ -254,7 +254,7 @@ module.exports = function(grunt) {
           platforms: ['win32', 'win64'],
           buildType: 'versioned', // [appName] -v[appVersion]
           // winIco: 'null',
-          buildDir: './Release', // Where the build version of my node-webkit app is saved
+          buildDir: './Release' // Where the build version of my node-webkit app is saved
         },
         src: ['./App_release/**/*'] // Your node-webkit app
       },

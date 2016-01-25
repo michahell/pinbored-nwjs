@@ -90,7 +90,7 @@ angular.module('pinboredWebkitApp')
       console.log('executing action: ' + $scope.multiAction.selectedAction);
       if(!Utilservice.isEmpty($scope.multiAction.selectedAction)) {
         // execute the selected multi action method:
-        console.log('method call: ' + 'multi' + Utilservice.capitalize($scope.multiAction.selectedAction));
+        console.log('method call: multi' + Utilservice.capitalize($scope.multiAction.selectedAction));
         $scope['multi' + Utilservice.capitalize($scope.multiAction.selectedAction)]();
       }
     };

@@ -103,7 +103,7 @@ angular.module('pinboredWebkitApp')
           $scope.data.items.push({
             id : tagID,
             tagname : tag,
-            occurrences : parseInt(tagdata[tag]),
+            occurrences : parseInt(tagdata[tag], 10),
             sizeX: 2,
             sizeY: 1
           });
