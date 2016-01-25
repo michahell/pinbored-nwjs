@@ -204,33 +204,6 @@ module.exports = function(grunt) {
         ]
       }
     },
-  
-    // karma settings, conf.js file
-    karma : {
-      unit: {
-        configFile: 'karma.conf.js'
-      }
-    },
-
-    // open karma testing report
-    open : {
-      report : {
-        path : 'karma.report.html',
-        app: 'Google Chrome'
-      }
-    },
-
-    // codeclimate coverage lcov.info
-    shell: {
-      codeclimate: {
-        multiple: {
-          command: [
-            'export CODECLIMATE_REPO_TOKEN=10daff674413d0c7f0a4a4c177db01e8215217c74c23ec408dc4325e7ece27ca',
-            'codeclimate < coverage/lcov.info'
-          ].join('&&')
-        }
-      }
-    },
 
     // building native binaries
     nwjs: {
@@ -282,21 +255,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-htmlclean');
-  grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-nw-builder');
 
   // grunt task
   grunt.registerTask('update', ['clean', 'bowercopy', 'preprocess:development']);
   grunt.registerTask('build', ['update', 'cssmin:nopurify', 'preprocess:release', 'uglify', 'htmlclean', 'copy']);
-
-  // testing task(s)
-  grunt.registerTask('test', 'runs testing, shows report, generates coverage', function () {
-    var tasks = ['karma', 'open:report', 'shell:codeclimate'];
-    // Use the force option for all tasks declared in the previous line
-    grunt.option('force', true);
-    grunt.task.run(tasks);
-  });
 
   // release node-webkit tasks
   grunt.registerTask('release-osx', ['build', 'nwjs:buildOsx']);

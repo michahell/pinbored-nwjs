@@ -8,7 +8,7 @@
  */
 angular.module('pinboredWebkitApp')
 
-  .filter('bmTags', function() {
+  .filter('bookmarkTags', function() {
     return function(bookmarkCollection, searchTags, logicType) {
 
       // console.log('tags filter invoked.');

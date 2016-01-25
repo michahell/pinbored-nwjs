@@ -97,7 +97,7 @@ angular.module('pinboredWebkitApp')
         }
       }
       
-      $scope.data.numTags = $scope.paging.total = $scope.data.items.length;
+      $scope.data.numTags = $scope.paging.totalItems = $scope.data.items.length;
 
       if($scope.data.numTags > 0) {
         console.log($scope.data.numTags + ' tags retrieved.');
@@ -198,6 +198,7 @@ angular.module('pinboredWebkitApp')
     // update current page
     Usersessionservice.setCurrentSection('tags');
 
-    
+    // tag screen does not need a tag filter
+    $scope.config.hasButtonTagFilter = false;
 
   }]);

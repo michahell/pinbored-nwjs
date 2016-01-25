@@ -21,6 +21,20 @@ angular.module('pinboredWebkitApp')
     // Search functionality
     angular.extend(this, $controller('SearchableViewCtrl', {$scope: $scope}));
 
+    // page model
+    angular.extend($scope.data, {
+      loadType : 'recent',
+      loadTypes : ['recent', 'all'],
+      activePage : 3,
+      selectedItems : [],
+      bgMsg : 'NO BOOKMARKS FOUND.'
+    });
+
+    // page config
+    angular.extend($scope.config, {
+      showSelection : false
+    });
+
     $scope.multiAction = {
       show : false,
       selectedAction : 'select action',
@@ -31,17 +45,8 @@ angular.module('pinboredWebkitApp')
       foldTagNames : []
     };
 
-    // page model
-    angular.extend($scope.data, {
-      loadType : 'recent',
-      loadTypes : ['recent', 'all'],
-      activePage : 3,
-      selectedItems : [],
-      bgMsg : 'NO BOOKMARKS FOUND.'
-    });
-
     angular.extend($scope.config, {
-      showSelection : false
+      itemsPerPage : 10
     });
 
 
@@ -159,13 +164,10 @@ angular.module('pinboredWebkitApp')
 
     $scope.reload = function(loadType) {
       
-      // set some stupid local state
-      $scope.data.isLoading = true;
-      $scope.data.items = [];
+      $scope.setLoadingState();
+
       $scope.data.bgMsg = 'LOADING BOOKMARKS...';
       $scope.filteredList = [];
-      $scope.paging.current = 1;
-      $scope.paging.total = 0;
 
       $scope.cancelCurrentOperations();
 
