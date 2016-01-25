@@ -12,7 +12,7 @@ body {
 /* Reset the container */
 .container {
   width : 970px;
-  max-width : none !important;
+  max-width : none;
 }
 
 .container .navbar-header,
@@ -28,10 +28,10 @@ body {
 
 /* Undo the collapsing navbar */
 .navbar-collapse {
-  display : block !important;
-  height : auto !important;
+  display : block;
+  height : auto;
   padding-bottom : 0;
-  overflow : visible !important;
+  overflow : visible;
 }
 
 .navbar-toggle {

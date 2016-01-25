@@ -4,13 +4,13 @@
 //   console.info('NODE WEBKIT ERROR!', e);
 // });
 
+var gui = require('nw.gui');
 
 $(function() {
   
   function Menu(cutLabel, copyLabel, pasteLabel) {
     
-    var gui = require('nw.gui'),
-        menu = new gui.Menu();
+    var menu = new gui.Menu();
 
     var cut = new gui.MenuItem({label: cutLabel || 'Cut', click: function() {
         document.execCommand('cut');

@@ -12,10 +12,10 @@ angular.module('pinboredWebkitApp')
     function ($q, $scope, $controller, $filter, $location, Pinboardservice, Appstatusservice, Usersessionservice) {
     
     // if not authenticated, redirect to login page
-    if (Usersessionservice.isAuthenticated() === false) {
-      $location.path('/login');
-      return;
-    }
+    // if (Usersessionservice.isAuthenticated() === false) {
+    //   $location.path('/login');
+    //   return;
+    // }
 
     // Initialize the super (controller) class and extend it.
     angular.extend(this, $controller('BaseViewCtrl', {$scope: $scope}));
@@ -24,12 +24,12 @@ angular.module('pinboredWebkitApp')
     angular.extend(this, $controller('SearchableViewCtrl', {$scope: $scope}));
 
     // if logged off, redirect to login page as well
-    $scope.$on('user:authenticated', function() { // args: event, data
-      if(Usersessionservice.authenticated === false) {
-        $location.path('/login');
-        return;
-      }
-    });
+    // $scope.$on('user:authenticated', function() { // args: event, data
+    //   if(Usersessionservice.authenticated === false) {
+    //     $location.path('/login');
+    //     return;
+    //   }
+    // });
 
     angular.extend($scope.data, {
       numTags : 0
