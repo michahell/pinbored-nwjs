@@ -124,7 +124,7 @@
     <div class="list-wrapper" ng-class="{fullheight: data.filteredList.length > 0}">
       <!-- screen list group -->
       <ul class="list-group">
-        <li ng-repeat="item in data.filteredList | offset: (paging.current - 1) * config.itemsPerPage | limitTo: config.itemsPerPage"
+        <li ng-repeat="item in data.filteredList | offset: (paging.current - 1) * config.itemsPerPage | limitTo: config.itemsPerPage track by item.data.hash"
         class="list-group-item" ng-class="{selected: item.status.selected || item.status.showEdit}" 
         ng-controller="BookmarkItemCtrl" ng-click="selectItem()">
           <div ng-include src="'views/partials/items/BookmarkItem.html'"></div>
