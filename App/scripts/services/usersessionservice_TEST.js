@@ -4,10 +4,12 @@ describe('user session service', function() {
   // service names
   var Usersessionservice, Utilservice, rootScope; //mockUtilService;
 
-  // load module
-  beforeEach(module('pinboredWebkitApp.services'));
-
   beforeEach(function() {
+    
+    // load module
+    module('pinboredWebkitApp.shared');
+    module('pinboredWebkitApp.services');
+
     // mockUtilService = {
     //   isEmpty: jasmine.createSpy()
     // };
@@ -27,6 +29,10 @@ describe('user session service', function() {
     // spies
     spyOn(rootScope, '$broadcast');
 
+    // clear storages
+    localStorage.clear();
+    sessionStorage.clear();
+
   });
     
   it('should be able to instantiate', function() {
@@ -36,9 +42,9 @@ describe('user session service', function() {
   });
 
   it('should have the following functions', function() {
+    expect(angular.isFunction(Usersessionservice.setCurrentSection)).toBe(true);
     expect(angular.isFunction(Usersessionservice.setAuthenticated)).toBe(true);
     expect(angular.isFunction(Usersessionservice.isAuthenticated)).toBe(true);
-    expect(angular.isFunction(Usersessionservice.storeBookmarks)).toBe(true);
     expect(angular.isFunction(Usersessionservice.destroy)).toBe(true);
   });
 

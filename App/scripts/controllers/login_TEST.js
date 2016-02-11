@@ -6,10 +6,14 @@ describe('login controller', function() {
       q, http, timeout, location, rootScope, controller,
       loginCtrl, scope;
 
-  // load module
-  beforeEach(module('pinboredWebkitApp.controllers'));
-
   beforeEach(function() {
+
+    // load modules
+    module('pinboredWebkitApp.thirdparty');
+    module('pinboredWebkitApp.shared');
+    module('pinboredWebkitApp.controllers');
+    module('pinboredWebkitApp.services');
+
     // inject required services
     inject(function($q, $http, $timeout, $location, $rootScope, $controller, _Usersessionservice_, _Utilservice_) {
       q = $q;
@@ -59,8 +63,8 @@ describe('login controller', function() {
   }));
 
   it('should have these defaults', function() {
-    expect(scope.busy).toBe(false);
-    expect(scope.loginAnimation).toBe(null);
+    expect(scope.model.busy).toBe(false);
+    expect(scope.model.loginAnimation).toBe(null);
   });
 
   it('should call login() on enter keypress', function() {

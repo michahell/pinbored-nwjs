@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc filter
- * @name pinboredWebkitApp.offset
+ * @name pinboredWebkitApp.shared.offset
  * @description
  * # offset filter
- * Filter in the pinboredWebkitApp.
+ * Filter in the pinboredWebkitApp.shared.
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.shared')
 
   .filter('offset', function() {
     return function(input, start) {

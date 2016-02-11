@@ -25,7 +25,7 @@ angular.module('pinboredWebkitApp.services')
       var progress = require('request-progress');
       var https = require('https');
     } catch (error) {
-      console.error('error loading request or request-progress: ' + error);
+      console.error('error loading request, request-progress or https: ' + error);
     }
 
     try {

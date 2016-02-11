@@ -6,7 +6,7 @@
  * # Constants
  * Constant in the pinboredWebkitApp.
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.shared')
   .constant('Constants', {
     events : {
       app : {

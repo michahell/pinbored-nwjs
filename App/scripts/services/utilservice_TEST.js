@@ -4,10 +4,12 @@ describe('util service', function() {
   // service names
   var Utilservice, $filter;
 
-  // load module
-  beforeEach(module('pinboredWebkitApp.services'));
-
   beforeEach(function() {
+
+    // load module
+    module('pinboredWebkitApp.shared');
+    module('pinboredWebkitApp.services');
+
     // inject required services
     inject(function(_Utilservice_, _$filter_) {
       Utilservice = _Utilservice_;
@@ -20,20 +22,10 @@ describe('util service', function() {
   });
 
   it('should have the following functions', function() {
+    expect(angular.isFunction(Utilservice.objectSize)).toBe(true);
     expect(angular.isFunction(Utilservice.capitalize)).toBe(true);
+    expect(angular.isFunction(Utilservice.findItemInCollection)).toBe(true);
     expect(angular.isFunction(Utilservice.removeItemFromCollection)).toBe(true);
-    expect(angular.isFunction(Utilservice.isEmpty)).toBe(true);
-  });
-
-  it('should be empty', function() {
-    expect(Utilservice.isEmpty('')).toBe(true);
-    expect(Utilservice.isEmpty(' ')).toBe(true);
-    expect(Utilservice.isEmpty(null)).toBe(true);
-    expect(Utilservice.isEmpty(undefined)).toBe(true);
-
-    // pending
-    // expect(Utilservice.isEmpty({})).toBe(true);
-    // expect(Utilservice.isEmpty([])).toBe(true);
   });
 
   it('should capitalize', function() {

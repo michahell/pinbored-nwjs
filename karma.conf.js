@@ -45,11 +45,21 @@ module.exports = function(config) {
       'App/scripts/services/**/*.js'
     ],
 
+    autoWatch : true,
+
     frameworks: ['jasmine'],
 
-    browsers : ['NodeWebkit'],
+    browsers : ['NodeWebkitWithCustomPath'], // 'NodeWebkit'
 
-    singleRun: true,
+    customLaunchers: {
+      'NodeWebkitWithCustomPath': {
+        base: 'NodeWebkit',
+        // Remember to include 'node_modules' if you have some modules there
+        paths: ['App/node_modules', 'node_modules']
+      }
+    },
+
+    // singleRun: true,
 
     reporters: ['mocha'], // 'nyan', 'progress', 'coverage', 'html'
 

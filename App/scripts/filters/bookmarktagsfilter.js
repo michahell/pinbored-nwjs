@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc filter
- * @name pinboredWebkitApp.tags
+ * @name pinboredWebkitApp.shared.tags
  * @description
  * # tags filter for BOOKMARKS
- * Filter in the pinboredWebkitApp.
+ * Filter in the pinboredWebkitApp.shared.
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.shared')
 
   .filter('bookmarkTags', function() {
     return function(bookmarkCollection, searchTags, logicType) {

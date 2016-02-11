@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc filter
- * @name pinboredWebkitApp.highlight
+ * @name pinboredWebkitApp.shared.highlight
  * @description
  * # highlight filter
- * Filter in the pinboredWebkitApp.
+ * Filter in the pinboredWebkitApp.shared.
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.shared')
 
   .filter('highlight', function($sce) {
     return function(text, phrase) {

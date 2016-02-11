@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc filter
- * @name pinboredWebkitApp.searchcollection
+ * @name pinboredWebkitApp.shared.searchcollection
  * @description
  * # searchcollection filter
- * Filter in the pinboredWebkitApp.
+ * Filter in the pinboredWebkitApp.shared.
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.shared')
   
   .filter('searchcollection', function() {
     return function(propertyName, propertyValue, collection) {
