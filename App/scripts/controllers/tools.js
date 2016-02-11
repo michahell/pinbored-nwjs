@@ -38,9 +38,6 @@ angular.module('pinboredWebkitApp.controllers')
           $scope.duplicatecheck.bookmarks = Bookmarkservice.storedBookmarkData;
           Appstatusservice.updateStatus('cached bookmarks retrieved.');
         }
-      } else {
-        // TODO reload (ALL) bookmarks from (TODO) bookmark singleton service...
-        console.log('TODO should load (all) bookmarks from (TODO) bookmark singleton service...');
       }
     };
 

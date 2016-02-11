@@ -6,6 +6,21 @@
  * # Pinboardservice
  * Service in the pinboredWebkitApp.services.
  */
+
+try {
+  var request = require('request');
+  var progress = require('request-progress');
+  var https = require('https');
+} catch (error) {
+  console.error('error loading request, request-progress or https: ' + error);
+}
+
+try {
+  var dns = require('dns');
+} catch (error) {
+  console.error('error loading dns: ' + error);
+}
+    
 angular.module('pinboredWebkitApp.services')
   .service('Pinboardservice', 
     ['$q', '$timeout', 'Usersessionservice', 'Modalservice', 'Appstatusservice', 'Appconfigservice',
@@ -19,20 +34,6 @@ angular.module('pinboredWebkitApp.services')
     this.timeout = 5000;
 
     var self = this;
-
-    try {
-      var request = require('request');
-      var progress = require('request-progress');
-      var https = require('https');
-    } catch (error) {
-      console.error('error loading request, request-progress or https: ' + error);
-    }
-
-    try {
-      var dns = require('dns');
-    } catch (error) {
-      console.error('error loading dns: ' + error);
-    }
 
     /* ====================== INTERNALS ======================= */
 

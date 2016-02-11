@@ -87,16 +87,8 @@ angular.module('pinboredWebkitApp.controllers')
 
     $scope.openTagOptions = function(option) {
       console.log('opening tag option: ' + option);
-      switch(option) {
-        case 'fold' :
-          $scope.status.hidden.fold = false;
-          $scope.status.hidden.rename = true;
-        break;
-        case 'rename' :
-          $scope.status.hidden.rename = false;
-          $scope.status.hidden.fold = true;
-        break;
-      }
+      $scope.status.hidden.fold = (option === 'fold') ? false : true;
+      $scope.status.hidden.rename = (option === 'rename') ? false : true;
       $scope.item.sizeY = 2;
       $scope.addWatcher();
     };

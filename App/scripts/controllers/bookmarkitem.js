@@ -6,16 +6,17 @@
  * # BookmarkItemCtrl
  * Controller of the pinboredWebkitApp.controllers
  */
+
+try {
+  var gui = require('nw.gui');
+} catch (error) {
+  console.error('error loading nw.gui: ' + error);
+}
+    
 angular.module('pinboredWebkitApp.controllers')
   .controller('BookmarkItemCtrl', 
     ['$scope', 'Usersessionservice', 'Pinboardservice', 'Appstatusservice', 'Modalservice', 'Bookmarkservice', 
     function ($scope, Usersessionservice, Pinboardservice, Appstatusservice, Modalservice, Bookmarkservice) {
-
-    try {
-      var gui = require('nw.gui');
-    } catch (error) {
-      console.error('error loading nw.gui: ' + error);
-    }
 
     // current item!
     // $scope.item

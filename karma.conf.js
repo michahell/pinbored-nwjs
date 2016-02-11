@@ -45,7 +45,7 @@ module.exports = function(config) {
       'App/scripts/services/**/*.js'
     ],
 
-    autoWatch : true,
+    // autoWatch : true,
 
     frameworks: ['jasmine'],
 
@@ -59,31 +59,29 @@ module.exports = function(config) {
       }
     },
 
-    // singleRun: true,
+    singleRun: true,
 
-    reporters: ['mocha'], // 'nyan', 'progress', 'coverage', 'html'
+    reporters: ['mocha', 'coverage'], // 'nyan', 'progress', 'html'
 
-    // preprocessors: {
-    //   // source files, that you wanna generate coverage for
-    //   // do not include tests or libraries
-    //   // (these files will be instrumented by Istanbul)
+    preprocessors: {
+      // source files, that you wanna generate coverage for
+      // do not include tests or libraries
+      // (these files will be instrumented by Istanbul)
 
-    //   'App/scripts/config/config-node-webkit.js' : ['coverage'],
-    //   'App/scripts/config/config-app.js' : ['coverage'],
-
-    //   'App/scripts/controllers/**/*.js' : ['coverage'],
-    //   'App/scripts/directives/**/*.js' : ['coverage'],
-    //   'App/scripts/filters/**/*.js' : ['coverage'],
-    //   'App/scripts/modules/**/*.js' : ['coverage'],
-    //   'App/scripts/services/**/*.js' : ['coverage']
-    // },
+      'App/scripts/config/**/*.js' : ['coverage'],
+      'App/scripts/controllers/**/*.js' : ['coverage'],
+      'App/scripts/directives/**/*.js' : ['coverage'],
+      'App/scripts/filters/**/*.js' : ['coverage'],
+      'App/scripts/services/**/*.js' : ['coverage']
+    },
 
     // optionally, configure the reporter
-    // coverageReporter: {
-    //   type : 'lcovonly',
-    //   dir : 'coverage',
-    //   subdir: '.'
-    // },
+    coverageReporter: {
+      type : 'lcovonly',
+      dir : 'coverage',
+      subdir: '.',
+      file: 'lcov.info'
+    },
 
     // htmlReporter: {
     //   outputFile: 'karma.report.html'

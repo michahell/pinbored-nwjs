@@ -12,6 +12,8 @@ engines:
     config:
       languages:
       - javascript
+    exclude_fingerprints:
+    - 0e7f6c4aa17eb0e1de10eed3169e4a1b
   eslint:
     enabled: true
     exclude_fingerprints:
@@ -21,6 +23,9 @@ engines:
         enabled: false
   fixme:
     enabled: true
+    checks:
+      TODO:
+        enabled: false
 ratings:
   paths:
   - "**.css"

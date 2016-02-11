@@ -213,6 +213,16 @@ module.exports = function(grunt) {
       }
     },
 
+    // codeclimate coverage lcov.info
+    shell: {
+      multiple: {
+        command: [
+          'export CODECLIMATE_REPO_TOKEN=7920d66bcca079f4f9e3924c4a836932d9b885af9754c426391a5fa7b7e4c656',
+          'codeclimate-test-reporter < coverage/lcov.info'
+        ].join('&&')
+      }
+    },
+
     // building native binaries
     nwjs: {
       
@@ -254,23 +264,9 @@ module.exports = function(grunt) {
     
   });
 
-  // Load grunt plugins
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-bowercopy');
-  grunt.loadNpmTasks('grunt-purifycss');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-preprocess');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-htmlclean');
-  grunt.loadNpmTasks('grunt-open');
-  grunt.loadNpmTasks('grunt-nw-builder');
-  grunt.loadNpmTasks('grunt-karma');
-
-
   // testing task(s)
-  grunt.registerTask('test', 'runs testing.', function () {   //, shows report, generates coverage
-    var tasks = ['karma']; // 'open:report', 'shell:codeclimate'
+  grunt.registerTask('test', 'runs testing, generates coverage.', function () {
+    var tasks = ['karma', 'shell'];
     // Use the force option for all tasks declared in the previous line
     grunt.option('force', true);
     grunt.task.run(tasks);
