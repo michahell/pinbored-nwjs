@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc function
- * @name pinboredWebkitApp.controller:BaseViewCtrl
+ * @name pinboredWebkitApp.controllers.controller:BaseViewCtrl
  * @description
  * # BaseViewCtrl
- * Controller of the pinboredWebkitApp
+ * Controller of the pinboredWebkitApp.controllers
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.controllers')
   .controller('BaseViewCtrl', 
     ['$scope', '$location', 'Appconfigservice', 'Usersessionservice',
     function ($scope, $location, Appconfigservice, Usersessionservice) {

@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc function
- * @name pinboredWebkitApp.controller:MainCtrl
+ * @name pinboredWebkitApp.controllers.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the pinboredWebkitApp
+ * Controller of the pinboredWebkitApp.controllers
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.controllers')
   .controller('MainNavCtrl', 
     ['$scope', 'ngDialog', 'Usersessionservice', 'Appstatusservice', 
     function ($scope, ngDialog, Usersessionservice, Appstatusservice) {

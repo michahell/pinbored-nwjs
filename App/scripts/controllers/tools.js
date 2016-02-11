@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc function
- * @name pinboredWebkitApp.controller:ToolsCtrl
+ * @name pinboredWebkitApp.controllers.controller:ToolsCtrl
  * @description
  * # ToolsCtrl
- * Controller of the pinboredWebkitApp
+ * Controller of the pinboredWebkitApp.controllers
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.controllers')
   .controller('ToolsCtrl', 
     ['$scope', '$controller', '$location', 'Usersessionservice', 'Appstatusservice', 'Bookmarkservice', 
     function ($scope, $controller, $location, Usersessionservice, Appstatusservice, Bookmarkservice) {

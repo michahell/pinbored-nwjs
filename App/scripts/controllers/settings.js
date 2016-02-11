@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc function
- * @name pinboredWebkitApp.controller:SettingsCtrl
+ * @name pinboredWebkitApp.controllers.controller:SettingsCtrl
  * @description
  * # SettingsCtrl
- * Controller of the pinboredWebkitApp
+ * Controller of the pinboredWebkitApp.controllers
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.controllers')
   .controller('SettingsCtrl', 
     ['$scope', '$controller', '$location', 'Pinboardservice', 'Usersessionservice', 'Utilservice', 'Appconfigservice',
     function ($scope, $controller, $location, Pinboardservice, Usersessionservice, Utilservice, Appconfigservice) {

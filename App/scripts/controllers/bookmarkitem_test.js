@@ -2,24 +2,35 @@
 describe('bookmark item controller', function() {
 
   // service names
-  var Usersessionservice, Utilservice, Pinboardservice,
-      q, http, timeout, location, rootScope, controller,
-      bookmarkItemCtrl, scope;
+  var q, timeout, location, rootScope, controller,
+      bookmarkItemCtrl, scope,
+      ngProgress,
+      Usersessionservice, Bookmarkservice, Modalservice, Appstatusservice, 
+      Utilservice, Pinboardservice, Config, Constants;
 
   // load module
-  beforeEach(module('pinboredWebkitApp'));
+  beforeEach(module('pinboredWebkitApp.controllers'));
 
   beforeEach(function() {
     // inject required services
-    inject(function($q, $http, $timeout, $location, $rootScope, $controller, _Usersessionservice_, _Utilservice_) {
+    inject(function($q, $timeout, $location, $rootScope, $controller, 
+      _ngProgress_,
+      _Usersessionservice_, _Bookmarkservice_, _Modalservice_, _Appstatusservice_, _Utilservice_,
+      _Config_, _Constants_) {
+
       q = $q;
-      http = $http;
       timeout = $timeout;
       location = $location;
       rootScope = $rootScope;
       controller = $controller;
-      Utilservice = _Utilservice_;
+      ngProgress = _ngProgress_;
       Usersessionservice = _Usersessionservice_;
+      Bookmarkservice = _Bookmarkservice_;
+      Modalservice = _Modalservice_;
+      Appstatusservice = _Appstatusservice_;
+      Utilservice = _Utilservice_;
+      Config = _Config_;
+      Constants = _Constants_;
       scope = rootScope.$new();
     });
 
@@ -93,6 +104,9 @@ describe('bookmark item controller', function() {
       $scope : scope,
       Usersessionservice : Usersessionservice,
       Pinboardservice : Pinboardservice,
+      Appstatusservice : Appstatusservice,
+      Modalservice : Modalservice,
+      Bookmarkservice : Bookmarkservice
     });
 
     // rootscope spies

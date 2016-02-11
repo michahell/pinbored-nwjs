@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc service
- * @name pinboredWebkitApp.Appstatusservice
+ * @name pinboredWebkitApp.services.Appstatusservice
  * @description
  * # Appstatusservice
- * Service in the pinboredWebkitApp.
+ * Service in the pinboredWebkitApp.services.
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.services')
   .service('Appstatusservice', 
     ['$rootScope', 'ngProgress', 'Constants', 'Config', 
     function ($rootScope, ngProgress, Constants, Config) {

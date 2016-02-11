@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc service
- * @name pinboredWebkitApp.Modalservice
+ * @name pinboredWebkitApp.services.Modalservice
  * @description
  * # Modalservice
- * Service in the pinboredWebkitApp.
+ * Service in the pinboredWebkitApp.services.
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.services')
   .service('Modalservice', 
   ['$q', 'Utilservice', 
   function ($q, Utilservice) {

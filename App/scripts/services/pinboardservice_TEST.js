@@ -6,7 +6,7 @@ describe('pinboard service', function() {
       Usersessionservice, Utilservice, Pinboardservice;
 
   // load module
-  beforeEach(module('pinboredWebkitApp'));
+  beforeEach(module('pinboredWebkitApp.services'));
 
   beforeEach(function() {
     // inject required services

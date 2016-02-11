@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc service
- * @name pinboredWebkitApp.Pinboardservice
+ * @name pinboredWebkitApp.services.Pinboardservice
  * @description
  * # Pinboardservice
- * Service in the pinboredWebkitApp.
+ * Service in the pinboredWebkitApp.services.
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.services')
   .service('Pinboardservice', 
     ['$q', '$timeout', 'Usersessionservice', 'Modalservice', 'Appstatusservice', 'Appconfigservice',
     function($q, $timeout, Usersessionservice, Modalservice, Appstatusservice, Appconfigservice) {

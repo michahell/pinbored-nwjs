@@ -7,8 +7,10 @@
  *
  * Main module of the application.
  */
-angular
-  .module('pinboredWebkitApp', [
+
+angular.module('pinboredWebkitApp.controllers', [])
+angular.module('pinboredWebkitApp.services', [])
+angular.module('pinboredWebkitApp', [
     'ngAnimate',
     'ngSanitize',
     'ui.router',                  // angular ui router
@@ -20,7 +22,10 @@ angular
     'gridster',                   // gridster grid for tags screen
     'ngProgress',                 // angular animated progress bar
     'ngDialog',                   // angular dialog popup
-    'monospaced.elastic'          // elastic textarea
+    'monospaced.elastic',         // elastic textarea
+
+    'pinboredWebkitApp.services',     // depend on separate services module
+    'pinboredWebkitApp.controllers'   // depend on separate services module
   ])
   .config(function($stateProvider, $stickyStateProvider, $urlRouterProvider) {
 

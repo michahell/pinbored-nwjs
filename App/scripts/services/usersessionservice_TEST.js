@@ -5,7 +5,7 @@ describe('user session service', function() {
   var Usersessionservice, Utilservice, rootScope; //mockUtilService;
 
   // load module
-  beforeEach(module('pinboredWebkitApp'));
+  beforeEach(module('pinboredWebkitApp.services'));
 
   beforeEach(function() {
     // mockUtilService = {

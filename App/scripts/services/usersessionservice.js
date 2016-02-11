@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc service
- * @name pinboredWebkitApp.Usersessionservice
+ * @name pinboredWebkitApp.services.Usersessionservice
  * @description
  * # Usersessionservice
- * Service in the pinboredWebkitApp.
+ * Service in the pinboredWebkitApp.services.
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.services')
   .service('Usersessionservice', 
     ['$rootScope', 'Utilservice', 
     function ($rootScope, Utilservice) {

@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc service
- * @name pinboredWebkitApp.Appconfigservice
+ * @name pinboredWebkitApp.services.Appconfigservice
  * @description
  * # Appconfigservice
- * Service in the pinboredWebkitApp.
+ * Service in the pinboredWebkitApp.services.
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.services')
   .service('Appconfigservice', 
     ['$rootScope', 
     function ($rootScope) {

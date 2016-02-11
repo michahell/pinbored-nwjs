@@ -7,7 +7,7 @@ describe('login controller', function() {
       loginCtrl, scope;
 
   // load module
-  beforeEach(module('pinboredWebkitApp'));
+  beforeEach(module('pinboredWebkitApp.controllers'));
 
   beforeEach(function() {
     // inject required services

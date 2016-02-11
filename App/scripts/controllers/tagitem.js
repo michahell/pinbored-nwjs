@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc function
- * @name pinboredWebkitApp.controller:TagItemCtrl
+ * @name pinboredWebkitApp.controllers.controller:TagItemCtrl
  * @description
  * # TagItemCtrl
- * Controller of the pinboredWebkitApp
+ * Controller of the pinboredWebkitApp.controllers
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.controllers')
   .controller('TagItemCtrl', 
     ['$q', '$scope', '$location', '$filter','Usersessionservice', 'Pinboardservice', 'Appstatusservice', 
     'Modalservice', 'Bookmarkservice',

@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc service
- * @name pinboredWebkitApp.Bookmarkservice
+ * @name pinboredWebkitApp.services.Bookmarkservice
  * @description
  * # Utilservice
- * Service in the pinboredWebkitApp.
+ * Service in the pinboredWebkitApp.services.
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.services')
   .service('Bookmarkservice', ['$rootScope', '$filter', 'Pinboardservice', 'Appstatusservice', 'Usersessionservice', 'Utilservice', 'Constants', 
     function ($rootScope, $filter, Pinboardservice, Appstatusservice, Usersessionservice, Utilservice, Constants) {
     // AngularJS will instantiate a singleton by calling 'new' on this function

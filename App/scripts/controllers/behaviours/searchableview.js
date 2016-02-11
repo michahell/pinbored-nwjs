@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc function
- * @name pinboredWebkitApp.controller:SearchableViewCtrl
+ * @name pinboredWebkitApp.controllers.controller:SearchableViewCtrl
  * @description
  * # SearchableViewCtrl
- * Controller of the pinboredWebkitApp
+ * Controller of the pinboredWebkitApp.controllers
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.controllers')
   .controller('SearchableViewCtrl', 
     ['$scope', '$timeout', '$filter', 'Usersessionservice', 'Utilservice', 'Appconfigservice', 
     'bookmarkFulltextFilter', 'bookmarkTagsFilter', 'tagFulltextFilter', 

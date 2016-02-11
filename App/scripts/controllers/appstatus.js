@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc function
- * @name pinboredWebkitApp.controller:AppStatusCtrl
+ * @name pinboredWebkitApp.controllers.controller:AppStatusCtrl
  * @description
  * # AppStatusCtrl
- * Controller of the pinboredWebkitApp
+ * Controller of the pinboredWebkitApp.controllers
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.controllers')
   .controller('AppStatusCtrl', 
     ['$scope', 'Usersessionservice', 'Constants', 
     function ($scope, Usersessionservice, Constants) {

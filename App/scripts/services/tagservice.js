@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc service
- * @name pinboredWebkitApp.Tagservice
+ * @name pinboredWebkitApp.services.Tagservice
  * @description
  * # Utilservice
- * Service in the pinboredWebkitApp.
+ * Service in the pinboredWebkitApp.services.
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.services')
   .service('Tagservice', 
     ['$rootScope', '$filter', 'Pinboardservice', 'Appstatusservice', 'Usersessionservice', 'Utilservice', 
     function ($rootScope, $filter, Pinboardservice, Appstatusservice, Usersessionservice, Utilservice) {

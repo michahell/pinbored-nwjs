@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc function
- * @name pinboredWebkitApp.controller:TagsCtrl
+ * @name pinboredWebkitApp.controllers.controller:TagsCtrl
  * @description
  * # TagsCtrl
- * Controller of the pinboredWebkitApp
+ * Controller of the pinboredWebkitApp.controllers
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.controllers')
   .controller('TagsCtrl', 
     ['$q', '$scope', '$controller', '$filter', '$location', 'Pinboardservice', 'Appstatusservice', 'Usersessionservice',
     function ($q, $scope, $controller, $filter, $location, Pinboardservice, Appstatusservice, Usersessionservice) {

@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc function
- * @name pinboredWebkitApp.controller:LoginCtrl
+ * @name pinboredWebkitApp.controllers.controller:LoginCtrl
  * @description
  * # LoginCtrl
- * Controller of the pinboredWebkitApp
+ * Controller of the pinboredWebkitApp.controllers
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.controllers')
   .controller('LoginCtrl', 
     ['$q', '$scope', '$controller', '$location', '$timeout', 'Usersessionservice', 'Pinboardservice', 
     'Modalservice', 'Utilservice', 

@@ -5,7 +5,7 @@ describe('util service', function() {
   var Utilservice, $filter;
 
   // load module
-  beforeEach(module('pinboredWebkitApp'));
+  beforeEach(module('pinboredWebkitApp.services'));
 
   beforeEach(function() {
     // inject required services

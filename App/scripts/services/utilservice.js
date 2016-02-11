@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc service
- * @name pinboredWebkitApp.Utilservice
+ * @name pinboredWebkitApp.services.Utilservice
  * @description
  * # Utilservice
- * Service in the pinboredWebkitApp.
+ * Service in the pinboredWebkitApp.services.
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.services')
   .service('Utilservice', 
     ['$filter', 
     function ($filter) {

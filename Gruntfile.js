@@ -205,6 +205,14 @@ module.exports = function(grunt) {
       }
     },
 
+
+    // karma settings, conf.js file
+    karma : {
+      unit: {
+        configFile: 'karma.conf.js'
+      }
+    },
+
     // building native binaries
     nwjs: {
       
@@ -257,6 +265,16 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-htmlclean');
   grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-nw-builder');
+  grunt.loadNpmTasks('grunt-karma');
+
+
+  // testing task(s)
+  grunt.registerTask('test', 'runs testing.', function () {   //, shows report, generates coverage
+    var tasks = ['karma']; // 'open:report', 'shell:codeclimate'
+    // Use the force option for all tasks declared in the previous line
+    grunt.option('force', true);
+    grunt.task.run(tasks);
+  });
 
   // grunt task
   grunt.registerTask('update', ['clean', 'bowercopy', 'preprocess:development']);
