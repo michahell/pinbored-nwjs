@@ -63,7 +63,7 @@ angular.module('pinboredWebkitApp.controllers')
     $scope.login = function(username, password) {
       $scope.model.busy = true;
 
-      if(!Utilservice.isEmpty(username) && !Utilservice.isEmpty(password)) {
+      if(!_.isEmpty(username) && !_.isEmpty(password)) {
         Pinboardservice.checkConnection()
         .then(function() { // urlAdresses
           // console.log(urlAdresses);
