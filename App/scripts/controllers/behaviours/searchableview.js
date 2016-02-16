@@ -9,9 +9,9 @@
 angular.module('pinboredWebkitApp.controllers')
   .controller('SearchableViewCtrl', 
     ['$scope', '$timeout', '$filter', 'Usersessionservice', 'Utilservice', 'Appconfigservice', 
-    'bookmarkFulltextFilter', 'bookmarkTagsFilter', 'tagFulltextFilter', 
+    'bookmarkFulltextFilter', 'bookmarkTagsFilter', 'tagFulltextFilter', 'Events',
     function ($scope, $timeout, $filter, Usersessionservice, Utilservice, Appconfigservice, 
-      bookmarkFulltextFilter, bookmarkTagsFilter, tagFulltextFilter) {
+      bookmarkFulltextFilter, bookmarkTagsFilter, tagFulltextFilter, Events) {
     
     // shared searchable view model
     $scope.filter = {
@@ -132,7 +132,27 @@ angular.module('pinboredWebkitApp.controllers')
       }
     };
 
-    $scope.$on('$viewContentLoaded', function() {
+    // listen to batch events
+    $scope.$on(Events.batch.start, function(event) {
+      console.log('a batch STARTED!');
+    });
+
+    $scope.$on(Events.batch.end, function(event) {
+      console.log('a batch ENDED!');
+    });
+
+    // listen to bookmark events
+    $scope.$on(Events.bm.delete, function(event, deletedBookmark) {
+      console.log('bookmark DELETED: ', deletedBookmark);
+      $scope.data.items = _.reject($scope.data.items, function(bm) {
+        return bm.data.href === deletedBookmark.data.href;
+      });
+      $scope.data.filteredList = _.reject($scope.data.filteredList, function(bm) {
+        return bm.data.href === deletedBookmark.data.href;
+      });
+    });
+
+    $scope.$on('$viewContentLoaded', function(event) {
       console.info('searchable view controller $viewContentLoaded called');
 
       // bind mousetrap, can be overwritten in sub views
@@ -140,7 +160,7 @@ angular.module('pinboredWebkitApp.controllers')
       Mousetrap.bind('mod+t', $scope.hotkeySearchTag);
     });
 
-    $scope.$on('$destroy', function() {
+    $scope.$on('$destroy', function(event) {
       console.info('searchable view controller $destroy called');
 
       // unbind mousetraps

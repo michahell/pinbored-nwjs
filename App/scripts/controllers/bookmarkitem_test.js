@@ -6,7 +6,7 @@ describe('bookmark item controller', function() {
       bookmarkItemCtrl, scope,
       ngProgress,
       Usersessionservice, Bookmarkservice, Modalservice, Appstatusservice, 
-      Utilservice, Pinboardservice, Config, Constants;
+      Utilservice, Pinboardservice, Config, Events;
 
   beforeEach(function() {
 
@@ -20,7 +20,7 @@ describe('bookmark item controller', function() {
     inject(function($q, $timeout, $location, $rootScope, $controller, 
       _ngProgress_,
       _Usersessionservice_, _Bookmarkservice_, _Modalservice_, _Appstatusservice_, _Utilservice_,
-      _Config_, _Constants_) {
+      _Config_, _Events_) {
 
       q = $q;
       timeout = $timeout;
@@ -34,7 +34,7 @@ describe('bookmark item controller', function() {
       Appstatusservice = _Appstatusservice_;
       Utilservice = _Utilservice_;
       Config = _Config_;
-      Constants = _Constants_;
+      Events = _Events_;
       scope = rootScope.$new();
     });
 
