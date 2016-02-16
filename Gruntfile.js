@@ -131,6 +131,7 @@ module.exports = function(grunt) {
       }
     },
 
+    // add or remove DEBUG and RELEASE sections from index.template.html
     preprocess : {
       development : {
         options: {
@@ -164,20 +165,20 @@ module.exports = function(grunt) {
       },
       everything: {
         files: [{
-          // src: ['App/scripts/app.js', 'App/scripts/**/*.js', '!App/scripts/tests/*.js', '!*.min.js'],
           src: ['Build/App/scripts/app.js', 'Build/App/scripts/**/*.js', '!Build/App/scripts/tests/*.js'],
           dest: 'Build/js/pinbored-nwjs.min.js'
         }]
       }
     },
 
+    // copy App HTML templates and clean them!
     htmlclean: {
       options: {
       },
       deploy: {
         files : [
           {expand: true, cwd: 'App/templates/', src: ['*.html'], dest: 'Build/templates' },
-          {expand: true, cwd: 'App/template/', src: ['**/*.html'], dest: 'Build/template' },
+          {expand: true, cwd: 'App/uib/', src: ['**/*.html'], dest: 'Build/uib' },
           {expand: true, cwd: 'App/views/', src: ['**/*.html'], dest: 'Build/views' }
         ]
       }
@@ -192,7 +193,7 @@ module.exports = function(grunt) {
           {expand: true, cwd: 'App/fonts/', src: ['**'], dest: 'App_release/fonts'},
           {expand: true, cwd: 'App/images/', src: ['**'], dest: 'App_release/images'},
           {expand: true, cwd: 'App/node_modules/', src: ['**'], dest: 'App_release/node_modules'},
-          {expand: true, cwd: 'Build/template/', src: ['**'], dest: 'App_release/template'},
+          {expand: true, cwd: 'Build/uib/', src: ['**'], dest: 'App_release/uib'},
           {expand: true, cwd: 'Build/templates/', src: ['**'], dest: 'App_release/templates'},
           {expand: true, cwd: 'Build/views/', src: ['**'], dest: 'App_release/views'},
           // minified and concatenated CSS / JS files:

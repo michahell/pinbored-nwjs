@@ -39,10 +39,13 @@ module.exports = function(config) {
 
       'App/scripts/app.js',
       'App/scripts/config/**/*.js',
+      'App/scripts/constants/**/*.js',
       'App/scripts/controllers/**/*.js',
       'App/scripts/directives/**/*.js',
       'App/scripts/filters/**/*.js',
-      'App/scripts/services/**/*.js'
+      'App/scripts/services/**/*.js',
+
+      'App/scripts/tests/**/*.js'
     ],
 
     // autoWatch : true,
@@ -69,6 +72,7 @@ module.exports = function(config) {
       // (these files will be instrumented by Istanbul)
 
       'App/scripts/config/**/*.js' : ['coverage'],
+      'App/scripts/constants/**/*.js' : ['coverage'],
       'App/scripts/controllers/**/*.js' : ['coverage'],
       'App/scripts/directives/**/*.js' : ['coverage'],
       'App/scripts/filters/**/*.js' : ['coverage'],
