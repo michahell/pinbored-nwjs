@@ -98,15 +98,15 @@
     <script src="bower_components_dist/fui-angular/fui-tpls.js"></script>
 
     <!-- @ifdef DEBUG -->
-    <!-- node-js / nwjs stuff -->
+    <!-- nwjs configuration and setup -->
     <script src="scripts/config/config-node-nwjs.js"></script>
 
     <!-- main angular entry point -->
     <script src="scripts/app.js"></script>
 
     <!-- constants (need to be declared after app.js) -->
-    <script src="scripts/config/constants.js"></script>
-    <script src="scripts/config/config.js"></script>
+    <script src="scripts/constants/events.js"></script>
+    <script src="scripts/constants/config.js"></script>
 
     <!-- controllers -->
     <script src="scripts/controllers/behaviours/baseview.js"></script>
@@ -118,6 +118,7 @@
     <script src="scripts/controllers/tags.js"></script>
     <script src="scripts/controllers/tools.js"></script>
     <script src="scripts/controllers/settings.js"></script>
+    <script src="scripts/controllers/about.js"></script>
     <script src="scripts/controllers/login.js"></script>
     <script src="scripts/controllers/bookmarkitem.js"></script>
     <script src="scripts/controllers/tagitem.js"></script>
@@ -143,7 +144,6 @@
 
     <script src="scripts/filters/highlightfilter.js"></script>
     <script src="scripts/filters/offsetfilter.js"></script>
-    <script src="scripts/filters/searchcollectionfilter.js"></script>
     <script src="scripts/filters/wordcutfilter.js"></script>
     <!-- @endif -->
 

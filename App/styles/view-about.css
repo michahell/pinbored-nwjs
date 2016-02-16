@@ -1,0 +1,23 @@
+#about .screen h7 {
+  color : #FFF;
+}
+
+#about .screen p {
+  margin : 0;
+  padding : 0;
+  margin-left : 10px;
+  /*font-weight: bold;*/
+  /*color: #BDC3C7;*/
+  /*color: #1A4B6C;*/
+  color : #E4C52B;
+  font-size : 14px;
+}
+
+#about .settingsrow {
+  padding-top : 10px;
+  padding-left : 10px;
+}
+
+#about .settingsrow label {
+  color : #E4C52B;
+}

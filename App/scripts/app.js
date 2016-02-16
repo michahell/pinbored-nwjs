@@ -97,6 +97,17 @@ angular.module('pinboredWebkitApp', [
             controller: 'SettingsCtrl'
           }
         }
+      })
+
+      .state('about', {
+        url: '/about',
+        sticky: true,
+        views: {
+          'about': {
+            templateUrl: 'views/about.html',
+            controller: 'AboutCtrl'
+          }
+        }
       });
 
   })
