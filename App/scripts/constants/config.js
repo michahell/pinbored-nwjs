@@ -6,7 +6,7 @@
  * # Config
  * Constant in the pinboredWebkitApp.
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.shared')
   .constant('Config', {
     theme : {
       progressbar : {

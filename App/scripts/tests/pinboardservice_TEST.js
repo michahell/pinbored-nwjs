@@ -5,10 +5,14 @@ describe('pinboard service', function() {
   var q, http, timeout, rootScope, 
       Usersessionservice, Utilservice, Pinboardservice;
 
-  // load module
-  beforeEach(module('pinboredWebkitApp'));
-
   beforeEach(function() {
+
+    // load modules
+    module('pinboredWebkitApp.thirdparty');
+    module('pinboredWebkitApp.shared');
+    module('pinboredWebkitApp.controllers');
+    module('pinboredWebkitApp.services');
+    
     // inject required services
     inject(function($q, $http, $timeout, $rootScope, _Usersessionservice_, _Utilservice_, _Pinboardservice_) {
       q = $q;
@@ -30,7 +34,6 @@ describe('pinboard service', function() {
 
   it('should have the following functions', function() {
     expect(angular.isFunction(Pinboardservice.setTimeout)).toBe(true);
-    expect(angular.isFunction(Pinboardservice.handleRestlerComplete)).toBe(true);
     expect(angular.isFunction(Pinboardservice.getUserToken)).toBe(true);
     expect(angular.isFunction(Pinboardservice.getRecentBookmarks)).toBe(true);
     expect(angular.isFunction(Pinboardservice.getAllBookmarks)).toBe(true);

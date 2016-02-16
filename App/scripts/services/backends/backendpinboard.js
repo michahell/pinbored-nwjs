@@ -1,13 +1,28 @@
 
 /**
  * @ngdoc service
- * @name pinboredWebkitApp.Backendpinboard
+ * @name pinboredWebkitApp.services.Pinboardservice
  * @description
- * # Backendpinboard
- * Service in the pinboredWebkitApp.
+ * # Pinboardservice
+ * Service in the pinboredWebkitApp.services.
  */
-angular.module('pinboredWebkitApp')
-  .service('Backendpinboard', 
+
+try {
+  var request = require('request');
+  var progress = require('request-progress');
+  var https = require('https');
+} catch (error) {
+  console.error('error loading request, request-progress or https: ' + error);
+}
+
+try {
+  var dns = require('dns');
+} catch (error) {
+  console.error('error loading dns: ' + error);
+}
+    
+angular.module('pinboredWebkitApp.services')
+  .service('Pinboardservice', 
     ['$q', '$timeout', 'Usersessionservice', 'Modalservice', 'Appstatusservice', 'Appconfigservice',
     function($q, $timeout, Usersessionservice, Modalservice, Appstatusservice, Appconfigservice) {
     // AngularJS will instantiate a singleton by calling 'new' on this function
@@ -19,20 +34,6 @@ angular.module('pinboredWebkitApp')
     this.timeout = 5000;
 
     var _this = this;
-
-    try {
-      var request = require('request');
-      var progress = require('request-progress');
-      var https = require('https');
-    } catch (error) {
-      console.error('error loading request, request-progress or https: ' + error);
-    }
-
-    try {
-      var dns = require('dns');
-    } catch (error) {
-      console.error('error loading dns: ' + error);
-    }
 
     /* ====================== INTERNALS ======================= */
 

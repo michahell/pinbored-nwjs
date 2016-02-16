@@ -1,24 +1,16 @@
 
 /**
  * @ngdoc service
- * @name pinboredWebkitApp.Utilservice
+ * @name pinboredWebkitApp.services.Utilservice
  * @description
  * # Utilservice
- * Service in the pinboredWebkitApp.
+ * Service in the pinboredWebkitApp.services.
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.services')
   .service('Utilservice', 
     ['$filter', 
     function ($filter) {
     // AngularJS will instantiate a singleton by calling 'new' on this function
-
-    this.isEmpty = function(input) {
-      var result = true;
-      if (input !== null && input !== undefined && input !== '' && input !== ' ') {
-        result = false;
-      }
-      return result;
-    };
 
     this.objectSize = function(object) {
       return Object.keys(object).length;
@@ -26,16 +18,6 @@ angular.module('pinboredWebkitApp')
 
     this.capitalize = function(string) {
       return string.charAt(0).toUpperCase() + string.substr(1);
-    };
-
-    this.findItemInCollection = function (byProperty, value, collection) {
-      var foundItem = $filter('searchcollection')(byProperty, value, collection);
-      return foundItem;
-    };
-
-    this.removeItemFromCollection = function (byProperty, value, collection) {
-      var foundItem = $filter('searchcollection')(byProperty, value, collection);
-      collection.splice(collection.indexOf(foundItem), 1);
     };
 
   }]);

@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc function
- * @name pinboredWebkitApp.controller:OverviewCtrl
+ * @name pinboredWebkitApp.controllers.controller:OverviewCtrl
  * @description
  * # MainCtrl
- * Controller of the pinboredWebkitApp
+ * Controller of the pinboredWebkitApp.controllers
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.controllers')
   .controller('OverviewCtrl', 
     ['$scope', '$controller', '$location', '$filter', '$q', 
     'Bookmarkservice', 'Pinboardservice', 'Usersessionservice', 'Appstatusservice', 
@@ -79,7 +79,7 @@ angular.module('pinboredWebkitApp')
 
     $scope.executeMultiAction = function() {
       console.log('executing action: ' + $scope.multiAction.selectedAction);
-      if(!Utilservice.isEmpty($scope.multiAction.selectedAction)) {
+      if(!_.isEmpty($scope.multiAction.selectedAction)) {
         // execute the selected multi action method:
         console.log('method call: multi' + Utilservice.capitalize($scope.multiAction.selectedAction));
         $scope['multi' + Utilservice.capitalize($scope.multiAction.selectedAction)]();
@@ -90,8 +90,8 @@ angular.module('pinboredWebkitApp')
       Modalservice.confirm('', 'Delete selected bookmarks ? <br/>This request can not be cancelled when started!')
       .then(function() {
         // recursively delete all items
-        Bookmarkservice.selectionRecursiveDelete($scope.data.selectedItems, $scope.data.items);
-      }, function(){
+        Bookmarkservice.selectionRecursiveDelete($scope.data.selectedItems);
+      }, function() {
         console.log('modal cancelled.');
       });
     };
@@ -112,7 +112,7 @@ angular.module('pinboredWebkitApp')
 
     $scope.multiFoldIntoTag = function() {
       // first check for tag input
-      if(!Utilservice.isEmpty($scope.multiAction.foldTagName)) {
+      if(!_.isEmpty($scope.multiAction.foldTagName)) {
         Modalservice.confirm('', 'Fold existing tags into <br/><span class="modal-tag-highlight">' + $scope.multiAction.foldTagName + '</span> ? <br/>This request can not be cancelled when started!')
         .then(function() {
           // first batch delete all tags from selected bookmarks
@@ -129,7 +129,7 @@ angular.module('pinboredWebkitApp')
 
     $scope.multiAddTag = function() {
       // first check for tag input
-      if(!Utilservice.isEmpty($scope.multiAction.newTagName)) {
+      if(!_.isEmpty($scope.multiAction.newTagName)) {
         Modalservice.confirm('', 'Add tag <br/><span class="modal-tag-highlight">' + $scope.multiAction.newTagName + '</span><br/> to selected bookmarks ? <br/>This request can not be cancelled when started!')
         .then(function() {
           // code moved into function so other batch functions may use it

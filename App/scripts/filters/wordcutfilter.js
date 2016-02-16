@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc filter
- * @name pinboredWebkitApp.wordcut
+ * @name pinboredWebkitApp.shared.wordcut
  * @description
  * # wordcut filter
- * Filter in the pinboredWebkitApp.
+ * Filter in the pinboredWebkitApp.shared.
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.shared')
 
   .filter('wordcut', function () {
     return function (value, wordwise, max, tail) {

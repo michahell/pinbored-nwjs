@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc function
- * @name pinboredWebkitApp.controller:ToolsCtrl
+ * @name pinboredWebkitApp.controllers.controller:ToolsCtrl
  * @description
  * # ToolsCtrl
- * Controller of the pinboredWebkitApp
+ * Controller of the pinboredWebkitApp.controllers
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.controllers')
   .controller('ToolsCtrl', 
     ['$scope', '$controller', '$location', 'Usersessionservice', 'Appstatusservice', 'Bookmarkservice', 
     function ($scope, $controller, $location, Usersessionservice, Appstatusservice, Bookmarkservice) {
@@ -38,9 +38,6 @@ angular.module('pinboredWebkitApp')
           $scope.duplicatecheck.bookmarks = Bookmarkservice.storedBookmarkData;
           Appstatusservice.updateStatus('cached bookmarks retrieved.');
         }
-      } else {
-        // TODO reload (ALL) bookmarks from (TODO) bookmark singleton service...
-        console.log('TODO should load (all) bookmarks from (TODO) bookmark singleton service...');
       }
     };
 

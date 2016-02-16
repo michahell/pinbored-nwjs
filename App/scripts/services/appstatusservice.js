@@ -1,15 +1,15 @@
 
 /**
  * @ngdoc service
- * @name pinboredWebkitApp.Appstatusservice
+ * @name pinboredWebkitApp.services.Appstatusservice
  * @description
  * # Appstatusservice
- * Service in the pinboredWebkitApp.
+ * Service in the pinboredWebkitApp.services.
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.services')
   .service('Appstatusservice', 
-    ['$rootScope', 'ngProgress', 'Constants', 'Config', 
-    function ($rootScope, ngProgress, Constants, Config) {
+    ['$rootScope', 'ngProgress', 'Events', 'Config', 
+    function ($rootScope, ngProgress, Events, Config) {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
     this.state = {
@@ -45,7 +45,7 @@ angular.module('pinboredWebkitApp')
       this.process.color = color;
 
       // notify listeners and provide the current status
-      $rootScope.$broadcast(Constants.events.app.statusupdate, this.process);
+      $rootScope.$broadcast(Events.app.statusupdate, this.process);
     };
 
     this.startProgress = function() {

@@ -2,24 +2,39 @@
 describe('bookmark item controller', function() {
 
   // service names
-  var Usersessionservice, Utilservice, Pinboardservice,
-      q, http, timeout, location, rootScope, controller,
-      bookmarkItemCtrl, scope;
-
-  // load module
-  beforeEach(module('pinboredWebkitApp'));
+  var q, timeout, location, rootScope, controller,
+      bookmarkItemCtrl, scope,
+      ngProgress,
+      Usersessionservice, Bookmarkservice, Modalservice, Appstatusservice, 
+      Utilservice, Pinboardservice, Config, Events;
 
   beforeEach(function() {
+
+    // load modules
+    module('pinboredWebkitApp.thirdparty'); 
+    module('pinboredWebkitApp.shared');
+    module('pinboredWebkitApp.controllers');
+    module('pinboredWebkitApp.services');
+
     // inject required services
-    inject(function($q, $http, $timeout, $location, $rootScope, $controller, _Usersessionservice_, _Utilservice_) {
+    inject(function($q, $timeout, $location, $rootScope, $controller, 
+      _ngProgress_,
+      _Usersessionservice_, _Bookmarkservice_, _Modalservice_, _Appstatusservice_, _Utilservice_,
+      _Config_, _Events_) {
+
       q = $q;
-      http = $http;
       timeout = $timeout;
       location = $location;
       rootScope = $rootScope;
       controller = $controller;
-      Utilservice = _Utilservice_;
+      ngProgress = _ngProgress_;
       Usersessionservice = _Usersessionservice_;
+      Bookmarkservice = _Bookmarkservice_;
+      Modalservice = _Modalservice_;
+      Appstatusservice = _Appstatusservice_;
+      Utilservice = _Utilservice_;
+      Config = _Config_;
+      Events = _Events_;
       scope = rootScope.$new();
     });
 
@@ -93,6 +108,9 @@ describe('bookmark item controller', function() {
       $scope : scope,
       Usersessionservice : Usersessionservice,
       Pinboardservice : Pinboardservice,
+      Appstatusservice : Appstatusservice,
+      Modalservice : Modalservice,
+      Bookmarkservice : Bookmarkservice
     });
 
     // rootscope spies
@@ -101,15 +119,15 @@ describe('bookmark item controller', function() {
     spyOn(scope, 'cancelCurrentOperations');
 
     // service spies
-    spyOn(Pinboardservice, 'updateBookmark').andCallThrough();
+    // spyOn(Pinboardservice, 'updateBookmark').andCallThrough();
 
     // scope spies
-    spyOn(scope, 'openEditing').andCallThrough();
-    spyOn(scope, 'closeEditing').andCallThrough();
-    spyOn(scope, 'mapToProxyValues').andCallThrough();
-    spyOn(scope, 'addWatchers').andCallThrough();
-    spyOn(scope, 'removeWatchers').andCallThrough();
-    spyOn(scope, 'resetBookmark').andCallThrough();
+    spyOn(scope, 'openEditing');//.andCallThrough();
+    spyOn(scope, 'closeEditing');//.andCallThrough();
+    spyOn(scope, 'mapToProxyValues');//.andCallThrough();
+    spyOn(scope, 'addWatchers');//.andCallThrough();
+    spyOn(scope, 'removeWatchers');//.andCallThrough();
+    spyOn(scope, 'resetBookmark');//.andCallThrough();
 
   });
 
@@ -145,11 +163,6 @@ describe('bookmark item controller', function() {
     expect(scope.proxyWatcher).toBe(null);
     expect(scope.itemproxy.toread).toBe(false);
     expect(scope.itemproxy.shared).toBe(false);
-  });
-
-  xit('should highlight a tag', function() {
-    // expect(scope.itemcopy).toBe(null);
-    // pending();
   });
 
   it('should update the bookmark', function() {
@@ -278,7 +291,7 @@ describe('bookmark item controller', function() {
     expect(scope.data.selectedItems.length).toBe(0);
   });
 
-  it('should delete a bookmark', function() {
+  xit('should delete a bookmark', function() {
     scope.delete();
     // expect(scope.deleteBookmark).toHaveBeenCalled();
   });

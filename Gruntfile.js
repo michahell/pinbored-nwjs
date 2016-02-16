@@ -131,6 +131,7 @@ module.exports = function(grunt) {
       }
     },
 
+    // add or remove DEBUG and RELEASE sections from index.template.html
     preprocess : {
       development : {
         options: {
@@ -164,20 +165,20 @@ module.exports = function(grunt) {
       },
       everything: {
         files: [{
-          // src: ['App/scripts/app.js', 'App/scripts/**/*.js', '!App/scripts/tests/*.js', '!*.min.js'],
           src: ['Build/App/scripts/app.js', 'Build/App/scripts/**/*.js', '!Build/App/scripts/tests/*.js'],
           dest: 'Build/js/pinbored-nwjs.min.js'
         }]
       }
     },
 
+    // copy App HTML templates and clean them!
     htmlclean: {
       options: {
       },
       deploy: {
         files : [
           {expand: true, cwd: 'App/templates/', src: ['*.html'], dest: 'Build/templates' },
-          {expand: true, cwd: 'App/template/', src: ['**/*.html'], dest: 'Build/template' },
+          {expand: true, cwd: 'App/uib/', src: ['**/*.html'], dest: 'Build/uib' },
           {expand: true, cwd: 'App/views/', src: ['**/*.html'], dest: 'Build/views' }
         ]
       }
@@ -192,7 +193,7 @@ module.exports = function(grunt) {
           {expand: true, cwd: 'App/fonts/', src: ['**'], dest: 'App_release/fonts'},
           {expand: true, cwd: 'App/images/', src: ['**'], dest: 'App_release/images'},
           {expand: true, cwd: 'App/node_modules/', src: ['**'], dest: 'App_release/node_modules'},
-          {expand: true, cwd: 'Build/template/', src: ['**'], dest: 'App_release/template'},
+          {expand: true, cwd: 'Build/uib/', src: ['**'], dest: 'App_release/uib'},
           {expand: true, cwd: 'Build/templates/', src: ['**'], dest: 'App_release/templates'},
           {expand: true, cwd: 'Build/views/', src: ['**'], dest: 'App_release/views'},
           // minified and concatenated CSS / JS files:
@@ -202,6 +203,24 @@ module.exports = function(grunt) {
           {src: 'Build/index.min.html', dest: 'App_release/index.html'},
           {src: 'App/package.json', dest: 'App_release/package.json'}
         ]
+      }
+    },
+
+
+    // karma settings, conf.js file
+    karma : {
+      unit: {
+        configFile: 'karma.conf.js'
+      }
+    },
+
+    // codeclimate coverage lcov.info
+    shell: {
+      multiple: {
+        command: [
+          'export CODECLIMATE_REPO_TOKEN=7920d66bcca079f4f9e3924c4a836932d9b885af9754c426391a5fa7b7e4c656',
+          'codeclimate-test-reporter < coverage/lcov.info'
+        ].join('&&')
       }
     },
 
@@ -246,17 +265,13 @@ module.exports = function(grunt) {
     
   });
 
-  // Load grunt plugins
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-bowercopy');
-  grunt.loadNpmTasks('grunt-purifycss');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-preprocess');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-htmlclean');
-  grunt.loadNpmTasks('grunt-open');
-  grunt.loadNpmTasks('grunt-nw-builder');
+  // testing task(s)
+  grunt.registerTask('test', 'runs testing, generates coverage.', function () {
+    var tasks = ['karma', 'shell'];
+    // Use the force option for all tasks declared in the previous line
+    grunt.option('force', true);
+    grunt.task.run(tasks);
+  });
 
   // grunt task
   grunt.registerTask('update', ['clean', 'bowercopy', 'preprocess:development']);

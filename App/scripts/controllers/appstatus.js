@@ -1,15 +1,15 @@
 
 /**
  * @ngdoc function
- * @name pinboredWebkitApp.controller:AppStatusCtrl
+ * @name pinboredWebkitApp.controllers.controller:AppStatusCtrl
  * @description
  * # AppStatusCtrl
- * Controller of the pinboredWebkitApp
+ * Controller of the pinboredWebkitApp.controllers
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.controllers')
   .controller('AppStatusCtrl', 
-    ['$scope', 'Usersessionservice', 'Constants', 
-    function ($scope, Usersessionservice, Constants) {
+    ['$scope', 'Usersessionservice', 'Events', 
+    function ($scope, Usersessionservice, Events) {
     
     $scope.status = {
       text : '',
@@ -22,7 +22,7 @@ angular.module('pinboredWebkitApp')
     $scope.visible = false;
 
     // if app status updates in the model reflect these changes
-    $scope.$on(Constants.events.app.statusupdate, function(event, status) {
+    $scope.$on(Events.app.statusupdate, function(event, status) {
       
       $scope.visible = true;
       $scope.status = status;

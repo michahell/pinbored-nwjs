@@ -7,20 +7,32 @@
  *
  * Main module of the application.
  */
-angular
-  .module('pinboredWebkitApp', [
-    'ngAnimate',
-    'ngSanitize',
+
+angular.module('pinboredWebkitApp.shared', []);
+angular.module('pinboredWebkitApp.services', []);
+angular.module('pinboredWebkitApp.controllers', []);
+
+angular.module('pinboredWebkitApp.thirdparty', [
+  'ngAnimate',
+  'ngSanitize',
+  'ui.bootstrap',               // angular ui bootstrap
+  'fui',                        // flat ui bootstrap
+  'ngTagsInput',                // angular tags component
+  'gridster',                   // gridster grid for tags screen
+  'ngProgress',                 // angular animated progress bar
+  'ngDialog',                   // angular dialog popup
+  'monospaced.elastic'          // elastic textarea
+]);
+
+angular.module('pinboredWebkitApp', [
     'ui.router',                  // angular ui router
-    'ui.bootstrap',               // angular ui bootstrap
     'ct.ui.router.extras.core',   // angular ui bootstrap extras core
     'ct.ui.router.extras.sticky', // angular ui bootstrap extras sticky states
-    'fui',                        // flat ui bootstrap
-    'ngTagsInput',                // angular tags component
-    'gridster',                   // gridster grid for tags screen
-    'ngProgress',                 // angular animated progress bar
-    'ngDialog',                   // angular dialog popup
-    'monospaced.elastic'          // elastic textarea
+
+    'pinboredWebkitApp.thirdparty',   // depend on third party shite module
+    'pinboredWebkitApp.shared',       // depend on shared stuff module
+    'pinboredWebkitApp.services',     // depend on separate services module
+    'pinboredWebkitApp.controllers'   // depend on separate controllers module
   ])
   .config(function($stateProvider, $stickyStateProvider, $urlRouterProvider) {
 
@@ -83,6 +95,17 @@ angular
           'settings': {
             templateUrl: 'views/settings.html',
             controller: 'SettingsCtrl'
+          }
+        }
+      })
+
+      .state('about', {
+        url: '/about',
+        sticky: true,
+        views: {
+          'about': {
+            templateUrl: 'views/about.html',
+            controller: 'AboutCtrl'
           }
         }
       });

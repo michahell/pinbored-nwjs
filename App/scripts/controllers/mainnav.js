@@ -1,18 +1,18 @@
 
 /**
  * @ngdoc function
- * @name pinboredWebkitApp.controller:MainCtrl
+ * @name pinboredWebkitApp.controllers.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the pinboredWebkitApp
+ * Controller of the pinboredWebkitApp.controllers
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.controllers')
   .controller('MainNavCtrl', 
-    ['$scope', 'ngDialog', 'Usersessionservice', 'Appstatusservice', 
-    function ($scope, ngDialog, Usersessionservice, Appstatusservice) {
+    ['$scope', '$location', 'ngDialog', 'Usersessionservice', 'Appstatusservice', 
+    function ($scope, $location, ngDialog, Usersessionservice, Appstatusservice) {
 
     // page model
-    $scope.data = {
+    $scope.model = {
       showNav : false,
       activeSection : '',
       username : 'user',
@@ -22,6 +22,7 @@ angular.module('pinboredWebkitApp')
         { name: 'tools' },
         { name: 'statistics' },
         { name: 'settings' }
+        // { name: 'about' }
       ],
       userMenuItems : [
         { name : 'about', action : 'about' },
@@ -34,10 +35,10 @@ angular.module('pinboredWebkitApp')
     var gui = require('nw.gui');
 
     // root scope listeners
-    $scope.$on('user:authenticated', function() { // args: event, data
+    $scope.$on('user:authenticated', function() { // args: event, model
       if(Usersessionservice.authenticated === true) {
         $scope.showNav = true;
-        $scope.data.username = Usersessionservice.user;
+        $scope.model.username = Usersessionservice.user;
       } else if(Usersessionservice.authenticated === false) {
         $scope.showNav = false;
         return;
@@ -45,7 +46,7 @@ angular.module('pinboredWebkitApp')
     });
 
     $scope.$on('user:pagechange', function() { // args: event, currentPage
-      $scope.data.activeSection = Usersessionservice.currentSection;
+      $scope.model.activeSection = Usersessionservice.currentSection;
     });
 
     $scope.doAction = function(action) {
@@ -57,7 +58,8 @@ angular.module('pinboredWebkitApp')
 
     $scope.about = function() {
       console.log('about clicked...');
-      ngDialog.open({ template: 'templates/modal-about-template.html' });
+      // ngDialog.open({ template: 'templates/modal-about-template.html' });
+      $location.path('/about');
     };
 
     $scope.logout = function() {

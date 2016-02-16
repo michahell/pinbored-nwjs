@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc service
- * @name pinboredWebkitApp.Usersessionservice
+ * @name pinboredWebkitApp.services.Usersessionservice
  * @description
  * # Usersessionservice
- * Service in the pinboredWebkitApp.
+ * Service in the pinboredWebkitApp.services.
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.services')
   .service('Usersessionservice', 
     ['$rootScope', 'Utilservice', 
     function ($rootScope, Utilservice) {
@@ -31,7 +31,7 @@ angular.module('pinboredWebkitApp')
 
     this.setAuthenticated = function(username, apikey) {
       // return if no correct input is given
-      if(Utilservice.isEmpty(username) || Utilservice.isEmpty(apikey)) { return; }
+      if(_.isEmpty(username) || _.isEmpty(apikey)) { return; }
       // console.info('setAuthenticated: ' + username + ', ' + apikey);
 
       this.authenticated = true;
@@ -49,7 +49,7 @@ angular.module('pinboredWebkitApp')
     this.isAuthenticated = function() {
 
       // check if user and apikey are still in session storage.
-      if(Utilservice.isEmpty(sessionStorage.user) || Utilservice.isEmpty(sessionStorage.apikey)) {
+      if(_.isEmpty(sessionStorage.user) || _.isEmpty(sessionStorage.apikey)) {
         this.authenticated = false;
       } else {
         // if they are, store them again in the service

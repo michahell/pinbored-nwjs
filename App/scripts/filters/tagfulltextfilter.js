@@ -1,12 +1,12 @@
 
 /**
  * @ngdoc filter
- * @name pinboredWebkitApp.fulltext
+ * @name pinboredWebkitApp.shared.fulltext
  * @description
  * # fulltext filter for BOOKMARKS
- * Filter in the pinboredWebkitApp.
+ * Filter in the pinboredWebkitApp.shared.
  */
-angular.module('pinboredWebkitApp')
+angular.module('pinboredWebkitApp.shared')
 
   .filter('tagFulltext', function() {
     return function(tagCollection, word) {

@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="#/about">
         <img src="images/pinbored/icons/pinbored-icon-48.png">
       </a> 
     </div>
@@ -10,8 +10,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="main-nav-bar">
       <ul class="nav navbar-nav">
-        <li ng-repeat="navItem in data.navItems" ui-sref-active="active" 
-        ng-class="{active: data.activeSection == navItem.name}">
+        <li ng-repeat="navItem in model.navItems" ui-sref-active="active" 
+        ng-class="{active: model.activeSection == navItem.name}">
           <a ui-sref="{{navItem.name}}" href="#/{{navItem.name}}">{{navItem.name}}</a>
         </li>
       </ul>
@@ -20,10 +20,10 @@
         <!-- Single button -->
         <div class="btn-group user-menu-dropdown" uib-dropdown is-open="status.isopen">
           <button type="button" class="btn btn-sm btn-default dropdown-toggle" uib-dropdown-toggle ng-disabled="disabled">
-            {{data.username}}<span class="caret"></span>
+            {{model.username}}<span class="caret"></span>
           </button>
           <ul class="dropdown-menu" role="menu">
-            <li ng-repeat="userMenuItem in data.userMenuItems">
+            <li ng-repeat="userMenuItem in model.userMenuItems">
               <a ng-click="doAction(userMenuItem.action)">{{userMenuItem.name}}</a>
             </li>
             <li class="divider"></li>
