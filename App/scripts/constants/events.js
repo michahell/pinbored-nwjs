@@ -9,25 +9,22 @@
 angular.module('pinboredWebkitApp.shared')
   .constant('Events', {
     app : {
-      statusupdate : 'app:statusupdate'
+      statusupdate : 'app:statusupdate',
+      configchanged : 'app:configchanged'
     },
     batch : {
       start : 'batch:start',                      // indicates a batch process started
-      // update : 'batch:update',
-      delete : 'batch:deleted',
-      tagremoved : 'batch:tagremoved',
-      tagadded : 'batch:tagadded',
       alltagsremoved : 'batch:alltagsremoved',
       alltagsfolded : 'batch:alltagsfolded',
       end : 'batch:end'                           // indicates a batch process ended
     },
     bm : {
-      // create : 'bookmark:created',
+      create : 'bookmark:created',
       update : 'bookmark:updated',
       delete : 'bookmark:deleted'
     },
     tag : {
-      // create : 'tag:created',
+      create : 'tag:created',
       update : 'tag:updated',
       delete : 'tag:deleted'
     }
