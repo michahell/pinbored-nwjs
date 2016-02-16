@@ -76,7 +76,8 @@ module.exports = function(config) {
       'App/scripts/controllers/**/*.js' : ['coverage'],
       'App/scripts/directives/**/*.js' : ['coverage'],
       'App/scripts/filters/**/*.js' : ['coverage'],
-      'App/scripts/services/**/*.js' : ['coverage']
+      'App/scripts/services/**/*.js' : ['coverage'],
+      'App/scripts/tests/**/*.js' : ['coverage']
     },
 
     // optionally, configure the reporter

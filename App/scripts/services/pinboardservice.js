@@ -7,19 +7,10 @@
  * Service in the pinboredWebkitApp.services.
  */
 
-try {
-  var request = require('request');
-  var progress = require('request-progress');
-  var https = require('https');
-} catch (error) {
-  console.error('error loading request, request-progress or https: ' + error);
-}
-
-try {
-  var dns = require('dns');
-} catch (error) {
-  console.error('error loading dns: ' + error);
-}
+var request = require('request');
+var progress = require('request-progress');
+var https = require('https');
+var dns = require('dns');
     
 angular.module('pinboredWebkitApp.services')
   .service('Pinboardservice', 
