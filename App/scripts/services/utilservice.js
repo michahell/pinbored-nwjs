@@ -20,14 +20,4 @@ angular.module('pinboredWebkitApp.services')
       return string.charAt(0).toUpperCase() + string.substr(1);
     };
 
-    this.findItemInCollection = function (byProperty, value, collection) {
-      var foundItem = $filter('searchcollection')(byProperty, value, collection);
-      return foundItem;
-    };
-
-    this.removeItemFromCollection = function (byProperty, value, collection) {
-      var foundItem = $filter('searchcollection')(byProperty, value, collection);
-      collection.splice(collection.indexOf(foundItem), 1);
-    };
-
   }]);
