@@ -6,7 +6,7 @@
   },
   "name": "pinbored",
   "description": "a bookmark management app built around the Pinboard.in REST service.",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "bugs": {
     "url": "https://github.com/michahell/pinbored-nwjs/issues",
     "email": "maggelo@gmail.com"

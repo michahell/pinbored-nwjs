@@ -133,7 +133,8 @@ steps
 1. clone or fork project.
 2. run **```npm install```** in the project root (installs development environment dependancies)
 3. run **```npm install```** in /App (installs app dependancies)
-4. run either:
+4. run **```bower install```** in / (installs app bower dependancies)
+5. run either:
     * **```grunt update```**
       
       **- Windows / Linux users**: if you get missing package errors, you should probably manually install the following npm packages:
