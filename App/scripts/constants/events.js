@@ -18,6 +18,10 @@ angular.module('pinboredWebkitApp.shared')
       alltagsfolded : 'batch:alltagsfolded',
       end : 'batch:end'                           // indicates a batch process ended
     },
+    user : {
+      authenticated : 'user:authenticated',
+      pagechanged : 'user:pagechange'
+    },
     bm : {
       create : 'bookmark:created',
       update : 'bookmark:updated',

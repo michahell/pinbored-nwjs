@@ -8,8 +8,10 @@
  */
 angular.module('pinboredWebkitApp.controllers')
   .controller('SettingsCtrl', 
-    ['$scope', '$controller', '$location', 'Pinboardservice', 'Usersessionservice', 'Utilservice', 'Appconfigservice',
-    function ($scope, $controller, $location, Pinboardservice, Usersessionservice, Utilservice, Appconfigservice) {
+    ['$scope', '$controller', '$location', 'Pinboardservice', 
+    'Usersessionservice', 'Utilservice', 'Appconfigservice', 'Events', 
+    function ($scope, $controller, $location, Pinboardservice, 
+      Usersessionservice, Utilservice, Appconfigservice, Events) {
 
     // Initialize the super (controller) class and extend it.
     angular.extend(this, $controller('BaseViewCtrl', {$scope: $scope}));
@@ -71,6 +73,6 @@ angular.module('pinboredWebkitApp.controllers')
     Usersessionservice.setCurrentSection('settings');
 
     // set event hooks / listeners
-    $scope.$on('app:configchanged', $scope.onAppconfigChanged);
+    $scope.$on(Events.app.configchanged, $scope.onAppconfigChanged);
 
   }]);

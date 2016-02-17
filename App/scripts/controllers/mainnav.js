@@ -8,8 +8,8 @@
  */
 angular.module('pinboredWebkitApp.controllers')
   .controller('MainNavCtrl', 
-    ['$scope', '$location', 'ngDialog', 'Usersessionservice', 'Appstatusservice', 
-    function ($scope, $location, ngDialog, Usersessionservice, Appstatusservice) {
+    ['$scope', '$location', 'ngDialog', 'Usersessionservice', 'Appstatusservice', 'Events',  
+    function ($scope, $location, ngDialog, Usersessionservice, Appstatusservice, Events) {
 
     // page model
     $scope.model = {
@@ -35,7 +35,7 @@ angular.module('pinboredWebkitApp.controllers')
     var gui = require('nw.gui');
 
     // root scope listeners
-    $scope.$on('user:authenticated', function() { // args: event, model
+    $scope.$on(Events.user.authenticated, function() { // args: event, model
       if(Usersessionservice.authenticated === true) {
         $scope.showNav = true;
         $scope.model.username = Usersessionservice.user;
@@ -45,7 +45,7 @@ angular.module('pinboredWebkitApp.controllers')
       }
     });
 
-    $scope.$on('user:pagechange', function() { // args: event, currentPage
+    $scope.$on(Events.user.pagechanged, function() { // args: event, currentPage
       $scope.model.activeSection = Usersessionservice.currentSection;
     });
 
