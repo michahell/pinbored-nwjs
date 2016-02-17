@@ -2,10 +2,16 @@
 
   <!-- screen title -->
   <div class="screentitle clearfix"> <!-- animated fadeIn -->
-    <h6>Tags</h6>
-
-    <div class="col-xs-3">
+    
+    <div class="col-xs-4">
+      <h6>Tags</h6>
       <button class="btn btn-primary btn-sm" type="submit" ng-click="repopulateTags()">reload</button>
+    </div>
+
+    <div class="col-xs-4 share-label-col">
+      <label class="share-label">
+        <span class="highlight">{{data.filteredList.length}}</span> tags found
+      </label>
     </div>
 
     <!-- search functionality buttons -->

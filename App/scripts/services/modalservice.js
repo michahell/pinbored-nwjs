@@ -33,11 +33,9 @@ angular.module('pinboredWebkitApp.services')
       var isConfirmed = confirm(messageString);
 
       if(isConfirmed) { 
-        console.log('modal confirmed!');
-        deferred.resolve();
+        deferred.resolve({reason: 'accepted', explanation: 'modal confirmed by user.'});
       } else {
-        console.log('modal declined!');
-        deferred.reject();
+        deferred.reject({reason: 'cancelled', explanation: 'modal was cancalled by user.'});
       }
 
       return deferred.promise;

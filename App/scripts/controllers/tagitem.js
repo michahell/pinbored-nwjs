@@ -176,9 +176,11 @@ angular.module('pinboredWebkitApp.controllers')
           $scope.$parent.removeTag(tag);
         }
       })
-      .catch(function(reason) {
-        console.error('delete tag failed: ' + reason);
-        Appstatusservice.updateStatus('deleting tag failed: ' + reason + '.');
+      .catch(function(rejection) {
+        if(rejection.reason === 'error') {
+          console.error('delete tag failed: ' + rejection);
+          Appstatusservice.updateStatus('deleting tag failed: ' + rejection + '.');
+        }
       });
     };
 
