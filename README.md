@@ -1,15 +1,13 @@
 <!-- [![David](https://img.shields.io/david/michahell/pinbored-nwjs.svg)]() -->
 <!-- [![GitHub issues](https://img.shields.io/github/issues/michahell/pinbored-nwjs.svg)]() -->
-<!-- [![GitHub release](https://img.shields.io/github/release/michahell/pinbored-nwjs.svg)]()
-[![GitHub license](https://img.shields.io/github/license/michahell/pinbored-nwjs.svg)]() -->
-<!-- [![Codeship Status for michahell/pinbored-nwjs](https://codeship.com/projects/8d6b0c90-2168-0132-5fae-5ac01ae581ac/status?branch=master)](https://codeship.com/projects/36225) -->
-<!-- [![Test Coverage](https://codeclimate.com/github/michahell/pinbored-nwjs/badges/coverage.svg)](https://codeclimate.com/github/michahell/pinbored-nwjs) -->
+<!-- [![GitHub release](https://img.shields.io/github/release/michahell/pinbored-nwjs.svg)]() -->
+<!-- [![Stories in Ready](https://badge.waffle.io/michahell/pinbored-nwjs.png?label=In%20Progress&title=In%20Progress)](https://waffle.io/michahell/pinbored-nwjs) -->
 
 [![volkswagen status](https://auchenberg.github.io/volkswagen/volkswargen_ci.svg?v=1)](https://github.com/auchenberg/volkswagen)
 [![devDependency Status](https://david-dm.org/michahell/pinbored-nwjs/dev-status.svg)](https://david-dm.org/michahell/pinbored-nwjs/#info=devDependencies)
 [![Code Climate](https://codeclimate.com/github/michahell/pinbored-nwjs/badges/gpa.svg)](https://codeclimate.com/github/michahell/pinbored-nwjs)
 [![Codacy Badge](https://www.codacy.com/project/badge/8c9342d436414724bee17f6ab6f5076f)](https://www.codacy.com/app/maggelo/pinbored-nwjs)
-[![Stories in Ready](https://badge.waffle.io/michahell/pinbored-nwjs.png?label=In%20Progress&title=In%20Progress)](https://waffle.io/michahell/pinbored-nwjs)
+[![Test Coverage](https://codeclimate.com/github/michahell/pinbored-nwjs/badges/coverage.svg)](https://codeclimate.com/github/michahell/pinbored-nwjs/coverage)
 [![Gitter](https://badges.gitter.im/JoinChat.svg)](https://gitter.im/michahell/pinbored-nwjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Flattr me](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=michahell&url=https://github.com/michahell/pinbored-nwjs&title=pinbored-nwjs&language=english&tags=github&category=software)
 

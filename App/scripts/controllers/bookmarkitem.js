@@ -150,7 +150,7 @@ angular.module('pinboredWebkitApp.controllers')
     };
 
     $scope.currentItemChanged = function() {
-      console.log('item change detected!');
+      // console.log('item change detected!');
       $scope.item.status.hasChanged = !angular.equals($scope.item.data, $scope.itemcopy.data);
       // console.log('item DATA has changed compared to item copy DATA: ');
       // console.log($scope.item.status.hasChanged);
@@ -196,7 +196,7 @@ angular.module('pinboredWebkitApp.controllers')
 
     $scope.toggleEdit = function() {
       // $scope.cancelCurrentOperations($scope.item);
-      console.log('toggle edit clicked');
+      // console.log('toggle edit clicked');
       if($scope.item.status.showEdit) {
         $scope.closeEditing();
       } else if(!$scope.item.status.showEdit) {

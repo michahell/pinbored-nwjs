@@ -62,7 +62,7 @@ $(function() {
   var menu = new Menu(/* pass cut, copy, paste labels if you need i18n*/);
 
   fixQuirks();
-  console.info('app config :: quirks fixed!');
+  // console.info('app config :: quirks fixed!');
 
   $(document).on('contextmenu', function(e) {
     e.preventDefault();
