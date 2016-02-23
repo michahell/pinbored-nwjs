@@ -96,6 +96,9 @@
      -moz-transition : 0.4s ease-out all;
           transition : 0.4s ease-out all;
   opacity : 1;
+  position: relative;
+  left: 2px;
+  border-left: 3px solid #5bc0de;
 }
 
 .hiddenContentContainer.ng-hide {
