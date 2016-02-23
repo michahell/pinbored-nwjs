@@ -11,26 +11,18 @@ angular.module('pinboredWebkitApp.shared')
   .filter('tagFulltext', function() {
     return function(tagCollection, word) {
 
-      // console.log('full text filter invoked.');
-      var filteredList = [];
-      var currentTag = null;
+      var filteredList = tagCollection;
 
-      if(word !== undefined && word !== '' && word !== ' ') {
-        if(word.length > 0) {
-          for(var j=0; j<tagCollection.length; j++) {
-            currentTag = tagCollection[j];
-            var index = currentTag.tagname.toLowerCase().indexOf(word.toLowerCase());
-            if (index > -1) {
-              // set filtered to true and break
-              filteredList.push(currentTag);
-              break;
-            }
+      if(word !== undefined && word !== '' && word !== ' ' && word.length > 0) {        
+        filteredList = _.filter(tagCollection, function(tag, tagKey) {
+          if (tag.tagname.toLowerCase().includes(word.toLowerCase()) || tag.tagname === word) {
+            return true;
+          } else {
+            return false;
           }
-        }
-      } else {
-        // there is no word to filter on.
-        return tagCollection;
+        });
       }
+
       return filteredList;
     };
   });
