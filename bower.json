@@ -18,7 +18,7 @@
     "ng-tags-input": ">=2.0.1",
     "ngDialog": "~0.4.0",
     "ngprogress": "~1.0.7",
-    "ramda": "~0.17.1",
+    "ramda": "~0.19.1",
     "ui-router-extras": "~0.0.14",
     "underscore": "~1.8.3"
   },

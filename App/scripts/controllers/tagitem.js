@@ -121,23 +121,24 @@ angular.module('pinboredWebkitApp.controllers')
 
       Pinboardservice.renameTag(oldTagName, newTagName)
       .then(function(result) {
-        console.log(currentTense + ' tag successfull: ', result);
         if(result.result === 'done') {
+          console.log(currentTense + ' tag successfull: ', result);
+          // update the tags list with the updated tag
+          $scope.$parent.updateTag(oldTagName, newTagName, type);
+          // make copy that functions as 'original' to track changes
+          if(type === 'rename') {
+            $scope.original = angular.copy($scope.item);
+          }
           // status update
           Appstatusservice.updateStatus('tag ' + pastTense);
           // close tag options (also removes watcher)
           $scope.closeTagOptions();
-          if(type === 'rename') {
-            // make new original copy
-            $scope.original = angular.copy($scope.item);
-          }
           deferred.resolve();
+        } else {
+          Appstatusservice.updateStatus(pastTense + ' tag failed: ' + result + '.');
+          deferred.reject(result);
         }
       })
-      .catch(function(reason) {
-        Appstatusservice.updateStatus(pastTense + ' tag failed: ' + reason + '.');
-        deferred.reject();
-      });
       return deferred.promise;
     };
 
@@ -147,12 +148,8 @@ angular.module('pinboredWebkitApp.controllers')
         // remove tag visibly
         var obsoleteTag = $scope.$parent.getTagByName(tag.tagname);
         var foldedIntoTag = $scope.$parent.getTagByName(intoTagName);
-        console.log('trying to get tag: ', tag.tagname, obsoleteTag);
-        if(obsoleteTag !== undefined && !obsoleteTag !== null) {
-          $scope.$parent.removeTag(obsoleteTag);
-          // increase selected tag count
-          $scope.$parent.increaseTagOccurenceCount(foldedIntoTag);
-        }
+        // remove obsolete tag
+        $scope.$parent.removeTag(obsoleteTag);
       })
       .catch(function(error) {
         console.error(error);

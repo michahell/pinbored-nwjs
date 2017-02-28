@@ -259,21 +259,30 @@ angular.module('pinboredWebkitApp.controllers')
     $scope.applyFilterBuffer = function() {
       if(Bookmarkservice.hasFilterBuffer()) {
         // add filter buffer tags
-        for(var i=0; i<Bookmarkservice.filterBuffer.tags.length; i++) {
-          var filterBufferTag = Bookmarkservice.filterBuffer.tags[i];
-          $scope.filter.tags.push(filterBufferTag);
+        if(Bookmarkservice.filterBuffer.tags.length > 0) {
+          _.each(Bookmarkservice.filterBuffer.tags, function(filterBufferTag) {
+            $scope.filter.tags.push(filterBufferTag);
+          });
+          // set tag filtering to AND (only those tags and no others) or OR.
+          $scope.appconfig.tagFilterType = Bookmarkservice.filterBuffer.tagFilterType;
+          // and show the tag search bar
+          $scope.config.showTags = true;
         }
-        // set tag uniqueness (only those tags and no others)
-        $scope.appconfig.tagFilterType = Bookmarkservice.filterBuffer.tagFilterType;
 
         // add filter buffer text
-        $scope.filter.text = Bookmarkservice.filterBuffer.text;
+        if(Bookmarkservice.filterBuffer.text.length > 0) {
+          $scope.filter.text = Bookmarkservice.filterBuffer.text;
+          // and show the full text search bar
+          $scope.config.showSearch = true;
+        }
 
-        // clear the filter buffer
+        // clear the filter buffer AFTERWARDS
         Bookmarkservice.clearFilterBuffer();
 
         // and update filters!
         $scope.updateFiltersPaging();
+      } else {
+        console.log('overview :: Bookmarkservice has no filterbuffer.');
       }
     };
 
@@ -330,6 +339,13 @@ angular.module('pinboredWebkitApp.controllers')
 
       // and filter them, if there is any filterBuffer
       $scope.applyFilterBuffer();
+    });
+
+    $scope.$on('$stateChangeSuccess', function(event, toState) { 
+      if(toState.name === 'overview') {
+        console.log('overview view refocused');
+        $scope.applyFilterBuffer();
+      }
     });
 
     $scope.$on('$destroy', function() {

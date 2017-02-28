@@ -19,9 +19,6 @@ angular.module('pinboredWebkitApp.services')
     // filter buffer
     this.filterBuffer = {};
 
-    // filter buffer watcher
-    // this.filterBufferWatcher;
-
     // in memory cached bookmarks
     this.storedBookmarkData = {};
 
@@ -32,7 +29,7 @@ angular.module('pinboredWebkitApp.services')
 
 
 
-    // BOOKMARK SUPPORT FUNCTIONS
+    // FILTERBUFFER FUNCTIONS
 
 
 
@@ -61,6 +58,14 @@ angular.module('pinboredWebkitApp.services')
       // and recreate filter buffer
       this.recreateFilterBuffer();
     };
+
+
+
+
+    // BOOKMARK SUPPORT FUNCTIONS
+
+
+
 
     this.loadBookmarks = function(loadType, amount) {
       if(loadType === 'recent') {
@@ -300,6 +305,20 @@ angular.module('pinboredWebkitApp.services')
         console.info('bookmarkitem STALE! ' + reason);
         bookmark.status.staleness = 'dead';
       });
+    };
+
+    this.getBookmarkTags = function(bookmark) {
+      console.log('bookmarkservice :: getBookmarkTags... ');
+      var self = this;
+      
+      return bookmark.tags.split(' ');
+    };
+
+    this.hasBookmarkTag = function(bookmark, tagName) {
+      console.log('bookmarkservice :: hasBookmarkTag... ');
+      var self = this;
+      
+      return bookmark.tags.split(' ').indexOf(tagName) > -1;
     };
 
 
